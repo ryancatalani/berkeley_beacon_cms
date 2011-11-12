@@ -1,5 +1,7 @@
 BeaconApp::Application.routes.draw do
 	
+  get "admin/home"
+
   get "pages/home"
 
   get "pages/about"
