@@ -1,8 +1,12 @@
 BeaconApp::Application.routes.draw do
 	
+  get "pages/home"
+
+  get "pages/about"
+
 	resources :people
 	
-	root :to => 'people#new'
+	root :to => 'pages#home'
 	
   # The priority is based upon order of creation:
   # first created -> highest priority.
