@@ -1,14 +1,14 @@
 BeaconApp::Application.routes.draw do
 	
 
-  get "admin/home"
+	get "admin/home"
 
-  get "pages/home"
-
-  get "pages/about"
 
 	resources :people
-	resources :sessions
+	resources :sessions, :only => [:new, :create, :destroy]
+	match '/login', :to => 'sessions#new'
+	match '/logout', :to => 'sessions#destroy'
+	match '/about', :to => 'pages#about'
 	root :to => 'pages#home'
 	
   # The priority is based upon order of creation:

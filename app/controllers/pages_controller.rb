@@ -1,8 +1,9 @@
 class PagesController < ApplicationController
-  def home
-  end
+	def home
+		@current_user = current_user
+	end
 
-  def about
-  end
+	def about
+	end
 
 end
