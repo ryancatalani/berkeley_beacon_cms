@@ -1,4 +1,9 @@
 BeaconApp::Application.routes.draw do
+	
+	resources :people
+	
+	root :to => 'people#new'
+	
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
