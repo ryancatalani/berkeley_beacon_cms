@@ -1,6 +1,8 @@
 BeaconApp::Application.routes.draw do
 	
 
+  get "articles/new"
+
 	get "admin/home"
 
 
