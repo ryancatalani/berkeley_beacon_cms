@@ -1,3 +1,4 @@
 class Article < ActiveRecord::Base
-	validates_presence_of :title, :body, :type
+	validates_presence_of :title, :body, :articletype
+	attr_accessible :title, :body, :excerpt, :articletype
 end
