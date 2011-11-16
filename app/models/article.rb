@@ -4,4 +4,5 @@ class Article < ActiveRecord::Base
 	has_many :authorships
 	has_many :people, :through => :authorships
 	serialize :subtitles
+	belongs_to :section
 end
