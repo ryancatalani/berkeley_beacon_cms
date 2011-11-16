@@ -21,16 +21,26 @@
 		<%= f.text_field :email %>
 	</div>
 	<div class="field">
-		<%= f.label :editor %>
-		<%= f.check_box :editor %>
-	</div>	
-	<div class="field">
-		<%= f.label :password %>
-		<%= f.password_field :password %>
+		<%= f.label :twitter %>
+		@<%= f.text_field :twitter %>
 	</div>
 	<div class="field">
-		<%= f.label :password_confirmation %>
-		<%= f.password_field :password_confirmation %>
+		<%= f.label :editor %>
+		<%= f.check_box :editor %>
+	</div>
+	<div class="field">
+		<%= f.label :staff %>
+		<%= f.check_box :staff %>
+	</div>
+	<div id="show_if_editor">
+		<div class="field">
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+		</div>
+		<div class="field">
+			<%= f.label :password_confirmation, "Password one more time" %>
+			<%= f.password_field :password_confirmation %>
+		</div>
 	</div>
 	
 	<div class="actions"><%= f.submit %></div>
