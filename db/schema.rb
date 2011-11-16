@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116202459) do
+ActiveRecord::Schema.define(:version => 20111116204901) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20111116202459) do
   end
 
   create_table "people", :force => true do |t|
-    t.string   "name"
+    t.string   "firstname"
     t.string   "email"
     t.string   "password_digest"
     t.boolean  "editor"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20111116202459) do
     t.datetime "updated_at"
     t.boolean  "staff"
     t.string   "twitter"
+    t.string   "lastname"
   end
 
 end
