@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 			@current_user ||= Person.find(session[:user_id]) if session[:user_id]
 		end
 		
-		helper_method :current_user
+		def check_editor
+			redirect_to root_path unless current_user and current_user.editor?
+		end
+		
+		helper_method :current_user, :check_editor
 	
 end

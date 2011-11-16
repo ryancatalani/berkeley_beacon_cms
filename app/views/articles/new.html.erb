@@ -3,6 +3,32 @@
 		<%= f.label :title %>
 		<%= f.text_field :title %>
 	</div>
+	<div id="authors">
+		<div class="field">
+			<%= label_tag :author_1 %>
+			<%= select_tag :author_1, options_for_select(@authors) %>
+		</div>
+		<a href="#" id="newauthorbtn">New Author</a>
+		<script type="text/javascript" charset="utf-8">
+			acount = 2;
+			$("#newauthorbtn").click(function(){
+				$("#authors").append(afield(acount));
+				acount += 1;	
+			});			
+			function afield(c) {
+				var ret = '<div class="field">';
+				ret += '<label for="author_' + c + '">' + 'Author ' + c + '</label>';
+				ret += '<select id="author_' + c + '" name="author_' + c + '">';
+				ret += '<%= options_for_select(@authors).gsub(/\s/,' ').html_safe %>';
+				ret += '</select><a href="#" class="removeauth">Remove</a></div>';
+				return ret;
+			}
+			$(".removeauth").click(function(){
+				alert("Clicked it!");
+				$(this).fadeOut();
+			})
+		</script>
+	</div>
 	<div class="field">
 		<%= f.label :body %>
 		<%= f.text_area :body %>
