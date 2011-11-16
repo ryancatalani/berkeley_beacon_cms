@@ -6,3 +6,6 @@ jQuery ->
 		$("#show_if_editor").fadeToggle()
 		should_check_staff = !$("#person_staff").prop("checked")
 		$("#person_staff").prop("checked", should_check_staff)
+	
+	if $("#person_editor").prop("checked")
+		$("#show_if_editor").show()

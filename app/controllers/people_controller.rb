@@ -10,9 +10,7 @@ class PeopleController < ApplicationController
 			x_str = x_arr.sort_by{ rand }.first(25).join
 			p[:password] = p[:password_confirmation] = x_str
 		end
-		@person = Person.new(p)
-		logger.debug "p is #{p}"
-		
+		@person = Person.new(p)		
 		if @person.save
 			redirect_to root_url, :notice => "Person created!"
 		else
