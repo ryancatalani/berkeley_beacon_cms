@@ -9,15 +9,22 @@ class ArticlesController < ApplicationController
 	def create
 		p = params[:article]
 		p[:articletype] = params[:articletype].to_i
-		begin
-			author = Person.find(params[:author_1])
-		rescue
-			author = current_user
+		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
+		p[:subtitles] = subs
+		authors = []
+		params[:author].each do |author|
+			begin
+				authors << Person.find(author)
+			rescue
+			end
 		end
+		logger.debug("authors = #{authors}")
 		@article = Article.new(p)
 		
 		if @article.save
-			authorship = Authorship.create!(:article_id => @article.id, :person_id => author.id)
+			authors.each do |author|
+				authorship = Authorship.create!(:article_id => @article.id, :person_id => author.id)
+			end
 			redirect_to articles_url, :notice => "Article posted!"
 		else
 			@authors = Person.all.map {|person| [person.name, person.id]}

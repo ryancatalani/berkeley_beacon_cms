@@ -3,6 +3,10 @@
 		<%= f.label :title %>
 		<%= f.text_field :title %>
 	</div>
+	<div id="subtitles">
+		<a href="#" id="newsubtitlebtn">Add Subtitle</a>
+	</div>
+	
 	<div id="authors">
 		<div class="field">
 			<%= label_tag :author_1 %>
@@ -10,23 +14,54 @@
 		</div>
 		<a href="#" id="newauthorbtn">New Author</a>
 		<script type="text/javascript" charset="utf-8">
+		
+			function afield(c) {
+				var ret = '<div class="field">';
+				ret += '<label for="author_' + c + '">' + 'Author ' + c + '</label>';
+				ret += '<select id="author_' + c + '" name="author[' + c + ']">';
+				ret += '<%= options_for_select(@authors).gsub(/\s/,' ').html_safe %>';
+				ret += '</select><a href="#" class="removeauth">Remove</a></div>';
+				return ret;
+			}
+			
+			function subfield(c) {
+				var ret = '<div class="field">';
+				ret += '<label for="subtitle_' + c + '">' + 'Subtitle ' + c + '</label>';				
+				ret += '<input id="subtitle_' + c + '" name="subtitle[' + c + ']" size ="30" type="text">';
+				ret += '</select><a href="#" class="removesub">Remove</a></div>';
+				return ret;
+			}
+			
+			function remove_f(which) { 
+				$(this).closest('.field').fadeOut();
+				which === "auth" ? acount -= 1 : scount -= 1 ;
+			}
+			
+			// --- Authors ---
+			
 			acount = 2;
 			$("#newauthorbtn").click(function(){
 				$("#authors").append(afield(acount));
 				acount += 1;	
 			});			
-			function afield(c) {
-				var ret = '<div class="field">';
-				ret += '<label for="author_' + c + '">' + 'Author ' + c + '</label>';
-				ret += '<select id="author_' + c + '" name="author_' + c + '">';
-				ret += '<%= options_for_select(@authors).gsub(/\s/,' ').html_safe %>';
-				ret += '</select><a href="#" class="removeauth">Remove</a></div>';
-				return ret;
-			}
-			$(".removeauth").click(function(){
-				alert("Clicked it!");
-				$(this).fadeOut();
+			$("#authors").click(function(e){
+				if ($(e.target).is('.removeauth'))
+					remove_f.call(e.target,"auth");
+			});
+			
+			// --- Subtitles --- 
+			
+			scount = 1;
+			$("#newsubtitlebtn").click(function(){
+				$("#subtitles").append(subfield(scount));
+				scount += 1;
 			})
+			$("#subtitles").click(function(e){
+				if ($(e.target).is('.removesub'))
+					remove_f.call(e.target,"sub");
+			});
+			
+				
 		</script>
 	</div>
 	<div class="field">

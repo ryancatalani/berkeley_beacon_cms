@@ -3,4 +3,5 @@ class Article < ActiveRecord::Base
 	attr_accessible :title, :body, :excerpt, :articletype, :people
 	has_many :authorships
 	has_many :people, :through => :authorships
+	serialize :subtitles
 end
