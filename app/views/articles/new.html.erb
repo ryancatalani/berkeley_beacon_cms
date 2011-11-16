@@ -1,5 +1,10 @@
 <%= form_for @article do |f| %>
 	<div class="field">
+		<%= label_tag :section %>
+		<%= select_tag :section, options_for_select(@sections)  %>
+	</div>
+
+	<div class="field">
 		<%= f.label :title %>
 		<%= f.text_field :title %>
 	</div>
