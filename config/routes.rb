@@ -1,13 +1,25 @@
 BeaconApp::Application.routes.draw do
 	
-  get "sections/show"
 
 	get "admin/home"
 
 
 	resources :people
-	resources :articles
+	resources :articles, :only => [:new, :create, :update, :destroy]
 	resources :sessions, :only => [:new, :create, :destroy]
+	resources :sections, :only => [:show]
+	controller :articles do
+		scope ":sectionname" do
+			scope ":year" do
+				scope ":month" do
+					scope ":day" do
+						match ":title", :to => :show
+					end
+				end
+			end
+		end
+	end
+	
 	match '/login', :to => 'sessions#new'
 	match '/logout', :to => 'sessions#destroy'
 	match '/about', :to => 'pages#about'

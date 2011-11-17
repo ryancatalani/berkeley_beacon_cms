@@ -42,4 +42,8 @@ class ArticlesController < ApplicationController
 		@articles = Article.all
 	end
 	
+	def show
+		logger.debug("article show params = #{params}")
+	end
+	
 end
