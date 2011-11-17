@@ -1,5 +1,7 @@
 BeaconApp::Application.routes.draw do
 	
+  get "sections/show"
+
 	get "admin/home"
 
 
