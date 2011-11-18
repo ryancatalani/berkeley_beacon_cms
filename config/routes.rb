@@ -5,7 +5,7 @@ BeaconApp::Application.routes.draw do
 
 
 	resources :people
-	resources :articles, :only => [:new, :create, :update, :destroy]
+	resources :articles, :only => [:new, :create, :update, :destroy, :index]
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :sections, :only => [:show]
 	controller :articles do
@@ -13,7 +13,7 @@ BeaconApp::Application.routes.draw do
 			scope ":year" do
 				scope ":month" do
 					scope ":day" do
-						match ":title", :to => :show
+						match ":title", :to => :show, :as => :getselectedarticle
 					end
 				end
 			end

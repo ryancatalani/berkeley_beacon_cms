@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
 		p[:articletype] = params[:articletype].to_i
 		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
 		p[:subtitles] = subs
+		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
 		authors = []
 		if params[:author].nil?
 			authors << current_user
@@ -44,6 +45,7 @@ class ArticlesController < ApplicationController
 	
 	def show
 		logger.debug("article show params = #{params}")
+		@article = Article.where(:cleantitle => params[:title]).first
 	end
 	
 end
