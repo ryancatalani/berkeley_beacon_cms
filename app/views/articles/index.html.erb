@@ -3,5 +3,6 @@
 	Title: <%= article.title %><br/>
 	Type: <%= article.articletype %><br/>
 	Body: <%= article.body %><br/>
+	Tags: <%= article.tags.map {|t| t.name}.join(", ") %>
 	Link: <%= link_to "link", article.to_url %><br /><br />
 <% end %>
