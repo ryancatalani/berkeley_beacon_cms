@@ -3,6 +3,8 @@ class Article < ActiveRecord::Base
 	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle
 	has_many :authorships
 	has_many :people, :through => :authorships
+	has_many :taggings
+	has_many :tags, :through => :taggings
 	serialize :subtitles
 	belongs_to :section
 	before_save :check_clean_title
