@@ -21,12 +21,12 @@ namespace :db do
 		# 					:staff => staff)
 		# end
 		# 
-		puts "Creating sections"
-		Section.all.each { |s| s.delete }
-		["News","Sports","Lifestyle","Opinion"].each do |s|
-			Section.create!(:name => s, :clean_url => s.downcase)
-		end
-		Section.create!(:name => "Arts & Entertainment", :clean_url => "arts-and-entertainment")
+		# puts "Creating sections"
+		# Section.all.each { |s| s.delete }
+		# ["News","Sports","Lifestyle","Opinion"].each do |s|
+		# 	Section.create!(:name => s, :clean_url => s.downcase)
+		# end
+		# Section.create!(:name => "Arts & Entertainment", :clean_url => "arts-and-entertainment")
 		
 		puts "Creating articles"
 		Section.all.each do |section|
@@ -34,17 +34,16 @@ namespace :db do
 				title = Faker::Lorem.words(10).join(' ')
 				excerpt = Faker::Lorem.paragraphs(1)
 				body = excerpt + Faker::Lorem.paragraphs(9)
-				views = 0
 				articletype = rand(3) + 1
 				subtitles = [Faker::Lorem.words(8)]
 				cleantitle = title.strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
 				a = section.articles.create!(:title => title,
 											:excerpt => excerpt,
 											:body => body,
-											:views => views,
 											:articletype => articletype,
 											:subtitles => subtitles,
 											:cleantitle => cleantitle)
+				a.update_attribute(:views, 0)
 				author = Person.all[rand(Person.count)]
 				Authorship.create!(:article_id => a.id, :person_id => author.id)
 				if n % 4 == 0
