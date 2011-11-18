@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
 	def show
 		begin
-			section = Section.find params[:id]
+			section = Section.find_by_name params[:name]
 			@sname = section.name
 			@articles = section.articles
 		rescue

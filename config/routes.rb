@@ -7,7 +7,7 @@ BeaconApp::Application.routes.draw do
 	resources :people
 	resources :articles, :only => [:new, :create, :update, :destroy, :index]
 	resources :sessions, :only => [:new, :create, :destroy]
-	resources :sections, :only => [:show]
+	# resources :sections, :only => [:show]
 	controller :articles do
 		scope ":sectionname" do
 			scope ":year" do
@@ -18,6 +18,10 @@ BeaconApp::Application.routes.draw do
 				end
 			end
 		end
+	end
+	
+	controller :sections do
+		match ":name", :to => :show
 	end
 	
 	match '/login', :to => 'sessions#new'

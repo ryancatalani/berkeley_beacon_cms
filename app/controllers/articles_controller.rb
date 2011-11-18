@@ -45,7 +45,12 @@ class ArticlesController < ApplicationController
 	
 	def show
 		logger.debug("article show params = #{params}")
-		@article = Article.where(:cleantitle => params[:title]).first
+		found = Article.where(:cleantitle => params[:title])
+		if found.count == 1
+			@article = found.first
+		else
+			redirect_to root_path
+		end
 	end
 	
 end
