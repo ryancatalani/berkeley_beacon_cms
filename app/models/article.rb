@@ -5,6 +5,8 @@ class Article < ActiveRecord::Base
 	has_many :people, :through => :authorships
 	has_many :taggings
 	has_many :tags, :through => :taggings
+	has_many :articlemediacontents
+	has_many :mediafiles, :through => :articlemediacontents
 	serialize :subtitles
 	belongs_to :section
 	before_save :check_clean_title
