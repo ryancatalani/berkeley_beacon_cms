@@ -28,6 +28,10 @@ namespace :db do
 		# end
 		# Section.create!(:name => "Arts & Entertainment", :clean_url => "arts-and-entertainment")
 		
+		puts "Deleting old articles and authorships"
+		Article.all.each {|a| a.delete}
+		Authorship.all.each {|auth| auth.delete}
+		
 		puts "Creating articles"
 		Section.all.each do |section|
 			20.times do |n|
