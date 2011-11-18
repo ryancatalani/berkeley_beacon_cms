@@ -9,7 +9,7 @@ class Article < ActiveRecord::Base
 	
 	def to_url
 		c = created_at
-		"#{section.clean_url}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
+		"/#{section.clean_url}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
 	end
 	
 	private
