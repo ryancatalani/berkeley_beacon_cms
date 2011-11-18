@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 	def new
 		@article = Article.new
 		@authors = Person.all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
-		@sections = Section.all.map { |s| [s.name.capitalize, s.id] }
+		@sections = Section.all.map { |s| [s.name, s.id] }
 	end
 	
 	def create
@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
 			redirect_to articles_url, :notice => "Article posted!"
 		else
 			@authors = Person.all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
-			@sections = Section.all.map { |s| [s.name.capitalize, s.id] }
+			@sections = Section.all.map { |s| [s.name, s.id] }
 			render "new"
 		end
 	end

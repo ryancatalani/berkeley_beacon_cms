@@ -23,9 +23,10 @@ namespace :db do
 		# 
 		puts "Creating sections"
 		Section.all.each { |s| s.delete }
-		["News","Arts & Entertainment","Sports","Lifestyle","Opinion"].each do |s|
-			Section.create!(:name => s)
+		["News","Sports","Lifestyle","Opinion"].each do |s|
+			Section.create!(:name => s, :clean_url => s.downcase)
 		end
+		Section.create!(:name => "Arts & Entertainment", :clean_url => "arts-and-entertainment")
 		
 		puts "Creating articles"
 		Section.all.each do |section|
