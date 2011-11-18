@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
 			end
 			m = Mediafile.create!(:title => params[:media_title],
 								:description => params[:media_description],
-								:mediatype => 1,
+								:mediatype => params[:media_type].to_i,
 								:media => params[:media_upload])
 			Articlemediacontent.create!(:mediafile_id => m.id, :article_id => @article.id)
 			redirect_to articles_url, :notice => "Article posted!"

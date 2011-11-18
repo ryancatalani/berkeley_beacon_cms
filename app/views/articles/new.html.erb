@@ -79,13 +79,18 @@
 	</div>
 	<div class="field">
 		Type:
-		<%= radio_button_tag :articletype, 1 %>
+		<%= radio_button_tag :articletype, 1, true %>
 		<%= label_tag :articletype_1, "Text" %>
 		<%= radio_button_tag :articletype, 2 %>
 		<%= label_tag :articletype_2, "Media" %>
 		<%= radio_button_tag :articletype, 3 %>
 		<%= label_tag :articletype_3, "Slideshow" %>
 	</div>
+		
+	<div class="actions"><%= f.submit %></div>
+<% end %>
+
+<%= form_for Mediafile.new, :html => { :multipart => true } do %>
 	
 	<div id="media_area">
 		<div class="field">
@@ -97,10 +102,22 @@
 			<%= text_area_tag :media_description %>
 		</div>
 		<div class="field">
+			Type:
+			<%= radio_button_tag :media_type, 0, true %>
+			<%= label_tag :media_type_0, "Media" %>
+			<%= radio_button_tag :media_type, 1 %>
+			<%= label_tag :media_type_1, "Photograph" %>
+			<%= radio_button_tag :media_type, 2 %>
+			<%= label_tag :media_type_2, "Video" %>
+			<%= radio_button_tag :media_type, 3 %>
+			<%= label_tag :media_type_3, "Graphic" %>
+			<%= radio_button_tag :media_type, 4 %>
+			<%= label_tag :media_type_4, "Illustration" %>
+		</div>
+		<div class="field">
 			<%= label_tag :media_upload %>
 			<%= file_field_tag :media_upload %>
 		</div>
 	</div>
 	
-	<div class="actions"><%= f.submit %></div>
 <% end %>
