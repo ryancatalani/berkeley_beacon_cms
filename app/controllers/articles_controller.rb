@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 	def new
 		@article = Article.new
 		@authors = Person.all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
-		@sections = Section.all.map { |s| [s.name, s.id] }
+		@sections = Section.all.map { |s| [s.name.capitalize, s.id] }
 	end
 	
 	def create
@@ -28,13 +28,14 @@ class ArticlesController < ApplicationController
 		@article = Section.find(params[:section]).articles.build(p)
 		
 		if @article.save
+			@article.update_attribute(:views,0)
 			authors.each do |author|
 				authorship = Authorship.create!(:article_id => @article.id, :person_id => author.id)
 			end
 			redirect_to articles_url, :notice => "Article posted!"
 		else
 			@authors = Person.all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
-			@sections = Section.all.map { |s| [s.name, s.id] }
+			@sections = Section.all.map { |s| [s.name.capitalize, s.id] }
 			render "new"
 		end
 	end
@@ -48,6 +49,7 @@ class ArticlesController < ApplicationController
 		found = Article.where(:cleantitle => params[:title])
 		if found.count == 1
 			@article = found.first
+			@article.update_attribute(:views, @article.views+1)
 		else
 			redirect_to root_path
 		end
