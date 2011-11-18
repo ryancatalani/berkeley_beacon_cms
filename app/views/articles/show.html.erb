@@ -1,2 +1,4 @@
 <h1><%= @article.title %></h1>
+<%= image_tag @article.mediafiles.first.media.url unless @article.mediafiles.empty? %>
+<br />
 <%= @article.body %>

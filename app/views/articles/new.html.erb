@@ -1,4 +1,4 @@
-<%= form_for @article do |f| %>
+<%= form_for @article, :html => { :multipart => true } do |f| %>
 	<div class="field">
 		<%= label_tag :section %>
 		<%= select_tag :section, options_for_select(@sections)  %>
@@ -85,6 +85,21 @@
 		<%= label_tag :articletype_2, "Media" %>
 		<%= radio_button_tag :articletype, 3 %>
 		<%= label_tag :articletype_3, "Slideshow" %>
+	</div>
+	
+	<div id="media_area">
+		<div class="field">
+			<%= label_tag :media_title %>
+			<%= text_field_tag :media_title %>
+		</div>
+		<div class="field">
+			<%= label_tag :media_description %>
+			<%= text_area_tag :media_description %>
+		</div>
+		<div class="field">
+			<%= label_tag :media_upload %>
+			<%= file_field_tag :media_upload %>
+		</div>
 	</div>
 	
 	<div class="actions"><%= f.submit %></div>

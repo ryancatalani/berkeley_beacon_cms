@@ -24,14 +24,18 @@ class ArticlesController < ApplicationController
 				end # begin
 			end # each
 		end # else
-		logger.debug("authors = #{authors}")
 		@article = Section.find(params[:section]).articles.build(p)
-		
+				
 		if @article.save
 			@article.update_attribute(:views,0)
 			authors.each do |author|
 				authorship = Authorship.create!(:article_id => @article.id, :person_id => author.id)
 			end
+			m = Mediafile.create!(:title => params[:media_title],
+								:description => params[:media_description],
+								:mediatype => 1,
+								:media => params[:media_upload])
+			Articlemediacontent.create!(:mediafile_id => m.id, :article_id => @article.id)
 			redirect_to articles_url, :notice => "Article posted!"
 		else
 			@authors = Person.all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
