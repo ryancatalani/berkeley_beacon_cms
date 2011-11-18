@@ -1,7 +1,7 @@
 <h1><%= @sname %></h1>
 <% @articles.each do |article| %>
 	<h3><%= article.title %></h3>
-	By <%= article.people.map {|p| "#{p.firstname} #{p.lastname} / Beacon #{p.staff? ? "Staff" : "Correspondent"}" }.join(" and ") %>
+	By <%= article.people.map {|p| p.official_name }.join(" and ") %>
 	<%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %>
 	<%= link_to "link", article.to_url %>
 <% end %>

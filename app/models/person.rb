@@ -18,4 +18,8 @@ class Person < ActiveRecord::Base
 	def is_editor?
 		editor == true
 	end
+	
+	def official_name
+		"#{firstname} #{lastname} / Beacon #{staff? ? "Staff" : "Correspondent" }"
+	end
 end
