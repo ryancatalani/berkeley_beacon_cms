@@ -9,6 +9,10 @@ class ArticlesController < ApplicationController
 	
 	def create
 		p = params[:article]
+		if params[:mediafiles]
+			cookies[:already_uploaded] ||= ''
+			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
+		end
 		p[:articletype] = params[:articletype].to_i
 		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
 		p[:subtitles] = subs
@@ -31,13 +35,14 @@ class ArticlesController < ApplicationController
 			authors.each do |author|
 				authorship = Authorship.create!(:article_id => @article.id, :person_id => author.id)
 			end
-			m = Mediafile.create!(:title => params[:media_title],
-								:description => params[:media_description],
-								:mediatype => params[:media_type].to_i,
-								:media => params[:media_upload])
-			Articlemediacontent.create!(:mediafile_id => m.id, :article_id => @article.id)
+			params[:mediafiles].values.each do |m_id|
+				Articlemediacontent.create!(:mediafile_id => m.id, :article_id => @article.id)
+			end
+			cookies[:already_uploaded] = []
 			redirect_to articles_url, :notice => "Article posted!"
 		else
+			@display_already_uploaded = true unless cookies[:already_uploaded].nil? or cookies[:already_uploaded].blank?
+			logger.debug "cookies = #{cookies[:already_uploaded]} / already_uploaded = #{@already_uploaded}"
 			@authors = Person.all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
 			@sections = Section.all.map { |s| [s.name, s.id] }
 			render "new"

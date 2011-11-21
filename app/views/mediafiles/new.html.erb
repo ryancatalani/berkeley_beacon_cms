@@ -1,35 +1,5 @@
 <%= form_for @mediafile, :remote => true, :html => { :multipart => true } do |f| %>
 	
-	<div id="media_area">
-		<div class="field">
-			<%= f.label :title %>
-			<%= f.text_field :title %>
-		</div>
-		<div class="field">
-			<%= f.label :description %>
-			<%= f.text_field :description %>
-		</div>
-		<div class="field">
-			Type:
-			<%= radio_button_tag :mediatype, 0, true %>
-			<%= label_tag :mediatype_0, "Media" %>
-			<%= radio_button_tag :mediatype, 1 %>
-			<%= label_tag :mediatype_1, "Photograph" %>
-			<%= radio_button_tag :mediatype, 2 %>
-			<%= label_tag :mediatype_2, "Video" %>
-			<%= radio_button_tag :mediatype, 3 %>
-			<%= label_tag :mediatype_3, "Graphic" %>
-			<%= radio_button_tag :mediatype, 4 %>
-			<%= label_tag :mediatype_4, "Illustration" %>
-		</div>
-		<div class="field">
-			<%= f.label :media %>
-			<%= f.file_field :media %>
-			<%= f.hidden_field :media_cache %>
-		</div>
-		<div class="actions">
-			<%= f.submit "Upload" %>
-		</div>
-	</div>
+	<%= render 'mediafiles_form', :f => f %>
 	
 <% end %>
