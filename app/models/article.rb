@@ -10,6 +10,7 @@ class Article < ActiveRecord::Base
 	serialize :subtitles
 	belongs_to :section
 	before_save :check_clean_title
+	# default_scope :order => 'created_at DESC'
 	
 	def to_url
 		c = created_at

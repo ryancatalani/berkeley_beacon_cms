@@ -22,4 +22,8 @@ class Person < ActiveRecord::Base
 	def official_name
 		"#{firstname} #{lastname} / Beacon #{staff? ? "Staff" : "Correspondent" }"
 	end
+	
+	def full_name
+		"#{firstname} #{lastname}"
+	end
 end
