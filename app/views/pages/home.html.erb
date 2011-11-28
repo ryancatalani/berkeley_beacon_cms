@@ -1,99 +1,128 @@
 <h1>The Berkeley Beacon</h1>
 
-<section id="top">
-	<section id="featured-stories">
-		<div id="main-story">
-			<h2><%= @main_story.title %></h2>
-			<div class="byline">By <%= bylineify_short @main_story.people %></div>
-			<div class="excerpt"><%= @main_story.excerpt %></div>
-			<!-- something about the media file -->
-		</div>
-		<% @featured_stories.each do |story| %>
-			<div class="featured-story">
-				<!-- media -->
-				<h3><%= story.title %></h3>
-				<div class="byline">By <%= bylineify_short story.people %></div>
-				<div class="excerpt"><%= story.excerpt %></div>
+<div id="main">
+
+	<section id="top">
+		<section id="featured-stories">
+			<div id="main-story">
+				<div class="story-text">
+					<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
+					<div class="byline">By <%= bylineify_short @main_story.people %></div>
+					<div class="excerpt"><%= @main_story.excerpt %></div>
+				</div>
+				<!-- something about the media file -->
+				<img src="http://dummyimage.com/460x250/ccc/fff.png&text=mainstoryimg" />
+				<div class="clear"></div>
+				
 			</div>
-		<% end %>
-	</section>
-	<section id="top-sidebar">
-	</section>
-</section>
-	
-<section id="middle">
-	<% @middle_stories.each do |story| %>
-		<div class="middle-strip-story">
-			<!-- media -->
-			<h3><%= story.section.name %></h3>
-			<%= story.title %>
-		</div>
-	<% end %>
-</section>
-	
-<section id="bottom">
-	<section id="section-boxes">
-		<div class="section-box" id="news-section-box">
-			<h4>News</h4>
-			<!-- media -->
-			<h5><%= @news.first.title %></h5>
-			<%= @news.first.excerpt %>
-			<ul>
-				<% @news.last(2).each do |story| %>
-					<li><%= story.title %></li>
-				<% end %>
-			</ul>
-		</div>
-		<div class="section-box" id="opinion-section-box">
-			<h4>Opinion</h4>
-			<% @opinion.each do |story| %>
-				<h5><%= story.title %></h5>
-				<%= story.excerpt %>
-			<% end %>
-		</div>
-		<div class="section-box" id="ae-section-box">
-			<h4>Arts & Entertainment</h4>
-			<!-- media from first -->
-			<ul>
-				<% @ae.each do |story| %>
-					<li><%= story.title %></li>
-				<% end %>
-			</ul>
-		</div>
-		<div class="section-box" id="sports-section-box">
-			<h4>Sports</h4>
-			<!-- media from first -->
-			<ul>
-				<% @sports.each do |story| %>
-					<li><%= story.title %></li>
-				<% end %>
-			</ul>
-		</div>
-		<div class="section-box" id="lifestyle-section-box">
-			<h4>Lifestyle</h4>
-			<!-- media from first -->
-			<ul>
-				<% @lifestyle.each do |story| %>
-					<li><%= story.title %></li>
-				<% end %>
-			</ul>
-		</div>
-	</section>
-	<section id="popular">
-		<h4>Popular on the Beacon</h4>
-		<ol>
-			<% @popular.each do |story| %>
-				<div class="popular-story">
+			<% @featured_stories.each_with_index do |story,i| %>
+				<div class="featured-story num-<%= i+1 %>">
 					<!-- media -->
-					<li>
-						<%= story.title %>
-					</li>
+					<img src="http://dummyimage.com/220x110/ccc/fff.png&text=featuredstoryimg" />
+					<h3><%= link_to story.title, story.to_url %></h3>
+					<div class="byline">By <%= bylineify_short story.people %></div>
+					<div class="excerpt"><%= story.excerpt %></div>
 				</div>
 			<% end %>
-		</ol>
+		</section>
+		<section id="top-sidebar">
+			<img src="http://dummyimage.com/220x525/ccc/fff.png&text=videotwitteretc" />
+		
+		</section>
+		<div class="clear"></div>
+		
 	</section>
-</section>
-				
+	
+	
+	<section id="middle">
+		<% @middle_stories.each do |story| %>
+			<div class="middle-strip-story">
+				<!-- media -->
+				<img src="http://dummyimage.com/140x80/ccc/fff.png&text=middlestory" />
+				<div class="story-text">
+					<strong><%= story.section.name %></strong>
+					<%= truncate story.title, :length => 60 %>
+				</div>
+			</div>
+		<% end %>
+		<div class="clear"></div>
+	</section>
+	
+	<section id="bottom">
+		<div class="group-a">
+			<div class="section-box" id="news-section-box">
+				<h4>News</h4>
+				<!-- media -->
+				<h5><%= link_to @news.first.title, @news.first.to_url %></h5>
+				<%= @news.first.excerpt %>
+				<ul>
+					<% @news.last(2).each do |story| %>
+						<li><%= link_to story.title, story.to_url %></li>
+					<% end %>
+				</ul>
+			</div>
+			
+			<div class="section-box" id="ae-section-box">
+				<h4>Arts & Entertainment</h4>
+				<!-- media from first -->
+				<ul>
+					<% @ae.each do |story| %>
+						<li><%= link_to story.title, story.to_url %></li>
+					<% end %>
+				</ul>
+			</div>
+			
+			<div class="section-box" id="lifestyle-section-box">
+				<h4>Lifestyle</h4>
+				<!-- media from first -->
+				<ul>
+					<% @lifestyle.each do |story| %>
+						<li><%= link_to story.title, story.to_url %></li>
+					<% end %>
+				</ul>
+			</div>
+		
+		<div class="clear"></div>
+		</div>
+		
+		<div class="group-b">
+			<section id="popular">
+				<h4>Popular on the Beacon</h4>
+				<ol>
+					<% @popular.each do |story| %>
+						<div class="popular-story">
+							<!-- media -->
+							<li>
+								<%= link_to story.title, story.to_url %>
+							</li>
+						</div>
+					<% end %>
+				</ol>
+			</section>
+			
+			<div class="section-box" id="opinion-section-box">
+				<h4>Opinion</h4>
+				<% @opinion.each do |story| %>
+					<h5><%= link_to truncate(story.title, :length => 30), story.to_url %></h5>
+					<%= truncate story.excerpt, :length => 120 %>
+				<% end %>
+			</div>
+			<div class="section-box" id="sports-section-box">
+				<h4>Sports</h4>
+				<!-- media from first -->
+				<ul>
+					<% @sports.each do |story| %>
+						<li><%= link_to story.title, story.to_url %></li>
+					<% end %>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		<div class="clear"></div>
+		
+	</section>
+</div>		
 		
 
 <% if @current_user %>
