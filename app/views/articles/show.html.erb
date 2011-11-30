@@ -9,20 +9,27 @@
 
 <div id="article_wrap">
 	<h1><%= @article.title %></h1>
-	<h2>By <%= bylineify @article.people %> <br /> <%= @article.created_at.strftime("%B %e, %Y") %></h2>
+	<% if @article.subtitles %>
+		<% @article.subtitles.each do |subtitle| %>
+			<h2><%= subtitle %></h2>
+		<% end %>
+	<% end %>
+	<h3>By <%= bylineify @article.people %> <br /> <%= @article.created_at.strftime("%B %e, %Y") %></h3>
 	
-	<div id="media">
-		<%= @article.mediafiles.empty? ? image_tag("http://dummyimage.com/820x350/ccc/fff.png&text=mainimg") : image_tag(@article.mediafiles.first.media.url) %>
-		<div id="metadata">
-			<div id="caption">
-				Somebody does something. Wow!
+	<% unless @article.mediafiles.empty? %>
+		<div id="media">
+			<%= image_tag @article.mediafiles.first.media.url %>
+			<div id="metadata">
+				<div id="caption">
+					<%= @article.mediafiles.first.title %>
+				</div>
+				<div id="credit">
+					<%= bylineify @article.mediafiles.first.people %>
+				</div>
+				<div class="clear"></div>
 			</div>
-			<div id="credit">
-				Pete Souza / Boston Staff
-			</div>
-			<div class="clear"></div>
 		</div>
-	</div>
+	<% end %>
 	
 	<div id="body">
 		<%= @article.body.html_safe %>

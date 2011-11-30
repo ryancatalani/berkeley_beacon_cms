@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118214001) do
+ActiveRecord::Schema.define(:version => 20111130140002) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20111118214001) do
     t.text     "subtitles"
     t.integer  "section_id"
     t.string   "cleantitle"
+  end
+
+  create_table "attributions", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "mediafile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "authorships", :force => true do |t|

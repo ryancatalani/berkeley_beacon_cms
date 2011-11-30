@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 	
 	def new
 		@article = Article.new
-		@authors = Person.all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
+		@authors = Person.order("lastname ASC").all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
 		@sections = Section.all.map { |s| [s.name, s.id] }
 	end
 	
@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
 			end
 			if params[:mediafiles]
 				params[:mediafiles].values.each do |m_id|
-					Articlemediacontent.create!(:mediafile_id => m.id, :article_id => @article.id)
+					Articlemediacontent.create!(:mediafile_id => m_id, :article_id => @article.id)
 				end
 				cookies[:already_uploaded] = []
 			end

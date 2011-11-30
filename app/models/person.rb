@@ -2,6 +2,8 @@ class Person < ActiveRecord::Base
 	has_secure_password
 	has_many :authorships
 	has_many :articles, :through => :authorships
+	has_many :attributions
+	has_many :mediafiles, :through => :attributions
 	# validates_presence_of :password, :on => :create, :if => :is_editor?
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   	validates :firstname, 	:presence   => true,

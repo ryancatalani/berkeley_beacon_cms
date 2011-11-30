@@ -1,11 +1,15 @@
 <div id="media_area">
 	<div class="field">
-		<%= f.label :title %>
+		<%= f.label :title, "Title or Caption" %>
 		<%= f.text_field :title %>
 	</div>
 	<div class="field">
-		<%= f.label :description %>
+		<%= f.label :description, "Description (if necessary)" %>
 		<%= f.text_field :description %>
+	</div>
+	<div class="field">
+		<%= label_tag :creator %>
+		<%= select_tag :creator, options_for_select(@authors) %>
 	</div>
 	<div class="field">
 		Type:
