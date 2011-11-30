@@ -20,6 +20,7 @@ gem "remotipart", "~> 1.0"
 gem 'tinymce-rails'
 gem "heroku"
 gem 'fog'
+gem 'faker'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -39,7 +40,6 @@ group :test do
 end
 
 group :development do
-  gem 'faker'
 end
 
 group :development, :test do
