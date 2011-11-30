@@ -1,0 +1,92 @@
+#wrap {
+	margin-bottom: 30px;
+}
+
+.header {
+	width: 940px;
+	margin: 35px auto;
+	border-bottom: 1px solid #cbcbcb;
+	padding-bottom: 10px;
+
+	#masthead {
+		float: left;
+	}
+	h1 {
+		font-size: 22px;
+		font-weight: bold;
+		text-transform: lowercase;
+		margin-bottom: 5px;
+	}
+	h2 {
+		font: 14px/14px "PT Serif", Times, serif;
+		font-style: italic;
+	}
+	
+	#nav {
+		float: right;
+		padding-top: 12px;
+		
+		li {
+			display: inline;
+			margin-left: 10px;
+		}
+		
+		a {
+			&:hover {
+				text-decoration: none;
+				padding-bottom: 12px;
+				border-bottom: 5px solid #cbcbcb;	
+			}
+		}
+	}
+	
+}
+
+#home_header {
+	border: none;
+	margin-bottom: 5px;
+	#masthead {
+		float: none;
+		width: 940px;
+	}
+	h1 {
+		font-size: 50px;
+		line-height: 60px;
+		text-align: center;
+	}
+	#nav {
+		margin-top: 20px;
+		float: none;
+		border-top: 1px solid #cbcbcb;
+		border-bottom: 1px solid #cbcbcb;
+		padding-top: 5px;
+		padding-bottom: 6px;
+		
+		ol {
+			float: left;
+		}
+		li {
+			margin-left: 0px;
+			margin-right: 10px;
+		}
+		a {
+			&:hover {
+				text-decoration: none;
+				padding-bottom: 3px;
+				border-bottom: 3px solid #cbcbcb;	
+			}
+		}
+		h2 {
+			float: right;
+		}
+	}
+}
+
+#footer {
+	width: 940px;
+	margin: 0 auto;
+	margin-top: 20px;
+	padding-top: 5px;
+	border-top: 1px solid #cbcbcb;	
+	font-size: 12px;
+}

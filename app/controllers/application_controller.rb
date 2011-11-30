@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 			else
 				last = people.pop
 				ret = people.map {|p| p.official_name }.join(', ')
-				ret << ', ' << last.official_name
+				ret << ', and ' << last.official_name
 			end
 			return ret
 		end
@@ -36,6 +36,10 @@ class ApplicationController < ActionController::Base
 			
 		end
 		
-		helper_method :current_user, :check_editor, :bylineify, :bylineify_short
+		def popular_articles num=5
+			Article.find(:all, :order => "views DESC").first(num)
+		end
+		
+		helper_method :current_user, :check_editor, :bylineify, :bylineify_short, :popular_articles
 	
 end

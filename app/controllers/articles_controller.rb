@@ -21,9 +21,9 @@ class ArticlesController < ApplicationController
 		if params[:author].nil?
 			authors << current_user
 		else
-			params[:author].each do |author|
+			params[:author].values.each do |author_id|
 				begin
-					authors << Person.find(author)
+					authors << Person.find(author_id.to_i)
 				rescue
 				end # begin
 			end # each
@@ -35,10 +35,12 @@ class ArticlesController < ApplicationController
 			authors.each do |author|
 				authorship = Authorship.create!(:article_id => @article.id, :person_id => author.id)
 			end
-			params[:mediafiles].values.each do |m_id|
-				Articlemediacontent.create!(:mediafile_id => m.id, :article_id => @article.id)
+			if params[:mediafiles]
+				params[:mediafiles].values.each do |m_id|
+					Articlemediacontent.create!(:mediafile_id => m.id, :article_id => @article.id)
+				end
+				cookies[:already_uploaded] = []
 			end
-			cookies[:already_uploaded] = []
 			redirect_to articles_url, :notice => "Article posted!"
 		else
 			@display_already_uploaded = true unless cookies[:already_uploaded].nil? or cookies[:already_uploaded].blank?
@@ -58,6 +60,12 @@ class ArticlesController < ApplicationController
 		found = Article.where(:cleantitle => params[:title])
 		if found.count == 1
 			@article = found.first
+			@title = @article.title
+			@needs_og = true
+			@og = {}
+			@og[:title] = @article.title
+			@og[:url] = @article.to_url
+			@og[:image] = "http://berkeleybeacon.com/sample_image.jpg"
 			@article.update_attribute(:views, @article.views+1)
 		else
 			redirect_to root_path

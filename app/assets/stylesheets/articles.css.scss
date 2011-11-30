@@ -26,7 +26,7 @@
 			}
 			#credit {
 				float: right;
-				text-transform: uppercase;
+//				text-transform: uppercase;
 			}
 		}
 	}
@@ -37,8 +37,45 @@
 		margin-right: 50px;
 		font: 14px/20px "PT Serif", Times, serif;
 		
+		strong {
+			font-weight: bold;
+		}
+		em {
+			font-style: italic;
+		}
+		p {
+			margin-bottom: 10px;
+		}
+		ul {
+			list-style-type: disc;
+			list-style-position: inside;
+		}
 	}
 	#sidebar {
 		float: left;
+		opacity: 0.5;
+		h4 {
+			font: 14px/14px "Arvo", Rockwell, serif;
+			font-weight: normal;
+			text-transform: none;
+			margin-bottom: 5px;
+		}
+		section {
+			margin-bottom: 20px;
+		}
+		#fb, #twitter, #tumblr {
+			float: left;
+		}
+		#tumblr {
+			margin-left: 3px;
+		}
+		
+		#popular {
+			float: none;
+			width: 220px;
+			padding: 0;
+			margin: 0;
+			border: none;
+		}
 	}
 }

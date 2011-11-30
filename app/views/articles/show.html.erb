@@ -1,6 +1,15 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=128499383927655";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div id="article_wrap">
 	<h1><%= @article.title %></h1>
-	<h2><%= bylineify @article.people %> &bull; <%= @article.created_at.strftime("%B %e, %Y") %></h2>
+	<h2>By <%= bylineify @article.people %> <br /> <%= @article.created_at.strftime("%B %e, %Y") %></h2>
 	
 	<div id="media">
 		<%= @article.mediafiles.empty? ? image_tag("http://dummyimage.com/820x350/ccc/fff.png&text=mainimg") : image_tag(@article.mediafiles.first.media.url) %>
@@ -16,10 +25,38 @@
 	</div>
 	
 	<div id="body">
-		<%= @article.body %>
+		<%= @article.body.html_safe %>
 	</div>
 	<div id="sidebar">
-		<img src="http://dummyimage.com/220x680/ccc/fff.png&text=sidebar">
+		<section id="share">
+			<h4>Share this story online</h4>
+			<div id="fb">
+				<div class="fb-like" data-send="true" data-layout="box_count" data-width="9" data-show-faces="false" data-action="recommend"></div>
+			</div>
+			<div id="twitter">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="beaconupdate">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+			</div>
+			<div id="tumblr">
+				<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
+			</div>
+			<div class="clear"></div>
+		</section>
+		<section id="popular">
+			<h4>Popular on the Beacon</h4>
+			<ol>
+				<% popular_articles.each do |story| %>
+					<div class="popular-story">
+						<!-- media -->
+						<li>
+							<%= link_to image_tag("http://dummyimage.com/40x40/ccc/fff.png&text=pop"), story.to_url %>
+							<%= link_to truncate(story.title, :length => 60), story.to_url %>
+							<div class="clear"></div>
+						</li>
+					</div>
+				<% end %>
+			</ol>
+		</section>
+		
 	</div>
 	<div class="clear"></div>
 </div>

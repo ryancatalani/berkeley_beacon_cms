@@ -1,5 +1,3 @@
-<h1>The Berkeley Beacon</h1>
-
 <div id="main">
 
 	<section id="top">
@@ -98,7 +96,7 @@
 							<!-- media -->
 							<li>
 								<%= link_to image_tag("http://dummyimage.com/40x40/ccc/fff.png&text=pop"), story.to_url %>
-								<%= link_to story.title, story.to_url %>
+								<%= link_to truncate(story.title, :length => 60), story.to_url %>
 								<div class="clear"></div>
 							</li>
 						</div>
@@ -130,6 +128,7 @@
 		<div class="clear"></div>
 		
 	</section>
+	<div class="clear"></div>
 </div>		
 		
 

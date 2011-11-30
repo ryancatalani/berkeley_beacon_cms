@@ -3,3 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+	$("#sidebar").hover ->
+		$(this).fadeTo('fast',1)
+	,->
+		$(this).fadeTo('fast',0.5)

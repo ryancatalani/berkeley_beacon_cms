@@ -10,8 +10,9 @@ class PagesController < ApplicationController
 		@ae = find_section_articles "Arts & Entertainment"
 		@lifestyle = find_section_articles "Lifestyle"
 		@sports = find_section_articles "Sports"
-		@popular = Article.find(:all, :order => "views DESC").first(5)
+		@popular = popular_articles
 		
+		@home_header = true
 	end
 
 	def about
