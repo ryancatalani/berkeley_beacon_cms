@@ -18,6 +18,7 @@ end
 gem 'jquery-rails'
 gem 'carrierwave'
 gem "remotipart", "~> 1.0"
+gem 'tinymce-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
