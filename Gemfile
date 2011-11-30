@@ -5,7 +5,6 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,6 +18,7 @@ gem 'jquery-rails'
 gem 'carrierwave'
 gem "remotipart", "~> 1.0"
 gem 'tinymce-rails'
+gem "heroku"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -39,4 +39,13 @@ end
 
 group :development do
   gem 'faker'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+  gem 'thin'
 end
