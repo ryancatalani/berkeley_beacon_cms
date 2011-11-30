@@ -1,9 +1,9 @@
-Carrierwave.configure do |config|
+CarrierWave.configure do |config|
 	config.fog_credentials = {
 		:provider				=> 'AWS',
-		:aws_access_key			=> '***REMOVED***',
+		:aws_access_key_id		=> '***REMOVED***',
 		:aws_secret_access_key	=> '***REMOVED***',
 	}
-	config.fog_directory = 'beacon_uploads'
-	config.fog_public
+	config.fog_directory = 'BerkeleyBeacon/beacon_uploads'
+	config.fog_public = false
 end
