@@ -11,14 +11,14 @@
 					<div class="excerpt"><%= @main_story.excerpt %></div>
 				</div>
 				<!-- something about the media file -->
-				<img src="http://dummyimage.com/460x250/ccc/fff.png&text=mainstoryimg" />
+				<%= link_to image_tag("http://dummyimage.com/460x250/ccc/fff.png&text=mainstoryimg"), @main_story.to_url %>
 				<div class="clear"></div>
 				
 			</div>
 			<% @featured_stories.each_with_index do |story,i| %>
 				<div class="featured-story num-<%= i+1 %>">
 					<!-- media -->
-					<img src="http://dummyimage.com/220x110/ccc/fff.png&text=featuredstoryimg" />
+					<%= link_to image_tag("http://dummyimage.com/220x110/ccc/fff.png&text=featuredstoryimg"), story.to_url %>
 					<h3><%= link_to story.title, story.to_url %></h3>
 					<div class="byline">By <%= bylineify_short story.people %></div>
 					<div class="excerpt"><%= story.excerpt %></div>
@@ -38,10 +38,10 @@
 		<% @middle_stories.each do |story| %>
 			<div class="middle-strip-story">
 				<!-- media -->
-				<img src="http://dummyimage.com/140x80/ccc/fff.png&text=middlestory" />
+				<%= link_to image_tag("http://dummyimage.com/140x80/ccc/fff.png&text=middlestory"), story.to_url %>
 				<div class="story-text">
 					<strong><%= story.section.name %></strong>
-					<%= truncate story.title, :length => 60 %>
+					<%= link_to truncate(story.title, :length => 60), story.to_url %>
 				</div>
 			</div>
 		<% end %>
@@ -53,18 +53,21 @@
 			<div class="section-box" id="news-section-box">
 				<h4>News</h4>
 				<!-- media -->
+				<%= link_to image_tag("http://dummyimage.com/230x180/ccc/fff.png&text=news"), @news.first.to_url %>
 				<h5><%= link_to @news.first.title, @news.first.to_url %></h5>
 				<%= @news.first.excerpt %>
 				<ul>
 					<% @news.last(2).each do |story| %>
-						<li><%= link_to story.title, story.to_url %></li>
+						<li><%= link_to truncate(story.title), story.to_url %></li>
 					<% end %>
 				</ul>
+				<div class="clear"></div>
 			</div>
 			
 			<div class="section-box" id="ae-section-box">
 				<h4>Arts & Entertainment</h4>
 				<!-- media from first -->
+				<%= link_to image_tag("http://dummyimage.com/210x60/ccc/fff.png&text=ae"), @ae.first.to_url %>				
 				<ul>
 					<% @ae.each do |story| %>
 						<li><%= link_to story.title, story.to_url %></li>
@@ -75,6 +78,7 @@
 			<div class="section-box" id="lifestyle-section-box">
 				<h4>Lifestyle</h4>
 				<!-- media from first -->
+				<%= link_to image_tag("http://dummyimage.com/210x60/ccc/fff.png&text=lifestyle"), @lifestyle.first.to_url %>
 				<ul>
 					<% @lifestyle.each do |story| %>
 						<li><%= link_to story.title, story.to_url %></li>
@@ -93,7 +97,9 @@
 						<div class="popular-story">
 							<!-- media -->
 							<li>
+								<%= link_to image_tag("http://dummyimage.com/40x40/ccc/fff.png&text=pop"), story.to_url %>
 								<%= link_to story.title, story.to_url %>
+								<div class="clear"></div>
 							</li>
 						</div>
 					<% end %>
@@ -110,6 +116,8 @@
 			<div class="section-box" id="sports-section-box">
 				<h4>Sports</h4>
 				<!-- media from first -->
+				<%= link_to image_tag("http://dummyimage.com/210x60/ccc/fff.png&text=sports"), @sports.first.to_url %>
+				
 				<ul>
 					<% @sports.each do |story| %>
 						<li><%= link_to story.title, story.to_url %></li>

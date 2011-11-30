@@ -1,4 +1,25 @@
-<h1><%= @article.title %></h1>
-<%= image_tag @article.mediafiles.first.media.url unless @article.mediafiles.empty? %>
-<br />
-<%= @article.body %>
+<div id="article_wrap">
+	<h1><%= @article.title %></h1>
+	<h2><%= bylineify @article.people %> &bull; <%= @article.created_at.strftime("%B %e, %Y") %></h2>
+	
+	<div id="media">
+		<%= @article.mediafiles.empty? ? image_tag("http://dummyimage.com/820x350/ccc/fff.png&text=mainimg") : image_tag(@article.mediafiles.first.media.url) %>
+		<div id="metadata">
+			<div id="caption">
+				Somebody does something. Wow!
+			</div>
+			<div id="credit">
+				Pete Souza / Boston Staff
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	
+	<div id="body">
+		<%= @article.body %>
+	</div>
+	<div id="sidebar">
+		<img src="http://dummyimage.com/220x680/ccc/fff.png&text=sidebar">
+	</div>
+	<div class="clear"></div>
+</div>

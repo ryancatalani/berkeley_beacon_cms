@@ -147,7 +147,6 @@ body {
 	height: 220px;
 	margin: 0 10px;
 	float: left;
-	
 	h4 {
 		font: 14px/14px "Arvo", Rockwell, serif;
 		text-transform: uppercase;
@@ -158,6 +157,9 @@ body {
 		list-style-type: disc;
 		list-style-position: inside;
 	}
+	img {
+		margin-top: 10px;
+	}
 }
 
 .group-a, .group-b {
@@ -165,13 +167,59 @@ body {
 	float: left;
 }
 
+.group-a {
+	border-right: 1px solid #cbcbcb;
+	width: 479px;
+}
+
 #news-section-box {
 	width: 460px;
+	border-bottom: 1px solid #cbcbcb;
+	img {
+		float: left;
+		margin-right: 10px;
+		margin-bottom: 10px;
+	}
+}
+
+#ae-section-box {
+	width: 218px;
+	border-right: 1px solid #cbcbcb;
+	padding-top: 20px;
+}
+
+#lifestyle-section-box {
+	padding-top: 20px;
 }
 
 #popular {
 	float: right;
 	min-height: 425px;
+	width: 209px;
+	padding-left: 10px;
+	border-left: 1px solid #cbcbcb;
+	ol {
+		list-style: decimal;
+		list-style-position: inside;
+		
+		li {
+			margin-bottom: 5px;
+			padding-bottom: 5px;
+			padding-top: 5px;
+			border-bottom: 1px solid #cbcbcb;
+			height: 60px;
+		}
+	}
+	img {
+		float: left;
+		margin-top: 5px;
+		margin-right: 10px;
+	}
+}
+
+#sports-section-box {
+	padding-top: 20px;
+	border-top: 1px solid #cbcbcb;
 }
 
 .clear {
@@ -185,4 +233,17 @@ h2 {
 
 h3 {
 	font: 18px/20px "Arvo", Rockwell, serif;	
+}
+
+h5 {
+	font-weight: bold;
+}
+
+
+a {
+	color: #323232;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
 }
