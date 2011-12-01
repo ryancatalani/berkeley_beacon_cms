@@ -1,7 +1,55 @@
-<h1><%= @sname %></h1>
-<% @articles.each do |article| %>
-	<h3><%= article.title %></h3>
-	By <%= article.people.map {|p| p.official_name }.join(" and ") %>
-	<%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %>
-	<%= link_to "link", article.to_url %>
-<% end %>
+<div id="section-wrap">
+
+	<div id="section-articles">
+		<% @articles.each_with_index do |article,i| %>
+	
+			<% if i == 0 %>
+				<div id="main-section-story">
+					<% unless article.mediafiles.empty? %>
+						<div class="media">
+							<%= link_to image_tag(article.mediafiles.first.media.url), article.to_url %>
+						</div>
+					<% else %>
+					<% end %>
+					<h2><%= link_to article.title, article.to_url %></h2>
+					<div class="byline"><%= bylineify article.people %></div>
+					<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
+				</div>
+			<% else %>
+
+			<div class="article">
+				<% unless article.mediafiles.empty? %>
+					<div class="media">
+						<%= link_to image_tag(article.mediafiles.first.media.url), article.to_url %>
+					</div>
+				<% else %>
+				<% end %>
+				<h3><%= link_to article.title, article.to_url %></h3>
+				<div class="byline"><%= bylineify article.people %></div>
+				<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
+				<div class="clear"></div>
+			</div>
+	
+			<% end %>
+		<% end %>
+	</div>
+
+	<div id="section-sidebar">
+		<section id="popular">
+			<h4>Popular on the Beacon</h4>
+			<ol>
+				<% popular_articles.each do |story| %>
+					<div class="popular-story">
+						<!-- media -->
+						<li>
+							<%= link_to image_tag(story.mediafiles.first.media.url, :size=>"40x40"), story.to_url unless story.mediafiles.empty? %>
+							<%= link_to truncate(story.title, :length => 60), story.to_url %>
+							<div class="clear"></div>
+						</li>
+					</div>
+				<% end %>
+			</ol>
+		</section>
+	</div>
+
+</div>

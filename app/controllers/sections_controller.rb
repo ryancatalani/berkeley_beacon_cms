@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-	before_filter :gohome
+	# before_filter :gohome
 	
 	def show
 		begin

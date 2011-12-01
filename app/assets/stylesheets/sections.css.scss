@@ -1,3 +1,51 @@
 // Place all the styles related to the sections controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#section-wrap {
+	width: 940px;
+	margin: 0 auto;
+}
+
+#section-articles {
+	width: 640px;
+	float: left;
+	padding-right: 39px;
+	border-right: 1px solid #cbcbcb;
+	margin-right: 40px;
+}
+
+#main-section-story {
+	margin-bottom: 20px;
+	.media {
+		width: 640px;
+		height: 300px;
+		overflow: hidden;
+		img {
+			width: 640px;
+		}
+	}
+}
+
+.article {
+	margin-bottom: 20px;
+	.media {
+		width: 100px;
+		height: 100px;
+		margin-right: 20px;
+		overflow: hidden;
+		img {
+			width: 100px;
+		}
+		float: left;
+	}
+}
+
+#section-sidebar {
+	width: 220px;
+	float: left;
+	
+	#popular {
+		border: none;
+	}
+}
