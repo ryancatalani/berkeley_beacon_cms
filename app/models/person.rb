@@ -22,7 +22,11 @@ class Person < ActiveRecord::Base
 	end
 	
 	def official_name
-		"#{firstname} #{lastname} / Beacon #{staff? ? "Staff" : "Correspondent" }"
+		if other_designation.blank?
+			"#{firstname} #{lastname} / Beacon #{staff? ? "Staff" : "Correspondent" }"
+		else
+			"#{firstname} #{lastname} #{other_designation == "*" ? "" : "/ #{other_designation}"}"
+		end
 	end
 	
 	def full_name
