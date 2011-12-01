@@ -8,10 +8,10 @@
 		<%= f.text_field :description %>
 	</div>
 	<div class="field">
-		<%= radio_button_tag :source, "in", true %>
-		<%= label_tag :source_in, "Beacon Staff/Correspondent" %>
-		<%= radio_button_tag :source, "out" %>
-		<%= label_tag :source_out, "Outside Source" %>
+		<%= radio_button_tag :sourcetype, "in", true %>
+		<%= label_tag :sourcetype_in, "Beacon Staff/Correspondent" %>
+		<%= radio_button_tag :sourcetype, "out" %>
+		<%= label_tag :sourcetype_out, "Outside Source" %>
 	</div>
 	<div class="field" id="source_in_field">
 		<%= label_tag :creator %>

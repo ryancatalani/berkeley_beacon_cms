@@ -9,9 +9,9 @@ jQuery ->
 		else
 			$("#loading").fadeIn()
 			return true
-	$("#source_in").click ->
+	$("#sourcetype_in").click ->
 		$("#source_out_field").fadeToggle()
 		$("#source_in_field").fadeToggle()
-	$("#source_out").click ->
+	$("#sourcetype_out").click ->
 		$("#source_out_field").fadeToggle()
 		$("#source_in_field").fadeToggle()
