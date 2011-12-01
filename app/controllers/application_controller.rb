@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
 	private
 
 		def intercept
-			render 'pages/intercept', :layout => false and return
+			unless current_user and current_user.editor?
+				render 'pages/intercept', :layout => false and return
+			end
 		end
 
 		def current_user
