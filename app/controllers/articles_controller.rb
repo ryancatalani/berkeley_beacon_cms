@@ -3,7 +3,15 @@ class ArticlesController < ApplicationController
 	
 	def new
 		@article = Article.new
-		@authors = Person.order("lastname ASC").all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
+		@authors = Person.order("lastname ASC").all.map do |person|
+			if person.other_designation.blank?
+				["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}",
+				person.id]
+			else
+				["#{person.firstname} #{person.lastname} #{person.other_designation == "*" ? "" : "/ #{person.other_designation}"}",
+				person.id]
+			end
+		end
 		@sections = Section.all.map { |s| [s.name, s.id] }
 	end
 	
