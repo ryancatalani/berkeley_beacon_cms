@@ -8,8 +8,18 @@
 		<%= f.text_field :description %>
 	</div>
 	<div class="field">
+		<%= radio_button_tag :source, "in", true %>
+		<%= label_tag :source_in, "Beacon Staff/Correspondent" %>
+		<%= radio_button_tag :source, "out" %>
+		<%= label_tag :source_out, "Outside Source" %>
+	</div>
+	<div class="field" id="source_in_field">
 		<%= label_tag :creator %>
 		<%= select_tag :creator, options_for_select(@authors) %>
+	</div>
+	<div class="field" id="source_out_field" style="display:none">
+		<%= label_tag :source, "Source (include 'via' or 'courtesy of')" %>
+		<%= text_field_tag :source %>
 	</div>
 	<div class="field">
 		Type:

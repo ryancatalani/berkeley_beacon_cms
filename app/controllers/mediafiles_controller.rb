@@ -7,6 +7,7 @@ class MediafilesController < ApplicationController
 
 	def new
 		@mediafile = Mediafile.new
+		@authors = Person.order("lastname ASC").all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
 	end
 	
 	def create
