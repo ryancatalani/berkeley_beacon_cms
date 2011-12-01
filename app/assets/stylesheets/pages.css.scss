@@ -69,6 +69,15 @@ body {
 	margin-left: 10px;
 }
 
+.featured-story-img-wrap {
+	height: 100px;
+	width: 220px;
+	overflow: hidden;
+	img {
+		width: 220px;
+	}
+}
+
 .byline {
 	font-style: italic;
 }
