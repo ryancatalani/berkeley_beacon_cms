@@ -81,7 +81,7 @@
 			<div class="section-box" id="lifestyle-section-box">
 				<h4>Lifestyle</h4>
 				<!-- media from first -->
-				<%= link_to image_tag(@lifestyle.first.mediafiles.first.media.url), @lifestyle.first.to_url unless @lifestyle.first.mediafiles.empty? %>
+				<%= link_to image_tag(@lifestyle.first.mediafiles.first.media.url, :width => "220px"), @lifestyle.first.to_url unless @lifestyle.first.mediafiles.empty? %>
 				<ul>
 					<% @lifestyle.each do |story| %>
 						<li><%= link_to story.title, story.to_url %></li>
