@@ -9,7 +9,9 @@
 					<div class="excerpt"><%= @main_story.excerpt %></div>
 				</div>
 				<!-- something about the media file -->
-				<%= link_to image_tag(@main_story.mediafiles.first.media.url), @main_story.to_url %>
+				<div class="main-story-img-wrap">
+					<%= link_to image_tag(@main_story.mediafiles.first.media.url), @main_story.to_url %>
+				</div>
 				<div class="clear"></div>
 				
 			</div>
@@ -134,10 +136,3 @@
 	</section>
 	<div class="clear"></div>
 </div>		
-		
-
-<% if @current_user %>
-	Hello, <%= @current_user.firstname %>! Would you like to <%= link_to "log out", logout_path %>?
-<% else %>	
-	Why haven't you <%= link_to "signed up", new_person_path %> or <%= link_to "logged in", login_path %> yet?
-<% end %>

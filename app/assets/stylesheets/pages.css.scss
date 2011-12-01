@@ -78,6 +78,7 @@ body {
 	}
 }
 
+
 .byline {
 	font-style: italic;
 }
@@ -97,11 +98,16 @@ body {
 		float: left;
 	}
 	
-	img {
-		width: 460px;
+	.main-story-img-wrap {
 		height: 250px;
+		width: 460px;
+		overflow: hidden;
+		img {
+			width: 460px;
+		}
 		margin-left: 10px;
 		float: left;
+
 	}
 	
 	margin-bottom: 20px;
