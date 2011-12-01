@@ -17,7 +17,7 @@ class MediafilesController < ApplicationController
 		@mediafile = Mediafile.new(p)
 		if @mediafile.save
 			Attribution.create!(:mediafile_id => @mediafile.id, :person_id => params[:creator].to_i) if params[:sourcetype] == "in"
-			respond_with @mediafile, :location => mediafiles_url
+			respond_with @mediafile #, :location => mediafiles_url
 			# # format.html { redirect_to mediafiles_path }
 			# format.js
 		else
