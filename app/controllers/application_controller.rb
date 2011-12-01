@@ -1,7 +1,13 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery
 
+	before_filter :intercept
+
 	private
+
+		def intercept
+			render 'pages/intercept', :layout => false and return
+		end
 
 		def current_user
 			@current_user ||= Person.find(session[:user_id]) if session[:user_id]
