@@ -55,7 +55,7 @@
 					<div class="popular-story">
 						<!-- media -->
 						<li>
-							<%= link_to image_tag("http://dummyimage.com/40x40/ccc/fff.png&text=pop"), story.to_url %>
+							<%= link_to image_tag(story.mediafiles.first.media.url, :size=>"40x40"), story.to_url unless story.mediafiles.empty? %>
 							<%= link_to truncate(story.title, :length => 60), story.to_url %>
 							<div class="clear"></div>
 						</li>
