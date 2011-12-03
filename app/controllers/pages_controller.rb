@@ -20,11 +20,11 @@ class PagesController < ApplicationController
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
-			Tag.find_by_name(tag_name).articles.order("updated_at").first(number_of_articles)
+			Tag.find_by_name(tag_name).articles.order("created_at DESC").first(number_of_articles)
 		end
 		
 		def find_section_articles(section_name,number_of_articles=3)
-			Section.find_by_name(section_name).articles.order("updated_at").first(number_of_articles)
+			Section.find_by_name(section_name).articles.order("created_at DESC").first(number_of_articles)
 		end
 
 end
