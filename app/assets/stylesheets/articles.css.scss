@@ -95,3 +95,23 @@
 		}
 	}
 }
+
+#new_article_wrap {
+	width: 940px;
+	margin: 0 auto;
+		
+	.field {
+		margin-top: 10px;
+		
+		#articletype_1, #articletype_2, #articletype_3, #sourcetype_in, #sourcetype_out, #mediatype_0, #mediatype_1, #mediatype_2, #mediatype_3, #mediatype_4 {
+			display: inline;
+			width: auto;
+		}
+		
+		input, select, textarea {
+			display: block;
+			width: 400px;
+		}
+				
+	}
+}
