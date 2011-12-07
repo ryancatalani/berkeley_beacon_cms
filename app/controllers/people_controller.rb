@@ -1,4 +1,6 @@
 class PeopleController < ApplicationController
+	before_filter :check_editor
+	
 	def new
 		@person = Person.new
 	end
@@ -17,5 +19,9 @@ class PeopleController < ApplicationController
 			render "new"
 		end
 	end
+	
+	def update
+	end
+		
 	
 end
