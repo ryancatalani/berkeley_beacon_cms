@@ -18,7 +18,7 @@ class PeopleController < ApplicationController
 		end
 		@person = Person.new(p)		
 		if @person.save
-			redirect_to root_url, :notice => "Person created!"
+			redirect_to new_person_url, :notice => "Person created!"
 		else
 			render "new"
 		end

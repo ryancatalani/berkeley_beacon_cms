@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			redirect_to articles_url, :notice => "Article posted!"
+			redirect_to new_article_url, :notice => "Article posted!"
 		else
 			@display_already_uploaded = true unless cookies[:already_uploaded].nil? or cookies[:already_uploaded].blank?
 			logger.debug "cookies = #{cookies[:already_uploaded]} / already_uploaded = #{@already_uploaded}"
