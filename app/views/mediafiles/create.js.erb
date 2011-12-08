@@ -5,3 +5,4 @@ $("#new_mediafile").each(function(){
 $("#loading").fadeOut();
 $("#uploaded_files").append("<%= @mediafile.title %>");
 $("#new_article").append("<input type='hidden' name='mediafiles[<%= @mediafile.id %>]' value='<%= @mediafile.id %>' >");
+$(".edit_article").append("<input type='hidden' name='mediafiles[<%= @mediafile.id %>]' value='<%= @mediafile.id %>' >");
