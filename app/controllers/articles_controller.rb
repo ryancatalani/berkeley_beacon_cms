@@ -65,35 +65,29 @@ class ArticlesController < ApplicationController
 	
 	def edit
 		# TODO: Doesn't update authors, etc
+		if params[:mediafiles]
+			cookies[:already_uploaded] ||= ''
+			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
+		end
 		@article = Article.find(params[:id])
 		@sections = Section.all.map { |s| [s.name, s.id] }
-		@authors = Person.order("lastname ASC").all.map do |person|
-			if person.other_designation.blank?
-				["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}",
-				person.id]
-			else
-				["#{person.firstname} #{person.lastname} #{person.other_designation == "*" ? "" : "/ #{person.other_designation}"}",
-				person.id]
-			end
-		end
+		@authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
 	end
 	
 	def update
 		# TODO: Doesn't update authors, etc
 		@article = Article.find(params[:id])
 		if @article.update_attributes(params[:article])
+			if params[:mediafiles]
+				params[:mediafiles].values.each do |m_id|
+					Articlemediacontent.create!(:mediafile_id => m_id, :article_id => @article.id)
+				end
+				cookies[:already_uploaded] = []
 			redirect_to articles_path
 		else
 			@sections = Section.all.map { |s| [s.name, s.id] }
-			@authors = Person.order("lastname ASC").all.map do |person|
-				if person.other_designation.blank?
-					["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}",
-					person.id]
-				else
-					["#{person.firstname} #{person.lastname} #{person.other_designation == "*" ? "" : "/ #{person.other_designation}"}",
-					person.id]
-				end
-			end
+			@authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
+			@display_already_uploaded = true unless cookies[:already_uploaded].nil? or cookies[:already_uploaded].blank?
 			render 'edit'
 		end
 	end
