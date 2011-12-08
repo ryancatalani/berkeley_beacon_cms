@@ -11,7 +11,7 @@
 		<meta property="og:url" content="<%= "http://#{request.env['SERVER_NAME']}#{@og[:url]}" %>" />
 		<meta property="og:image" content="<%= @og[:image] %>" />
 		<meta property="og:site_name" content="The Berkeley Beacon" />
-		<% unless og[:description] == false %>
+		<% unless @og[:description] == false %>
 			<meta property="og:description" content="<%= @og[:description] %>">
 		<% end %>
 		<meta property="fb:admins" content="1600232313" />
