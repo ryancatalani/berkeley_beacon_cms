@@ -56,7 +56,7 @@
 			<div class="section-box" id="news-section-box">
 				<h4>News</h4>
 				<!-- media -->
-				<%= link_to image_tag(@news.first.mediafiles.first.media.url), @news.first.to_url unless @news.first.mediafiles.empty? %>
+				<div class="mediawrap"><%= link_to image_tag(@news.first.mediafiles.first.media.url), @news.first.to_url unless @news.first.mediafiles.empty? %></div>
 				<h5><%= link_to @news.first.title, @news.first.to_url %></h5>
 				<%= @news.first.excerpt %>
 				<ul>
@@ -70,7 +70,7 @@
 			<div class="section-box" id="ae-section-box">
 				<h4>Arts & Entertainment</h4>
 				<!-- media from first -->
-				<%= link_to image_tag(@ae.first.mediafiles.first.media.url), @ae.first.to_url unless @ae.first.mediafiles.empty? %>
+				<div class="mediawrap"><%= link_to image_tag(@ae.first.mediafiles.first.media.url), @ae.first.to_url unless @ae.first.mediafiles.empty? %></div>
 				<ul>
 					<% @ae.each do |story| %>
 						<li><%= link_to story.title, story.to_url %></li>
@@ -81,7 +81,7 @@
 			<div class="section-box" id="lifestyle-section-box">
 				<h4>Lifestyle</h4>
 				<!-- media from first -->
-				<%= link_to image_tag(@lifestyle.first.mediafiles.first.media.url, :width => "220px"), @lifestyle.first.to_url unless @lifestyle.first.mediafiles.empty? %>
+				<div class="mediawrap"><%= link_to image_tag(@lifestyle.first.mediafiles.first.media.url, :width => "220px"), @lifestyle.first.to_url unless @lifestyle.first.mediafiles.empty? %></div>
 				<ul>
 					<% @lifestyle.each do |story| %>
 						<li><%= link_to story.title, story.to_url %></li>
