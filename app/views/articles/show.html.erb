@@ -33,6 +33,7 @@
 	
 	<div id="body">
 		<%= @article.body.html_safe %>
+		<br /><p><em><% @article.people.each do |p| %><%= p.contact_info.html_safe %><% end %></em></p>
 	</div>
 	<div id="sidebar">
 		<section id="share">
