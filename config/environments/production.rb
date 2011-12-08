@@ -60,7 +60,7 @@ BeaconApp::Application.configure do
 
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[Beacon Exception] ",
-    :sender_address => %{"Beacon Exception Notifier" <catalani.ryan+beaconexceptions@gmail.com>},
+    :sender_address => %{"Beacon Exception Notifier" <postmaster@app1905056.mailgun.org>},
     :exception_recipients => %w{catalani.ryan@gmail.com}
 
 end
