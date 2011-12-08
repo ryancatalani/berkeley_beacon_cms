@@ -119,7 +119,7 @@
 			<div class="section-box" id="sports-section-box">
 				<h4>Sports</h4>
 				<!-- media from first -->
-				<%= link_to image_tag(@sports.first.mediafiles.first.media.url), @sports.first.to_url unless @sports.first.mediafiles.empty? %>
+				<div class="mediawrap"><%= link_to image_tag(@sports.first.mediafiles.first.media.url), @sports.first.to_url unless @sports.first.mediafiles.empty? %></div>
 				
 				<ul>
 					<% @sports.each do |story| %>
