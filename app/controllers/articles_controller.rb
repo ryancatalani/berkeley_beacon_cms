@@ -65,10 +65,6 @@ class ArticlesController < ApplicationController
 	
 	def edit
 		# TODO: Doesn't update authors, etc
-		if params[:mediafiles]
-			cookies[:already_uploaded] ||= ''
-			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
-		end
 		@article = Article.find(params[:id])
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
@@ -76,6 +72,11 @@ class ArticlesController < ApplicationController
 	
 	def update
 		# TODO: Doesn't update authors, etc
+		if params[:mediafiles]
+			cookies[:already_uploaded] ||= ''
+			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
+		end
+		
 		@article = Article.find(params[:id])
 		if @article.update_attributes(params[:article])
 			if params[:mediafiles]
@@ -83,6 +84,7 @@ class ArticlesController < ApplicationController
 					Articlemediacontent.create!(:mediafile_id => m_id, :article_id => @article.id)
 				end
 				cookies[:already_uploaded] = []
+			end
 			redirect_to articles_path
 		else
 			@sections = Section.all.map { |s| [s.name, s.id] }
