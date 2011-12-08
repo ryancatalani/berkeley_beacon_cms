@@ -57,4 +57,10 @@ BeaconApp::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[Beacon Exception] ",
+    :sender_address => %{"Beacon Exception Notifier" <catalani.ryan+beaconexceptions@gmail.com>},
+    :exception_recipients => %w{catalani.ryan@gmail.com}
+
 end

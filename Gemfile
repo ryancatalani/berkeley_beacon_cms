@@ -21,6 +21,7 @@ gem 'tinymce-rails'
 gem "heroku"
 gem 'fog'
 gem 'faker'
+gem 'exception_notification'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

@@ -46,6 +46,8 @@ GEM
     daemons (1.1.4)
     erubis (2.7.0)
     eventmachine (0.12.10)
+    exception_notification (2.5.2)
+      actionmailer (>= 3.0.4)
     excon (0.7.8)
     execjs (1.2.9)
       multi_json (~> 1.0)
@@ -157,6 +159,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   carrierwave
   coffee-rails (~> 3.1.1)
+  exception_notification
   faker
   fog
   heroku
