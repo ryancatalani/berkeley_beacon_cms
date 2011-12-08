@@ -109,6 +109,7 @@ class ArticlesController < ApplicationController
 			@og[:title] = @article.title
 			@og[:url] = @article.to_url
 			@og[:image] = "http://berkeleybeacon.com/sample_image.jpg"
+			@og[:description] = @article.excerpt.blank? ? false : @article.excerpt.blank?
 			@article.update_attribute(:views, @article.views+1)
 		else
 			redirect_to root_path

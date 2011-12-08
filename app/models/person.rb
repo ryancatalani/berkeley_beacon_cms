@@ -41,8 +41,8 @@ class Person < ActiveRecord::Base
 	end
 	
 	def contact_info
-		ret = "#{lastname} can be reached at <a href='mailto:#{email}'>#{email}</a>."
-		ret << " Follow them on Twitter at <a href='http://twitter.com/#{twitter}'>@#{twitter}</a>." unless twitter.blank?
+		ret = "#{lastname} can be reached at <a href='mailto:#{email}'>#{email}</a>. "
+		ret << "Follow them on Twitter at <a href='http://twitter.com/#{twitter}'>@#{twitter}</a>. " unless twitter.blank?
 		return ret
 	end
 	
