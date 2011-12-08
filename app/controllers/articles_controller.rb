@@ -64,6 +64,7 @@ class ArticlesController < ApplicationController
 	end
 	
 	def edit
+		# TODO: Doesn't update authors, etc
 		@article = Article.find(params[:id])
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@authors = Person.order("lastname ASC").all.map do |person|
@@ -78,8 +79,9 @@ class ArticlesController < ApplicationController
 	end
 	
 	def update
+		# TODO: Doesn't update authors, etc
 		@article = Article.find(params[:id])
-		if @article.update_attribute(params[:person])
+		if @article.update_attributes(params[:article])
 			redirect_to articles_path
 		else
 			@sections = Section.all.map { |s| [s.name, s.id] }
