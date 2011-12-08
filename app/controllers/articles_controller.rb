@@ -63,6 +63,39 @@ class ArticlesController < ApplicationController
 		@articles = Article.all
 	end
 	
+	def edit
+		@article = Article.find(params[:id])
+		@sections = Section.all.map { |s| [s.name, s.id] }
+		@authors = Person.order("lastname ASC").all.map do |person|
+			if person.other_designation.blank?
+				["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}",
+				person.id]
+			else
+				["#{person.firstname} #{person.lastname} #{person.other_designation == "*" ? "" : "/ #{person.other_designation}"}",
+				person.id]
+			end
+		end
+	end
+	
+	def update
+		@article = Article.find(params[:id])
+		if @article.update_attribute(params[:person])
+			redirect_to articles_path
+		else
+			@sections = Section.all.map { |s| [s.name, s.id] }
+			@authors = Person.order("lastname ASC").all.map do |person|
+				if person.other_designation.blank?
+					["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}",
+					person.id]
+				else
+					["#{person.firstname} #{person.lastname} #{person.other_designation == "*" ? "" : "/ #{person.other_designation}"}",
+					person.id]
+				end
+			end
+			render 'edit'
+		end
+	end
+	
 	def show
 		logger.debug("article show params = #{params}")
 		found = Article.where(:cleantitle => params[:title])

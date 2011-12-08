@@ -4,7 +4,7 @@ BeaconApp::Application.routes.draw do
 
 
 	resources :people
-	resources :articles, :only => [:new, :create, :update, :destroy, :index]
+	resources :articles, :only => [:new, :create, :edit, :update, :destroy, :index]
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :mediafiles
 	# resources :sections, :only => [:show]	
