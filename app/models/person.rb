@@ -32,4 +32,11 @@ class Person < ActiveRecord::Base
 	def full_name
 		"#{firstname} #{lastname}"
 	end
+	
+	def designation
+		return "Editor" if editor?
+		return "Staff" if staff?
+		return other_designation if !other_designation.blank?
+		return "Correspondent"
+	end
 end
