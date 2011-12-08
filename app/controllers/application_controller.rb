@@ -48,6 +48,22 @@ class ApplicationController < ActionController::Base
 			Article.find(:all, :order => "views DESC").first(num)
 		end
 		
-		helper_method :current_user, :check_editor, :bylineify, :bylineify_short, :popular_articles
+		def video_tag mediafile, height=500, width=820
+			othertypes = Mediafile.where(:description => mediafile.description)
+						
+			ret = "<video width='#{width}' height='#{height}' controls='controls'>"
+
+			othertypes.each do |v|
+				type = v.media.url.split('.').last.first(3) == "ogv" ? "ogg" : "mp4"
+				logger.debug "type = #{v.media.url.split('.').last.first(3)}"
+				ret << "<source src='#{v.media.url}' type='video/#{type}' />"
+			end
+
+			ret << "Sorry, your browser can't view this video!"
+			ret << "</video>"
+			return ret
+		end
+		
+		helper_method :current_user, :check_editor, :bylineify, :bylineify_short, :popular_articles, :video_tag
 	
 end
