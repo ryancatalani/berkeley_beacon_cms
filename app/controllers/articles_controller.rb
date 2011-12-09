@@ -78,6 +78,7 @@ class ArticlesController < ApplicationController
 		end
 		
 		@article = Article.find(params[:id])
+		p = params[:article]
 		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
 		if @article.update_attributes(p)
 			if params[:mediafiles]
