@@ -78,7 +78,8 @@ class ArticlesController < ApplicationController
 		end
 		
 		@article = Article.find(params[:id])
-		if @article.update_attributes(params[:article])
+		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
+		if @article.update_attributes(p)
 			if params[:mediafiles]
 				params[:mediafiles].values.each do |m_id|
 					Articlemediacontent.create!(:mediafile_id => m_id, :article_id => @article.id)
