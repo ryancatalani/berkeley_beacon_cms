@@ -110,7 +110,7 @@ class ArticlesController < ApplicationController
 			@og[:description] = @article.excerpt.blank? ? false : @article.excerpt.blank?
 			@article.update_attribute(:views, @article.views+1)
 		else
-		  date = Date.new(params[:year].to_i,params[:month].to_i,params[:date].to_i)
+		  date = Date.new(params[:year].to_i,params[:month].to_i,params[:day].to_i)
 		  a = Article.where(:created_at => date, :cleantitle => params[:title])
 		  if a.count == 1
 		    @article = found.first
