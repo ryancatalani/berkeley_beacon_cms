@@ -111,7 +111,7 @@ class ArticlesController < ApplicationController
 			@article.update_attribute(:views, @article.views+1)
 		else
 		  date = Date.new(params[:year].to_i,params[:month].to_i,params[:day].to_i)
-		  a = Article.where(:created_at => date, :cleantitle => params[:title])
+		  a = Article.where(:created_at => (date - 1.day)..(date + 1.day), :cleantitle => params[:title])
 		  if a.count == 1
 		    @article = found.first
   			@title = @article.title
