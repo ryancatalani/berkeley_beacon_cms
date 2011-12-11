@@ -113,13 +113,13 @@ class ArticlesController < ApplicationController
 		  date = Date.new(params[:year].to_i,params[:month].to_i,params[:day].to_i)
 		  a = Article.where(:created_at => (date.midnight)..(date + 1.day).midnight, :cleantitle => params[:title])
 		  if a.count == 1
-		    @article = found.first
+		    @article = a.first
   			@title = @article.title
   			@needs_og = true
   			@og = {}
   			@og[:title] = @article.title
   			@og[:url] = @article.to_url
-  			@og[:image] = "http://berkeleybeacon.com/sample_image.jpg"
+        # @og[:image] = "http://berkeleybeacon.com/sample_image.jpg"
   			@og[:description] = @article.excerpt.blank? ? false : @article.excerpt.blank?
   			@article.update_attribute(:views, @article.views+1)
 			else
