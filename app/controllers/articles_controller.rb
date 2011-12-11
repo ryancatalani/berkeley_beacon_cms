@@ -110,7 +110,21 @@ class ArticlesController < ApplicationController
 			@og[:description] = @article.excerpt.blank? ? false : @article.excerpt.blank?
 			@article.update_attribute(:views, @article.views+1)
 		else
-			redirect_to root_path
+		  date = Date.new(params[:year],params[:month],params[:date])
+		  a = Article.where(:created_at => date, :cleantitle => params[:title])
+		  if a.count == 1
+		    @article = found.first
+  			@title = @article.title
+  			@needs_og = true
+  			@og = {}
+  			@og[:title] = @article.title
+  			@og[:url] = @article.to_url
+  			@og[:image] = "http://berkeleybeacon.com/sample_image.jpg"
+  			@og[:description] = @article.excerpt.blank? ? false : @article.excerpt.blank?
+  			@article.update_attribute(:views, @article.views+1)
+			else
+			  redirect_to root_path
+		  end
 		end
 	end
 	
