@@ -42,7 +42,11 @@ class Person < ActiveRecord::Base
 	
 	def contact_info
 		ret = "#{lastname} can be reached at <a href='mailto:#{email}'>#{email}</a>. "
-		ret << "Follow #{lastname} on Twitter at <a href='http://twitter.com/#{twitter}'>@#{twitter}</a>. " unless twitter.blank?
+		unless twitter.blank?
+		  ret << "<a href=\"https://twitter.com/#{twitter}\""
+		  ret << ' class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @magicofpi</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>'
+	  end
+    # ret << "Follow #{lastname} on Twitter at <a href='http://twitter.com/#{twitter}'>@#{twitter}</a>. " 
 		return ret
 	end
 	
