@@ -66,7 +66,7 @@ class ArticlesController < ApplicationController
 	def edit
 		# TODO: Doesn't update authors, etc
 		@article = Article.find(params[:id])
-		@current_authors = @article.authors
+		@current_authors = @article.people
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
 	end
