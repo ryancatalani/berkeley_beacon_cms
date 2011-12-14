@@ -16,7 +16,7 @@
 	<div id="authors">
 		<div class="field">
 			<%= label_tag :author_1 %>
-			<%= select_tag :author_1, options_for_select(@authors), :name => "author[1]" %>
+			<%= select_tag :author_1, options_for_select(@authors, @current_authors.first.id), :name => "author[1]" %>
 		</div>
 		<a href="#" id="newauthorbtn">Add another author</a>
 		<script type="text/javascript" charset="utf-8">
