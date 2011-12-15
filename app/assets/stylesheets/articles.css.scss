@@ -66,6 +66,16 @@
 			list-style-type: decimal;
 			list-style-position: inside;
 		}
+		
+		a:link, a:visited {
+			border-bottom: 1px dotted #323232;
+		}
+		
+		a:hover {
+			font-weight: bold;
+			text-decoration: none;
+		}
+		
 	}
 	#sidebar {
 		float: left;
