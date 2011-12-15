@@ -39,7 +39,7 @@
 			}
 			
 			function remove_f(which) { 
-				$(this).closest('.field').fadeOut();
+				$(this).closest('.field').fadeOut().remove();
 				which === "auth" ? acount -= 1 : scount -= 1 ;
 			}
 			

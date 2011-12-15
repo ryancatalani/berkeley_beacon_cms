@@ -39,7 +39,7 @@
 			}
 			
 			function remove_f(which) { 
-				$(this).closest('.field').fadeOut();
+				$(this).closest('.field').fadeOut().remove();
 				which === "auth" ? acount -= 1 : scount -= 1 ;
 			}
 			
@@ -66,6 +66,16 @@
 				if ($(e.target).is('.removesub'))
 					remove_f.call(e.target,"sub");
 			});
+			
+			<% if @current_authors.count > 1 %>
+			
+				<% @current_authors[1,@current_authors.count].each_with_index do |a,index| %>
+					$("#authors").append(afield(acount));
+					$("#author_<%= index+2 %> option[value='<%= a.id %>']").attr('selected','selected');
+					acount += 1;	
+				<% end %>
+				
+			<% end %>
 			
 				
 		</script>

@@ -78,10 +78,29 @@ class ArticlesController < ApplicationController
 			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
 		end
 		
+		authors = []
+		if params[:author].nil?
+			authors << current_user
+		else
+			params[:author].values.each do |author_id|
+				begin
+					authors << Person.find(author_id.to_i)
+				rescue
+				end # begin
+			end # each
+		end # else
+		
 		@article = Article.find(params[:id])
 		p = params[:article]
 		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
 		if @article.update_attributes(p)
+		  
+		  Authorship.where(:article_id => @article.id).each { |a| a.delete }
+		  
+		  authors.each do |author|
+				authorship = Authorship.create!(:article_id => @article.id, :person_id => author.id)
+			end
+			
 			if params[:mediafiles]
 				params[:mediafiles].values.each do |m_id|
 					Articlemediacontent.create!(:mediafile_id => m_id, :article_id => @article.id)
