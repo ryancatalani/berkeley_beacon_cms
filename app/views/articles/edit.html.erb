@@ -77,6 +77,15 @@
 				
 			<% end %>
 			
+			<% if @article.subtitles.count > 0 %>
+				
+				<% @article.subtitles.each_with_index do |a,index| %>
+					$("#subtitles").append(subfield(scount));
+					$("#subtitle_<%= index+1 %>").val('<%= a %>');
+					scount += 1;
+				<% end %>
+			<% end %>
+			
 				
 		</script>
 	</div>

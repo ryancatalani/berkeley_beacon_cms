@@ -37,7 +37,11 @@
 	
 	<div id="body">
 		<%= @article.body.html_safe %>
-		<br /><p><em><% @article.people.each do |p| %><%= p.contact_info.html_safe if p.other_designation.blank? %><% end %></em></p>
+		<br /><% @article.people.each do |p| %>
+			<p><em>
+			<%= p.contact_info.html_safe if p.other_designation.blank? %>
+			</em></p>
+			<% end %>
 	</div>
 	<div id="sidebar">
 		<section id="share">
