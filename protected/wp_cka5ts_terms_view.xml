@@ -1,0 +1,2105 @@
+<?xml version="1.0"?>
+
+<!--
+-
+- Sequel Pro XML dump
+- Version 3408
+-
+- http://www.sequelpro.com/
+- http://code.google.com/p/sequel-pro/
+-
+- Host: 173.236.229.173 (MySQL 5.1.53-log)
+- Database: berkeleybeacon_com_4
+- Generation Time Time: 2011-12-16 04:03:30 +0000
+-
+-->
+
+<resultset statement="SELECT * FROM `wp_cka5ts_terms` LIMIT 0,1000" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<row>
+		<field name="term_id">1</field>
+		<field name="name">Uncategorized</field>
+		<field name="slug">uncategorized</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">2</field>
+		<field name="name">Links</field>
+		<field name="slug">links</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">3</field>
+		<field name="name">Arts &amp;amp; Entertainment</field>
+		<field name="slug">arts-and-entertainment</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">4</field>
+		<field name="name">Features</field>
+		<field name="slug">features</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">5</field>
+		<field name="name">Lifestyle</field>
+		<field name="slug">lifestyle</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">6</field>
+		<field name="name">News</field>
+		<field name="slug">news</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">7</field>
+		<field name="name">Opinion</field>
+		<field name="slug">opinion</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">8</field>
+		<field name="name">SGA Briefs</field>
+		<field name="slug">sga</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">9</field>
+		<field name="name">Sports</field>
+		<field name="slug">sports</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">10</field>
+		<field name="name">Student of the Week</field>
+		<field name="slug">studentoftheweek</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">11</field>
+		<field name="name">The LA Program</field>
+		<field name="slug">la</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">12</field>
+		<field name="name">Auntie Em</field>
+		<field name="slug">auntieem</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">13</field>
+		<field name="name">Breaking News</field>
+		<field name="slug">breaking-news</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">14</field>
+		<field name="name">Editorial</field>
+		<field name="slug">editorial</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">15</field>
+		<field name="name">Letter from the Editor</field>
+		<field name="slug">letter-from-the-editor</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">16</field>
+		<field name="name">accident</field>
+		<field name="slug">accident</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">17</field>
+		<field name="name">Adderall</field>
+		<field name="slug">adderall</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">18</field>
+		<field name="name">Alex Clarke</field>
+		<field name="slug">alex-clarke</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">19</field>
+		<field name="name">Amy Davidson</field>
+		<field name="slug">amy-davidson</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">20</field>
+		<field name="name">Berkeley Beacon</field>
+		<field name="slug">berkeley-beacon</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">21</field>
+		<field name="name">Boston</field>
+		<field name="slug">boston</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">22</field>
+		<field name="name">Boston Police</field>
+		<field name="slug">boston-police</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">23</field>
+		<field name="name">Boylston Street</field>
+		<field name="slug">boylston-street</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">24</field>
+		<field name="name">cage</field>
+		<field name="slug">cage</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">25</field>
+		<field name="name">cage free eggs</field>
+		<field name="slug">cage-free-eggs</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">26</field>
+		<field name="name">Caitlin Higgins</field>
+		<field name="slug">caitlin-higgins</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">27</field>
+		<field name="name">California Girls</field>
+		<field name="slug">california-girls</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">28</field>
+		<field name="name">Cami Bravo</field>
+		<field name="slug">cami-bravo</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">29</field>
+		<field name="name">Cars</field>
+		<field name="slug">cars</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">30</field>
+		<field name="name">Center for Health and Wellness</field>
+		<field name="slug">center-for-health-and-wellness</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">31</field>
+		<field name="name">Charlie Sheen</field>
+		<field name="slug">charlie-sheen</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">32</field>
+		<field name="name">chickens</field>
+		<field name="slug">chickens</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">33</field>
+		<field name="name">Chris Hyancinthe</field>
+		<field name="slug">chris-hyancinthe</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">34</field>
+		<field name="name">Christine Hayes</field>
+		<field name="slug">christine-hayes</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">35</field>
+		<field name="name">Clear Talent Group</field>
+		<field name="slug">clear-talent-group</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">36</field>
+		<field name="name">communication</field>
+		<field name="slug">communication</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">37</field>
+		<field name="name">Constitution</field>
+		<field name="slug">constitution</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">38</field>
+		<field name="name">David Colman-Hidy</field>
+		<field name="slug">david-colman-hidy</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">39</field>
+		<field name="name">DisneyLand</field>
+		<field name="slug">disneyland</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">40</field>
+		<field name="name">Drugs</field>
+		<field name="slug">drugs</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">41</field>
+		<field name="name">eggs</field>
+		<field name="slug">eggs</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">42</field>
+		<field name="name">Elections</field>
+		<field name="slug">elections</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">43</field>
+		<field name="name">Elizabeth Mantey</field>
+		<field name="slug">elizabeth-mantey</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">44</field>
+		<field name="name">Emerson</field>
+		<field name="slug">emerson</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">45</field>
+		<field name="name">Emerson College</field>
+		<field name="slug">emerson-college</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">46</field>
+		<field name="name">EMS</field>
+		<field name="slug">ems</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">47</field>
+		<field name="name">Faith Howes</field>
+		<field name="slug">faith-howes</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">48</field>
+		<field name="name">Focus Features</field>
+		<field name="slug">focus-features</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">49</field>
+		<field name="name">Food</field>
+		<field name="slug">food</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">50</field>
+		<field name="name">Free Earl</field>
+		<field name="slug">free-earl</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">51</field>
+		<field name="name">Golden Coast</field>
+		<field name="slug">golden-coast</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">52</field>
+		<field name="name">Government</field>
+		<field name="slug">government</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">53</field>
+		<field name="name">Hollywood</field>
+		<field name="slug">hollywood</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">54</field>
+		<field name="name">Internship</field>
+		<field name="slug">internship</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">55</field>
+		<field name="name">Internships</field>
+		<field name="slug">internships</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">56</field>
+		<field name="name">Jeffrey Rizzi</field>
+		<field name="slug">jeffrey-rizzi</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">57</field>
+		<field name="name">Jon Allen</field>
+		<field name="slug">jon-allen</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">58</field>
+		<field name="name">Journalism</field>
+		<field name="slug">journalism</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">59</field>
+		<field name="name">Karlann Baumann</field>
+		<field name="slug">karlann-baumann</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">60</field>
+		<field name="name">Kyna Doles</field>
+		<field name="slug">kyna-doles</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">61</field>
+		<field name="name">lawsuit</field>
+		<field name="slug">lawsuit</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">62</field>
+		<field name="name">Lindsay Lohan</field>
+		<field name="slug">lindsay-lohan</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">63</field>
+		<field name="name">literature</field>
+		<field name="slug">literature</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">64</field>
+		<field name="name">Los Angeles</field>
+		<field name="slug">los-angeles</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">65</field>
+		<field name="name">Marissa Loughran</field>
+		<field name="slug">marissa-loughran</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">66</field>
+		<field name="name">Marketing</field>
+		<field name="slug">marketing</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">67</field>
+		<field name="name">Melyssa Cantor</field>
+		<field name="slug">melyssa-cantor</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">68</field>
+		<field name="name">Michael Callahan</field>
+		<field name="slug">michael-callahan</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">69</field>
+		<field name="name">more</field>
+		<field name="slug">more</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">70</field>
+		<field name="name">Morgan St. John</field>
+		<field name="slug">morgan-st-john</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">71</field>
+		<field name="name">Morphosis</field>
+		<field name="slug">morphosis</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">72</field>
+		<field name="name">Nancy Kwan</field>
+		<field name="slug">nancy-kwan</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">73</field>
+		<field name="name">Newspaper</field>
+		<field name="slug">newspaper</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">74</field>
+		<field name="name">Nicole Abascal</field>
+		<field name="slug">nicole-abascal</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">75</field>
+		<field name="name">Odd Future Wolf Gang Kill Them All</field>
+		<field name="slug">odd-future-wolf-gang-kill-them-all</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">76</field>
+		<field name="name">Olivia Connors</field>
+		<field name="slug">olivia-connors</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">77</field>
+		<field name="name">Palm Trees</field>
+		<field name="slug">palm-trees</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">78</field>
+		<field name="name">police officers</field>
+		<field name="slug">police-officers</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">79</field>
+		<field name="name">politics</field>
+		<field name="slug">politics</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">80</field>
+		<field name="name">Pool</field>
+		<field name="slug">pool</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">81</field>
+		<field name="name">publishing</field>
+		<field name="slug">publishing</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">82</field>
+		<field name="name">Ritalin</field>
+		<field name="slug">ritalin</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">83</field>
+		<field name="name">Ryan Mazie</field>
+		<field name="slug">ryan-mazie</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">84</field>
+		<field name="name">Sam Tang</field>
+		<field name="slug">sam-tang</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">85</field>
+		<field name="name">secretary</field>
+		<field name="slug">secretary</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">86</field>
+		<field name="name">senator</field>
+		<field name="slug">senator</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">87</field>
+		<field name="name">SGA</field>
+		<field name="slug">sga-2</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">88</field>
+		<field name="name">Shanae Burch</field>
+		<field name="slug">shanae-burch</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">89</field>
+		<field name="name">Student Government Association</field>
+		<field name="slug">student-government-association</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">90</field>
+		<field name="name">Students</field>
+		<field name="slug">students</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">91</field>
+		<field name="name">Symphony 19</field>
+		<field name="slug">symphony-19</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">92</field>
+		<field name="name">Tanya Flink</field>
+		<field name="slug">tanya-flink</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">93</field>
+		<field name="name">Tau Zaman</field>
+		<field name="slug">tau-zaman</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">94</field>
+		<field name="name">The Olsens</field>
+		<field name="slug">the-olsens</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">95</field>
+		<field name="name">Theater Education</field>
+		<field name="slug">theater-education</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">96</field>
+		<field name="name">treasurer</field>
+		<field name="slug">treasurer</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">97</field>
+		<field name="name">Tremont Street</field>
+		<field name="slug">tremont-street</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">98</field>
+		<field name="name">Tufts Medical Center</field>
+		<field name="slug">tufts-medical-center</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">99</field>
+		<field name="name">Us Weekly</field>
+		<field name="slug">us-weekly</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">100</field>
+		<field name="name">visual media arts</field>
+		<field name="slug">visual-media-arts</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">101</field>
+		<field name="name">vote</field>
+		<field name="slug">vote</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">102</field>
+		<field name="name">West Coast</field>
+		<field name="slug">west-coast</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">103</field>
+		<field name="name">wings</field>
+		<field name="slug">wings</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">104</field>
+		<field name="name">writing</field>
+		<field name="slug">writing</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">105</field>
+		<field name="name">Wynn Harrison</field>
+		<field name="slug">wynn-harrison</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">106</field>
+		<field name="name">EAGLE</field>
+		<field name="slug">eagle</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">107</field>
+		<field name="name">Sassy Gay Friend</field>
+		<field name="slug">sassy-gay-friend</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">108</field>
+		<field name="name">Adriana Guida</field>
+		<field name="slug">adriana-guida</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">109</field>
+		<field name="name">Cold Weather</field>
+		<field name="slug">cold-weather</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">110</field>
+		<field name="name">San Van Deuren</field>
+		<field name="slug">san-van-deuren</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">111</field>
+		<field name="name">EVVY's</field>
+		<field name="slug">evvys</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">112</field>
+		<field name="name">Maria Menounos</field>
+		<field name="slug">maria-menounos</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">113</field>
+		<field name="name">Kayla Bracero</field>
+		<field name="slug">kayla-bracero</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">114</field>
+		<field name="name">The Velvet Underground in Boston</field>
+		<field name="slug">the-velvet-underground-in-boston</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">115</field>
+		<field name="name">Hedy</field>
+		<field name="slug">hedy</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">116</field>
+		<field name="name">Andrew Doerfler</field>
+		<field name="slug">andrew-doerfler</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">117</field>
+		<field name="name">ArtsEmerson</field>
+		<field name="slug">artsemerson</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">118</field>
+		<field name="name">Boston Symphony Cinema II</field>
+		<field name="slug">boston-symphony-cinema-ii</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">119</field>
+		<field name="name">Steve Miller</field>
+		<field name="slug">steve-miller</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">120</field>
+		<field name="name">Enter the Dragon</field>
+		<field name="slug">enter-the-dragon</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">121</field>
+		<field name="name">Iran</field>
+		<field name="slug">iran</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">122</field>
+		<field name="name">Iranian</field>
+		<field name="slug">iranian</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">123</field>
+		<field name="name">Tim Strain</field>
+		<field name="slug">tim-strain</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">124</field>
+		<field name="name">Tehran</field>
+		<field name="slug">tehran</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">125</field>
+		<field name="name">Jafar Panahi</field>
+		<field name="slug">jafar-panahi</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">126</field>
+		<field name="name">Muslim Film Festival</field>
+		<field name="slug">muslim-film-festival</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">127</field>
+		<field name="name">Muslim</field>
+		<field name="slug">muslim</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">128</field>
+		<field name="name">Offside</field>
+		<field name="slug">offside</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">129</field>
+		<field name="name">Cheapo Records</field>
+		<field name="slug">cheapo-records</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">130</field>
+		<field name="name">Record Store Day</field>
+		<field name="slug">record-store-day</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">131</field>
+		<field name="name">In Your Ear Records</field>
+		<field name="slug">in-your-ear-records</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">132</field>
+		<field name="name">Armageddon Shop</field>
+		<field name="slug">armageddon-shop</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">133</field>
+		<field name="name">Tres Gatos</field>
+		<field name="slug">tres-gatos</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">134</field>
+		<field name="name">The Record at the ICA</field>
+		<field name="slug">the-record-at-the-ica</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">135</field>
+		<field name="name">Weirdo Records</field>
+		<field name="slug">weirdo-records</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">136</field>
+		<field name="name">Newbury Comics</field>
+		<field name="slug">newbury-comics</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">137</field>
+		<field name="name">Kobe Bryant</field>
+		<field name="slug">kobe-bryant</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">138</field>
+		<field name="name">Lakers</field>
+		<field name="slug">lakers</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">139</field>
+		<field name="name">homophobic</field>
+		<field name="slug">homophobic</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">140</field>
+		<field name="name">Access Hollywood</field>
+		<field name="slug">access-hollywood</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">141</field>
+		<field name="name">IFFB</field>
+		<field name="slug">iffb</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">142</field>
+		<field name="name">Color Me Obssessed</field>
+		<field name="slug">color-me-obssessed</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">143</field>
+		<field name="name">Another Earth</field>
+		<field name="slug">another-earth</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">144</field>
+		<field name="name">Bellflower</field>
+		<field name="slug">bellflower</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">145</field>
+		<field name="name">The Future</field>
+		<field name="slug">the-future</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">146</field>
+		<field name="name">13 assassins</field>
+		<field name="slug">13-assassins</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">147</field>
+		<field name="name">the trip</field>
+		<field name="slug">the-trip</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">148</field>
+		<field name="name">Independent Film Festival of Boston</field>
+		<field name="slug">independent-film-festival-of-boston</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">149</field>
+		<field name="name">Brattle Theatre</field>
+		<field name="slug">brattle-theatre</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">150</field>
+		<field name="name">Coolidge Corner Theatre</field>
+		<field name="slug">coolidge-corner-theatre</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">151</field>
+		<field name="name">Convento</field>
+		<field name="slug">convento</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">152</field>
+		<field name="name">Independent Film Festival Boston</field>
+		<field name="slug">independent-film-festival-boston</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">153</field>
+		<field name="name">Multimedia</field>
+		<field name="slug">multimedia</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">154</field>
+		<field name="name">Editor-in-Chic</field>
+		<field name="slug">editor-in-chic</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">155</field>
+		<field name="name">Letters to the editor</field>
+		<field name="slug">letters-to-the-editor</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">156</field>
+		<field name="name">In focus</field>
+		<field name="slug">in-focus</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">157</field>
+		<field name="name">Occupy Boston</field>
+		<field name="slug">occupy-boston</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">158</field>
+		<field name="name">Boston Common</field>
+		<field name="slug">boston-common</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">159</field>
+		<field name="name">steven colbert</field>
+		<field name="slug">steven-colbert</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">160</field>
+		<field name="name">lifestyle</field>
+		<field name="slug">lifestyle-2</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">161</field>
+		<field name="name">sports</field>
+		<field name="slug">sports-2</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">162</field>
+		<field name="name">Delusion</field>
+		<field name="slug">delusion</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">163</field>
+		<field name="name">music</field>
+		<field name="slug">music</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">164</field>
+		<field name="name">paramount center</field>
+		<field name="slug">paramount-center</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">165</field>
+		<field name="name">Emerson College Police Department</field>
+		<field name="slug">emerson-college-police-department</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">166</field>
+		<field name="name">LGBTQ</field>
+		<field name="slug">lgbtq</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">167</field>
+		<field name="name">Little Building</field>
+		<field name="slug">little-building</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">168</field>
+		<field name="name">Movies</field>
+		<field name="slug">movies</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">169</field>
+		<field name="name">Tucker &amp;amp; Dale Vs. Evil</field>
+		<field name="slug">tucker-dale-vs-evil</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">170</field>
+		<field name="name">Eli Craig</field>
+		<field name="slug">eli-craig</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">171</field>
+		<field name="name">volleyball</field>
+		<field name="slug">volleyball</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">172</field>
+		<field name="name">soccer</field>
+		<field name="slug">soccer</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">173</field>
+		<field name="name">tennis</field>
+		<field name="slug">tennis</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">174</field>
+		<field name="name">first lecture series</field>
+		<field name="slug">first-lecture-series</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">175</field>
+		<field name="name">young adult fiction</field>
+		<field name="slug">young-adult-fiction</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">176</field>
+		<field name="name">team edward</field>
+		<field name="slug">team-edward</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">177</field>
+		<field name="name">team jacob</field>
+		<field name="slug">team-jacob</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">178</field>
+		<field name="name">harry potter</field>
+		<field name="slug">harry-potter</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">179</field>
+		<field name="name">hunger games</field>
+		<field name="slug">hunger-games</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">180</field>
+		<field name="name">stephanie meyer</field>
+		<field name="slug">stephanie-meyer</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">181</field>
+		<field name="name">Invisible Children</field>
+		<field name="slug">invisible-children</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">182</field>
+		<field name="name">greek life</field>
+		<field name="slug">greek-life</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">183</field>
+		<field name="name">freedom trail</field>
+		<field name="slug">freedom-trail</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">184</field>
+		<field name="name">Nerding Out</field>
+		<field name="slug">nerding-out</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">185</field>
+		<field name="name">kirk ellis</field>
+		<field name="slug">kirk-ellis</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">186</field>
+		<field name="name">optical revolution</field>
+		<field name="slug">optical-revolution</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">187</field>
+		<field name="name">chocolate cake city</field>
+		<field name="slug">chocolate-cake-city</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">188</field>
+		<field name="name">thearers</field>
+		<field name="slug">thearers</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">189</field>
+		<field name="name">kasteel well</field>
+		<field name="slug">kasteel-well</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">190</field>
+		<field name="name">The T</field>
+		<field name="slug">the-t</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">191</field>
+		<field name="name">Red Line</field>
+		<field name="slug">red-line</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">192</field>
+		<field name="name">Oktoberfest</field>
+		<field name="slug">oktoberfest</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">193</field>
+		<field name="name">Cross-Country</field>
+		<field name="slug">cross-country</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">195</field>
+		<field name="name">Miss Manners</field>
+		<field name="slug">miss-manners</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">196</field>
+		<field name="name">Fit to Print</field>
+		<field name="slug">fit-to-print</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">197</field>
+		<field name="name">CPLA</field>
+		<field name="slug">cpla</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">198</field>
+		<field name="name">Mystic Unseen</field>
+		<field name="slug">mystic-unseen</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">199</field>
+		<field name="name">Cloud Nine</field>
+		<field name="slug">cloud-nine</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">200</field>
+		<field name="name">GNAC</field>
+		<field name="slug">gnac</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">201</field>
+		<field name="name">Brown-Plofker Gym</field>
+		<field name="slug">brown-plofker-gym</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">202</field>
+		<field name="name">Halloween</field>
+		<field name="slug">halloween</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">203</field>
+		<field name="name">Obama</field>
+		<field name="slug">obama</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">204</field>
+		<field name="name">Grilled Cheese</field>
+		<field name="slug">grilled-cheese</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">205</field>
+		<field name="name">Memoir</field>
+		<field name="slug">memoir</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">206</field>
+		<field name="name">Rad Self Defense</field>
+		<field name="slug">rad-self-defense</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">207</field>
+		<field name="name">George Kuchar</field>
+		<field name="slug">george-kuchar</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">208</field>
+		<field name="name">TRIBUTE</field>
+		<field name="slug">tribute</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">209</field>
+		<field name="name">Paraffin</field>
+		<field name="slug">paraffin</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">210</field>
+		<field name="name">Blog</field>
+		<field name="slug">blog</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">211</field>
+		<field name="name">Mens Soccer</field>
+		<field name="slug">mens-soccer</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">212</field>
+		<field name="name">RISD</field>
+		<field name="slug">risd</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">213</field>
+		<field name="name">Hockey</field>
+		<field name="slug">hockey</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">214</field>
+		<field name="name">JWU</field>
+		<field name="slug">jwu</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">215</field>
+		<field name="name">L.A.</field>
+		<field name="slug">l-a</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">216</field>
+		<field name="name">Emerson L.A. Program</field>
+		<field name="slug">emerson-l-a-program</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">217</field>
+		<field name="name">CCC</field>
+		<field name="slug">ccc</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">218</field>
+		<field name="name">JTA</field>
+		<field name="slug">jta</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">219</field>
+		<field name="name">Kate Middleton</field>
+		<field name="slug">kate-middleton</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">220</field>
+		<field name="name">Prince William</field>
+		<field name="slug">prince-william</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">221</field>
+		<field name="name">Pretty Little Liars</field>
+		<field name="slug">pretty-little-liars</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">222</field>
+		<field name="name">NCA</field>
+		<field name="slug">nca</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">223</field>
+		<field name="name">Melissa Pappas</field>
+		<field name="slug">melissa-pappas</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">224</field>
+		<field name="name">Spiritual Life</field>
+		<field name="slug">spiritual-life</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">225</field>
+		<field name="name">Investidate Workshop</field>
+		<field name="slug">investidate-workshop</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">226</field>
+		<field name="name">Ron Diamond</field>
+		<field name="slug">ron-diamond</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">227</field>
+		<field name="name">The Lost Thing</field>
+		<field name="slug">the-lost-thing</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">228</field>
+		<field name="name">Emari Traffie</field>
+		<field name="slug">emari-traffie</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">229</field>
+		<field name="name">Marines</field>
+		<field name="slug">marines</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">230</field>
+		<field name="name">Flu Shots</field>
+		<field name="slug">flu-shots</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">231</field>
+		<field name="name">Plastic Bottles</field>
+		<field name="slug">plastic-bottles</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">232</field>
+		<field name="name">Dining Facility</field>
+		<field name="slug">dining-facility</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">233</field>
+		<field name="name">WERS</field>
+		<field name="slug">wers</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">234</field>
+		<field name="name">Jackie Liebergott Black Box Theatre</field>
+		<field name="slug">jackie-liebergott-black-box-theatre</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">235</field>
+		<field name="name">Israel Rivera</field>
+		<field name="slug">israel-rivera</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">236</field>
+		<field name="name">ECPD</field>
+		<field name="slug">ecpd</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">237</field>
+		<field name="name">Boylston Place</field>
+		<field name="slug">boylston-place</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">238</field>
+		<field name="name">Cutler Majestic Theatre</field>
+		<field name="slug">cutler-majestic-theatre</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">239</field>
+		<field name="name">Gypsy Bar</field>
+		<field name="slug">gypsy-bar</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">240</field>
+		<field name="name">Piano Row</field>
+		<field name="slug">piano-row</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">241</field>
+		<field name="name">Sugarwitch</field>
+		<field name="slug">sugarwitch</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">242</field>
+		<field name="name">Rareworks</field>
+		<field name="slug">rareworks</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">243</field>
+		<field name="name">EFA</field>
+		<field name="slug">efa</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">244</field>
+		<field name="name">NCAA</field>
+		<field name="slug">ncaa</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">245</field>
+		<field name="name">basketball</field>
+		<field name="slug">basketball</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">246</field>
+		<field name="name">Dining Hall</field>
+		<field name="slug">dining-hall</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">247</field>
+		<field name="name">Aramark</field>
+		<field name="slug">aramark</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">248</field>
+		<field name="name">Beijing Program</field>
+		<field name="slug">beijing-program</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">249</field>
+		<field name="name">Robin Hood</field>
+		<field name="slug">robin-hood</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">250</field>
+		<field name="name">Occupy Wall Street</field>
+		<field name="slug">occupy-wall-street</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">251</field>
+		<field name="name">Israel</field>
+		<field name="slug">israel</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">252</field>
+		<field name="name">Facebook</field>
+		<field name="slug">facebook</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">253</field>
+		<field name="name">Timeline</field>
+		<field name="slug">timeline</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">254</field>
+		<field name="name">TSA</field>
+		<field name="slug">tsa</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">255</field>
+		<field name="name">Your Magazine</field>
+		<field name="slug">your-magazine</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">256</field>
+		<field name="name">Online</field>
+		<field name="slug">online</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">257</field>
+		<field name="name">South End Buttery</field>
+		<field name="slug">south-end-buttery</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">258</field>
+		<field name="name">Kickass Cupcakes</field>
+		<field name="slug">kickass-cupcakes</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">259</field>
+		<field name="name">Sweet Cupcakes</field>
+		<field name="slug">sweet-cupcakes</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">260</field>
+		<field name="name">Isabelle's Curly Cakes</field>
+		<field name="slug">isabelles-curly-cakes</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">261</field>
+		<field name="name">Todd Strauss-Schulson</field>
+		<field name="slug">todd-strauss-schulson</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">262</field>
+		<field name="name">Harold and Kumar</field>
+		<field name="slug">harold-and-kumar</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">263</field>
+		<field name="name">The Wall</field>
+		<field name="slug">the-wall</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">264</field>
+		<field name="name">Beacon Street</field>
+		<field name="slug">beacon-street</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">265</field>
+		<field name="name">Ken Nikravesh</field>
+		<field name="slug">ken-nikravesh</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">266</field>
+		<field name="name">Berklee College of Music</field>
+		<field name="slug">berklee-college-of-music</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">267</field>
+		<field name="name">Kappa Gamma Chi</field>
+		<field name="slug">kappa-gamma-chi</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">268</field>
+		<field name="name">Take Back the Night</field>
+		<field name="slug">take-back-the-night</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">269</field>
+		<field name="name">President Lee Pelton</field>
+		<field name="slug">president-lee-pelton</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">270</field>
+		<field name="name">Jackie Liebergott</field>
+		<field name="slug">jackie-liebergott</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">271</field>
+		<field name="name">Inaguration</field>
+		<field name="slug">inaguration</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">272</field>
+		<field name="name">HPV Vaccine</field>
+		<field name="slug">hpv-vaccine</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">273</field>
+		<field name="name">LGBT Lounge</field>
+		<field name="slug">lgbt-lounge</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">274</field>
+		<field name="name">Bright Family Screening Room</field>
+		<field name="slug">bright-family-screening-room</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">275</field>
+		<field name="name">Jim Taylor</field>
+		<field name="slug">jim-taylor</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">276</field>
+		<field name="name">The Descendants</field>
+		<field name="slug">the-descendants</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">277</field>
+		<field name="name">Rob Orchard</field>
+		<field name="slug">rob-orchard</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">278</field>
+		<field name="name">Paramount Watching</field>
+		<field name="slug">paramount-watching</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">279</field>
+		<field name="name">Denis Leary</field>
+		<field name="slug">denis-leary</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">280</field>
+		<field name="name">Ploughshares</field>
+		<field name="slug">ploughshares</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">281</field>
+		<field name="name">Graudate Reading Series</field>
+		<field name="slug">graudate-reading-series</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">282</field>
+		<field name="name">Casey Brown</field>
+		<field name="slug">casey-brown</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">283</field>
+		<field name="name">The Three Musketeers</field>
+		<field name="slug">the-three-musketeers</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">284</field>
+		<field name="name">George Murray</field>
+		<field name="slug">george-murray</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">285</field>
+		<field name="name">Portland</field>
+		<field name="slug">portland</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">286</field>
+		<field name="name">ME</field>
+		<field name="slug">me</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">287</field>
+		<field name="name">En Route</field>
+		<field name="slug">en-route</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">288</field>
+		<field name="name">She Loves Me</field>
+		<field name="slug">she-loves-me</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">289</field>
+		<field name="name">Stephen Terell</field>
+		<field name="slug">stephen-terell</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">290</field>
+		<field name="name">Greene Theatre</field>
+		<field name="slug">greene-theatre</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">291</field>
+		<field name="name">Emerson Quidditch World Cup</field>
+		<field name="slug">emerson-quidditch-world-cup</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">292</field>
+		<field name="name">International Quidditch Association</field>
+		<field name="slug">international-quidditch-association</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">293</field>
+		<field name="name">Randall's Island</field>
+		<field name="slug">randalls-island</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">294</field>
+		<field name="name">holiday season</field>
+		<field name="slug">holiday-season</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">295</field>
+		<field name="name">gift giving</field>
+		<field name="slug">gift-giving</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">296</field>
+		<field name="name">On Faith</field>
+		<field name="slug">on-faith</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">297</field>
+		<field name="name">Sacred Spaces</field>
+		<field name="slug">sacred-spaces</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">298</field>
+		<field name="name">Jon Kroll</field>
+		<field name="slug">jon-kroll</field>
+		<field name="term_group">0</field>
+	</row>
+
+	<row>
+		<field name="term_id">299</field>
+		<field name="name">University of South Florida</field>
+		<field name="slug">university-of-south-florida</field>
+		<field name="term_group">0</field>
+	</row>
+
+</resultset>

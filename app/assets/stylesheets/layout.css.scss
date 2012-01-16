@@ -1,5 +1,6 @@
 #wrap {
-	margin-bottom: 30px;
+	margin: 0 auto 30px;
+	width: 960px;
 }
 
 .header {
@@ -89,4 +90,50 @@
 	padding-top: 5px;
 	border-top: 1px solid #cbcbcb;	
 	font-size: 12px;
+}
+
+@media screen and (max-width: 959px) {
+	#wrap {
+		width: 100%;
+	}
+	.header {
+		width: 100%;		
+	}
+	#home_header {
+		#masthead {
+			width: 100%;
+		}
+		h1 {
+			font-size: 45px;
+			line-height: 55px;
+		}
+	}
+	#nav {
+		width: 98%;
+		padding: 0 1%;
+	}
+}
+
+@media screen and (max-width: 479px) {
+	#home_header {
+		h1 {
+			font-size: 35px;
+			line-height: 35px;
+		}
+		#nav {
+			h2 {
+				float: none;
+			}
+		}
+	}
+	.header {
+		#nav {
+			li {
+				float: none;
+				display: block;
+				padding-left: 5%;
+				width: 100%;
+			}
+		}
+	}
 }
