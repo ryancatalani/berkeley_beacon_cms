@@ -95,6 +95,7 @@ class ArticlesController < ApplicationController
 		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
 		p[:subtitles] = subs
 		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
+		p[:section_id] = params[:section].to_i
 		if @article.update_attributes(p)
 		  
 		  Authorship.where(:article_id => @article.id).each { |a| a.delete }

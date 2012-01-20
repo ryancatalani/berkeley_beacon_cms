@@ -8,7 +8,7 @@ namespace :db do
 		no_author_count = 0
 		short_excerpt_count = 0
 		
-		posts.css("row").first(200).last(15).each_with_index do |row, index|
+		posts.css("row").first(200).last(25).each_with_index do |row, index|
 			puts ''
 			puts index
 			no_author = false
@@ -44,6 +44,17 @@ namespace :db do
 						raw_author = raw_author.gsub(/<.*?>/,'').strip
 						puts "is BB: #{raw_author}"
 					end
+					
+					
+					if raw_author.nil? or !raw_author.include?("Beacon")
+						a = /\n\n.*Beacon.*\n\n/.match(raw_content).to_s
+						if !a.nil?
+							a.gsub("\n\n",'').gsub(/<\/?strong>/,'')
+							puts a
+						end
+					end
+					
+					p "raw content: #{raw_content.first(600)}"
 						
 				when 'post_modified'
 					# article date
