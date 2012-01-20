@@ -45,4 +45,15 @@ class MediaUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+	# version :scaled do
+	# 	process :resize_to_fit => [820, 820]
+	# end
+
+	protected
+		
+		# def is_landscape? picture
+		# 	image = MiniMagick::Image.open(picture.path)
+		# 	  	image[:width] > image[:height]
+		# end
+
 end

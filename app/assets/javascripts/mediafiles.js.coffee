@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
 	$("#new_mediafile").submit ->
-		if $("#mediafile_title").val() == "" or $("#mediafile_description").val() == ""
-			alert("Oops, there was a problem. Make sure you filled out everything.")
+		if $("#mediafile_title").val() == ""
+			alert("Oops, there was a problem. Make sure you filled out the caption.")
 			return false
 		else
 			$("#loading").fadeIn()

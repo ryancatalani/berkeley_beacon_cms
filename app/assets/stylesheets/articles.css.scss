@@ -26,7 +26,13 @@
 		width: 820px;
 		overflow: hidden;
 		
+		.media_wrap {
+			max-height: 546px;
+			overflow: hidden;
+		}
+		
 		img {
+			margin-top: 0;
 			width: 820px;
 		}
 		

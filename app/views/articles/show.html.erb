@@ -18,11 +18,13 @@
 	
 	<% unless @article.mediafiles.empty? %>
 		<div id="media">
-			<% if @article.mediafiles.first.mediatype == 2 %>
-				<%= video_tag(@article.mediafiles.first).html_safe %>			
-			<% else %>
-				<%= image_tag @article.mediafiles.first.media.url %>
-			<% end %>
+			<div class="media_wrap">
+				<% if @article.mediafiles.first.mediatype == 2 %>
+					<%= video_tag(@article.mediafiles.first).html_safe %>			
+				<% else %>
+					<%= image_tag @article.mediafiles.first.media.url %>
+				<% end %>
+			</div>
 			<div id="metadata">
 				<div id="caption">
 					<%= @article.mediafiles.first.title %>

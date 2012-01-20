@@ -6,4 +6,5 @@ CarrierWave.configure do |config|
 	}
 	config.fog_directory = 'BerkeleyBeacon/beacon_uploads'
 	config.fog_public = false
+	# config.fog_attributes = {'Cache-Control'=>'max-age=86400'}
 end
