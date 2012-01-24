@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
                     	:format     => { :with => email_regex },
                     	:uniqueness => { :case_sensitive => false },
                     	:length     => { :within => 4..254 }
-  
+  	mount_uploader :profile, ProfileUploader
 	
 	def is_editor?
 		editor == true
@@ -36,8 +36,17 @@ class Person < ActiveRecord::Base
 	def designation
 		return "Editor" if editor?
 		return "Staff" if staff?
-		return other_designation if !other_designation.blank?
+		return other_designation if !other_designation.blank? and other_designation != "*"
+		return "" if !other_designation.blank? and other_designation == "*"
 		return "Correspondent"
+	end
+	
+	def pos
+		return position if !position.blank?
+		return "Beacon Staff" if staff?
+		return other_designation if !other_designation.blank? and other_designation != "*"
+		return "" if !other_designation.blank? and other_designation == "*"
+		return "Beacon Correspondent"
 	end
 	
 	def contact_info
@@ -47,7 +56,7 @@ class Person < ActiveRecord::Base
 		  ret << ' class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @'
 		  ret << twitter
 		  ret << '</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>'
-	  end
+		end
     # ret << "Follow #{lastname} on Twitter at <a href='http://twitter.com/#{twitter}'>@#{twitter}</a>. " 
 		return ret
 	end

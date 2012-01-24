@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201185813) do
+ActiveRecord::Schema.define(:version => 20120124035253) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -68,6 +68,9 @@ ActiveRecord::Schema.define(:version => 20111201185813) do
     t.string   "twitter"
     t.string   "lastname"
     t.string   "other_designation"
+    t.string   "position"
+    t.text     "bio"
+    t.string   "profile"
   end
 
   create_table "sections", :force => true do |t|

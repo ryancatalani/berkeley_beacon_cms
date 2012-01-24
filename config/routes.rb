@@ -2,7 +2,6 @@ BeaconApp::Application.routes.draw do
 	
 	get "admin/home"
 
-
 	resources :people
 	resources :articles, :only => [:new, :create, :edit, :update, :destroy, :index]
 	resources :sessions, :only => [:new, :create, :destroy]

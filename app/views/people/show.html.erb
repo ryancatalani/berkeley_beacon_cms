@@ -1,0 +1,83 @@
+<div id="article_wrap">
+	<div id="body">
+		<%= image_tag @person.profile.url %>
+		<h1><%= @person.full_name %></h1>
+		<h2><%= @person.pos %></h2>
+		<% if !@person.bio.blank? %>
+			<div id="bio">
+				<%= @person.bio.html_safe %>
+			</div>
+		<% end %>
+		<p><%= @person.contact_info.html_safe %></p>
+		
+		<hr />
+		
+		<% @articles.each do |article| %>
+
+			<div class="article">
+				<% unless article.mediafiles.empty? %>
+					<div class="media">
+						<%= link_to image_tag(article.mediafiles.first.media.url), article.to_url %>
+					</div>
+				<% else %>
+				<% end %>
+				<h3><%= link_to article.title, article.to_url %></h3>
+				<div class="byline"><%= bylineify article %></div>
+				<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
+				<div class="clear"></div>
+			</div>
+
+		<% end %>
+	</div>
+	
+	<div id="person_sidebar">
+		<% if @person.twitter %>
+			<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+			<script>
+			new TWTR.Widget({
+			  version: 2,
+			  type: 'profile',
+			  rpp: 8,
+			  interval: 30000,
+			  width: 220,
+			  height: 525,
+			  theme: {
+			    shell: {
+			      background: '#cbcbcb',
+			      color: '#000000'
+			    },
+			    tweets: {
+			      background: '#ffffff',
+			      color: '#000000',
+			      links: '#323232'
+			    }
+			  },
+			  features: {
+			    scrollbar: true,
+			    loop: false,
+			    live: true,
+			    behavior: 'all'
+			  }
+			}).render().setUser('<%= @person.twitter %>').start();
+			</script>
+		<% end %>
+
+		<section id="popular">
+			<h4>Popular on the Beacon</h4>
+			<ol>
+				<% popular_articles.each do |story| %>
+					<div class="popular-story">
+						<!-- media -->
+						<li>
+							<%= link_to image_tag(story.mediafiles.first.media.url, :size=>"40x40"), story.to_url unless story.mediafiles.empty? %>
+							<%= link_to truncate(story.title, :length => 60), story.to_url %>
+							<div class="clear"></div>
+						</li>
+					</div>
+				<% end %>
+			</ol>
+		</section>
+		
+	</div>
+
+</div>

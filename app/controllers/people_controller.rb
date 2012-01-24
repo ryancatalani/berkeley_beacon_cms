@@ -36,6 +36,11 @@ class PeopleController < ApplicationController
 			render 'edit'
 		end
 	end
+	
+	def show
+		@person = Person.find(params[:id])
+		@articles = @person.articles.order("created_at DESC")
+	end
 		
 	
 end

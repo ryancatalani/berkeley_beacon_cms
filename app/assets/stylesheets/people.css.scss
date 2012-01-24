@@ -5,3 +5,40 @@
 #show_if_editor {
 	display: none;
 }
+
+hr {
+	border: none;
+	height: 1px;
+	background: #cbcbcb;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#person_sidebar {
+	float: left;
+	opacity: 1;
+	h4 {
+		font: 14px/14px "Arvo", Rockwell, serif;
+		font-weight: normal;
+		text-transform: none;
+		margin-bottom: 5px;
+	}
+	section {
+		margin-bottom: 20px;
+	}
+	#fb, #twitter, #tumblr {
+		float: left;
+	}
+	#tumblr {
+		margin-left: 3px;
+	}
+	
+	#popular {
+		float: none;
+		width: 220px;
+		padding: 0;
+		margin: 0;
+		margin-top: 30px;
+		border: none;
+	}
+}
