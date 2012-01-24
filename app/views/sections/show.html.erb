@@ -12,7 +12,7 @@
 					<% else %>
 					<% end %>
 					<h2><%= link_to article.title, article.to_url %></h2>
-					<div class="byline"><%= bylineify article.people %></div>
+					<div class="byline"><%= bylineify article %></div>
 					<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
 				</div>
 			<% else %>
@@ -25,7 +25,7 @@
 				<% else %>
 				<% end %>
 				<h3><%= link_to article.title, article.to_url %></h3>
-				<div class="byline"><%= bylineify article.people %></div>
+				<div class="byline"><%= bylineify article %></div>
 				<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
 				<div class="clear"></div>
 			</div>

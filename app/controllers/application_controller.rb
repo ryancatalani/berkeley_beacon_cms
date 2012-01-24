@@ -19,10 +19,11 @@ class ApplicationController < ActionController::Base
 			redirect_to root_path unless current_user and current_user.editor?
 		end
 				
-		def bylineify people
-			if people.count == 0 and !source.nil?
+		def bylineify mediafile
+			if mediafile.people.count == 0 and !mediafile.source.nil?
 				return source
 			end
+			people = mediafile.people
 			return people.first.official_name if people.count == 1
 			if people.count == 2
 				ret = people.map {|p| p.official_name }.join(' and ')
