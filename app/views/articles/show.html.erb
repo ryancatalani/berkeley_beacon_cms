@@ -18,8 +18,10 @@
 	
 	<% unless @article.mediafiles.empty? %>
 		<div id="media">
-			<div id="gallery_back_btn"></div>
-			<div id="gallery_forward_btn"></div>
+			<% if @article.mediafiles.count > 1 %>
+				<div id="gallery_back_btn"></div>
+				<div id="gallery_forward_btn"></div>
+			<% end %>
 			
 			<div id="gallery_wrap">
 				<% @article.mediafiles.each_with_index do |mediafile,index| %>
