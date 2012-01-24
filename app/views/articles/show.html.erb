@@ -30,7 +30,7 @@
 							<% if mediafile.mediatype == 2 %>
 								<%= video_tag(@article.mediafiles.first).html_safe %>			
 							<% else %>
-								<%= image_tag @article.mediafiles.first.media.url %>
+								<%= image_tag mediafile.media.url %>
 							<% end %>
 						</div>
 						<div id="metadata">
