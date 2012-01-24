@@ -21,10 +21,40 @@
 		color: #898989;
 		margin-bottom: 20px;
 	}
+	#gallery_back_btn, #gallery_forward_btn {
+		position: absolute;
+		background: rgba(255,255,255,0.33);
+		height: 100%;
+		max-height: 546px;
+		cursor: pointer;
+		width: 30px;
+		display: none;
+	}
+	#gallery_forward_btn {
+		right: 0;
+		background-image: url('next.png');
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	#gallery_back_btn {
+		background-image: url('prev.png');
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	
 	#media {
+		position: relative;
 		margin-bottom: 20px;
 		width: 820px;
 		overflow: hidden;
+		
+		#gallery_wrap {
+			width: 1640px;
+		}
+		
+		.media_container {
+			float: left;
+		}
 		
 		.media_wrap {
 			max-height: 546px;

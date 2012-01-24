@@ -20,6 +20,9 @@ class ApplicationController < ActionController::Base
 		end
 				
 		def bylineify people
+			if people.count == 0 and !source.nil?
+				return source
+			end
 			return people.first.official_name if people.count == 1
 			if people.count == 2
 				ret = people.map {|p| p.official_name }.join(' and ')

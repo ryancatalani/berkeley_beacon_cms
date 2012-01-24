@@ -18,21 +18,30 @@
 	
 	<% unless @article.mediafiles.empty? %>
 		<div id="media">
-			<div class="media_wrap">
-				<% if @article.mediafiles.first.mediatype == 2 %>
-					<%= video_tag(@article.mediafiles.first).html_safe %>			
-				<% else %>
-					<%= image_tag @article.mediafiles.first.media.url %>
+			<div id="gallery_back_btn"></div>
+			<div id="gallery_forward_btn"></div>
+			
+			<div id="gallery_wrap">
+				<% @article.mediafiles.each_with_index do |mediafile,index| %>
+					<div class="media_container" <%= "style='display:none'" unless index.zero? %>>
+						<div class="media_wrap">
+							<% if mediafile.mediatype == 2 %>
+								<%= video_tag(@article.mediafiles.first).html_safe %>			
+							<% else %>
+								<%= image_tag @article.mediafiles.first.media.url %>
+							<% end %>
+						</div>
+						<div id="metadata">
+							<div id="caption">
+								<%= mediafile.title %>
+							</div>
+							<div id="credit">
+								<%= bylineify mediafile.people %>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
 				<% end %>
-			</div>
-			<div id="metadata">
-				<div id="caption">
-					<%= @article.mediafiles.first.title %>
-				</div>
-				<div id="credit">
-					<%= bylineify @article.mediafiles.first.people %>
-				</div>
-				<div class="clear"></div>
 			</div>
 		</div>
 	<% end %>
