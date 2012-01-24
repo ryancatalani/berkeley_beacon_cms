@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 				
 		def bylineify mediafile
 			if mediafile.people.count == 0 and !mediafile.source.nil?
-				return source
+				return mediafile.source
 			end
 			people = mediafile.people
 			return people.first.official_name if people.count == 1
