@@ -42,3 +42,27 @@ hr {
 		border: none;
 	}
 }
+
+#people_wrap {
+	width: 940px;
+	h2 {
+		color: #898989;
+	}
+	#profile_img {
+		width: 220px;
+		height: 300px;
+		overflow: hidden;
+		float: left;
+		margin-right: 20px;
+		margin-bottom: 20px;
+		img {
+			height: 300px;
+		}
+	}
+	#body {
+		width: 640px;
+		padding-right: 34px;
+		border-right: 1px solid #cbcbcb;
+		margin-right: 35px;
+	}
+}

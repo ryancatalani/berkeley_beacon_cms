@@ -1,6 +1,10 @@
-<div id="article_wrap">
+<div id="people_wrap" class="content_wrap">
 	<div id="body">
-		<%= image_tag @person.profile.url %>
+		<% unless @person.profile.blank? %>
+			<div id="profile_img">
+				<%= image_tag @person.profile.url %>
+			</div>
+		<% end %>
 		<h1><%= @person.full_name %></h1>
 		<h2><%= @person.pos %></h2>
 		<% if !@person.bio.blank? %>
@@ -9,6 +13,8 @@
 			</div>
 		<% end %>
 		<p><%= @person.contact_info.html_safe %></p>
+		
+		<div class="clear"></div>
 		
 		<hr />
 		
