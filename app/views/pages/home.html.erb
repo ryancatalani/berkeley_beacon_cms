@@ -97,6 +97,7 @@
 				<!-- media -->
 				<div class="mediawrap"><%= link_to image_tag(@news.first.mediafiles.first.media.url), @news.first.to_url unless @news.first.mediafiles.empty? %></div>
 				<h5><%= link_to @news.first.title, @news.first.to_url %></h5>
+				<%= truncate @news.first.excerpt, :length => 120 %>
 				<ul>
 					<% @news.last(2).each do |story| %>
 						<li><%= link_to truncate(story.title), story.to_url %></li>
