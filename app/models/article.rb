@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
 	validates_presence_of :title, :body, :articletype
-	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id
+	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id, :section_id
 	has_many :authorships
 	has_many :people, :through => :authorships
 	has_many :taggings
