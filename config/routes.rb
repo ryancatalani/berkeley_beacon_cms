@@ -1,6 +1,10 @@
 BeaconApp::Application.routes.draw do
 	
 	get "admin/home"
+	controller :people do 
+		match "/staff/:name", :to => :show
+	end
+	
 
 	resources :people
 	resources :articles, :only => [:new, :create, :edit, :update, :destroy, :index]
@@ -22,7 +26,7 @@ BeaconApp::Application.routes.draw do
 			end
 		end
 	end
-	
+		
 	controller :sections do
 		match ":name", :to => :show
 	end

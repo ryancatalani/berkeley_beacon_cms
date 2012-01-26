@@ -38,7 +38,14 @@ class PeopleController < ApplicationController
 	end
 	
 	def show
-		@person = Person.find(params[:id])
+		if params[:id]
+			@person = Person.find(params[:id])
+		elsif params[:name]
+			@person = Person.find_by_clean_full_name(params[:name])
+		else
+			redirect_to root_path and return
+		end
+		redirect_to root_path and return if @person.nil?
 		@articles = @person.articles.order("created_at DESC")
 	end
 		
