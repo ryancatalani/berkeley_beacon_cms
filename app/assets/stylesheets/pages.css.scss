@@ -101,7 +101,7 @@ body {
 	}
 	
 	.main-story-img-wrap {
-		height: 250px;
+		max-height: 250px;
 		width: 460px;
 		overflow: hidden;
 		img {
@@ -313,7 +313,7 @@ a {
 			float: left;
 		}
 		.main-story-img-wrap {
-			height: 250px;
+			max-height: 250px;
 			width: 49%;
 			overflow: hidden;
 			img {
