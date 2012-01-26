@@ -57,6 +57,17 @@
 			<% end %>
 	</div>
 	<div id="sidebar">
+		<% if !@article.series_id.nil? and @article.series_id != 0 %>
+			<section id="series_info">
+				<%= image_tag(@article.series.logo.url) if @article.series.logo %>
+				<% if @article.series.title %>
+					<strong><%= @article.series.title %></strong>
+					<br />
+				<% end %>
+				<%= @article.series.description if @article.series.description %>
+			</section>
+		<% end %>
+		
 		<section id="share">
 			<h4>Share this story online</h4>
 			<div id="fb">

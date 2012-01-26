@@ -117,6 +117,7 @@
 		
 	}
 	#sidebar {
+		width: 220px;
 		float: left;
 		opacity: 0.5;
 		h4 {
@@ -133,6 +134,14 @@
 		}
 		#tumblr {
 			margin-left: 3px;
+		}
+		#series_info {
+			img {
+				width: 220px;
+			}
+			strong {
+				font-weight: bold;
+			}
 		}
 		
 		#popular {

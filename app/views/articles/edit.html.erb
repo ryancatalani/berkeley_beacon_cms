@@ -2,7 +2,7 @@
 <%= form_for @article, :html => { :multipart => true } do |f| %>
 	<div class="field">
 		<%= label_tag :section %>
-		<%= select_tag :section, options_for_select(@sections)  %>
+		<%= select_tag :section, options_for_select(@sections, @article.section_id)  %>
 	</div>
 
 	<div class="field">
@@ -11,6 +11,11 @@
 	</div>
 	<div id="subtitles">
 		<a href="#" id="newsubtitlebtn">Add Subtitle</a>
+	</div>
+	
+	<div id="series">
+		<%= f.label :series_id %>
+		<%= select_tag :series_id, options_for_select(@series, @article.series_id) %>
 	</div>
 	
 	<div id="authors">

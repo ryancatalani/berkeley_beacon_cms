@@ -1,0 +1,6 @@
+<h1>All Series</h1>
+<ul>
+	<% @series.each do |series| %>
+		<li><%= link_to series.title, edit_series_path(series) %></li>
+	<% end %>
+</ul>

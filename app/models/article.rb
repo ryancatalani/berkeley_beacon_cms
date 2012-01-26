@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
 	validates_presence_of :title, :body, :articletype
-	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle
+	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id
 	has_many :authorships
 	has_many :people, :through => :authorships
 	has_many :taggings
@@ -9,6 +9,7 @@ class Article < ActiveRecord::Base
 	has_many :mediafiles, :through => :articlemediacontents
 	serialize :subtitles
 	belongs_to :section
+	belongs_to :series
 	before_save :check_clean_title
 	# default_scope :order => 'created_at DESC'
 	

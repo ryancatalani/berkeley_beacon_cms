@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
 			end
 		end
 		@sections = Section.all.map { |s| [s.name, s.id] }
+		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 	end
 	
 	def create
@@ -22,6 +23,7 @@ class ArticlesController < ApplicationController
 			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
 		end
 		p[:articletype] = params[:articletype].to_i
+		p[:series_id] = params[:series_id].to_i
 		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
 		p[:subtitles] = subs
 		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
@@ -55,6 +57,7 @@ class ArticlesController < ApplicationController
 			logger.debug "cookies = #{cookies[:already_uploaded]} / already_uploaded = #{@already_uploaded}"
 			@authors = Person.all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
 			@sections = Section.all.map { |s| [s.name, s.id] }
+			@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 			render "new"
 		end
 	end
@@ -69,6 +72,7 @@ class ArticlesController < ApplicationController
 		@current_authors = @article.people
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
+		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 	end
 	
 	def update
@@ -96,6 +100,7 @@ class ArticlesController < ApplicationController
 		p[:subtitles] = subs
 		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
 		p[:section_id] = params[:section].to_i
+		p[:series_id] = params[:series_id].to_i
 		if @article.update_attributes(p)
 		  
 		  Authorship.where(:article_id => @article.id).each { |a| a.delete }
@@ -115,6 +120,7 @@ class ArticlesController < ApplicationController
 			@sections = Section.all.map { |s| [s.name, s.id] }
 			@authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
 			@display_already_uploaded = true unless cookies[:already_uploaded].nil? or cookies[:already_uploaded].blank?
+			@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 			render 'edit'
 		end
 	end

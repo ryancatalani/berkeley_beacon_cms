@@ -13,6 +13,11 @@
 		<a href="#" id="newsubtitlebtn">Add Subtitle</a>
 	</div>
 	
+	<div id="series">
+		<%= f.label :series_id %>
+		<%= select_tag :series_id, options_for_select(@series) %>
+	</div>
+	
 	<div id="authors">
 		<div class="field">
 			<%= label_tag :author_1 %>

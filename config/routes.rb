@@ -5,7 +5,7 @@ BeaconApp::Application.routes.draw do
 		match "/staff/:name", :to => :show
 	end
 	
-
+	resources :series, :only => [:new, :create, :edit, :update, :index]
 	resources :people
 	resources :articles, :only => [:new, :create, :edit, :update, :destroy, :index]
 	resources :sessions, :only => [:new, :create, :destroy]
