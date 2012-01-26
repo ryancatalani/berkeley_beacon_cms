@@ -16,6 +16,8 @@ class PeopleController < ApplicationController
 			x_str = x_arr.sort_by{ rand }.first(25).join
 			p[:password] = p[:password_confirmation] = x_str
 		end
+		fullname = p[:firstname].downcase.gsub(/[^a-zA-Z]/,'-') + '-' + p[:lastname].downcase.gsub(/[^a-zA-Z]/,'-')
+		p[:clean_full_name] = fullname.gsub(/-{2,}/,'-')
 		@person = Person.new(p)		
 		if @person.save
 			redirect_to new_person_url, :notice => "Person created!"
@@ -30,7 +32,10 @@ class PeopleController < ApplicationController
 	
 	def update
 		@person = Person.find(params[:id])
-		if @person.update_attributes(params[:person])
+		p = params[:person]
+		fullname = p[:firstname].downcase.gsub(/[^a-zA-Z]/,'-') + '-' + p[:lastname].downcase.gsub(/[^a-zA-Z]/,'-')
+		p[:clean_full_name] = fullname.gsub(/-{2,}/,'-')
+		if @person.update_attributes(p)
 			redirect_to people_path
 		else
 			render 'edit'

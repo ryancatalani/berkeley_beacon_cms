@@ -3,15 +3,24 @@
 	<section id="top">		
 		
 		<div id="main-story">
-			<div class="story-text">
-				<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
-				<div class="byline">By <%= bylineify_short @main_story.people %></div>
-				<div class="excerpt"><%= @main_story.excerpt %></div>
-			</div>
-			<!-- something about the media file -->
-			<div class="main-story-img-wrap">
-				<%= link_to image_tag(@main_story.mediafiles.first.media.url), @main_story.to_url %>
-			</div>
+			<% if @main_story.mediafiles.empty? %>
+				<div class="story-text">
+					<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
+					<div class="byline">By <%= bylineify_short @main_story.people %></div>
+				</div>
+				<div class="main-story-img-wrap">
+					<div class="excerpt"><%= @main_story.excerpt %></div>
+				</div>			
+			<% else %>
+				<div class="story-text">
+					<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
+					<div class="byline">By <%= bylineify_short @main_story.people %></div>
+					<div class="excerpt"><%= @main_story.excerpt %></div>
+				</div>
+				<div class="main-story-img-wrap">
+					<%= link_to image_tag(@main_story.mediafiles.first.media.url), @main_story.to_url %>
+				</div>
+			<% end %>
 		</div>
 		
 		<section id="featured-stories">
