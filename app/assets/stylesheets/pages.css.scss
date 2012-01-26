@@ -206,8 +206,11 @@ body {
 #news-section-box {
 	width: 460px;
 	border-bottom: 1px solid #cbcbcb;
-	img {
+	.mediawrap {
+		height: 160px;
 		float: left;
+	}
+	img {
 		margin-right: 10px;
 		margin-bottom: 10px;
 	}
