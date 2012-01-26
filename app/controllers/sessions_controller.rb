@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 		person = Person.find_by_email(params[:email])		
 		if person && person.authenticate(params[:password])
 			session[:user_id] = person.id
-			redirect_to root_url, :notice => "Logged in!"
+			redirect_to new_article_path, :notice => "Logged in!"
 		else
 			logger.debug "wrong credentials"
 			flash.now.alert = "Invalid email or password"
