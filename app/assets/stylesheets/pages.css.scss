@@ -84,6 +84,7 @@ body {
 
 #top-sidebar {
 	width: 210px;
+	min-height: 525px;
 	padding-left: 10px;
 	border-left: 1px solid #cbcbcb;
 	float: right;
@@ -298,6 +299,7 @@ a {
 	#top-sidebar {
 		width: 47%;
 		margin: 0 1%;
+		min-height: 525px;
 	}
 	.featured-story {
 		width: 100%;
