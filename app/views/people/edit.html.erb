@@ -33,11 +33,11 @@
 		<%= f.text_field :other_designation %>
 		(* if blank)
 	</div>
-	<div class="field">
+	<div class="checkbox">
 		<%= f.label :editor %>
 		<%= f.check_box :editor %>
 	</div>
-	<div class="field">
+	<div class="checkbox">
 		<%= f.label :staff %>
 		<%= f.check_box :staff %>
 	</div>
@@ -81,7 +81,8 @@
 			<%= f.password_field :password_confirmation %>
 		</div>
 	</div>
-	
-	<div class="actions"><%= f.submit %></div>
+	</div>
+	<div class="clear"></div>
+	<div class="actions"><%= f.submit "Update Person", :class => "btn primary" %></div>
 
 <% end %>
