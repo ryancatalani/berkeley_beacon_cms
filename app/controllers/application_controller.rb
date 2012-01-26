@@ -35,6 +35,23 @@ class ApplicationController < ActionController::Base
 			return ret
 		end
 		
+		def bylineify_linked mediafile
+			if mediafile.people.count == 0 and !mediafile.source.nil?
+				return mediafile.source
+			end
+			people = mediafile.people
+			return people.first.official_linked_name if people.count == 1
+			if people.count == 2
+				ret = people.map {|p| p.official_linked_name }.join(' and ')
+			else
+				last = people.pop
+				ret = people.map {|p| p.official_linked_name }.join(', ')
+				ret << ', and ' << last.official_linked_name
+			end
+			return ret
+		end
+		
+		
 		def bylineify_short people
 			return people.first.full_name if people.count == 1
 			if people.count == 2
@@ -68,6 +85,6 @@ class ApplicationController < ActionController::Base
 			return ret
 		end
 		
-		helper_method :current_user, :check_editor, :bylineify, :bylineify_short, :popular_articles, :video_tag
+		helper_method :current_user, :check_editor, :bylineify, :bylineify_linked, :bylineify_short, :popular_articles, :video_tag
 	
 end

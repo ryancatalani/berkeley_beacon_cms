@@ -29,6 +29,10 @@ class Person < ActiveRecord::Base
 		end
 	end
 	
+	def official_linked_name
+		return "<a href='/staff/#{clean_full_name}/'>#{official_name}</a>"
+	end
+	
 	def full_name
 		"#{firstname} #{lastname}"
 	end
