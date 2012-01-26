@@ -1,3 +1,19 @@
+<% if editor_logged_in %>
+	<div class="navbar navbar-static">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#">Beacon Admin</a>
+				
+				<ul class="nav">
+					<li><%= link_to "New Article", new_article_path %></li>
+					<li><%= link_to "New Person", new_person_path %></li>
+					<li><%= link_to "All Articles", articles_path %></li>
+					<li><%= link_to "All People", people_path %></li>
+			</div>
+		</div>
+	</div>
+<% end %>
+
 <div class="header" <%= "id='home_header'" if @home_header %>>
 	<div id="masthead">
 		<h1>The Berkeley Beacon</h1>

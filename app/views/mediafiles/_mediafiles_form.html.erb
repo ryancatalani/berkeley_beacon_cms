@@ -4,10 +4,14 @@
 		<%= f.text_field :title %>
 	</div>
 	<div class="field">
+		<div class="radio">
 		<%= radio_button_tag :sourcetype, "in", true %>
 		<%= label_tag :sourcetype_in, "Beacon Staff/Correspondent" %>
+		</div>
+		<div class="radio">		
 		<%= radio_button_tag :sourcetype, "out" %>
 		<%= label_tag :sourcetype_out, "Outside Source" %>
+		</div>
 	</div>
 	<div class="field" id="source_in_field">
 		<%= label_tag :creator %>
@@ -19,16 +23,26 @@
 	</div>
 	<div class="field">
 		Type:
+		<div class="radio">
 		<%= radio_button_tag :mediatype, 0, true %>
 		<%= label_tag :mediatype_0, "Media" %>
+		</div>
+		<div class="radio">
 		<%= radio_button_tag :mediatype, 1 %>
 		<%= label_tag :mediatype_1, "Photograph" %>
+		</div>
+		<div class="radio">
 		<%= radio_button_tag :mediatype, 2 %>
 		<%= label_tag :mediatype_2, "Video" %>
+		</div>
+		<div class="radio">
 		<%= radio_button_tag :mediatype, 3 %>
 		<%= label_tag :mediatype_3, "Graphic" %>
+		</div>
+		<div class="radio">
 		<%= radio_button_tag :mediatype, 4 %>
 		<%= label_tag :mediatype_4, "Illustration" %>
+		</div>
 	</div>
 	<div class="field">
 		<%= f.label :media %>
@@ -36,7 +50,7 @@
 		<%= f.hidden_field :media_cache %>
 	</div>
 	<div class="actions">
-		<%= f.submit "Upload", :id => "mediauploadbtn" %>
+		<%= f.submit "Upload", :id => "mediauploadbtn", :class => "btn primary" %>
 		<div id="loading">
 			<%= image_tag "loading.gif" %>
 			Uploading...

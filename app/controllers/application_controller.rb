@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 		def check_editor
 			redirect_to root_path unless current_user and current_user.editor?
 		end
-				
+						
 		def bylineify mediafile
 			if mediafile.people.count == 0 and !mediafile.source.nil?
 				return mediafile.source

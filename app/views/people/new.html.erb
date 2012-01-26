@@ -24,22 +24,22 @@
 		<%= f.label :email %>
 		<%= f.text_field :email %>
 	</div>
-	<div class="field">
+	<div class="field input-prepend">
 		<%= f.label :twitter %>
-		@<%= f.text_field :twitter %>
+		<span class="add-on">@</span><%= f.text_field :twitter %>
 	</div>
 	<div class="field">
 		<%= f.label :other_designation %>
 		<%= f.text_field :other_designation %>
 		(* if blank)
 	</div>
-	<div class="field">
-		<%= f.label :editor %>
+	<div class="checkbox">
 		<%= f.check_box :editor %>
+		Editor
 	</div>
-	<div class="field">
-		<%= f.label :staff %>
+	<div class="checkbox">
 		<%= f.check_box :staff %>
+		Staff
 	</div>
 	<div id="show_if_editor">
 		<div class="field">
@@ -78,7 +78,7 @@
 			<%= f.password_field :password_confirmation %>
 		</div>
 	</div>
-	
-	<div class="actions"><%= f.submit %></div>
+	<div class="clear"></div>
+	<div class="actions"><%= f.submit "Create Person", :class => "btn primary" %></div>
 
 <% end %>

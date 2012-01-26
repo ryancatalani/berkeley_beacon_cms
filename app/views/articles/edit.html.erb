@@ -118,12 +118,18 @@
 	</div>
 	<div class="field radio_inputs">
 		Type:
+		<div class="radio">
 		<%= radio_button_tag :articletype, 1, true %>
 		<%= label_tag :articletype_1, "Text" %>
+		</div>
+		<div class="radio">
 		<%= radio_button_tag :articletype, 2 %>
 		<%= label_tag :articletype_2, "Media" %>
+		</div>
+		<div class="radio">
 		<%= radio_button_tag :articletype, 3 %>
 		<%= label_tag :articletype_3, "Slideshow" %>
+		</div>
 	</div>
 		
 	<% if @display_already_uploaded %>
@@ -131,8 +137,8 @@
 			<%= "<input type='hidden' name='mediafiles[#{u}]' value='#{u}'>".html_safe %>
 		<% end %>
 	<% end %>
-		
-	<div class="actions"><%= f.submit %></div>
+	<br />	
+	<div class="actions"><%= f.submit "Update Article", :class => "btn primary" %></div>
 <% end %>
 
 <hr />
