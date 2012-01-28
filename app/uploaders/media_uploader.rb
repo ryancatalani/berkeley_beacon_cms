@@ -10,18 +10,22 @@ class MediaUploader < CarrierWave::Uploader::Base
   # storage :file
   storage :fog
 
+	# Popular story
 	version :thumb_40 do
 		process :resize_to_fill => [40,40]
 	end
 	
+	# Featured stories, section box images
 	version :thumb_220 do
 		process :resize_to_fill => [220,220]
 	end
 	
+	# Middle strip story
 	version :thumb_140 do
 		process :resize_to_fill => [140,140]
 	end
 	
+	# Main story image
 	version :thumb_460 do
 		process :resize_to_fill => [460,460]
 	end

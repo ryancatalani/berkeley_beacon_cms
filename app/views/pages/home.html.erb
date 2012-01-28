@@ -3,73 +3,84 @@
 
 	<section id="top">		
 		
-		<div id="main-story">
-			<% if @main_story.mediafiles.empty? %>
-				<div class="story-text">
-					<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
-					<div class="byline">By <%= bylineify_short @main_story.people %></div>
-				</div>
-				<div class="main-story-img-wrap">
-					<div class="excerpt"><%= @main_story.excerpt %></div>
-				</div>			
-			<% else %>
-				<div class="story-text">
-					<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
-					<div class="byline">By <%= bylineify_short @main_story.people %></div>
-					<div class="excerpt"><%= @main_story.excerpt %></div>
-				</div>
-				<div class="main-story-img-wrap">
-					<%= link_to image_tag(@main_story.mediafiles.first.media.url), @main_story.to_url %>
-				</div>
-			<% end %>
-		</div>
+		<section id="left">
+			
+			<div id="main-story">
+				<% if @main_story.mediafiles.empty? %>
+					<div class="story-text">
+						<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
+						<div class="byline">By <%= bylineify_short @main_story.people %></div>
+					</div>
+					<div class="main-story-img-wrap">
+						<div class="excerpt"><%= @main_story.excerpt %></div>
+					</div>			
+				<% else %>
+					<div class="story-text">
+						<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
+						<div class="byline">By <%= bylineify_short @main_story.people %></div>
+						<div class="excerpt"><%= @main_story.excerpt %></div>
+					</div>
+					<div class="main-story-img-wrap">
+						<%= link_to image_tag(@main_story.mediafiles.first.media.thumb_460.url), @main_story.to_url %>					
+					</div>
+				<% end %>
+				<div class="clear"></div>
+			</div>
 		
-		<section id="featured-stories">
-			<% @featured_stories.each_with_index do |story,i| %>
-				<div class="featured-story num-<%= i+1 %>">
-					<!-- media -->
-					<% unless story.mediafiles.empty? %>
-						<div class="featured-story-img-wrap">
-						<%= link_to image_tag(story.mediafiles.first.media.url), story.to_url %>
-						</div>
-					<% end %>
-					<h3><%= link_to story.title, story.to_url %></h3>
-					<div class="byline">By <%= bylineify_short story.people %></div>
-					<div class="excerpt"><%= story.excerpt %></div>
-				</div>
-			<% end %>
+			<section id="featured-stories">
+				<% @featured_stories.each_with_index do |story,i| %>
+					<div class="featured-story num-<%= i+1 %>">
+						<!-- media -->
+						<% unless story.mediafiles.empty? %>
+							<div class="featured-story-img-wrap">
+							<%= link_to image_tag(story.mediafiles.first.media.thumb_220.url), story.to_url %>
+							</div>
+						<% end %>
+						<h3><%= link_to story.title, story.to_url %></h3>
+						<div class="byline">By <%= bylineify_short story.people %></div>
+						<div class="excerpt"><%= story.excerpt %></div>
+					</div>
+				<% end %>
+				<div class="clear"></div>
+			</section>
+			
 		</section>
 		
-		<section id="top-sidebar">
-			<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-			<script>
-			new TWTR.Widget({
-			  version: 2,
-			  type: 'profile',
-			  rpp: 8,
-			  interval: 30000,
-			  width: 220,
-			  height: 525,
-			  theme: {
-			    shell: {
-			      background: '#cbcbcb',
-			      color: '#000000'
-			    },
-			    tweets: {
-			      background: '#ffffff',
-			      color: '#000000',
-			      links: '#323232'
-			    }
-			  },
-			  features: {
-			    scrollbar: true,
-			    loop: false,
-			    live: true,
-			    behavior: 'all'
-			  }
-			}).render().setUser('beaconupdate').start();
-			</script>
+		<section id="right">
+		
+			<section id="top-sidebar">
+				<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+				<script>
+				new TWTR.Widget({
+				  version: 2,
+				  type: 'profile',
+				  rpp: 8,
+				  interval: 30000,
+				  width: 220,
+				  height: 525,
+				  theme: {
+				    shell: {
+				      background: '#cbcbcb',
+				      color: '#000000'
+				    },
+				    tweets: {
+				      background: '#ffffff',
+				      color: '#000000',
+				      links: '#323232'
+				    }
+				  },
+				  features: {
+				    scrollbar: true,
+				    loop: false,
+				    live: true,
+				    behavior: 'all'
+				  }
+				}).render().setUser('beaconupdate').start();
+				</script>
+			</section>
+			
 		</section>
+		
 		<div class="clear"></div>
 		
 	</section>
@@ -80,7 +91,9 @@
 		<% @middle_stories.each do |story| %>
 			<div class="middle-strip-story">
 				<!-- media -->
-				<%= link_to image_tag(story.mediafiles.first.media.url), story.to_url unless story.mediafiles.empty? %>
+				<div class="mediawrap">
+					<%= link_to image_tag(story.mediafiles.first.media.thumb_140.url), story.to_url unless story.mediafiles.empty? %>
+				</div>
 				<div class="story-text">
 					<strong><%= story.section.name %></strong>
 					<%= link_to truncate(story.title, :length => 60), story.to_url %>
@@ -95,7 +108,7 @@
 			<div class="section-box" id="news-section-box">
 				<h4>News</h4>
 				<!-- media -->
-				<div class="mediawrap"><%= link_to image_tag(@news.first.mediafiles.first.media.url), @news.first.to_url unless @news.first.mediafiles.empty? %></div>
+				<div class="mediawrap"><%= link_to image_tag(@news.first.mediafiles.first.media.thumb_220.url), @news.first.to_url unless @news.first.mediafiles.empty? %></div>
 				<h5><%= link_to @news.first.title, @news.first.to_url %></h5>
 				<%= truncate @news.first.excerpt, :length => 120 %>
 				<ul>
@@ -109,7 +122,7 @@
 			<div class="section-box" id="ae-section-box">
 				<h4>Arts & Entertainment</h4>
 				<!-- media from first -->
-				<div class="mediawrap"><%= link_to image_tag(@ae.first.mediafiles.first.media.url), @ae.first.to_url unless @ae.first.mediafiles.empty? %></div>
+				<div class="mediawrap"><%= link_to image_tag(@ae.first.mediafiles.first.media.thumb_220.url), @ae.first.to_url unless @ae.first.mediafiles.empty? %></div>
 				<ul>
 					<% @ae.each do |story| %>
 						<li><%= link_to story.title, story.to_url %></li>
@@ -120,7 +133,7 @@
 			<div class="section-box" id="lifestyle-section-box">
 				<h4>Lifestyle</h4>
 				<!-- media from first -->
-				<div class="mediawrap"><%= link_to image_tag(@lifestyle.first.mediafiles.first.media.url, :width => "220px"), @lifestyle.first.to_url unless @lifestyle.first.mediafiles.empty? %></div>
+				<div class="mediawrap"><%= link_to image_tag(@lifestyle.first.mediafiles.first.media.thumb_220.url), @lifestyle.first.to_url unless @lifestyle.first.mediafiles.empty? %></div>
 				<ul>
 					<% @lifestyle.each do |story| %>
 						<li><%= link_to story.title, story.to_url %></li>
@@ -139,7 +152,7 @@
 						<div class="popular-story">
 							<!-- media -->
 							<li>
-								<%= link_to image_tag(story.mediafiles.first.media.url, :size=>"40x40"), story.to_url unless story.mediafiles.empty? %>
+								<%= link_to image_tag(story.mediafiles.first.media.thumb_40.url), story.to_url unless story.mediafiles.empty? %>
 								<%= link_to truncate(story.title, :length => 60), story.to_url %>
 								<div class="clear"></div>
 							</li>
@@ -158,7 +171,7 @@
 			<div class="section-box" id="sports-section-box">
 				<h4>Sports</h4>
 				<!-- media from first -->
-				<div class="mediawrap"><%= link_to image_tag(@sports.first.mediafiles.first.media.url), @sports.first.to_url unless @sports.first.mediafiles.empty? %></div>
+				<div class="mediawrap"><%= link_to image_tag(@sports.first.mediafiles.first.media.thumb_220.url), @sports.first.to_url unless @sports.first.mediafiles.empty? %></div>
 				
 				<ul>
 					<% @sports.each do |story| %>
