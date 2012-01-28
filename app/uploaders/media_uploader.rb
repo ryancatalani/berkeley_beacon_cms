@@ -4,11 +4,27 @@ class MediaUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
   storage :fog
+
+	version :thumb_40 do
+		process :resize_to_fill => [40,40]
+	end
+	
+	version :thumb_220 do
+		process :resize_to_fill => [220,220]
+	end
+	
+	version :thumb_140 do
+		process :resize_to_fill => [140,140]
+	end
+	
+	version :thumb_460 do
+		process :resize_to_fill => [460,460]
+	end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
