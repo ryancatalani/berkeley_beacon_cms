@@ -309,6 +309,9 @@ a {
 		margin-top: 10px;
 		font: 20px/30px "Arvo", Rockwell, serif;	
 	}
+	a:link, a:visited {
+		text-decoration: underline;
+	}
 }
 
 @media screen and (max-width: 959px) { 
