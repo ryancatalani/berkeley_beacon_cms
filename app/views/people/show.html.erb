@@ -27,6 +27,7 @@
 					</div>
 				<% else %>
 				<% end %>
+				<% unless article.people.map{|p| p.id}.include?(@person.id) %>Contributed media to <% end %>
 				<h3><%= link_to article.title, article.to_url %></h3>
 				<div class="byline"><%= bylineify article %></div>
 				<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
