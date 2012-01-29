@@ -7,7 +7,7 @@
 			<td><%= person.email %></td>
 			<td><%= person.twitter %></td>
 			<td><%= link_to "Edit", edit_person_path(person) %></td>
-			<td><%= link_to "Link", person_path(person) %></td>
+			<td><%= link_to "Link", "/staff/#{person.clean_full_name}/" %></td>
 		</tr>
 	<% end %>
 </table>
