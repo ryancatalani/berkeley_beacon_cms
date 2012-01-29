@@ -21,6 +21,12 @@ class Person < ActiveRecord::Base
 		editor == true
 	end
 	
+	def all_content
+		ret = Attribution.where(:person_id => id).map{|a| a.mediafile}.map{|m| m.articles}.flatten.uniq
+		ret << articles.all
+		return ret.flatten.uniq
+	end
+	
 	def official_name
 		if other_designation.blank?
 			"#{firstname} #{lastname} / Beacon #{staff? ? "Staff" : "Correspondent" }"
