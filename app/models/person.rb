@@ -22,7 +22,11 @@ class Person < ActiveRecord::Base
 	end
 	
 	def all_content
-		ret = Attribution.where(:person_id => id).map{|a| a.mediafile}.map{|m| m.articles}.flatten.uniq
+		begin
+			ret = Attribution.where(:person_id => id).map{|a| a.mediafile}.map{|m| m.articles}.flatten.uniq
+		rescue
+			ret = []
+		end
 		ret << articles.all
 		return ret.flatten.uniq
 	end
