@@ -124,7 +124,10 @@
 		<% end %>
 	<% end %>
 	<br />	
-	<div class="actions"><%= f.submit "Create Article", :class => "btn primary" %></div>
+	<div class="actions">
+		<%= f.submit "Create Article", :class => "btn primary" %>
+		<p>A link to this article will automatically be tweeted.</p>
+	</div>
 <% end %>
 
 <hr />

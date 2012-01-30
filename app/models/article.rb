@@ -18,10 +18,41 @@ class Article < ActiveRecord::Base
 		"/#{section.clean_url}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
 	end
 	
+	def tweet
+		ret = "#{title.truncate(119, :separator => ' ')} http://berkeleybeacon.com#{to_url}"
+		ret << twitter_people unless title.length + 20 + twitter_people.length > 140
+		return ret
+	end
+	
+	# As SGA resignations increase, officials discuss term length requirement
+	
 	private
 		def check_clean_title
 			c = created_at
 			a = Article.where(:cleantitle => cleantitle)
 			cleantitle << "-#{a.count + 1}" if a.count > 1
 		end
+		
+		def twitter_people
+			if people.map{ |p| !p.twitter.blank? }.all?
+				# all have twitter usernames
+				t = people.map{ |p| "@#{p.twitter}" }
+				ret = ' by '
+				if t.count == 1
+					ret << t.first
+				elsif t.count == 2
+					ret << t.join(' & ')
+				else
+					last = t.pop
+					ret << t.join(' ')
+					ret << " & #{last}"
+				end
+				return ret
+			else
+				# at least one doesn't have twitter username
+				return ''
+			end
+				
+		end
+		
 end

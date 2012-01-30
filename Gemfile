@@ -25,6 +25,7 @@ gem 'exception_notification'
 gem 'nokogiri'
 gem 'mini_magick'
 gem 'rmagick'
+gem 'twitter'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
