@@ -1,0 +1,30 @@
+<div id="inner_wrap">
+	
+	<h1>
+		<span style="margin-right: 10px">The Beacon Stylebook</span>
+		<%= link_to "New Entry", new_stylebook_entry_path, :class => "btn primary small" %>
+	</h1>
+	
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Entry</th>
+				<th>Notes</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @entries.each do |entry| %>
+			<tr>
+				<td><%= entry.body.html_safe %></td>
+				<td><%= entry.notes.html_safe %></td>
+				<td>
+					<%= link_to "Edit", edit_stylebook_entry_path(entry), :class => "btn small" %>
+					<%= link_to "Delete", stylebook_entry_path(entry), :method => :delete, :confirm => "Are you sure you want to delete this entry?", :class => "btn small danger" %>
+				</td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+	
+</div>

@@ -1,10 +1,10 @@
 BeaconApp::Application.routes.draw do
-	
 	get "admin/home"
 	controller :people do 
 		match "/staff/:name", :to => :show
 	end
 	
+	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
 	resources :people
 	resources :articles, :only => [:new, :create, :edit, :update, :destroy, :index]
