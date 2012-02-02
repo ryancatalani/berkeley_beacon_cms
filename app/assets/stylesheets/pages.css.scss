@@ -2,8 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// Now my stuff
-
 body {
 	font: 14px/18px "PT Serif", Times, serif;
 }
@@ -417,4 +415,14 @@ a {
 
 	}
 	
+}
+
+.about {
+	strong {
+		display: block;
+	}
+}
+
+.footer_right {
+	float: right;
 }

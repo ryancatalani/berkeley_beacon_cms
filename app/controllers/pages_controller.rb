@@ -27,6 +27,7 @@ class PagesController < ApplicationController
 
 	def about
 		@title = "About"
+		@include_bootstrap = true
 	end
 	
 	private
