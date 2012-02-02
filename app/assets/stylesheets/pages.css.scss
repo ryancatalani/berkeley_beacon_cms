@@ -55,6 +55,9 @@ body {
 	background-image: linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#cbcbcb', EndColorStr='#e8e8e8');
 	text-decoration: none;
+	-moz-box-shadow: 0 0 5px #d0d0d0;
+	-webkit-box-shadow: 0 0 5px #d0d0d0;
+	box-shadow: 0 0 5px #d0d0d0;
 }
 
 .featured-story-img-wrap {
