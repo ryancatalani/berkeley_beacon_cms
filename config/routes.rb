@@ -4,6 +4,7 @@ BeaconApp::Application.routes.draw do
 		match "/staff/:name", :to => :show
 	end
 	
+	match '/stylebook', :to => 'stylebook_entries#index'
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
 	resources :people
