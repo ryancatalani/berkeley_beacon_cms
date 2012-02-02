@@ -1,0 +1,10 @@
+<h2>We just got a tip:</h2>
+<p><%= @the_body %></p>
+
+<% if !@name.blank? or !@contact.blank? %>
+	<p>From:
+		<%= @name if !@name.blank? %>
+		<%= " / " if !@name.blank? and !@contact.blank? %>
+		<%= @contact if !@contact.blank? %>
+	</p>
+<% end %>

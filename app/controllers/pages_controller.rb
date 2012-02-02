@@ -14,8 +14,19 @@ class PagesController < ApplicationController
 		
 		@home_header = true
 	end
+	
+	def tips
+		@title = "Send a tip"
+		@include_bootstrap = true
+	end
+	
+	def send_tip
+		BeaconMailer.tip(params[:body],params[:name],params[:contact]).deliver
+		redirect_to root_path
+	end
 
 	def about
+		@title = "About"
 	end
 	
 	private

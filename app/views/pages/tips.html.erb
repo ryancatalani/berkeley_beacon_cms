@@ -1,0 +1,39 @@
+<div class="container">
+	
+	<div class="row">
+		<div class="span4">
+			<h1>Send a tip to the Beacon</h1>
+			Let us know what's going on around campus. The editors will review every tip. And you can be completely anonymous if you want.
+		</div>
+		<div class="span8">
+			<%= form_tag send_tip_path, :class => "form-horizontal" do %>
+				<div class="control-group">
+					<%= label_tag :body, "Tip", :class => "control-label" %>
+					<div class="controls">
+						<%= text_area_tag :body, '', :class => "input-xlarge", :rows => 5 %>
+					</div>
+				</div>
+				<div class="control-group">
+					<%= label_tag :name, "Your name", :class => "control-label" %>
+					<div class="controls">
+						<%= text_field_tag :name, '', :class => "input-xlarge" %>
+						<p class="help-block">This is optional. Don't write anything if you want to be anonymous.</p>
+					</div>
+				</div>
+				<div class="control-group">
+					<%= label_tag :contact, "Contact info", :class => "control-label" %>
+					<div class="controls">
+						<%= text_field_tag :contact, '', :class => "input-xlarge" %>
+						<p class="help-block">Email and/or phone. This is optional. Don't write anything if you want to be anonymous.</p>
+					</div>
+				</div>
+				<div class="form-actions">
+					<%= submit_tag "Send Tip", :class => "btn primary" %>
+					<%= link_to "Cancel", root_path, :class => "btn" %>
+				</div>
+				
+			<% end %>
+		</div>
+	</div>
+	
+</div>

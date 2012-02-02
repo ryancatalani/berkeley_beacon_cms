@@ -5,6 +5,9 @@ BeaconApp::Application.routes.draw do
 	end
 	
 	match '/stylebook', :to => 'stylebook_entries#index'
+	match '/tips', :to => 'pages#tips'
+	match '/send_tip', :to => 'pages#send_tip', :via => :post
+	
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
 	resources :people
