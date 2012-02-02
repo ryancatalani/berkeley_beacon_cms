@@ -136,7 +136,11 @@ class ArticlesController < ApplicationController
 			@og = {}
 			@og[:title] = @article.title
 			@og[:url] = @article.to_url
-			@og[:image] = "http://berkeleybeacon.com/sample_image.jpg"
+			if @article.mediafiles.any?
+				@og[:image] = @article.mediafiles.first.media.thumb_140.url
+			else
+				@og[:image] = ''
+			end
 			@og[:description] = @article.excerpt.blank? ? false : @article.excerpt
 			@article.update_attribute(:views, @article.views+1)
 		else
