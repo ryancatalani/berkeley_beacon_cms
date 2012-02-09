@@ -1,9 +1,26 @@
 <div id="new_person_modal" class="modal hide fade">
 	<div class="modal-header">
-		<a class="close" data-dismiss="modal">x</a>
+		<a class="close" data-dismiss="modal">&times;</a>
 		<h3>New Person</h3>
 	</div>
 	<%= form_for Person.new, :remote => true do |f| %>
+	
+	<div class="modal-body">
+		<%= render 'people/person_form', :f => f %>
+	</div>
+	<div class="modal-footer">
+		<%= f.submit "Save", :class => "btn btn-primary" %>
+		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+	</div>
+	<% end %>
+	
+</div>
+<div id="new_media_person_modal" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">&times;</a>
+		<h3>New Person</h3>
+	</div>
+	<%= form_for Person.new, :url => new_media_person_path, :remote => true do |f| %>
 	
 	<div class="modal-body">
 		<%= render 'people/person_form', :f => f %>

@@ -7,6 +7,7 @@ BeaconApp::Application.routes.draw do
 	match '/stylebook', :to => 'stylebook_entries#index'
 	match '/tips', :to => 'pages#tips'
 	match '/send_tip', :to => 'pages#send_tip', :via => :post
+	match '/new_media_person', :to => 'people#new_media_person', :via => :post
 	
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
@@ -34,6 +35,7 @@ BeaconApp::Application.routes.draw do
 	controller :sections do
 		match ":name", :to => :show
 	end
+	
 	
 	
   # The priority is based upon order of creation:

@@ -1,3 +1,38 @@
+<div id="new_person_modal" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">&times;</a>
+		<h3>New Person</h3>
+	</div>
+	<%= form_for Person.new, :remote => true do |f| %>
+	
+	<div class="modal-body">
+		<%= render 'people/person_form', :f => f %>
+	</div>
+	<div class="modal-footer">
+		<%= f.submit "Save", :class => "btn btn-primary" %>
+		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+	</div>
+	<% end %>
+	
+</div>
+<div id="new_media_person_modal" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">&times;</a>
+		<h3>New Person</h3>
+	</div>
+	<%= form_for Person.new, :url => new_media_person_path, :remote => true do |f| %>
+	
+	<div class="modal-body">
+		<%= render 'people/person_form', :f => f %>
+	</div>
+	<div class="modal-footer">
+		<%= f.submit "Save", :class => "btn btn-primary" %>
+		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+	</div>
+	<% end %>
+	
+</div>
+
 <div id="new_article_wrap">
 <%= form_for @article, :html => { :multipart => true } do |f| %>
 	<div class="field">
@@ -10,28 +45,29 @@
 		<%= f.text_field :title %>
 	</div>
 	<div id="subtitles">
-		<a href="#" id="newsubtitlebtn">Add Subtitle</a>
+		<a href="#" id="newsubtitlebtn" class="btn"><i class="icon-plus"></i> Add Subtitle</a>
 	</div>
 	
 	<div id="series">
 		<%= f.label :series_id %>
-		<%= select_tag :series_id, options_for_select(@series, @article.series_id) %>
+		<%= select_tag :series_id, options_for_select(@series) %>
 	</div>
 	
 	<div id="authors">
 		<div class="field">
 			<%= label_tag :author_1 %>
-			<%= select_tag :author_1, options_for_select(@authors, @current_authors.first.id), :name => "author[1]" %>
+			<%= select_tag :author_1, options_for_select(@authors), :name => "author[1]" %>
 		</div>
-		<a href="#" id="newauthorbtn">Add another author</a>
+		<a href="#" id="newauthorbtn" class="btn"><i class="icon-plus"></i> Add another author to the story</a>
+		<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_person_modal"><i class="icon-user"></i> Create a new person</a>
 		<script type="text/javascript" charset="utf-8">
 		
 			function afield(c) {
 				var ret = '<div class="field">';
 				ret += '<label for="author_' + c + '">' + 'Author ' + c + '</label>';
 				ret += '<select id="author_' + c + '" name="author[' + c + ']">';
-				ret += '<%= options_for_select(@authors).gsub(/\s/,' ').html_safe %>';
-				ret += '</select><a href="#" class="removeauth">Remove</a></div>';
+				ret += $("#author_1").clone().attr("id","#author_" + c).attr("name","author[" + c+ "]").html();
+				ret += '</select><a href="#" class="removeauth btn btn-danger"><i class="icon-trash icon-white"></i> Remove Author ' + c + '</a></div>';
 				return ret;
 			}
 			
@@ -39,7 +75,7 @@
 				var ret = '<div class="field">';
 				ret += '<label for="subtitle_' + c + '">' + 'Subtitle ' + c + '</label>';				
 				ret += '<input id="subtitle_' + c + '" name="subtitle[' + c + ']" size ="30" type="text">';
-				ret += '</select><a href="#" class="removesub">Remove</a></div>';
+				ret += '</select><a href="#" class="removesub btn btn-danger"><i class="icon-trash icon-white"></i> Remove Subtitle ' + c + '</a></div>';
 				return ret;
 			}
 			
@@ -71,25 +107,6 @@
 				if ($(e.target).is('.removesub'))
 					remove_f.call(e.target,"sub");
 			});
-			
-			<% if @current_authors.count > 1 %>
-			
-				<% @current_authors[1,@current_authors.count].each_with_index do |a,index| %>
-					$("#authors").append(afield(acount));
-					$("#author_<%= index+2 %> option[value='<%= a.id %>']").attr('selected','selected');
-					acount += 1;	
-				<% end %>
-				
-			<% end %>
-			
-			<% if @article.subtitles.count > 0 %>
-				
-				<% @article.subtitles.each_with_index do |a,index| %>
-					$("#subtitles").append(subfield(scount));
-					$("#subtitle_<%= index+1 %>").val('<%= a %>');
-					scount += 1;
-				<% end %>
-			<% end %>
 			
 				
 		</script>

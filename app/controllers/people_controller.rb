@@ -29,6 +29,27 @@ class PeopleController < ApplicationController
 		end
 	end
 	
+	def new_media_person
+	  logger.debug "new media person called"
+		p = params[:person]
+		if p[:editor] == "0"
+			x_arr = ('A'..'z').to_a + (0..9).to_a
+			x_str = x_arr.sort_by{ rand }.first(25).join
+			p[:password] = p[:password_confirmation] = x_str
+		end
+		fullname = p[:firstname].downcase.gsub(/[^a-zA-Z]/,'-') + '-' + p[:lastname].downcase.gsub(/[^a-zA-Z]/,'-')
+		p[:clean_full_name] = fullname.gsub(/-{2,}/,'-')
+		@person = Person.new(p)		
+		if @person.save
+		  respond_to do |f|
+        f.html { redirect_to new_person_url, :notice => "Person created!" }
+        f.js
+      end
+		else
+			render "new"
+		end	  
+  end
+	
 	def edit
 		@person = Person.find(params[:id])
 	end

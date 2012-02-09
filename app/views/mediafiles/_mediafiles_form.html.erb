@@ -1,4 +1,5 @@
 <div id="media_area">
+	
 	<div class="field">
 		<%= f.label :title, "Caption" %>
 		<%= f.text_field :title %>
@@ -16,6 +17,7 @@
 	<div class="field" id="source_in_field">
 		<%= label_tag :creator %>
 		<%= select_tag :creator, options_for_select(@authors) %>
+		<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_media_person_modal"><i class="icon-user"></i> Create a new person</a>	
 	</div>
 	<div class="field" id="source_out_field" style="display:none">
 		<%= label_tag :source, "Source (include 'via' or 'courtesy of')" %>
