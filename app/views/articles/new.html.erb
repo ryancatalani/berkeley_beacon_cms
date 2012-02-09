@@ -10,7 +10,7 @@
 		<%= f.text_field :title %>
 	</div>
 	<div id="subtitles">
-		<a href="#" id="newsubtitlebtn">Add Subtitle</a>
+		<a href="#" id="newsubtitlebtn" class="btn"><i class="icon-plus"></i> Add Subtitle</a>
 	</div>
 	
 	<div id="series">
@@ -23,7 +23,8 @@
 			<%= label_tag :author_1 %>
 			<%= select_tag :author_1, options_for_select(@authors), :name => "author[1]" %>
 		</div>
-		<a href="#" id="newauthorbtn">Add another author</a>
+		<a href="#" id="newauthorbtn" class="btn"><i class="icon-plus"></i> Add another author to the story</a>
+		<a href="#" id="new_person_btn" class="btn"><i class="icon-user"></i> Create a new person</a>
 		<script type="text/javascript" charset="utf-8">
 		
 			function afield(c) {
@@ -31,7 +32,7 @@
 				ret += '<label for="author_' + c + '">' + 'Author ' + c + '</label>';
 				ret += '<select id="author_' + c + '" name="author[' + c + ']">';
 				ret += '<%= options_for_select(@authors).gsub(/\s/,' ').html_safe %>';
-				ret += '</select><a href="#" class="removeauth">Remove</a></div>';
+				ret += '</select><a href="#" class="removeauth btn btn-danger"><i class="icon-trash icon-white"></i> Remove Author ' + c + '</a></div>';
 				return ret;
 			}
 			
@@ -39,7 +40,7 @@
 				var ret = '<div class="field">';
 				ret += '<label for="subtitle_' + c + '">' + 'Subtitle ' + c + '</label>';				
 				ret += '<input id="subtitle_' + c + '" name="subtitle[' + c + ']" size ="30" type="text">';
-				ret += '</select><a href="#" class="removesub">Remove</a></div>';
+				ret += '</select><a href="#" class="removesub btn btn-danger"><i class="icon-trash icon-white"></i> Remove Subtitle ' + c + '</a></div>';
 				return ret;
 			}
 			
@@ -124,8 +125,8 @@
 		<% end %>
 	<% end %>
 	<br />	
-	<div class="actions">
-		<%= f.submit "Create Article", :class => "btn primary" %>
+	<div class="actions form-actions">
+		<%= f.submit "Create Article", :class => "btn btn-primary" %>
 		<p>A link to this article will automatically be tweeted.</p>
 	</div>
 <% end %>
