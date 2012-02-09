@@ -20,7 +20,10 @@ class PeopleController < ApplicationController
 		p[:clean_full_name] = fullname.gsub(/-{2,}/,'-')
 		@person = Person.new(p)		
 		if @person.save
-			redirect_to new_person_url, :notice => "Person created!"
+		  respond_to do |f|
+        f.html { redirect_to new_person_url, :notice => "Person created!" }
+        f.js
+      end
 		else
 			render "new"
 		end

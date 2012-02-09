@@ -1,0 +1,5 @@
+$("#author_1").append("<option value='<%= @person.id %>'><%= @person.official_name %></option>");
+$("#new_person_modal").modal('hide');
+$("#authors").append(afield(acount));
+acount += 1;
+$("#authors").find("select").last().find("option").last().attr('selected','selected');

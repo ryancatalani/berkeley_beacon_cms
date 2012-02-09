@@ -1,3 +1,21 @@
+<div id="new_person_modal" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">x</a>
+		<h3>New Person</h3>
+	</div>
+	<%= form_for Person.new, :remote => true do |f| %>
+	
+	<div class="modal-body">
+		<%= render 'people/person_form', :f => f %>
+	</div>
+	<div class="modal-footer">
+		<%= f.submit "Save", :class => "btn btn-primary" %>
+		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+	</div>
+	<% end %>
+	
+</div>
+
 <div id="new_article_wrap">
 <%= form_for @article, :html => { :multipart => true } do |f| %>
 	<div class="field">
@@ -24,14 +42,14 @@
 			<%= select_tag :author_1, options_for_select(@authors), :name => "author[1]" %>
 		</div>
 		<a href="#" id="newauthorbtn" class="btn"><i class="icon-plus"></i> Add another author to the story</a>
-		<a href="#" id="new_person_btn" class="btn"><i class="icon-user"></i> Create a new person</a>
+		<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_person_modal"><i class="icon-user"></i> Create a new person</a>
 		<script type="text/javascript" charset="utf-8">
 		
 			function afield(c) {
 				var ret = '<div class="field">';
 				ret += '<label for="author_' + c + '">' + 'Author ' + c + '</label>';
 				ret += '<select id="author_' + c + '" name="author[' + c + ']">';
-				ret += '<%= options_for_select(@authors).gsub(/\s/,' ').html_safe %>';
+				ret += $("#author_1").clone().attr("id","#author_" + c).attr("name","author[" + c+ "]").html();
 				ret += '</select><a href="#" class="removeauth btn btn-danger"><i class="icon-trash icon-white"></i> Remove Author ' + c + '</a></div>';
 				return ret;
 			}
