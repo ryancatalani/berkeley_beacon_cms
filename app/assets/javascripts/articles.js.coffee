@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+	$("div[rel=popover]").popover()
+	$("div[rel=tooltip]").tooltip()
+	$("a[rel=tooltip]").tooltip()	
 	# media_img = $("#media").find("img")
 	# h = ((media_img.height() - 546) / 2) * -1
 	# old_height = media_img.height()

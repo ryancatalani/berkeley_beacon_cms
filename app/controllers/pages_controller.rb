@@ -32,7 +32,8 @@ class PagesController < ApplicationController
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
-			Tag.find_by_name(tag_name).articles.order("created_at DESC").first(number_of_articles)
+		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").first(number_of_articles).map{|t| t.article}
+      # Tag.find_by_name(tag_name).articles.order("created_at DESC").first(number_of_articles)
 		end
 		
 		def find_section_articles(section_name,number_of_articles=3)
