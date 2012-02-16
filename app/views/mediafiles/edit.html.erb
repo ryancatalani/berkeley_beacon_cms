@@ -1,8 +1,8 @@
-<%= form_for @mediafile, :remote => true, :html => { :multipart => true } do |f| %>
+<%= form_for @mediafile do |f| %>
 	
 	<%= render 'mediafiles_form', :f => f %>
 	<div class="actions">
-		<%= f.submit "Upload", :id => "mediauploadbtn", :class => "btn btn-primary" %>
+		<%= f.submit "Save", :id => "mediauploadbtn", :class => "btn btn-primary" %>
 		<div id="loading">
 			<%= image_tag "loading.gif" %>
 			Uploading...

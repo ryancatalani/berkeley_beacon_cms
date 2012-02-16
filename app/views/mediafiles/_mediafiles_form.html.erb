@@ -1,5 +1,4 @@
 <div id="media_area">
-	
 	<div class="field">
 		<%= f.label :title, "Caption" %>
 		<%= f.text_field :title %>
@@ -47,15 +46,10 @@
 		</div>
 	</div>
 	<div class="field">
-		<%= f.label :media %>
 		<%= f.file_field :media %>
 		<%= f.hidden_field :media_cache %>
 	</div>
-	<div class="actions">
-		<%= f.submit "Upload", :id => "mediauploadbtn", :class => "btn btn-primary" %>
-		<div id="loading">
-			<%= image_tag "loading.gif" %>
-			Uploading...
-		</div>
+	<div class="alert alert-error">
+		Is the image scaled (to a maximum size of 1000px x 1000px) and converted to RGB?
 	</div>
 </div>

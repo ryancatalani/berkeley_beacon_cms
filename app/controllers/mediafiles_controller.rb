@@ -26,5 +26,26 @@ class MediafilesController < ApplicationController
 			# format.js
 		end
 	end
+	
+	def edit
+	  @mediafile = Mediafile.find(params[:id])
+	  @authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
+  end
+  
+  def update
+		@mediafile = Mediafile.find(params[:id])
+		if @mediafile.update_attributes(params[:mediafile])
+			redirect_to articles_path
+		else 
+			render 'edit'
+		end    
+  end
+  
+  def destroy
+    file = Mediafile.find(params[:id])
+    file.destroy
+    redirect_to articles_path
+  end
+  
 
 end
