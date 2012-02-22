@@ -12,6 +12,9 @@ jQuery ->
 	# x_mov = "-" + h + "px"
 	# media_img.css("marginTop",parseFloat(h))
 	
+	$("#author_1").change ->
+		$("#author_headsup").slideUp()
+
 	$("#sidebar").hover ->
 		$(this).fadeTo('fast',1)
 	,->

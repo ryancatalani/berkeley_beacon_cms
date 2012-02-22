@@ -53,7 +53,11 @@
 		<%= select_tag :series_id, options_for_select(@series) %>
 	</div>
 	
+
 	<div id="authors">
+		<div class="alert alert-error" id="author_headsup">
+		Make sure you choose the correct author.
+		</div>
 		<div class="field">
 			<%= label_tag :author_1 %>
 			<%= select_tag :author_1, options_for_select(@authors), :name => "author[1]" %>

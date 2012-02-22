@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
 				person.id]
 			end
 		end
+		@authors.unshift(["Choose an author",0])
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 	end
@@ -73,6 +74,7 @@ class ArticlesController < ApplicationController
 		@current_authors = @article.people
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
+		@authors.unshift(["Choose an author",0])
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 	end
 	
