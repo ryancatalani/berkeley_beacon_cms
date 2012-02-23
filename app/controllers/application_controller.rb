@@ -55,7 +55,9 @@ class ApplicationController < ActionController::Base
 		
 		
 		def bylineify_short people
+			return "Beacon Staff" if people.count == 0
 			return people.first.full_name if people.count == 1
+
 			if people.count == 2
 				ret = people.map {|p| p.full_name }.join(' and ')
 			else
