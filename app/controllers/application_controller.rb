@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
 				return mediafile.source
 			end
 			people = mediafile.people
+			return "Beacon Staff" if people.count == 0
 			return people.first.official_name if people.count == 1
 			if people.count == 2
 				ret = people.map {|p| p.official_name }.join(' and ')
@@ -40,6 +41,7 @@ class ApplicationController < ActionController::Base
 				return mediafile.source
 			end
 			people = mediafile.people
+			return "Beacon Staff" if people.count == 0
 			return people.first.official_linked_name if people.count == 1
 			if people.count == 2
 				ret = people.map {|p| p.official_linked_name }.join(' and ')
