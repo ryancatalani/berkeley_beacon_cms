@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 		end
 						
 		def bylineify mediafile
-			if mediafile.people.count == 0 and !mediafile.source.nil?
+			if mediafile.kind_of? Mediafile and mediafile.people.count == 0 and !mediafile.source.nil?
 				return mediafile.source
 			end
 			people = mediafile.people
