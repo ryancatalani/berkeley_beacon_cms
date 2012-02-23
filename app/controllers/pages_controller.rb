@@ -29,6 +29,11 @@ class PagesController < ApplicationController
 		@title = "About"
 		@include_bootstrap = true
 	end
+
+	def oscars
+		@title = "Oscar Predictions"
+		@include_bootstrap = true
+	end
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)

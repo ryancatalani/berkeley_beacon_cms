@@ -9,7 +9,8 @@ BeaconApp::Application.routes.draw do
 	match '/send_tip', :to => 'pages#send_tip', :via => :post
 	match '/new_media_person', :to => 'people#new_media_person', :via => :post
 	match '/new_tag/:tag_id/article/:article_id', :to => 'taggings#new_tagging', :via => :post
-	
+  match '/oscars', :to => 'pages#oscars'
+
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
 	resources :people

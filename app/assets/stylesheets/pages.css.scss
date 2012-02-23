@@ -426,3 +426,105 @@ a {
 .footer_right {
 	float: right;
 }
+
+.oscars * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.nominee_box {
+	border: 1px solid #ddd;
+	padding: 15px;
+
+}
+
+.oscars .nominee {
+	margin-bottom: 15px;
+	font-style: italic;
+
+	h3 {
+		font-size: 14px;
+		margin: 0;
+		padding: 0;
+		border: none;
+		font-weight: normal;
+		font-style: normal;
+	}
+}
+
+.oscars .row {
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+}
+
+.oscars h3 {
+	padding: 0 15px 12px;
+	border-bottom: 1px solid #ddd;
+	margin: 0 -15px 15px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.pick_label {
+	font-size: 11px;
+	text-transform: uppercase;
+	float: right;
+	background-color: #eeba4c;
+background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(238, 186, 76)), to(rgb(226, 176, 71)));
+background-image: -webkit-linear-gradient(top, rgb(238, 186, 76), rgb(226, 176, 71));
+background-image: -moz-linear-gradient(top, rgb(238, 186, 76), rgb(226, 176, 71));
+background-image: -o-linear-gradient(top, rgb(238, 186, 76), rgb(226, 176, 71));
+background-image: -ms-linear-gradient(top, rgb(238, 186, 76), rgb(226, 176, 71));
+background-image: linear-gradient(top, rgb(238, 186, 76), rgb(226, 176, 71));
+filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#eeba4c', EndColorStr='#e2b047');
+	padding: 2px 6px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	color: #fff;
+	text-shadow: 0px -1px rgba(0,0,0,0.3);
+	border: 1px solid #c4983d;
+	font-style: normal;
+	margin-left: 2px;
+}
+
+.best_picture {
+	h3 {
+		margin: 0;
+		margin-bottom: 15px;
+		padding: 0;
+		padding-bottom: 15px;
+	}
+	.nominee h3 {
+		padding: 0;
+		margin: 0;
+	}
+	.img_wrap {
+		height: 400px;
+		overflow: hidden;
+		img {
+		}
+	}
+}
+
+.beacon_pick {
+	background-color: #eee;
+	margin-left: -15px;
+	margin-right: -15px;
+	padding: 10px 15px;
+}
+
+.oscars h2 {
+	font-size: 25px;	
+}
+
+.oscars a {
+	border-bottom: 1px dotted #999;
+}
+
+.oscars a:hover {
+	text-decoration: none;
+}
+
+.oscars #desc {
+	margin-top: 10px;
+	font-size: 18px;
+	line-height: 22px;
+}
