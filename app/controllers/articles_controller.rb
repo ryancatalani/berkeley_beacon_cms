@@ -101,7 +101,7 @@ class ArticlesController < ApplicationController
 		p = params[:article]
 		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
 		p[:subtitles] = subs
-		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
+		# p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
 		p[:section_id] = params[:section].to_i
 		p[:series_id] = params[:series_id].to_i
 		if @article.update_attributes(p)
