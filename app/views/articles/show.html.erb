@@ -55,6 +55,8 @@
 			<%= p.contact_info.html_safe if p.other_designation.blank? %>
 			</em></p>
 			<% end %>
+		<br />
+		<div class="fb-comments" data-href="<%= "http://#{request.host+request.fullpath}" %>" data-num-posts="2" data-width="550"></div>
 	</div>
 	<div id="sidebar">
 		<% if !@article.series_id.nil? and @article.series_id != 0 %>
