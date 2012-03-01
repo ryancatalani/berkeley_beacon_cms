@@ -80,7 +80,6 @@ class ApplicationController < ActionController::Base
 
 			othertypes.each do |v|
 				type = v.media.url.split('.').last.first(3) == "ogv" ? "ogg" : "mp4"
-				logger.debug "type = #{v.media.url.split('.').last.first(3)}"
 				ret << "<source src='#{v.media.url}' type='video/#{type}' />"
 			end
 

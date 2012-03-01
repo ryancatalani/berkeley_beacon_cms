@@ -11,24 +11,31 @@ class MediaUploader < CarrierWave::Uploader::Base
   storage :fog
 
 	# Popular story
-	version :thumb_40 do
+	version :thumb_40, :if => :image? do
 		process :resize_to_fill => [40,40]
 	end
 	
 	# Featured stories, section box images
-	version :thumb_220 do
+	version :thumb_220, :if => :image? do
 		process :resize_to_fill => [220,220]
 	end
 	
 	# Middle strip story
-	version :thumb_140 do
+	version :thumb_140, :if => :image? do
 		process :resize_to_fill => [140,140]
 	end
 	
 	# Main story image
-	version :thumb_460 do
+	version :thumb_460, :if => :image? do
 		process :resize_to_fill => [460,460]
 	end
+
+  protected
+
+      def image?(new_file)
+        new_file.content_type.include? 'image'
+      end
+
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
