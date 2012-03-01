@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#article_wrap {
+.article_wrap {
 	width: 820px;
 }
 
@@ -45,6 +45,12 @@
 		background-position: center;
 	}
 	
+	#mediafile_loading {
+		width: 16px;
+		margin-left: 402px;
+		display: block;
+	}
+
 	#media {
 		position: relative;
 		margin-bottom: 20px;
@@ -61,15 +67,26 @@
 		
 		.media_wrap {
 			max-height: 546px;
+			max-width: 820px;
 			overflow: hidden;
 		}
 		
 		img {
 			margin-top: 0;
-			width: 820px;
+			// width: 820px;
+			// height: 546px;
+		}
+
+		.big_photo {
+			// height: 400px;
+			// width: 300px;
+			max-height: 546px;
+			max-width: 820px;
+			display: none;
 		}
 		
 		#metadata {
+			width: 820px;
 			font-size: 12px;
 			color: #323232;
 			#caption {

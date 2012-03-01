@@ -37,3 +37,10 @@ jQuery ->
 		i++
 		i = 0 if i == containers.size()
 		$(containers.eq(i)).fadeIn()
+$(window).bind "load", ->
+	$(".big_photo").each (x) ->
+		console.log "width:" + $(this).width()
+		ml = (820 - $(this).width()) / 2
+		$(this).css('marginLeft', ml)
+		$(mediafile_loading).fadeOut('fast').hide();
+		$(this).fadeIn('fast')
