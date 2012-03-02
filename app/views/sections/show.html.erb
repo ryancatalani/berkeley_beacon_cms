@@ -18,7 +18,7 @@
 			<% else %>
 
 			<div class="article">
-				<% unless article.mediafiles.empty? %>
+				<% unless article.mediafiles.empty? or article.mediafiles.first.media.url.nil? %>
 					<div class="media">
 						<%= link_to image_tag(article.mediafiles.first.media.thumb_140.url), article.to_url %>
 					</div>
