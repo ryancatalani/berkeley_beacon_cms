@@ -5,7 +5,7 @@
 	
 			<% if i == 0 %>
 				<div id="main-section-story">
-					<% if !article.mediafiles.empty? and article.mediafiles.first.media.mediatype != 2 %>
+					<% if !article.mediafiles.empty? and article.mediafiles.first.mediatype != 2 %>
 						<div class="media">
 							<%= link_to image_tag(article.mediafiles.first.media.url), article.to_url %>
 						</div>
