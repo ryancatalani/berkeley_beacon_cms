@@ -49,3 +49,43 @@
 		border: none;
 	}
 }
+
+.pagination {
+	* {
+		display: block;
+		float: left;
+		margin: 0 5px;
+	}
+	a, .current {
+		border: 1px solid #cbcbcb;
+		height: 18px;
+		width: 18px;
+		text-align: center;
+		padding-bottom: 2px;
+	}
+	a:hover {
+		background: #999;
+		color: #fff;
+		border: 1px solid #888;
+		text-decoration: none;		
+	}
+	.current {
+		background: #999;
+		color: #fff;
+		border: 1px solid #888;
+	}
+	.next_page, .previous_page {
+		height: auto;
+		width: auto;
+		border: none;
+		&:hover {
+			background: none;
+			border: none;
+			text-decoration: underline;
+			color: #000;
+		}
+	}
+	.disabled {
+		color: #aaa;
+	}
+}

@@ -5,7 +5,7 @@ class SectionsController < ApplicationController
 		begin
 			section = Section.find_by_clean_url params[:name]
 			@sname = section.name
-			@articles = section.articles.order("created_at DESC")
+			@articles = section.articles.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
 		rescue
 			redirect_to root_path
 		end
