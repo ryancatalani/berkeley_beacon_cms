@@ -74,7 +74,7 @@
 	<div id="sidebar">
 		<% if !@article.series_id.nil? and @article.series_id != 0 %>
 			<section id="series_info">
-				<%= image_tag(@article.series.logo.url) if @article.series.logo %>
+				<%= image_tag(@article.series.logo.url) if !@article.series.logo.url.nil? %>
 				<% if @article.series.title %>
 					<strong><%= @article.series.title %></strong>
 					<br />
