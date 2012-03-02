@@ -6,7 +6,7 @@ namespace :db do
 			if mediafile.mediatype != 2
 				puts "#{mediafile.id} (#{index+1}/#{mc})"
 				begin
-					mediafile.recreate_versions!
+					mediafile.media.recreate_versions!
 					puts "Successfully recreated versions"
 				rescue Exception => e
 					puts "Couldn't recreate versions"
