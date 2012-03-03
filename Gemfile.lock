@@ -68,6 +68,7 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.1)
+    geocoder (1.1.1)
     heroku (2.14.0)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
@@ -178,6 +179,7 @@ DEPENDENCIES
   exception_notification
   faker
   fog
+  geocoder
   heroku
   jquery-rails
   mini_magick

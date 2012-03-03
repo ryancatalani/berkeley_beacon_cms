@@ -27,6 +27,7 @@ gem 'mini_magick'
 gem 'rmagick'
 gem 'twitter'
 gem 'will_paginate', '~> 3.0'
+gem 'geocoder'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

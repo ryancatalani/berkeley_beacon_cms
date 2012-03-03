@@ -4,6 +4,19 @@
 	width: 960px;
 }
 
+#acpsea {
+	.inside {
+		width: 960px;
+		margin: 0 auto;
+	}
+	background: #ddd;
+	padding-top: 8px;
+	padding-bottom: 10px;
+	a {
+		font-style: italic;
+	}
+}
+
 p {
 	font: 14px/18px "PT Serif", Times, serif;
 }

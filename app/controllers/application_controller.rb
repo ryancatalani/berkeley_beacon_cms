@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery
 
 	# before_filter :intercept
+	before_filter :acpsea
 
 	private
 
@@ -9,6 +10,18 @@ class ApplicationController < ActionController::Base
 			unless current_user and current_user.editor?
 				render 'pages/intercept', :layout => false and return
 			end
+		end
+
+		def acpsea
+			logger.debug "request: #{request.ip}"
+			g = Geocoder.search(request.ip).first
+			# g = Geocoder.search("70.102.96.7").first
+			l1 = [g.data["latitude"].to_d, g.data["longitude"].to_d]
+			l2 = ["47.605".to_d, "-122.33".to_d]
+			if Geocoder::Calculations.distance_between(l1, l2) < 150
+				@acpsea = true
+			end
+			logger.debug("acpsea = #{@acpsea}")
 		end
 
 		def current_user
