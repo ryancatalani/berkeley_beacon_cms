@@ -17,8 +17,9 @@ class ApplicationController < ActionController::Base
 			# g = Geocoder.search("70.102.96.7").first
 			begin
 				l1 = [g.data["latitude"].to_d, g.data["longitude"].to_d]
-				l2 = ["47.605".to_d, "-122.33".to_d]
-				if Geocoder::Calculations.distance_between(l1, l2) < 150
+				# l2 = ["47.605".to_d, "-122.33".to_d]
+				l2 = ["42.33".to_d, "71.02".to_d]
+				if Geocoder::Calculations.distance_between(l1, l2) > 150
 					@acpsea = true
 				end
 			rescue
