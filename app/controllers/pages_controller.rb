@@ -4,6 +4,12 @@ class PagesController < ApplicationController
 		
 		@main_story = find_tag_articles("Main Story", 1).pop
 		@featured_stories = find_tag_articles "Featured Story"
+		# fs = @featured_stories.map {|s| s.mediafiles.count >= 1 }.count(false)
+		# unless fs.zero?
+		# 	@featured_stories << find_more_tag_articles("Featured Story", fs)
+		# 	@featured_stories.flatten!
+		# end
+		logger.debug "fs = #{@featured_stories.count}"
 		@middle_stories = find_tag_articles "Middle Strip Story" #should be 4 eventually
 		@news = find_section_articles "News"
 		@opinion = find_section_articles "Opinion", 2
@@ -37,10 +43,14 @@ class PagesController < ApplicationController
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
-		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").first(number_of_articles).map{|t| t.article}
+		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}
       # Tag.find_by_name(tag_name).articles.order("created_at DESC").first(number_of_articles)
 		end
-		
+
+		def find_more_tag_articles(tag_name,number_of_articles=3)
+			Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).offset(3).map{|t| t.article}
+		end
+
 		def find_section_articles(section_name,number_of_articles=3)
 			Section.find_by_name(section_name).articles.order("created_at DESC").first(number_of_articles)
 		end

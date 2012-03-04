@@ -13,15 +13,17 @@ class ApplicationController < ActionController::Base
 		end
 
 		def acpsea
-			logger.debug "request: #{request.ip}"
 			g = Geocoder.search(request.ip).first
 			# g = Geocoder.search("70.102.96.7").first
-			l1 = [g.data["latitude"].to_d, g.data["longitude"].to_d]
-			l2 = ["47.605".to_d, "-122.33".to_d]
-			if Geocoder::Calculations.distance_between(l1, l2) < 150
+			begin
+				l1 = [g.data["latitude"].to_d, g.data["longitude"].to_d]
+				l2 = ["47.605".to_d, "-122.33".to_d]
+				if Geocoder::Calculations.distance_between(l1, l2) < 150
+					@acpsea = true
+				end
+			rescue
 				@acpsea = true
 			end
-			logger.debug("acpsea = #{@acpsea}")
 		end
 
 		def current_user
