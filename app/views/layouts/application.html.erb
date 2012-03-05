@@ -41,15 +41,6 @@
 </head>
 <body>
 
-<% if @acpsea %>
-	<div id="acpsea">
-		<div class="inside">
-		Welcome! If you're at <%= link_to "#acpsea", "http://twitter.com/#!/search/%23acpsea" %>, tweet at us (<%= link_to "@BeaconUpdate", "http://twitter.com/#!/beaconupdate" %>). This website is custom made with HTML5, CSS3, and a Ruby on Rails backend. You can read more about our team and the paper <%= link_to "here", about_path %>.
-		</div>
-	</div>
-<% end %>
-
-
 <div id="wrap">
 	<%= render 'layouts/header' %>
 	<%= yield %>
