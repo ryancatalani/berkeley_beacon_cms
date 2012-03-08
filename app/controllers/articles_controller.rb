@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			Twitter.update(@article.tweet)
+			Twitter.update(@article.tweet) if Rails.env.production?
 			redirect_to new_article_url, :notice => "Article posted!"
 		else
 			@display_already_uploaded = true unless cookies[:already_uploaded].nil? or cookies[:already_uploaded].blank?

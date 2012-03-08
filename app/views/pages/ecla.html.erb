@@ -1,0 +1,120 @@
+<div class="container ecla">
+	<div class="row">
+
+		<div class="span6">
+			<div id="ecla_header">
+				<h2>Emerson College LA</h2>
+				Groundbreaking: Thursday, March 8, 2012 at 1:40 p.m. EST / 10:40 a.m. PST
+			</div>
+			<% @articles.all.each_with_index do |article, index| %>
+				<div class="ecla_article <% if !article.mediafiles.count.zero? and !index.zero? %>with_thumb<%end%>" <%= "id='first'" if index.zero? %>>
+					<% if index.zero? and !article.mediafiles.count.zero? %>
+						<div class="ecla_mediawrap">
+							<%= image_tag article.mediafiles.first.media.url %>
+						</div>
+					<% end %>
+					<% if !index.zero? and !article.mediafiles.count.zero? %>
+						<div class="ecla_mediawrap">
+							<%= image_tag article.mediafiles.first.media.thumb_140.url, :size => "100x100" %>
+						</div>
+					<% end %>
+
+					<div class="text">
+						<h3><%= link_to article.title, article.to_url %></h3>
+						<%= article.excerpt %>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+			<% end %>
+		</div>
+
+		<div class="span2">
+			<a id="dash_promo">
+				<div id="line1">Groundbreaking</div>
+				<div id="line2">Dashboard</div>
+				<div id="line3">Thurs., March 8</div>
+				<em>Coming Soon:</em><br />
+				View the Beacon's live coverage of the LA campus groundbreaking.
+			</a>
+			<% if !@quote.nil? %>
+				<div class="quote_box">
+					<div class="qmark q_l">&ldquo;</div>
+					<div class="qmark q_r">&rdquo;</div>
+					<%= @quote.body.html_safe %>
+				</div>
+			<% end %>
+
+		</div>
+
+		<div class="span4">
+			<div class="ecla_wdgt">
+				<h3>LA Campus Location</h3>
+				<div id="map_canvas" style="width:100%; height:300px"></div>
+				<div class="clear"></div>
+			</div>
+			<div class="ecla_wdgt" id="twitter_wdgt">
+				<h3>Latest Tweets (#emersonla)</h3>
+				<div class="clear"></div>
+				<ul id="tweets">
+					<% @tweets.each do |tweet| %>
+						<a href="<%= "http://twitter.com/#{tweet["from_user"]}/statuses/#{tweet["id"]}" %>" target="blank">
+							<li>
+								<div class="twt_prof">
+									<%= image_tag tweet["profile_image_url"] %>
+								</div>
+								<div class="twt_cont">
+									<h4><%= tweet["from_user"] %></h4>
+									<%= tweet["text"] %>
+								</div>
+								<div class="clear"></div>
+							</li>
+						</a>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script>
+var initialize;
+
+initialize = function() {
+  var contentString, ecla, infowindow, map, marker, myOptions;
+  ecla = new google.maps.LatLng(34.097615, -118.319713);
+  myOptions = {
+    center: ecla,
+    zoom: 14,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  marker = new google.maps.Marker({
+    position: ecla,
+    map: map,
+    title: "ECLA"
+  });
+  contentString = "Future site of the Emerson College LA Campus";
+  infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+  return google.maps.event.addListener(marker, "click", function() {
+    return infowindow.open(map, marker);
+  });
+};
+
+function loadScript() {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyChAXWy7hWRpqrC_Plc3qzDVi32mkSqAjQ&sensor=false&callback=initialize";
+  document.body.appendChild(script);
+}
+
+$(document).ready(function(){
+	loadScript();
+	var h = ($(".quote_box").height() / 2) - 15;
+	$(".q_l").css('marginTop',h);
+	$(".q_r").css('marginTop',h);
+})
+</script>

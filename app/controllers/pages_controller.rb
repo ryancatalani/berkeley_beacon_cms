@@ -40,6 +40,38 @@ class PagesController < ApplicationController
 		@title = "Oscar Predictions"
 		@include_bootstrap = true
 	end
+
+	def ecla
+		@title = "Special Feature: Emerson College LA"
+		@include_bootstrap = true
+		@include_gmaps = true
+		@articles = Series.find_by_title("ECLA").articles.where(:articletype => 1) rescue nil 
+		@media = Series.find_by_title("ECLA").articles.where("articletype <> 1") rescue nil
+		begin
+			@tweets = Twitter.search("#emersonla", :rpp => 10, :result_type => "recent")
+		rescue
+			@tweets = []
+		end
+		@quote = Series.find_by_title("ECLA Quote").articles.first rescue nil
+	end
+
+	def emersonla_live
+		@title = "Emerson Colllege LA Groundbreaking Live"
+		@include_custom_bootstrap = true
+	end
+
+	def beacon_ecla_tweets
+		@results = Twitter.search("from:magicofpi OR from:AlexCKaufman OR from:heidimoeller", :rpp => 5, :result_type => "recent")
+		render :json => @results
+	end
+
+	def all_ecla_tweets
+		@results = Twitter.search("#emersonla OR #ecla", :rpp => 5, :result_type => "recent")
+		render :json => @results
+		# respond_to do |f|
+		# 	format.json { render :json => @results }
+		# end
+	end
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)

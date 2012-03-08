@@ -11,6 +11,14 @@ BeaconApp::Application.routes.draw do
 	match '/new_tag/:tag_id/article/:article_id', :to => 'taggings#new_tagging', :via => :post
   match '/oscars', :to => 'pages#oscars'
 
+  match '/ecla', :to => 'pages#ecla'
+  match '/emersonla', :to => 'pages#ecla'
+  
+  # match '/emersonla_live', :to => 'pages#emersonla_live'
+  # match '/emersonla-live', :to => 'pages#emersonla_live'
+  # match '/beacon_ecla_tweets', :to => 'pages#beacon_ecla_tweets'
+  # match '/all_ecla_tweets', :to => 'pages#all_ecla_tweets'
+
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
 	resources :people

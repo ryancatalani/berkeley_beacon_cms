@@ -50,7 +50,7 @@
 	
 	<div id="series">
 		<%= f.label :series_id %>
-		<%= select_tag :series_id, options_for_select(@series) %>
+		<%= select_tag :series_id, options_for_select(@series, @article.series_id) %>
 	</div>
 	
 	<div id="authors">
