@@ -41,7 +41,7 @@
 		<div class="span5 offset1">
 			<div id="beacon_tweets" class="live_tweet_box">
 				<h3>Tweets from Beacon Editors</h3>
-				<em><%= link_to "@alexckaufman", "http://twitter.com/alexckaufman" %>, 
+				<em>Live updates from <%= link_to "@alexckaufman", "http://twitter.com/alexckaufman" %>, 
 					<%= link_to "@heidimoeller", "http://twitter.com/heidimoeller" %>, 
 					<%= link_to "@magicofpi", "http://twitter.com/magicofpi" %></em>
 				<ul class="live_tweets">
@@ -51,6 +51,7 @@
 		<div class="span5">
 			<div id="other_tweets" class="live_tweet_box">
 				<h3>#EmersonLA</h3>
+				<em>Live updating</em>
 				<ul class="live_tweets">
 				</ul>
 			</div>
@@ -81,7 +82,7 @@ function beacon_tweets() {
 		});
 	});
 	setTimeout(function() {
-		// beacon_tweets();
+		beacon_tweets();
 	}, 10 * 1000);
 }
 
@@ -103,7 +104,7 @@ function all_tweets() {
 		});
 	});
 	setTimeout(function() {
-		// all_tweets();
+		all_tweets();
 	}, 10 * 1000);
 }
 
