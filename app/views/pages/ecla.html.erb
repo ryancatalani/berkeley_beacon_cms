@@ -1,7 +1,7 @@
 <div class="container ecla">
 	<div class="row">
 
-		<div class="span6">
+		<div class="span8">
 			<div id="ecla_header">
 				<h2>Emerson College LA</h2>
 				Groundbreaking: Thursday, March 8, 2012 at 1:40 p.m. EST / 10:40 a.m. PST
@@ -10,7 +10,7 @@
 				<div class="ecla_article <% if !article.mediafiles.count.zero? and !index.zero? %>with_thumb<%end%>" <%= "id='first'" if index.zero? %>>
 					<% if index.zero? and !article.mediafiles.count.zero? %>
 						<div class="ecla_mediawrap">
-							<%= image_tag article.mediafiles.first.media.url %>
+							<%= image_tag article.mediafiles.first.media.url, :width => 640 %>
 						</div>
 					<% end %>
 					<% if !index.zero? and !article.mediafiles.count.zero? %>
@@ -29,23 +29,6 @@
 			<% end %>
 		</div>
 
-		<div class="span2">
-			<a id="dash_promo">
-				<div id="line1">Groundbreaking</div>
-				<div id="line2">Dashboard</div>
-				<div id="line3">Thurs., March 8</div>
-				<em>Coming Soon:</em><br />
-				View the Beacon's live coverage of the LA campus groundbreaking.
-			</a>
-			<% if !@quote.nil? %>
-				<div class="quote_box">
-					<div class="qmark q_l">&ldquo;</div>
-					<div class="qmark q_r">&rdquo;</div>
-					<%= @quote.body.html_safe %>
-				</div>
-			<% end %>
-
-		</div>
 
 		<div class="span4">
 			<div class="ecla_wdgt">
