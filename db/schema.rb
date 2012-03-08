@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201201028) do
+ActiveRecord::Schema.define(:version => 20120308154840) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -47,6 +47,28 @@ ActiveRecord::Schema.define(:version => 20120201201028) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ecla_any_tweet", :force => true do |t|
+    t.string   "tweet_id"
+    t.string   "profile_image_url"
+    t.string   "from_user"
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ecla_any_tweet", ["tweet_id"], :name => "index_ecla_all_tweets_on_tweet_id"
+
+  create_table "ecla_beacon_tweet", :force => true do |t|
+    t.string   "tweet_id"
+    t.string   "profile_image_url"
+    t.string   "from_user"
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ecla_beacon_tweet", ["tweet_id"], :name => "index_ecla_beacon_tweets_on_tweet_id"
 
   create_table "mediafiles", :force => true do |t|
     t.string   "title"

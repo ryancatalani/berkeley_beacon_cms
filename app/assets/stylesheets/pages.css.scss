@@ -686,3 +686,42 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ffffff', EndColorStr='#e0e7e7');
 	}
 }
+
+.live_tweet_box {
+	margin-bottom: 20px;
+}
+
+#livestream {
+	width: 800px;
+	margin: 0 auto 20px;
+}
+
+.live_tweets {
+	height: 300px;
+	overflow: scroll;
+	list-style-type: none;
+	margin: 0;
+	margin-top: 10px;
+	a {
+		display: block;
+		&:hover {
+			text-decoration: none;
+			background-color: #eee;
+			color: #000;
+		}
+	}
+	li {
+		margin: 0;
+		margin-bottom: 5px;
+		.twt_prof {
+			float: left;
+			margin-right: 5px;
+			margin-top: 4px;
+		}
+		.twt_cont {
+			margin-left: 55px;
+		}
+		padding-bottom: 5px;
+		border-bottom: 1px solid #eaeaea;
+	}
+}

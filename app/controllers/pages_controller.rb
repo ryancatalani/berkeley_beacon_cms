@@ -57,11 +57,26 @@ class PagesController < ApplicationController
 
 	def emersonla_live
 		@title = "Emerson Colllege LA Groundbreaking Live"
-		@include_custom_bootstrap = true
+		@include_bootstrap = true
 	end
 
 	def beacon_ecla_tweets
-		@results = Twitter.search("from:magicofpi OR from:AlexCKaufman OR from:heidimoeller", :rpp => 5, :result_type => "recent")
+		# if params[:last_id]
+		# 	last_tweet = EclaAnyTweet.find_by_tweet_id(params[:last_id].to_i)
+		# 	if !last_tweet.nil?
+		# 		later_tweets = EclaAnyTweet.where("created_at > ?",last_tweet.created_at)
+		# 		if !later_tweets.nil?
+		# 			@results = later_tweets
+		# 			found_tweets = true
+		# 		end
+		# 	end
+		# end
+
+		# unless found_tweets
+		# 	tweets.map do |tweet|
+		# 		EclaAnyTweet.create!(tweet_id => )
+		
+		@results = Twitter.search("#emersonla OR #ecla from:magicofpi OR from:AlexCKaufman OR from:heidimoeller", :rpp => 5, :result_type => "recent")
 		render :json => @results
 	end
 

@@ -1,8 +1,14 @@
 <div class="container ecla_live">
-	
 	<div class="row">
-		<div class="span10">
-			<div id="livestream" style="background-color:#ddd">
+		<div class="span10 offset1">
+			<h2>Emerson College LA Campus Groundbreaking</h2>
+			<br />
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span12">
+			<div id="livestream" style="">
 				<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="800" height="450" id="akamai_live_player" align="middle"> 
 				<param name="movie" value="http://median.emerson.edu/akamai/akamai_live_player.swf?which=1" /> 
 				<param name="quality" value="high" /> 
@@ -29,16 +35,20 @@
 				</object> 
 				<!--<![endif]-->
 			</div>
-			<div id="live_photos">
-				photos and media
-			</div>
 		</div>
-		<div class="span5">
-			<div id="beacon_tweets" style="background-color:#444">
+	</div>
+	<div class="row">
+		<div class="span5 offset1">
+			<div id="beacon_tweets" class="live_tweet_box">
+				<h3>Tweets from Beacon Editors</h3>
+				<em>@aleckufman, @heidimoeller, @magicofpi</em>
 				<ul class="live_tweets">
 				</ul>
 			</div>
-			<div id="other_tweets">
+		</div>
+		<div class="span5">
+			<div id="other_tweets" class="live_tweet_box">
+				<h3>#EmersonLA</h3>
 				<ul class="live_tweets">
 				</ul>
 			</div>
@@ -54,37 +64,45 @@ var existing_b_tweets = [],
 function beacon_tweets() {
 	 $.getJSON('/beacon_ecla_tweets', function(data){
 		$.each(data, function(key, val){
-			var link = "<a href='http://twitter.com/" + val.from_user + "/statuses/" + val.id + "' target='blank'>"
-				+ "<li>"
-				+ "<div class='twt_prof'>"
-				+ "<img src='" + val.profile_image_url + "' />"
-				+ "</div><div class='twt_cont'>"
-				+ "<h4>" + val.from_user + "</h4>"
-				+ val.text
-				+ "</div><div class='clear'></div></li></a>"
-			$("#beacon_tweets").find(".live_tweets").prepend(link);
-			existing_b_tweets.push(val.id);
+			if (existing_b_tweets.indexOf(val.id) == -1) {
+				var link = "<a href='http://twitter.com/" + val.from_user + "/status/" + val.id_str + "' target='blank'>"
+					+ "<li>"
+					+ "<div class='twt_prof'>"
+					+ "<img src='" + val.profile_image_url + "' />"
+					+ "</div><div class='twt_cont'>"
+					+ "<h4>" + val.from_user + "</h4>"
+					+ val.text
+					+ "</div><div class='clear'></div></li></a>"
+				$("#beacon_tweets").find(".live_tweets").prepend(link);
+				existing_b_tweets.push(val.id);
+			}
 		});
 	});
-	// setTimeout(function() {
-	// 	beacon_tweets();
-	// }, 10 * 1000);
+	setTimeout(function() {
+		// beacon_tweets();
+	}, 10 * 1000);
 }
 
 function all_tweets() {
 	$.getJSON('/all_ecla_tweets', function(data){
 		$.each(data, function(key, val){
-			var link = "<a href='http://twitter.com/" + val.from_user + "/statuses/" + val.id + "' target='blank'>"
-				+ "<li>"
-				+ "<div class='twt_prof'>"
-				+ "<img src='" + val.profile_image_url + "' />"
-				+ "</div><div class='twt_cont'>"
-				+ "<h4>" + val.from_user + "</h4>"
-				+ val.text
-				+ "</div><div class='clear'></div></li></a>"
-			$("#other_tweets").find(".live_tweets").prepend(link);
+			if (existing_a_tweets.indexOf(val.id) == -1) {
+				var link = "<a href='http://twitter.com/" + val.from_user + "/status/" + val.id_str + "' target='blank'>"
+					+ "<li>"
+					+ "<div class='twt_prof'>"
+					+ "<img src='" + val.profile_image_url + "' />"
+					+ "</div><div class='twt_cont'>"
+					+ "<h4>" + val.from_user + "</h4>"
+					+ val.text
+					+ "</div><div class='clear'></div></li></a>"
+				$("#other_tweets").find(".live_tweets").prepend(link);
+				existing_a_tweets.push(val.id);
+			}
 		});
 	});
+	setTimeout(function() {
+		// all_tweets();
+	}, 10 * 1000);
 }
 
 beacon_tweets();

@@ -74,7 +74,9 @@ GEM
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
+    highline (1.6.11)
     hike (1.2.1)
+    hirb (0.6.1)
     i18n (0.6.0)
     jquery-rails (1.0.17)
       railties (~> 3.0)
@@ -89,6 +91,12 @@ GEM
     mime-types (1.17.2)
     mini_magick (3.4)
       subexec (~> 0.2.1)
+    mongohq (0.5.7)
+      faraday
+      highline
+      hirb
+      json
+      thor
     multi_json (1.0.3)
     multipart-post (1.1.4)
     net-scp (1.0.4)
@@ -183,6 +191,7 @@ DEPENDENCIES
   heroku
   jquery-rails
   mini_magick
+  mongohq (~> 0.5.0)
   nokogiri
   pg
   rails (= 3.1.1)

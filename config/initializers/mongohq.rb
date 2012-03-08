@@ -1,0 +1,1 @@
+# MongoHQ.authenticate(:apikey => 'zbj39osueyicwst7do4m')
