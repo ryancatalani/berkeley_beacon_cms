@@ -644,14 +644,17 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	-moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	#line1, #line2, #line3 {
 		font-family: "Arvo", Rockwell;
 		font-weight: bold;
 		text-transform: uppercase;
 	}
 	#line1 {
-		font-size: 12px;
+		font-size: 14px;
+		border-bottom: 1px solid #bbb;
+		padding-bottom: 6px;
+		margin-bottom: 7px;
 		// margin-top: 5px;
 	}
 	#line2 {
@@ -660,9 +663,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	#line3 {
 		margin-top: 2px;
 		font-weight: normal;
-		border-bottom: 1px solid #bbb;
-		padding-bottom: 4px;
-		margin-bottom: 7px;
 		font-size: 13px;
 	}
 	&:hover {

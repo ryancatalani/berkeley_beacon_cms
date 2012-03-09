@@ -4,7 +4,7 @@
 		<div class="span8">
 			<div id="ecla_header">
 				<h2>Emerson College LA</h2>
-				Groundbreaking: Thursday, March 8, 2012 at 1:40 p.m. EST / 10:40 a.m. PST
+				Groundbreaking: Thursday, March 8, 2012
 			</div>
 			<% @articles.all.each_with_index do |article, index| %>
 				<div class="ecla_article <% if !article.mediafiles.count.zero? and !index.zero? %>with_thumb<%end%>" <%= "id='first'" if index.zero? %>>
@@ -13,7 +13,7 @@
 							<%= image_tag article.mediafiles.first.media.url, :width => 640 %>
 						</div>
 					<% end %>
-					<% if !index.zero? and !article.mediafiles.count.zero? %>
+					<% if !index.zero? and !article.mediafiles.count.zero? and article.mediafiles.first.mediatype != 2 %>
 						<div class="ecla_mediawrap">
 							<%= image_tag article.mediafiles.first.media.thumb_140.url, :size => "100x100" %>
 						</div>
