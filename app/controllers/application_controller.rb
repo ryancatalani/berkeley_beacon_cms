@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
 			ret = "<video width='#{width}' height='#{height}' controls='controls'>"
 
 			othertypes.each do |v|
-				type = v.media.url.split('.').last.first(3) == "ogv" ? "ogg" : "mp4"
+				type = v.media.url.split('.').last.first(3) == "ogv" ? "ogg" : "mp4" rescue next
 				ret << "<source src='#{v.media.url}' type='video/#{type}' />"
 			end
 
