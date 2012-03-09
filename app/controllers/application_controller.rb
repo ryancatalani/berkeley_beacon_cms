@@ -90,7 +90,8 @@ class ApplicationController < ActionController::Base
 		end
 		
 		def video_tag mediafile, height=500, width=820
-			othertypes = Mediafile.where(:description => mediafile.description)
+			othertypes = Mediafile.where(:title => mediafile.title)
+			return nil if othertypes.nil?
 						
 			ret = "<video width='#{width}' height='#{height}' controls='controls'>"
 
