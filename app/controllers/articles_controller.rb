@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
 	before_filter :check_editor, :except => [:show]
+	caches_action :show
 	
 	def new
 		@article = Article.new
