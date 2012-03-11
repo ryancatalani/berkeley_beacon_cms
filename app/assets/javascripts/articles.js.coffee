@@ -37,6 +37,9 @@ jQuery ->
 		i++
 		i = 0 if i == containers.size()
 		$(containers.eq(i)).fadeIn()
+	$("#funny_business").click ->
+		$.post("/archive_problem/" + encodeURIComponent($(".article_wrap").find("h1").text()))
+		$(this).html("Thanks for the tip!")
 $(window).bind "load", ->
 	$(".big_photo").each (x) ->
 		console.log "width:" + $(this).width()

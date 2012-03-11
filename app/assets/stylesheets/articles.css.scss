@@ -171,6 +171,28 @@
 	}
 }
 
+#from_archive {
+	border: 1px solid #ccc;
+	padding: 20px;
+	#funny_business {
+		display: block;
+		text-align: center;
+		background: #eee;
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		-moz-border-radius: 8px;
+		font-style: italic;
+		padding: 5px;
+		margin: 10px 0;
+		cursor: pointer;
+		&:hover {
+			font-weight: normal;
+			background: #ddd;
+			border-color: #ccc;
+		}
+	}
+}
+
 #new_article_wrap {
 	width: 940px;
 	margin: 0 auto;

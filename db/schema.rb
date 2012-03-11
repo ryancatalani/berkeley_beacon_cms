@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308154840) do
+ActiveRecord::Schema.define(:version => 20120311000055) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20120308154840) do
     t.integer  "section_id"
     t.string   "cleantitle"
     t.integer  "series_id"
+    t.boolean  "archive"
+    t.text     "archive_images"
   end
 
   create_table "attributions", :force => true do |t|
@@ -95,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20120308154840) do
     t.text     "bio"
     t.string   "profile"
     t.string   "clean_full_name"
+    t.boolean  "from_archive"
   end
 
   create_table "sections", :force => true do |t|

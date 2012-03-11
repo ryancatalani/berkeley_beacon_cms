@@ -18,6 +18,7 @@ BeaconApp::Application.routes.draw do
   match '/emersonla-live', :to => 'pages#emersonla_live'
   match '/beacon_ecla_tweets', :to => 'pages#beacon_ecla_tweets'
   match '/all_ecla_tweets', :to => 'pages#all_ecla_tweets'
+  match '/archive_problem/:url', :to => 'pages#archive_problem', :via => :post
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]

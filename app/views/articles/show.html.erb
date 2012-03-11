@@ -8,7 +8,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="content_wrap article_wrap">
-	<h1><%= @article.title %></h1>
+	<h1><%= @article.title.html_safe %></h1>
 	<% if @article.subtitles %>
 		<% @article.subtitles.each do |subtitle| %>
 			<h2><%= subtitle %></h2>
@@ -56,6 +56,18 @@
 			<%= p.contact_info.html_safe if p.other_designation.blank? %>
 			</em></p>
 			<% end %>
+		<br />
+		<% if @article.archive %>
+			<div id="from_archive">
+				You're reading an article from our archives – if it looks funny, just press the button below and we'll look into it.
+				<a id="funny_business">
+					Something might be wrong with this article.
+				</a>
+				<a href="https://twitter.com/intent/tweet?screen_name=BeaconUPDATE&text=%23archiveproblem" class="twitter-mention-button" data-related="BeaconUPDATE">Tweet to @BeaconUPDATE</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> if there's a serious or urgent problem.
+			</div>
+		<% end %>
+
 		<br />
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">

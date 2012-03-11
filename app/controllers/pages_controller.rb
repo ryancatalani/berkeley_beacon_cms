@@ -87,6 +87,11 @@ class PagesController < ApplicationController
 		# 	format.json { render :json => @results }
 		# end
 	end
+
+	def archive_problem
+		BeaconMailer.archive_problem(params[:url]).deliver
+		render :json => "mail sent"
+	end
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)

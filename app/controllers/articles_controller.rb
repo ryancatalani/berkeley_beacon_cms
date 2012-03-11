@@ -145,7 +145,11 @@ class ArticlesController < ApplicationController
 				@og[:image] = ''
 			end
 			@og[:description] = @article.excerpt.blank? ? false : @article.excerpt
-			@article.update_attribute(:views, @article.views+1)
+			if @article.views.nil?
+				@article.update_attribute(:views, 1)
+			else
+				@article.update_attribute(:views, @article.views+1)
+			end
 		else
 		  begin
 		    date = Date.new(params[:year].to_i,params[:month].to_i,params[:day].to_i)
