@@ -25,13 +25,13 @@
 			
 			<div id="gallery_wrap">
 				<% @article.mediafiles.each_with_index do |mediafile,index| %>
-					<div class="media_container" <%= "style='display:none'" unless index.zero? %>>
+					<div class="media_container">
 						<div class="media_wrap">
 							<% if mediafile.mediatype == 2 %>
 								<%= video_tag(@article.mediafiles.first).html_safe %>			
 							<% else %>
 								<%= image_tag "loading.gif", :id => "mediafile_loading" %>
-								<%= image_tag mediafile.media.url, :class => "big_photo" %>
+								<img src="<%= mediafile.media.url %>" class="big_photo" <%= "style='display:none'" if index.zero? %>/>
 							<% end %>
 						</div>
 						<div id="metadata">

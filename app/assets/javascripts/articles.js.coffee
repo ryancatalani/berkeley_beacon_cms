@@ -41,9 +41,10 @@ jQuery ->
 		$.post("/archive_problem/" + encodeURIComponent($(".article_wrap").find("h1").text()))
 		$(this).html("Thanks for the tip!")
 $(window).bind "load", ->
-	$(".big_photo").each (x) ->
+	$("img.big_photo").each (x) ->
 		console.log "width:" + $(this).width()
 		ml = (820 - $(this).width()) / 2
 		$(this).css('marginLeft', ml)
-		$(mediafile_loading).fadeOut('fast').hide();
+		$(mediafile_loading).fadeOut('fast').hide()
 		$(this).fadeIn('fast')
+	$("#gallery_wrap").height($(".big_photo").eq(0).height()+20)

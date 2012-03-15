@@ -59,6 +59,8 @@
 		
 		#gallery_wrap {
 			width: 1640px;
+			height: 16px;
+			overflow: hidden;
 		}
 		
 		.media_container {
@@ -73,16 +75,11 @@
 		
 		img {
 			margin-top: 0;
-			// width: 820px;
-			// height: 546px;
 		}
 
 		.big_photo {
-			// height: 400px;
-			// width: 300px;
 			max-height: 546px;
 			max-width: 820px;
-			display: none;
 		}
 		
 		#metadata {
