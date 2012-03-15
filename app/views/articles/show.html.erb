@@ -23,7 +23,7 @@
 				<div id="gallery_forward_btn"></div>
 			<% end %>
 			
-			<div id="gallery_wrap">
+			<div id="gallery_wrap" <%= "style='height:560px'" if @article.mediafiles.first.mediatype == 2 %>>
 				<% @article.mediafiles.each_with_index do |mediafile,index| %>
 					<div class="media_container">
 						<div class="media_wrap">
