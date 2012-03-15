@@ -56,9 +56,9 @@
 	<div id="authors">
 		<div class="field">
 			<%= label_tag :author_1 %>
-			<% if @article.people %>
+			<% begin %>
 				<%= select_tag :author_1, options_for_select(@authors, @article.people.first.id), :name => "author[1]" %>
-			<% else %>
+			<% rescue %>
 				<%= select_tag :author_1, options_for_select(@authors), :name => "author[1]" %>
 			<% end %>
 		</div>

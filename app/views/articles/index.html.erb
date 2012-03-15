@@ -16,7 +16,11 @@
 					<%= link_to "<i class='icon-edit'></i> Edit".html_safe, edit_article_url(article), :class => "btn" %>
 					<%= link_to "<i class='icon-trash icon-white'></i> Delete".html_safe, article_url(article), :method => :delete, :confirm => "Are you sure you want to delete this article?", :class => "btn btn-danger" %>
 				</td>
-				<td><%= link_to article.title, article.to_url %></td>
+				<% begin %>
+					<td><%= link_to article.title, article.to_url %></td>
+				<% rescue %>
+					<td><%= article.title %></td>
+				<% end %>
 				<td>
 					<ul>
 					<% article.mediafiles.each do |file| %>
