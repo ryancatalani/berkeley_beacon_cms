@@ -7,7 +7,7 @@ class MediafilesController < ApplicationController
 
 	def new
 		@mediafile = Mediafile.new
-	  @authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
+	  @authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
 	  @authors_type = '[' + Person.order("lastname ASC").all.map { |person| "'#{person.official_name}'" }.join(',') + ']'
 	  @authors_count = Person.count
 	end
@@ -31,7 +31,7 @@ class MediafilesController < ApplicationController
 	
 	def edit
 	  @mediafile = Mediafile.find(params[:id])
-	  @authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
+	  @authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
   end
   
   def update

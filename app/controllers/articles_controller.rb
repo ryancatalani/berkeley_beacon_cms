@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 	
 	def new
 		@article = Article.new
-		@authors = Person.order("lastname ASC").all.map do |person|
+		@authors = Person.order("firstname ASC").all.map do |person|
 			if person.other_designation.blank?
 				["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}",
 				person.id]
@@ -74,7 +74,7 @@ class ArticlesController < ApplicationController
 		@article = Article.find(params[:id])
 		@current_authors = @article.people
 		@sections = Section.all.map { |s| [s.name, s.id] }
-		@authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
+		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
 		@authors.unshift(["Choose an author",0])
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 	end
