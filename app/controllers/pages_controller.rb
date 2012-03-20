@@ -100,7 +100,7 @@ class PagesController < ApplicationController
 		@og = {}
 		@og[:title] = "Our new voice"
 		@og[:url] = "http://berkeleybeacon.com/ourvoice"
-		@og[:image] = "/assets/redesign-promo-#{Random.rand(4)+1}-thumb.jpg"
+		@og[:image] = "http://berkeleybeacon.com/assets/redesign-promo-#{Random.rand(4)+1}-thumb.jpg"
 		@og[:description] = "Pick up the completely redesigned Berkeley Beacon this Thursday."
 		render :layout => 'new_header'
 	end
