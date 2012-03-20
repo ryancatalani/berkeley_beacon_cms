@@ -17,29 +17,54 @@
 	</div>
 <% end %>
 
-<div class="header" <%= "id='home_header'" if @home_header %>>
-	<div id="masthead">
-		<h1>The Berkeley Beacon</h1>
-		<% unless @home_header %>
-			<h2><%= Date.today.strftime("%A, %B %e, %Y") %></h2>
-		<% end %>
-	</div>
-	
-	<div id="nav">		
-		<ol>
-			<li><%= link_to "Home", "/" %></li>
-			<li><%= link_to "News", "/news" %></li>
-			<li><%= link_to 'Opinion', '/opinion' %></li>
-			<li><%= link_to 'Sports', '/sports' %></li>
-			<li><%= link_to 'Lifestyle', '/lifestyle' %></li>
-			<li><%= link_to 'Arts & Entertainment', '/arts-and-entertainment' %></li>
-		</ol>
-		
-		<% if @home_header %>
-			<h2><%= Date.today.strftime("%A, %B %e, %Y") %></h2>
+<% if @new_header %>
+	<div class="header new_header" <%= "id='home_header'" if @home_header %>>
+		<div id="header-inner">
+			<div id="masthead">
+				<h1>The Berkeley Beacon</h1>
+			</div>
+			
+			<div id="nav">		
+				<ol>
+					<li><%= link_to "Home", "/" %></li>
+					<li><%= link_to "News", "/news" %></li>
+					<li><%= link_to 'Opinion', '/opinion' %></li>
+					<li><%= link_to 'Sports', '/sports' %></li>
+					<li><%= link_to 'Lifestyle', '/lifestyle' %></li>
+					<li><%= link_to 'Arts & Entertainment', '/arts-and-entertainment' %></li>
+					<li id="nav_date"><%= Date.today.strftime("%A, %B %e, %Y") %></li>
+				</ol>
+				
+			</div>
+			
 			<div class="clear"></div>
-		<% end %>
+		</div>
 	</div>
-	
-	<div class="clear"></div>
-</div>
+<% else %>
+	<div class="header" <%= "id='home_header'" if @home_header %>>
+		<div id="masthead">
+			<h1>The Berkeley Beacon</h1>
+			<% unless @home_header %>
+				<h2><%= Date.today.strftime("%A, %B %e, %Y") %></h2>
+			<% end %>
+		</div>
+		
+		<div id="nav">		
+			<ol>
+				<li><%= link_to "Home", "/" %></li>
+				<li><%= link_to "News", "/news" %></li>
+				<li><%= link_to 'Opinion', '/opinion' %></li>
+				<li><%= link_to 'Sports', '/sports' %></li>
+				<li><%= link_to 'Lifestyle', '/lifestyle' %></li>
+				<li><%= link_to 'Arts & Entertainment', '/arts-and-entertainment' %></li>
+			</ol>
+			
+			<% if @home_header %>
+				<h2><%= Date.today.strftime("%A, %B %e, %Y") %></h2>
+				<div class="clear"></div>
+			<% end %>
+		</div>
+		
+		<div class="clear"></div>
+	</div>
+<% end %>

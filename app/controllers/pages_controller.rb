@@ -94,6 +94,7 @@ class PagesController < ApplicationController
 	end
 
 	def ourvoice
+		@new_header = true
 		render :layout => 'new_header'
 	end
 	

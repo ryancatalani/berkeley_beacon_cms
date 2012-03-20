@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html, body {
+	height: 100%;
+}
+
 body {
 	font: 14px/18px "PT Serif", Times, serif;
 }
@@ -720,4 +724,37 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 		padding-bottom: 5px;
 		border-bottom: 1px solid #eaeaea;
 	}
+}
+
+#full_photo {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#full_photo, #full_photo * {
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+#ourvoice_text {
+	width: 28%;
+	margin-left: 10%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.75);
+	color: #fff;
+	padding: 4em 2% 0;
+	p {
+		font-size: 2em;
+		line-height: 1.3em;
+		margin-bottom: 1em;
+	}
+	em {
+		font-style: italic;
+	}
+}
+
+#ourvoice_text.right {
+	margin-left: 62%;
 }

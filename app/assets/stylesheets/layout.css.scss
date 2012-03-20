@@ -72,6 +72,29 @@ h1 {
 	
 }
 
+.new_header {
+	width: 100%;
+	background: #fff;
+	margin-top: 0;
+	padding-top: 12px;
+	margin-bottom: 0;
+	#header-inner {
+		width: 940px;
+		margin: 0 auto;
+	}
+	#nav_date {
+		padding-left: 20px;
+		font-style: italic;
+	}
+	#nav {
+		padding-top: 3px;
+		a:hover {
+			padding-bottom: 6px;
+		}
+	}
+
+}
+
 #home_header {
 	border: none;
 	margin-bottom: 5px;

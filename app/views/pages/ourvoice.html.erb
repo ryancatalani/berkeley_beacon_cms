@@ -1,3 +1,14 @@
-<div class="full_photo">
-
+<div id="full_photo">
+	<div id="ourvoice_text">
+		<p>We're the voice of the artists. The filmmakers. The marketers and speech therapists. The writers, the athletes, the actors, and the singers.</p>
+		<p>This is Emerson's voice.
+			<br />This is our voice.</p>
+		<p><em>Pick up the completely redesigned Berkeley Beacon this Thursday.</em></p>
+	</div>
 </div>
+
+<script type="text/javascript">
+	var num = Math.floor(Math.random()*4+1);
+	$('#full_photo').anystretch("/assets/redesign-promo-" + num + ".jpg");
+	$("#ourvoice_text").addClass( num % 2 == 0 ? 'left' : 'right' );
+</script>
