@@ -20,6 +20,8 @@ BeaconApp::Application.routes.draw do
   match '/all_ecla_tweets', :to => 'pages#all_ecla_tweets'
   match '/archive_problem/:url', :to => 'pages#archive_problem', :via => :post
 
+  match '/ourvoice', :to => 'pages#ourvoice'
+
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
 	resources :people

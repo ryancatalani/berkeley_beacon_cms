@@ -92,6 +92,10 @@ class PagesController < ApplicationController
 		BeaconMailer.archive_problem(params[:url]).deliver
 		render :json => "mail sent"
 	end
+
+	def ourvoice
+		render :layout => 'new_header'
+	end
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
