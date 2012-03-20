@@ -21,6 +21,8 @@ BeaconApp::Application.routes.draw do
   match '/archive_problem/:url', :to => 'pages#archive_problem', :via => :post
 
   match '/ourvoice', :to => 'pages#ourvoice'
+  match '/ournewvoice', :to => 'pages#ourvoice'
+  match '/redesign', :to => 'pages#ourvoice'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
