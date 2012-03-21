@@ -66,7 +66,17 @@ class ArticlesController < ApplicationController
 	end
 	
 	def index
-		@articles = Article.order("created_at DESC")
+		@articles = Article.order("created_at DESC").first(30)
+		@user_articles = current_user.articles.order("created_at DESC").first(6)
+	end
+
+	def search_edit
+		index_name = Rails.env.production? ? "idx_production" : "idx"
+		client = IndexTank::Client.new(ENV['SEARCHIFY_API_URL'] || 'http://:y1GqHmgP0jH2lL@dphiu.api.searchify.com')
+		index = client.indexes(index_name)
+		results = index.search(params[:q])
+		@articles = results['results'].map{|r| r['docid']}.map{|id| Article.find(id.to_i)}.paginate(:page => params[:page], :per_page => 15)
+		@q = params[:q]
 	end
 	
 	def edit
