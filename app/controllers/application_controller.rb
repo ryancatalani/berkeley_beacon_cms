@@ -92,6 +92,7 @@ class ApplicationController < ActionController::Base
 				num_days += 1
 				ret << Article.where(:updated_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).order("views DESC").first(num)
 				ret.flatten!
+				ret.uniq!
 			end
 			return ret.first(num)
 		end
