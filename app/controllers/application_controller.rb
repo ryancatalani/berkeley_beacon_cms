@@ -86,7 +86,14 @@ class ApplicationController < ActionController::Base
 		end
 		
 		def popular_articles num=5
-			Article.where(:created_at => (Time.now.midnight - 2.days)..(Time.now.midnight + 1.day)).order("views DESC").first(num)
+			num_days = 2
+			ret = Article.where(:updated_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).order("views DESC").first(num)
+			while ret.count < num
+				num_days += 1
+				ret << Article.where(:updated_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).order("views DESC").first(num)
+				ret.flatten!
+			end
+			return ret.first(num)
 		end
 		
 		def video_tag mediafile, height=500, width=820
