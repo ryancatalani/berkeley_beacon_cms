@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class PagesController < ApplicationController
 	def home
 		@current_user = current_user
@@ -103,6 +105,15 @@ class PagesController < ApplicationController
 		@og[:image] = "http://berkeleybeacon.com/assets/redesign-promo-#{Random.rand(4)+1}-thumb.jpg"
 		@og[:description] = "Pick up the completely redesigned Berkeley Beacon this Thursday."
 		render :layout => 'new_header'
+	end
+
+	def search
+		@title = "Search results: #{params[:q]}"
+		index_name = Rails.env.production? ? "idx_production" : "idx"
+		client = IndexTank::Client.new(ENV['SEARCHIFY_API_URL'] || 'http://:y1GqHmgP0jH2lL@dphiu.api.searchify.com')
+		index = client.indexes(index_name)
+		results = index.search(params[:q])
+		@articles = results['results'].map{|r| r['docid']}.map{|id| Article.find(id.to_i)}.paginate(:page => params[:page], :per_page => 15)
 	end
 	
 	private

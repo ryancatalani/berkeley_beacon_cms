@@ -57,6 +57,17 @@
 				<li><%= link_to 'Sports', '/sports' %></li>
 				<li><%= link_to 'Lifestyle', '/lifestyle' %></li>
 				<li><%= link_to 'Arts & Entertainment', '/arts-and-entertainment' %></li>
+				<% if @home_header %>
+					<li>
+						<%= link_to 'Search', '#', :id => 'search_btn' %>
+						<div id="search_box_wrap">
+							<%= form_tag search_path do %>
+								<%= text_field_tag :q, nil, :placeholder => 'Search for...' %>
+								<%= submit_tag "Search" %>
+							<% end %>
+						</div>
+					</li>
+				<% end %>
 			</ol>
 			
 			<% if @home_header %>

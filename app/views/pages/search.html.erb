@@ -1,0 +1,56 @@
+<div id="section-wrap">
+
+	<div id="section-articles">
+		<% @articles.each_with_index do |article,i| %>
+	
+			<% if i == 0 and (params[:page].nil? or params[:page].to_i == 1) %>
+				<div id="main-section-story">
+					<% if !article.mediafiles.empty? and article.mediafiles.first.mediatype != 2 %>
+						<div class="media">
+							<%= link_to image_tag(article.mediafiles.first.media.url), article.to_url %>
+						</div>
+					<% else %>
+					<% end %>
+					<h2><%= link_to article.title, article.to_url %></h2>
+					<div class="byline"><%= bylineify article %></div>
+					<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
+				</div>
+			<% else %>
+
+			<div class="article">
+				<% unless article.mediafiles.empty? or article.mediafiles.first.media.url.nil? or article.mediafiles.first.mediatype == 2 %>
+					<div class="media">
+						<%= link_to image_tag(article.mediafiles.first.media.thumb_140.url), article.to_url %>
+					</div>
+				<% else %>
+				<% end %>
+				<h3><%= link_to article.title, article.to_url %></h3>
+				<div class="byline"><%= bylineify article %></div>
+				<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
+				<div class="clear"></div>
+			</div>
+	
+			<% end %>
+		<% end %>
+		<%= will_paginate @articles %>
+	</div>
+
+	<div id="section-sidebar">
+		<section id="popular">
+			<h4>Popular on the Beacon</h4>
+			<ol>
+				<% popular_articles.each do |story| %>
+					<div class="popular-story">
+						<!-- media -->
+						<li>
+							<%= link_to image_tag(story.mediafiles.first.media.thumb_40.url, :size=>"40x40"), story.to_url unless story.mediafiles.empty? or story.mediafiles.first.mediatype == 2 %>
+							<%= link_to truncate(story.title, :length => 60), story.to_url %>
+							<div class="clear"></div>
+						</li>
+					</div>
+				<% end %>
+			</ol>
+		</section>
+	</div>
+
+</div>

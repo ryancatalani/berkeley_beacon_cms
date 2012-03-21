@@ -4,6 +4,8 @@ BeaconApp::Application.routes.draw do
 		match "/staff/:name", :to => :show
 	end
 	
+  match '/search', :to => 'pages#search', :as => 'search', :via => :post
+
 	match '/stylebook', :to => 'stylebook_entries#index'
 	match '/tips', :to => 'pages#tips'
 	match '/send_tip', :to => 'pages#send_tip', :via => :post

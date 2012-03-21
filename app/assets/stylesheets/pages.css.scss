@@ -758,3 +758,16 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 #ourvoice_text.right {
 	margin-left: 62%;
 }
+
+#search_btn {
+}
+
+#search_box_wrap {
+	float: right;
+	// visibility: hidden;
+	display: none;
+	margin-bottom: -2px;
+	input {
+		margin: 0;
+	}
+}
