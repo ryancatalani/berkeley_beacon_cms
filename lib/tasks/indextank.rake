@@ -14,13 +14,17 @@ namespace :db do
 				puts "Starting article #{article.id} (#{count+1}/#{article_count})"
 				authors = article.people.map{|p| p.firstname+' '+p.lastname}.join(' ') rescue ''
 				subtitles = article.subtitles.join('  ') rescue ''
-				index.document(article.id).add({
-					:text => article.body,
-					:title => article.title,
-					:authors => authors,
-					:subtitles => subtitles,
-					:timestamp => article.created_at.to_i
-				})
+				begin
+					index.document(article.id).add({
+						:text => article.body,
+						:title => article.title,
+						:authors => authors,
+						:subtitles => subtitles,
+						:timestamp => article.created_at.to_i
+					})
+				rescue
+					next
+				end
 			end
 		rescue
 			puts "Error: ",$!
