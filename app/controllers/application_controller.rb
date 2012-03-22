@@ -87,10 +87,10 @@ class ApplicationController < ActionController::Base
 		
 		def popular_articles num=5
 			num_days = 2
-			ret = Article.where(:updated_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).order("views DESC").first(num)
+			ret = Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).order("views DESC").first(num)
 			while ret.count < num
 				num_days += 1
-				ret << Article.where(:updated_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).order("views DESC").first(num)
+				ret << Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).order("views DESC").first(num)
 				ret.flatten!
 				ret.uniq!
 			end
