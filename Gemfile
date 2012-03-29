@@ -29,6 +29,7 @@ gem 'twitter'
 gem 'will_paginate', '~> 3.0'
 gem 'geocoder'
 gem 'indextank'
+gem 'fb_graph'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -52,6 +53,7 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'ruby-prof'
 end
 
 group :production do

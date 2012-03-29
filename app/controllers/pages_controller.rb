@@ -115,6 +115,10 @@ class PagesController < ApplicationController
 		results = index.search(params[:q])
 		@articles = results['results'].map{|r| r['docid']}.map{|id| Article.find(id.to_i)}.paginate(:page => params[:page], :per_page => 15)
 	end
+
+	def tweet
+
+	end
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
