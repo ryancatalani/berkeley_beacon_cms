@@ -150,7 +150,7 @@ class ArticlesController < ApplicationController
 			@og[:title] = @article.title
 			@og[:url] = @article.to_url
 			if @article.mediafiles.any?
-				@og[:image] = @article.mediafiles.first.media.thumb_140.url
+				@og[:image] = @article.mediafiles.first.media.thumb_140.url.html_safe
 			else
 				@og[:image] = ''
 			end
