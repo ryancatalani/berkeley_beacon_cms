@@ -110,6 +110,8 @@
 	<div class="clear"></div>
 </div>
 
-<script>
-	$("#big_photo").anystretch("<%= @article.first_photo.media.url.html_safe %>");
-</script>
+<% unless @article.first_photo.nil? %>
+	<script>
+		$("#big_photo").anystretch("<%= @article.first_photo.media.url.html_safe %>");
+	</script>
+<% end %>
