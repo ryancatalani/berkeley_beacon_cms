@@ -80,6 +80,7 @@
 			margin-top: -58px;
 		}
 		float: left;
+		margin-bottom: 1em;
 	}
 	margin-bottom: 20px;
 }
@@ -265,6 +266,10 @@ a {
 		margin: 0 0 1em;
 		border-top: 1px dotted #bbb;
 		padding-top: 1em;
+		.featured-story-img-wrap {
+			width: 48%;
+			margin-right: 2%;
+		}
 	}
 	.group-a, .group-b, .group-c {
 		width: 100%;
