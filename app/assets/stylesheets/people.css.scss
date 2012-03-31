@@ -70,3 +70,27 @@ hr {
 h3 em {
 	font-style: italic;
 }
+
+@media screen and (max-width: 479px) { 
+	#people_wrap {
+		width: 98%;
+		margin: 0;
+		padding: 0 1%;
+		#profile_img {
+			width: 100%;
+			float: none;
+			margin: 0;
+			padding: 0;
+		}
+		#body {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			border: none;
+		}
+	}
+	#person_sidebar {
+		float: none;
+		display: none;
+	}
+}
