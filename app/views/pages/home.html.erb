@@ -5,7 +5,7 @@
 		<section id="left">
 			
 			<div id="main-story">
-				<% if @main_story.mediafiles.empty? %>
+				<% if @main_story.first_photo.nil? %>
 					<div class="story-text">
 						<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
 						<div class="byline">By <%= bylineify_short @main_story.people %></div>
@@ -14,13 +14,13 @@
 						<div class="excerpt"><%= @main_story.excerpt %></div>
 					</div>			
 				<% else %>
+					<div class="main-story-img-wrap">
+						<%= link_to image_tag(@main_story.first_photo.media.thumb_460.url), @main_story.to_url %>					
+					</div>
 					<div class="story-text">
 						<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
 						<div class="byline">By <%= bylineify_short @main_story.people %></div>
 						<div class="excerpt"><%= @main_story.excerpt %></div>
-					</div>
-					<div class="main-story-img-wrap">
-						<%= link_to image_tag(@main_story.mediafiles.first.media.thumb_460.url), @main_story.to_url %>					
 					</div>
 				<% end %>
 				<div class="clear"></div>
@@ -44,66 +44,50 @@
 			</section>
 			
 		</section>
+
+		<section id="center">
+			<% @middle_stories.each do |story| %>
+				<div class="story">
+					<%= image_tag story.first_photo.media.thumb_140.url if story.first_photo %>
+					<div class="section_title"><%= story.section.name %></div>
+					<h3><%= link_to story.title, story.to_url %></h3>
+					<div class="excerpt"><%= story.excerpt %></div>
+				</div>
+			<% end %>
+		</section>
 		
 		<section id="right">
-		
-			<section id="top-sidebar">
 
 				<%= link_to "Send Us a Tip", tips_path, :id => "tip_btn" %>
 				
-				<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-				<script>
-				new TWTR.Widget({
-				  version: 2,
-				  type: 'profile',
-				  rpp: 8,
-				  interval: 30000,
-				  width: 220,
-				  height: 425,
-				  theme: {
-				    shell: {
-				      background: '#cbcbcb',
-				      color: '#000000'
-				    },
-				    tweets: {
-				      background: '#ffffff',
-				      color: '#000000',
-				      links: '#323232'
-				    }
-				  },
-				  features: {
-				    scrollbar: true,
-				    loop: false,
-				    live: true,
-				    behavior: 'all'
-				  }
-				}).render().setUser('beaconupdate').start();
-				</script>
+				<div class="separator"></div>
+
+				<div class="fb-like" data-href="http://facebook.com/berkeleybeacon" data-send="false" data-width="218" data-show-faces="true"></div>
+
+				<div class="separator"></div>
+
+				<a href="https://twitter.com/BeaconUpdate" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @BeaconUpdate</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+				<ol id="latest_tweets">
+					<% @tweets.each do |tweet| %>
+						<li>
+							<a href="http://twitter.com/BeaconUpdate/status/<%= tweet.attrs["id_str"] %>">
+								<div class="time_ago"><%= distance_of_time_in_words_to_now tweet.created_at %> ago</div>
+								<%= tweet.text %>
+							</a>
+						</li>
+					<% end %>
+				</ol>
+
 			</section>
-			
-		</section>
 		
 		<div class="clear"></div>
 		
 	</section>
-	
-	<div class="clear"></div>
-	
-	<section id="middle">
-		<% @middle_stories.each do |story| %>
-			<div class="middle-strip-story">
-				<!-- media -->
-				<div class="mediawrap">
-					<%= link_to image_tag(story.mediafiles.first.media.thumb_140.url), story.to_url unless story.mediafiles.empty? %>
-				</div>
-				<div class="story-text">
-					<strong><%= story.section.name %></strong>
-					<%= link_to truncate(story.title, :length => 60), story.to_url %>
-				</div>
-			</div>
-		<% end %>
-		<div class="clear"></div>
-	</section>
+
+	<div class="clear"></div>	
+	<div class="separator"></div>
 	
 	<section id="bottom">
 		<div class="group-a">
@@ -112,7 +96,7 @@
 				<!-- media -->
 				<div class="mediawrap"><%= link_to image_tag(@news.first.mediafiles.first.media.thumb_220.url), @news.first.to_url unless @news.first.mediafiles.empty? %></div>
 				<h5><%= link_to @news.first.title, @news.first.to_url %></h5>
-				<%= truncate @news.first.excerpt, :length => 120 %>
+				<%= @news.first.excerpt %>
 				<ul>
 					<% @news.last(2).each do |story| %>
 						<li><%= link_to truncate(story.title), story.to_url %></li>
@@ -120,33 +104,45 @@
 				</ul>
 				<div class="clear"></div>
 			</div>
-			
+			<div class="separator"></div>
 			<div class="section-box" id="ae-section-box">
 				<h4>Arts</h4>
 				<!-- media from first -->
 				<div class="mediawrap"><%= link_to image_tag(@ae.first.mediafiles.first.media.thumb_220.url), @ae.first.to_url unless @ae.first.mediafiles.empty? %></div>
+				<h5><%= link_to @ae.first.title, @ae.first.to_url %></h5>
+				<%= @ae.first.excerpt %>
 				<ul>
-					<% @ae.each do |story| %>
-						<li><%= link_to story.title, story.to_url %></li>
+					<% @ae.last(2).each do |story| %>
+						<li><%= link_to truncate(story.title), story.to_url %></li>
 					<% end %>
 				</ul>
 			</div>
+		</div>
 			
+		<div class="group-b">
+			<div class="section-box" id="opinion-section-box">
+				<h4>Opinion</h4>
+				<% @opinion.each do |story| %>
+					<h5><%= link_to story.title, story.to_url %></h5>
+					<%= story.excerpt %>
+				<% end %>
+			</div>
+			<div class="separator"></div>
 			<div class="section-box" id="lifestyle-section-box">
 				<h4>Lifestyle</h4>
 				<!-- media from first -->
 				<div class="mediawrap"><%= link_to image_tag(@lifestyle.first.mediafiles.first.media.thumb_220.url), @lifestyle.first.to_url unless @lifestyle.first.mediafiles.empty? %></div>
+				<h5><%= link_to @lifestyle.first.title, @lifestyle.first.to_url %></h5>
+				<%= @lifestyle.first.excerpt %>
 				<ul>
-					<% @lifestyle.each do |story| %>
-						<li><%= link_to story.title, story.to_url %></li>
+					<% @lifestyle.last(2).each do |story| %>
+						<li><%= link_to truncate(story.title), story.to_url %></li>
 					<% end %>
 				</ul>
 			</div>
-		
-		<div class="clear"></div>
 		</div>
-		
-		<div class="group-b">
+
+		<div class="group-c">
 			<section id="popular">
 				<h4>Popular on the Beacon</h4>
 				<ol>
@@ -155,37 +151,37 @@
 							<!-- media -->
 							<li>
 								<%= link_to image_tag(story.mediafiles.first.media.thumb_40.url), story.to_url unless story.mediafiles.empty? %>
-								<%= link_to truncate(story.title, :length => 60), story.to_url %>
+								<%= link_to story.title, story.to_url %>
 								<div class="clear"></div>
 							</li>
 						</div>
 					<% end %>
 				</ol>
 			</section>
-			
-			<div class="section-box" id="opinion-section-box">
-				<h4>Opinion</h4>
-				<% @opinion.each do |story| %>
-					<h5><%= link_to truncate(story.title, :length => 30), story.to_url %></h5>
-					<%= truncate story.excerpt, :length => 120 %>
-				<% end %>
-			</div>
 			<div class="section-box" id="sports-section-box">
 				<h4>Sports</h4>
 				<!-- media from first -->
 				<div class="mediawrap"><%= link_to image_tag(@sports.first.mediafiles.first.media.thumb_220.url), @sports.first.to_url unless @sports.first.mediafiles.empty? %></div>
-				
+				<h5><%= link_to @sports.first.title, @sports.first.to_url %></h5>
+				<%= @sports.first.excerpt %>
 				<ul>
-					<% @sports.each do |story| %>
-						<li><%= link_to story.title, story.to_url %></li>
+					<% @sports.last(2).each do |story| %>
+						<li><%= link_to truncate(story.title), story.to_url %></li>
 					<% end %>
-				</ul>
+				</ul>				
 			</div>
-			<div class="clear"></div>
 		</div>
 		
-		<div class="clear"></div>
 		
 	</section>
 	<div class="clear"></div>
-</div>		
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=128499383927655";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

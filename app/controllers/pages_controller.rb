@@ -3,7 +3,6 @@ require 'will_paginate/array'
 class PagesController < ApplicationController
 	def home
 		@current_user = current_user
-		
 		@main_story = find_tag_articles("Main Story", 1).pop
 		@featured_stories = find_tag_articles "Featured Story"
 		# fs = @featured_stories.map {|s| s.mediafiles.count >= 1 }.count(false)
@@ -11,17 +10,17 @@ class PagesController < ApplicationController
 		# 	@featured_stories << find_more_tag_articles("Featured Story", fs)
 		# 	@featured_stories.flatten!
 		# end
-		logger.debug "fs = #{@featured_stories.count}"
-		@middle_stories = find_tag_articles "Middle Strip Story" #should be 4 eventually
+		@section_first_stories = Section.order("name ASC").map {|s| s.articles.order("created_at DESC").first }
+		@middle_stories = find_tag_articles "Middle Strip Story", 5
 		@news = find_section_articles "News"
 		@opinion = find_section_articles "Opinion", 2
 		@ae = find_section_articles "Arts"
 		@lifestyle = find_section_articles "Lifestyle"
 		@sports = find_section_articles "Sports"
 		@popular = popular_articles
-		
 		@home_header = true
 		@include_responsive = true
+		@tweets = Twitter.user_timeline("beaconupdate").first(10)
 	end
 	
 	def tips

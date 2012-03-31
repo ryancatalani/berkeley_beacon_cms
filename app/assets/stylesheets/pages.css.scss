@@ -2,64 +2,53 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-html, body {
-	height: 100%;
-}
-
-body {
-	font: 14px/18px "PT Serif", Times, serif;
-}
-
-#main {
-//	width: 960px;
-}
-
-#left { 
+#left, #center, #right { 
 	float: left;
+}
+
+#left {
+	width: 46%;
+	margin-right: 2%;
+	border-right: 1px solid #ddd;
+	padding-right: 2%;
+}
+
+#center {
+	width: 25%;
+	margin-right: 2%;
+	border-right: 1px solid #ddd;
+	padding-right: 2%;
 }
 
 #right {
-	float: left;
+	width: 25%;
+
 }
 
-#featured-stories {
-	width: 700px;
-	margin: 10px 10px 0;
+.separator {
+	margin: 1.5em 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	height: 3px;
+	clear: both;
+	float: none;
 }
 
-#tip_btn {
-	background-color: #fdfdfd;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(253, 253, 253)), to(rgb(203, 203, 203)));
-	background-image: -webkit-linear-gradient(top, rgb(253, 253, 253), rgb(203, 203, 203));
-	background-image: -moz-linear-gradient(top, rgb(253, 253, 253), rgb(203, 203, 203));
-	background-image: -o-linear-gradient(top, rgb(253, 253, 253), rgb(203, 203, 203));
-	background-image: -ms-linear-gradient(top, rgb(253, 253, 253), rgb(203, 203, 203));
-	background-image: linear-gradient(top, rgb(253, 253, 253), rgb(203, 203, 203));
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fdfdfd', EndColorStr='#cbcbcb');
-	border-radius: 8px;
-	-moz-border-radius: 8px;
-	padding: 8px;
-	border: 1px #c0c0c0 solid;
-	width: 200px;
-	display: block;
-	text-align: center;
-	margin-bottom: 10px;
-	font-weight: bold;
-}
-
-#tip_btn:hover {
-	background-color: #cbcbcb;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(203, 203, 203)), to(rgb(232, 232, 232)));
-	background-image: -webkit-linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
-	background-image: -moz-linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
-	background-image: -o-linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
-	background-image: -ms-linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
-	background-image: linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#cbcbcb', EndColorStr='#e8e8e8');
-	text-decoration: none;
-	-moz-box-shadow: 0 0 5px #d0d0d0;
-	-webkit-box-shadow: 0 0 5px #d0d0d0;
-	box-shadow: 0 0 5px #d0d0d0;
+#latest_tweets {
+	margin-top: 1.5em;
+	li {
+		margin-bottom: 0.5em;
+		border-bottom: 1px dotted #ccc;
+		padding-bottom: 0.5em;
+	}
+	li:last-child {
+		border-bottom: none;
+	}
+	.time_ago {
+		font-weight: bold;
+		display: inline;
+		color: #666;
+	}
 }
 
 .featured-story-img-wrap {
@@ -67,58 +56,62 @@ body {
 	width: 220px;
 	overflow: hidden;
 	margin-bottom: 10px;
+	float: left;
+	margin-right: 1em;
+}
+
+
+.featured-story {
+	border-top: 1px solid #ccc;
+	margin-top: 1em;
+	padding-top: 1em;
 }
 
 .byline {
 	font-style: italic;
 }
 
-#top-sidebar {
-	width: 210px;
-	min-height: 640px;
-	padding-left: 10px;
-	border-left: 1px solid #cbcbcb;
-	float: right;
-}
-
 #main-story {
-	width: 700px;
-	
-	.story-text {
-		width: 220px;
-		margin-right: 10px;
-		float: left;
-	}
-	
 	.main-story-img-wrap {
 		height: 344px;
-		width: 460px;
+		width: 100%;
 		overflow: hidden;
 		img {
 			margin-top: -58px;
 		}
-		margin-left: 10px;
 		float: left;
-
 	}
-	
 	margin-bottom: 20px;
-	
 }
 
-.featured-story {
-	width: 220px;
-	margin: 0 10px;
-	float: left;
-	
-}
-
-.featured-story.num-1 {
-	margin-left: 0;
-}
-
-.featured-story.num-3 {
-	margin-right: 0;
+#center {
+	.story {
+		margin-bottom: 1em;
+		padding-bottom: 1em;
+		border-bottom: 1px dotted #ccc;
+		.section_title {
+			text-transform: uppercase;
+			font-size: 12px;
+			font-weight: bold;
+			color: #666;
+		}
+		h3 {
+			font-size: 15px;
+			line-height: 18px;
+			font-weight: bold;
+			a {
+				color: #454545;
+			}
+		}
+		img {
+			float: right;
+			width: 31%;
+			margin-left: 4%;
+		}
+	}
+	.story:last-child {
+		border-bottom: none;
+	}
 }
 
 #middle {
@@ -128,41 +121,17 @@ body {
 	padding: 10px 0;
 }
 
-.middle-strip-story {
-	width: 300px;
-	margin: 0 10px;
+.group-a, .group-b, .group-c {
 	float: left;
-	font: 14px/18px "PT Serif", Times, serif;
-	
-	.mediawrap {
-		height: 94px;
-		margin-right: 10px;
-		float: left;
-	}
-	
-	img {
-		margin-top: -23px;
-		width: 140px;
-
-	}
-	
-	.story-text {
-		width: 150px;
-		float: left;
-	}
-	
-	strong {
-		display: block;
-		font-weight: bold;
-	}
-	
+	width: 31%;
+}
+.group-a, .group-b {
+	margin-right: 2%;
+	padding-right: 2%;
+	border-right: 1px solid #ccc;
 }
 
-
 .section-box, #popular {
-	width: 220px;
-	min-height: 220px;
-	margin: 0 10px;
 	float: left;
 	h4 {
 		font: 14px/14px "Arvo", Rockwell, serif;
@@ -178,61 +147,19 @@ body {
 	img {
 		margin-top: 10px;
 	}
-}
-
-.mediawrap {
-	height: 146px;
-	overflow: hidden;
-}
-
-
-
-.section-box img {
-	width: 220px;
-	margin-top: -37px;
-}
-
-.group-a, .group-b {
-	width: 480px;
-	float: left;
-}
-
-.group-a {
-	border-right: 1px solid #cbcbcb;
-	width: 479px;
-}
-
-#news-section-box {
-	width: 460px;
-	border-bottom: 1px solid #cbcbcb;
+	margin-bottom: 1em;
 	.mediawrap {
-		height: 160px;
-		float: left;
+		width: 100%;
+		max-height: 200px;
+		overflow: hidden;
+		img {
+			width: 100%;
+			margin-top: -10px;
+		}
 	}
-	img {
-		margin-right: 10px;
-		margin-bottom: 10px;
-	}
-}
-
-#ae-section-box {
-	width: 218px;
-	border-right: 1px solid #cbcbcb;
-	padding-top: 20px;
-	margin-right: 0;
-	padding-right: 10px;
-}
-
-#lifestyle-section-box {
-	padding-top: 20px;
 }
 
 #popular {
-	float: right;
-	min-height: 425px;
-	width: 209px;
-	padding-left: 10px;
-	border-left: 1px solid #cbcbcb;
 	ol {
 		list-style: decimal;
 		list-style-position: inside;
@@ -250,11 +177,6 @@ body {
 		margin-top: 5px;
 		margin-right: 10px;
 	}
-}
-
-#sports-section-box {
-	padding-top: 20px;
-	border-top: 1px solid #cbcbcb;
 }
 
 .clear {
@@ -745,4 +667,39 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	input {
 		margin: 0;
 	}
+}
+
+#tip_btn {
+	background-color: #fdfdfd;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(253, 253, 253)), to(rgb(203, 203, 203)));
+	background-image: -webkit-linear-gradient(top, rgb(253, 253, 253), rgb(203, 203, 203));
+	background-image: -moz-linear-gradient(top, rgb(253, 253, 253), rgb(203, 203, 203));
+	background-image: -o-linear-gradient(top, rgb(253, 253, 253), rgb(203, 203, 203));
+	background-image: -ms-linear-gradient(top, rgb(253, 253, 253), rgb(203, 203, 203));
+	background-image: linear-gradient(top, rgb(253, 253, 253), rgb(203, 203, 203));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fdfdfd', EndColorStr='#cbcbcb');
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	padding: 8px;
+	border: 1px #c0c0c0 solid;
+	width: 100%;
+	display: block;
+	text-align: center;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+#tip_btn:hover {
+	background-color: #cbcbcb;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(203, 203, 203)), to(rgb(232, 232, 232)));
+	background-image: -webkit-linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
+	background-image: -moz-linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
+	background-image: -o-linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
+	background-image: -ms-linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
+	background-image: linear-gradient(top, rgb(203, 203, 203), rgb(232, 232, 232));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#cbcbcb', EndColorStr='#e8e8e8');
+	text-decoration: none;
+	-moz-box-shadow: 0 0 5px #d0d0d0;
+	-webkit-box-shadow: 0 0 5px #d0d0d0;
+	box-shadow: 0 0 5px #d0d0d0;
 }
