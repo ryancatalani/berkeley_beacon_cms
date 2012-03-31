@@ -49,7 +49,8 @@ BeaconApp::Application.routes.draw do
 			end
 		end
 	end
-		
+	
+  match "/arts-and-entertainment" => redirect("/arts")
 	controller :sections do
 		match ":name", :to => :show
 	end

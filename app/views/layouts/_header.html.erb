@@ -31,7 +31,7 @@
 					<li><%= link_to 'Opinion', '/opinion' %></li>
 					<li><%= link_to 'Sports', '/sports' %></li>
 					<li><%= link_to 'Lifestyle', '/lifestyle' %></li>
-					<li><%= link_to 'Arts & Entertainment', '/arts-and-entertainment' %></li>
+					<li><%= link_to 'Arts', '/arts' %></li>
 					<li id="nav_date"><%= Date.today.strftime("%A, %B %e, %Y") %></li>
 				</ol>
 				
@@ -57,7 +57,7 @@
 				<li class="show_section"><%= link_to 'Opinion', '/opinion' %></li>
 				<li class="show_section"><%= link_to 'Sports', '/sports' %></li>
 				<li class="show_section"><%= link_to 'Lifestyle', '/lifestyle' %></li>
-				<li class="show_section"><%= link_to 'Arts & Entertainment', '/arts-and-entertainment' %></li>
+				<li class="show_section"><%= link_to 'Arts', '/arts' %></li>
 				<% if @home_header %>
 					<li id="search_btn_wrap">
 						<%= link_to 'Search', '#', :id => 'search_btn' %>

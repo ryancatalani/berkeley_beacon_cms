@@ -15,7 +15,7 @@ class PagesController < ApplicationController
 		@middle_stories = find_tag_articles "Middle Strip Story" #should be 4 eventually
 		@news = find_section_articles "News"
 		@opinion = find_section_articles "Opinion", 2
-		@ae = find_section_articles "Arts & Entertainment"
+		@ae = find_section_articles "Arts"
 		@lifestyle = find_section_articles "Lifestyle"
 		@sports = find_section_articles "Sports"
 		@popular = popular_articles
