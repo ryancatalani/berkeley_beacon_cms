@@ -89,3 +89,26 @@
 		color: #aaa;
 	}
 }
+
+@media screen and (max-width: 479px) { 
+	#section-wrap {
+		width: 98%;
+		padding: 1% 0;
+	}
+	#section-articles, #section-sidebar {
+		float: none;
+		width: 100%;
+		border: none;
+		margin: 0;
+		padding: 0;
+	}
+	#main-section-story {
+		.media {
+			width: 100%;
+			img {
+				width: 100%;
+			}
+		}
+	}
+
+}
