@@ -21,6 +21,7 @@ class PagesController < ApplicationController
 		@popular = popular_articles
 		
 		@home_header = true
+		@include_responsive = true
 	end
 	
 	def tips
