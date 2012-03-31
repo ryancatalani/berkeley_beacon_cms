@@ -150,8 +150,10 @@ h1 {
 }
 
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 640px) {
 	#home_header {
+		width: 98%;
+		padding: 0 1%;
 		#nav {
 			width: 100%;
 			ol {
@@ -175,8 +177,8 @@ h1 {
 			width: 100%;
 		}
 		h1 {
-			font-size: 35px;
-			line-height: 35px;
+			font-size: 2em;
+			line-height: 2.5px;
 		}
 		#nav {
 			h2 {
