@@ -24,6 +24,11 @@ class Article < ActiveRecord::Base
 		ret << twitter_people unless title.length + 20 + twitter_people.length > 140
 		return ret
 	end
+
+	def first_photo
+			return mediafiles.where(:mediatype => 1).first if mediafiles.count > 0
+			return nil
+	end
 	
 	# As SGA resignations increase, officials discuss term length requirement
 	

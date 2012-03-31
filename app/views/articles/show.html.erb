@@ -16,37 +16,18 @@
 	<% end %>
 	<h3>By <%= bylineify_linked(@article).html_safe %> <br /> <%= (@article.created_at - 5.hours).strftime("%B %e, %Y at %l:%M %P") %></h3>
 	
-	<% unless @article.mediafiles.empty? %>
-		<div id="media">
-			<% if @article.mediafiles.count > 1 %>
-				<div id="gallery_back_btn"></div>
-				<div id="gallery_forward_btn"></div>
-			<% end %>
-			
-			<div id="gallery_wrap" <%= "style='height:560px'" if @article.mediafiles.first.mediatype == 2 %>>
-				<% @article.mediafiles.each_with_index do |mediafile,index| %>
-					<div class="media_container">
-						<div class="media_wrap">
-							<% if mediafile.mediatype == 2 %>
-								<%= video_tag(@article.mediafiles.first).html_safe %>			
-							<% else %>
-								<%= image_tag "loading.gif", :id => "mediafile_loading" %>
-								<img src="<%= mediafile.media.url %>" class="big_photo" <%= "style='display:none'" if index.zero? %>/>
-							<% end %>
-						</div>
-						<div id="metadata">
-							<div id="caption">
-								<%= mediafile.title %>
-							</div>
-							<div id="credit">
-								<%= bylineify_linked(mediafile).html_safe %>
-							</div>
-							<div class="clear"></div>
-						</div>
-					</div>
-				<% end %>
+	<% unless @article.first_photo.nil? %>
+		<div id="big_photo_wrap">
+			<div id="metadata">
+				<div id="caption">
+					<%= @article.first_photo.title %>
+				</div>
+				<div id="credit">
+					<%= bylineify_linked(@article.first_photo).html_safe %>
+				</div>
+				<div class="clear"></div>
 			</div>
-		</div>
+		</div>		
 	<% end %>
 	
 	<div id="body">
