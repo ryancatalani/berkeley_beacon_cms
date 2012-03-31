@@ -296,8 +296,9 @@ a {
 		border-bottom: 1px solid #cbcbcb;
 		li {
 			list-style-type: none;
-			border-bottom: 1px dotted #ccc;
-			padding: 0.5em 0;
+			border-top: 1px dotted #ccc;
+			padding-top: 1em;
+			margin-top: 1em;
 		}
 		min-height: 0;
 		.mediawrap {
