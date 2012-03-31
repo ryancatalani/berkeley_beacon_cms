@@ -18,14 +18,15 @@
 	
 	<% unless @article.first_photo.nil? %>
 		<div id="big_photo_wrap">
+			<div id="big_photo"></div>
 			<div id="metadata">
-				<div id="caption">
-					<%= @article.first_photo.title %>
-				</div>
-				<div id="credit">
-					<%= bylineify_linked(@article.first_photo).html_safe %>
-				</div>
-				<div class="clear"></div>
+					<div id="caption">
+						<%= @article.first_photo.title %>
+					</div>
+					<div id="credit">
+						<%= bylineify_linked(@article.first_photo).html_safe %>
+					</div>
+					<div class="clear"></div>
 			</div>
 		</div>		
 	<% end %>
@@ -108,3 +109,7 @@
 	</div>
 	<div class="clear"></div>
 </div>
+
+<script>
+	$("#big_photo").anystretch("<%= @article.first_photo.media.url.html_safe %>");
+</script>

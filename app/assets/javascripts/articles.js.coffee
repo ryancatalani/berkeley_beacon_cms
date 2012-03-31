@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+	$("#sections").click ->
+		if $(".show_section").eq(0).css('display') == 'none' then $(".show_section").show() else $(".show_section").hide()
+
+
 	$("div[rel=popover]").popover()
 	$("div[rel=tooltip]").tooltip()
 	$("a[rel=tooltip]").tooltip()	

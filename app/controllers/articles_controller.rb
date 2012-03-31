@@ -140,6 +140,7 @@ class ArticlesController < ApplicationController
 	end
 	
 	def show
+		@include_responsive = true
 		logger.debug("article show params = #{params}")
 		found = Article.where(:cleantitle => params[:title])
 		if found.count == 1

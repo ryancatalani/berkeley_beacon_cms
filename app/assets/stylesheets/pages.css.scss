@@ -298,90 +298,23 @@ a {
 	}
 }
 
-@media screen and (max-width: 959px) { 
-	#featured-stories {
-		width: 47%;
-		margin: 0 1%;
-	}
-	#top-sidebar {
-		width: 47%;
-		margin: 0 1%;
-		min-height: 640px;
-	}
-	.featured-story {
-		width: 100%;
-		float: none;
-		margin: 0;
-	}
+@media screen and (max-width: 479px) { 
 	#main-story {
-		width: 98%;
-		margin: 0 1%;
 		.story-text {
-			width: 49%;
-			margin-right: 0;
-			float: left;
+			float: none;
+			width: 100%;
 		}
 		.main-story-img-wrap {
-			max-height: 345px;
-			width: 49%;
-			overflow: hidden;
+			float: none;
+			height: auto;
+			margin-top: .5em;
+			width: 100%;
 			img {
 				width: 100%;
 			}
-			margin-left: 0;
-			float: left;
-
 		}
-		margin-bottom: 20px;
 	}
-	
-	.middle-strip-story {
-		width: 31%;
-		margin: 0 1%;
-		float: left;
-		font: 14px/18px "PT Serif", Times, serif;
-		img {
-			width: 46%;
-			margin-right: 4%;
-			float: left;
-		}
-		.story-text {
-			width: 50%;
-			float: left;
-		}
-
-	}
-	.group-b {
-		width: 47%;
-		padding: 0 1%;
-		border-left: 1px solid #cbcbcb;
-	}
-	.group-a {
-		width: 48%;
-		padding: 0 1%;
-		border: none;
-	}
-	.section-box {
-		border: none;
-		height: auto;
-	}
-	#news-section-box, #ae-section-box, #sports-section-box, #lifestyle-section-box, #opinion-section-box {
-		width: 100%;
-		border: none;
-		margin: 0;
-		padding-bottom: 20px;
-		border-bottom: 1px solid #cbcbcb;
-	}
-	#popular {
-		width: 100%;
-		margin: 0;
-		padding: 0;
-		border: none;
-	}
-}
-
-@media screen and (max-width: 479px) { 
-	#featured-stories, #top-sidebar {
+	#main-story, #featured-stories, #top-sidebar {
 		width: 98%;
 		float: none;
 		margin: 5% 1%;
@@ -391,6 +324,13 @@ a {
 	#featured-stories {
 		border-bottom: 1px solid #cbcbcb;
 		padding-bottom: 5%;
+	}
+	.featured-story {
+		width: 100%;
+		float: none;
+		margin: 0 0 1em;
+		border-top: 1px dotted #bbb;
+		padding-top: 1em;
 	}
 	.group-a, .group-b {
 		width: 98%;
@@ -412,8 +352,42 @@ a {
 			width: 100%;
 			float: none;
 		}
-
 	}
+	.section-box {
+		border: none;
+		height: auto;
+	}
+	#top #right {
+		display: none;
+	}
+	#news-section-box, #ae-section-box, #sports-section-box, #lifestyle-section-box, #opinion-section-box {
+		width: 100%;
+		border: none;
+		margin: 0;
+		padding-bottom: 20px;
+		border-bottom: 1px solid #cbcbcb;
+		li {
+			list-style-type: none;
+			border-bottom: 1px dotted #ccc;
+			padding: 0.5em 0;
+		}
+		min-height: 0;
+		.mediawrap {
+			float: none;
+			width: 100%;
+			img {
+				width: 100%;
+				margin-top: -110px;
+			}
+		}
+	}
+	#popular {
+		width: 100%;
+		margin: 0;
+		padding: 1em 0;
+		border: none;
+	}
+
 	
 }
 
