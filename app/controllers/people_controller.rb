@@ -67,6 +67,7 @@ class PeopleController < ApplicationController
 	end
 	
 	def show
+		@include_responsive = true
 		if params[:id]
 			@person = Person.find(params[:id])
 		elsif params[:name]

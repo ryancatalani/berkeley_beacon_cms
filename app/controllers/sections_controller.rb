@@ -2,6 +2,7 @@ class SectionsController < ApplicationController
 	# before_filter :gohome
 	
 	def show
+		@include_responsive = true
 		begin
 			section = Section.find_by_clean_url params[:name]
 			@sname = section.name
