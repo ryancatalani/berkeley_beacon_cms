@@ -221,6 +221,17 @@ a {
 }
 
 @media screen and (max-width: 640px) { 
+	#wrap {
+		width: 98%;
+		margin: 0 1%;
+	}
+	#left, #center, #right {
+		width: 100%;
+		float: none;
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
 	#main-story {
 		.story-text {
 			float: none;
@@ -238,9 +249,9 @@ a {
 		}
 	}
 	#main-story, #featured-stories, #top-sidebar {
-		width: 98%;
+		width: 100%;
 		float: none;
-		margin: 5% 1%;
+		margin: 5% 0;
 		padding: 0;
 		border: none;
 	}
@@ -255,39 +266,28 @@ a {
 		border-top: 1px dotted #bbb;
 		padding-top: 1em;
 	}
-	.group-a, .group-b {
-		width: 98%;
-		margin: 0 1%;
+	.group-a, .group-b, .group-c {
+		width: 100%;
+		margin: 0;
 		border: none;
 		float: none;
-	}
-	.middle-strip-story {
-		width: 31%;
-		margin: 0 1%;
-		float: left;
-		font: 14px/18px "PT Serif", Times, serif;
-		img {
-			width: 100%;
-			margin: 0;
-			float: none;
-		}
-		.story-text {
-			width: 100%;
-			float: none;
+		.separator {
+			display: none;
 		}
 	}
 	.section-box {
 		border: none;
 		height: auto;
 	}
-	#top #right {
+	#latest_tweets {
 		display: none;
 	}
 	#news-section-box, #ae-section-box, #sports-section-box, #lifestyle-section-box, #opinion-section-box {
 		width: 100%;
 		border: none;
 		margin: 0;
-		padding-bottom: 20px;
+		padding-bottom: 1em;
+		padding-top: 1em;
 		border-bottom: 1px solid #cbcbcb;
 		li {
 			list-style-type: none;
