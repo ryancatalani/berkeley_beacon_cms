@@ -20,7 +20,7 @@ class PagesController < ApplicationController
 		@popular = popular_articles
 		@home_header = true
 		@include_responsive = true
-		@tweets = Twitter.user_timeline("beaconupdate").first(10)
+		@tweets = Twitter.user_timeline("beaconupdate").first(10) rescue []
 	end
 	
 	def tips
