@@ -94,3 +94,30 @@ h3 em {
 		display: none;
 	}
 }
+
+@media screen and (max-width: 959px) { 
+	#people_wrap {
+		width: 98%;
+		margin: 0;
+		padding: 0 1%;
+		#profile_img {
+			width: 100%;
+			float: none;
+			margin: 0;
+			padding: 0;
+		}
+		#body {
+			width: 63%;
+			margin: 0;
+			padding: 0;
+			margin-right: 3%;
+			padding-right: 3%;
+			border: none;
+		}
+	}
+	#person_sidebar {
+		float: left;
+		width: 33%;
+		padding-left: 3%;
+	}
+}
