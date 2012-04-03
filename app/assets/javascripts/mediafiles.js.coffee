@@ -19,3 +19,9 @@ jQuery ->
 		$(this).siblings(".mediafile_url").slideToggle()
 		e.preventDefault()
 	)
+	$("#uploaded_files").on("click", ".delete_mediafile", (e) ->
+		$(this).parent().slideUp()
+		del_id = '#' + $(this).attr('id').substr(7)
+		$(del_id).remove()
+		e.preventDefault()
+	)
