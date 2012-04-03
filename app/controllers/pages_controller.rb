@@ -21,6 +21,10 @@ class PagesController < ApplicationController
 		@home_header = true
 		@include_responsive = true
 		@tweets = Twitter.user_timeline("beaconupdate").first(10) rescue []
+		tumblr_latest = Feedzirra::Feed.fetch_and_parse("http://berkeleybeacon.tumblr.com/rss").entries.first
+		@tumblr_latest_title = tumblr_latest.title
+		@tumblr_latest_summary = tumblr_latest.summary
+		@tumblr_latest_url = tumblr_latest.url
 	end
 	
 	def tips
