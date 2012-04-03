@@ -15,3 +15,7 @@ jQuery ->
 	$("#sourcetype_out").click ->
 		$("#source_out_field").fadeToggle()
 		$("#source_in_field").fadeToggle()
+	$("#uploaded_files").on("click", ".show_mediafile_url", (e) ->
+		$(this).siblings(".mediafile_url").slideToggle()
+		e.preventDefault()
+	)
