@@ -94,7 +94,7 @@ class ApplicationController < ActionController::Base
 				ret.flatten!
 				ret.uniq!
 			end
-			return ret.first(num)
+			return ret.first(num).sort_by{|a| a.views}.reverse
 		end
 		
 		def video_tag mediafile, height=500, width=820
