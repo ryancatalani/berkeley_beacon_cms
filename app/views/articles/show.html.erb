@@ -7,6 +7,27 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+</div>
+
+<div id="article_slideshow_wrap">
+	<div id="article_slideshow" class="carousel bs_el">
+		<div class="carousel-inner">
+			<% @article.images.each_with_index do |image,index| %>
+				<div class="item<%= ' active' if index.zero? %>">
+					<%= image_tag image.media.url.html_safe %>
+					<div class="carousel-caption">
+						<%= image.title %> &bull; <em><%= bylineify_linked(image).html_safe %></em>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev" id="carousel_control_left">&lsaquo;</a>
+	    <a class="right carousel-control" href="#myCarousel" data-slide="next" id="carousel_control_right">&rsaquo;</a>
+	</div>
+</div>
+
+<div class="wrap">
+
 <div class="content_wrap article_wrap">
 	<h1><%= @article.title.html_safe %></h1>
 	<% if @article.subtitles %>
@@ -66,6 +87,14 @@
 		<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 	</div>
 	<div id="sidebar">
+		<% if @article.images.count > 1 %>
+			<div id="show_slideshow_sidebar">
+				<%= image_tag @article.images[1].media.thumb_220 %>
+				<a href="#" id="show_slideshow">Show slideshow</a>
+				<div class="separator"></div>
+			</div>
+		<% end %>
+
 		<% if !@article.series_id.nil? and @article.series_id != 0 %>
 			<section id="series_info">
 				<%= image_tag(@article.series.logo.url) if !@article.series.logo.url.nil? %>

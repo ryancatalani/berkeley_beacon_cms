@@ -5,7 +5,17 @@
 jQuery ->
 	$("#sections").click ->
 		if $(".show_section").eq(0).css('display') == 'none' then $(".show_section").show() else $(".show_section").hide()
-
+	$('.carousel').carousel()
+	$("#carousel_control_left").click ->
+		$(".carousel").carousel('prev')
+	$("#carousel_control_right").click ->
+		$(".carousel").carousel('next')
+	$("#article_slideshow_wrap").click ->
+		$(this).fadeOut()
+	.children().click ->
+			return false
+	$("#show_slideshow").click (e) ->
+		$("#article_slideshow_wrap").fadeIn()
 
 	$("div[rel=popover]").popover()
 	$("div[rel=tooltip]").tooltip()

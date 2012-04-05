@@ -186,6 +186,15 @@
 	}
 }
 
+#show_slideshow {
+	background: rgba(0,0,0,0.75);
+	width: 100%;
+	display: block;
+	padding: 4px;
+	color: #fff;
+	margin-top: -3px;
+}
+
 @media screen and (max-width: 959px) {
 	.content_wrap {
 		width: 90%;
@@ -210,6 +219,9 @@
 				width: 100%;
 			}
 		}
+	}
+	#show_slideshow_sidebar {
+		display: none;
 	}
 }
 

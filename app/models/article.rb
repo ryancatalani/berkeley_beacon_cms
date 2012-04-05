@@ -26,8 +26,12 @@ class Article < ActiveRecord::Base
 	end
 
 	def first_photo
-			return mediafiles.where(:mediatype => 1).first if mediafiles.count > 0
-			return nil
+		return mediafiles.where(:mediatype => 1).first if mediafiles.count > 0
+		return nil
+	end
+
+	def images
+		mediafiles.where('mediatype <> 2')
 	end
 	
 	# As SGA resignations increase, officials discuss term length requirement

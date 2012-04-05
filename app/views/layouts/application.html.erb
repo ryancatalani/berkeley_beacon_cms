@@ -12,6 +12,11 @@
 	<%= stylesheet_link_tag    "application" %>
 	<%= javascript_include_tag "application" %>
 
+	<% if @include_bootstrap_carousel %>
+		<%= stylesheet_link_tag "/bootstrap-justcarousel.min.css" %>
+		
+	<% end %>
+	
 	<% if @needs_og %>
 		<meta property="og:title" content="<%= @og[:title] %>" />
 		<meta property="og:type" content="article" />
@@ -49,7 +54,7 @@
 </head>
 <body>
 
-<div id="wrap">
+<div class="wrap">
 	<%= render 'layouts/header' %>
 	<%= yield %>
 	<%= render 'layouts/footer' %>

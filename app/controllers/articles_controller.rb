@@ -141,6 +141,7 @@ class ArticlesController < ApplicationController
 	
 	def show
 		@include_responsive = true
+		@include_bootstrap_carousel = true
 		logger.debug("article show params = #{params}")
 		found = Article.where(:cleantitle => params[:title])
 		if found.count == 1
