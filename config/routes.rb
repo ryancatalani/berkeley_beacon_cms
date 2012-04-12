@@ -27,7 +27,7 @@ BeaconApp::Application.routes.draw do
   match '/ournewvoice', :to => 'pages#ourvoice'
   match '/redesign', :to => 'pages#ourvoice'
 
-  match '/apply' => redirect("http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/Fall2012StaffApplication.doc")
+  match '/apply', :to => 'pages#apply'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]

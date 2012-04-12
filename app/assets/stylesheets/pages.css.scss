@@ -717,3 +717,12 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	-webkit-box-shadow: 0 0 5px #d0d0d0;
 	box-shadow: 0 0 5px #d0d0d0;
 }
+
+#ourvoice_text .apply_small {
+	font-size: 1.3em;
+	margin-bottom: 1em;
+	a {
+		color: #fff;
+		text-decoration: underline;
+	}
+}

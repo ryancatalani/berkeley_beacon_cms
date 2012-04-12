@@ -130,6 +130,17 @@ class PagesController < ApplicationController
 	def tweet
 
 	end
+
+	def apply
+		@title = "Join the Beacon"
+		@new_header = true
+		@og ||= {}
+		@og[:title] = "Our new voice"
+		@og[:url] = "http://berkeleybeacon.com/apply"
+		@og[:image] = "http://berkeleybeacon.com/assets/redesign-promo-#{Random.rand(4)+1}-thumb.jpg"
+		@og[:description] = "Pick up the completely redesigned Berkeley Beacon this Thursday."
+		render :layout => 'new_header'
+	end
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
