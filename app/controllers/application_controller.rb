@@ -112,7 +112,13 @@ class ApplicationController < ActionController::Base
 			ret << "</video>"
 			return ret
 		end
+
+		def og_title
+			return @og[:title] if !@og.nil? and !@og[:title].nil?
+			return @title if !@title.nil?
+			return "The Berkeley Beacon"
+		end
 		
-		helper_method :current_user, :check_editor, :bylineify, :bylineify_linked, :bylineify_short, :popular_articles, :video_tag
+		helper_method :current_user, :check_editor, :bylineify, :bylineify_linked, :bylineify_short, :popular_articles, :video_tag, :og_title
 	
 end

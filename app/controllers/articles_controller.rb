@@ -1,3 +1,5 @@
+include ActionView::Helpers::AssetTagHelper
+
 class ArticlesController < ApplicationController
 	before_filter :check_editor, :except => [:show]
 	# caches_action :show
@@ -154,9 +156,9 @@ class ArticlesController < ApplicationController
 			if @article.mediafiles.any?
 				@og[:image] = @article.mediafiles.first.media.thumb_140.url.html_safe
 			else
-				@og[:image] = ''
+				@og[:image] = nil
 			end
-			@og[:description] = @article.excerpt.blank? ? false : @article.excerpt
+			@og[:description] = @article.excerpt.blank? ? nil : @article.excerpt
 			if @article.views.nil?
 				@article.update_attribute(:views, 1)
 			else

@@ -17,18 +17,18 @@
 		
 	<% end %>
 	
-	<% if @needs_og %>
-		<meta property="og:title" content="<%= @og[:title] %>" />
-		<meta property="og:type" content="article" />
+	<meta property="og:title" content="<%= og_title %>" />
+	<meta property="og:type" content="article" />
+	<% if @og and @og[:url] %>
 		<meta property="og:url" content="<%= "http://#{request.env['SERVER_NAME']}#{@og[:url]}" %>" />
-		<meta property="og:image" content="<%= @og[:image] %>" />
-		<meta property="og:site_name" content="The Berkeley Beacon" />
-		<% unless @og[:description] == false %>
-			<meta property="og:description" content="<%= @og[:description] %>">
-		<% end %>
-		<meta property="fb:admins" content="1600232313" />
-		<script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>
 	<% end %>
+	<meta property="og:image" content="<%= (@og.nil? or @og[:image].nil?) ? "http://#{request.env['SERVER_NAME']}#{path_to_image('b_icon.png')}" : @og[:image] %>" />
+	<meta property="og:site_name" content="The Berkeley Beacon" />
+	<% if @og and @og[:description] %>
+		<meta property="og:description" content="<%= @og[:description] %>">
+	<% end %>
+	<meta property="fb:admins" content="1600232313" />
+	<script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>
 	
 	<%= csrf_meta_tags %>
 

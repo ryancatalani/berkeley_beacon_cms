@@ -30,6 +30,8 @@ class PagesController < ApplicationController
 			@tumblr_latest_title = "Click here to see the latest post."
 			@tumblr_latest_url = "http://berkeleybeacon.tumblr.com"
 		end
+		@og ||= {}
+		@og[:description] = "Emerson College's independent student newspaper"
 	end
 	
 	def tips
