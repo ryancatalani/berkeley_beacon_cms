@@ -20,7 +20,7 @@ class PagesController < ApplicationController
 		@popular = popular_articles
 		@home_header = true
 		@include_responsive = true
-		@tweets = Twitter.user_timeline("beaconupdate").first(10) rescue []
+		@tweets = Twitter.user_timeline("beaconupdate").first(8) rescue []
 		begin
 			tumblr_latest = Feedzirra::Feed.fetch_and_parse("http://berkeleybeacon.tumblr.com/rss").entries.first
 			@tumblr_latest_title = tumblr_latest.title
