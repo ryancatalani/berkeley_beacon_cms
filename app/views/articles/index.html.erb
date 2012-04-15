@@ -10,6 +10,7 @@
 			<th width="150px">Actions</th>
 			<th width="50%">Title</th>
 			<th>Media</th>
+			<th>Views</th>
 			<th>Set as...</th>
 		</tr>
 	</thead>
@@ -41,6 +42,9 @@
 					</ul>
 				</td>
 				<td>
+					<%= article.views rescue "0" %>
+				</td>
+				<td>
 					<div rel="popover" data-content="The biggest story on the homepage." data-original-title="Lead Story">
 						<%= link_to "Lead story", "/new_tag/1/article/#{article.id}", :method => :post, :class => "btn" %>
 					</div>
@@ -62,6 +66,7 @@
 			<th width="150px">Actions</th>
 			<th width="50%">Title</th>
 			<th>Media</th>
+			<th>Views</th>
 			<th>Set as...</th>
 		</tr>
 	</thead>
@@ -91,6 +96,9 @@
 						</li>
 					<% end %>
 					</ul>
+				</td>
+				<td>
+					<%= article.views rescue "0" %>
 				</td>
 				<td>
 					<div rel="popover" data-content="The biggest story on the homepage." data-original-title="Lead Story">
