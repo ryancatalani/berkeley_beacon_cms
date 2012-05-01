@@ -29,6 +29,10 @@
 <div class="wrap">
 
 <div class="content_wrap article_wrap">
+	<% if editor_logged_in %>
+		<%= link_to "Edit this story", edit_article_url(@article), :class => "btn" %>
+	<% end %>
+
 	<h1><%= @article.title.html_safe %></h1>
 	<% if @article.subtitles %>
 		<% @article.subtitles.each do |subtitle| %>
