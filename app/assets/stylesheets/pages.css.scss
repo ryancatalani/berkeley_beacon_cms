@@ -73,14 +73,14 @@
 
 #main-story {
 	.main-story-img-wrap {
-		height: 344px;
+		height: auto;
 		width: 100%;
 		overflow: hidden;
 		img {
 			margin-top: 0px;
 		}
 		float: left;
-		margin-bottom: 1em;
+		margin-bottom: 0.5em;
 	}
 	margin-bottom: 20px;
 }
