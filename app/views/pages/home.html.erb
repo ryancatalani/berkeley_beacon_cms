@@ -10,9 +10,7 @@
 						<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
 						<div class="byline">By <%= bylineify_short @main_story.people %></div>
 					</div>
-					<div class="main-story-img-wrap">
-						<div class="excerpt"><%= @main_story.excerpt %></div>
-					</div>			
+					<div class="excerpt"><%= @main_story.excerpt %></div>	
 				<% else %>
 					<div class="main-story-img-wrap">
 						<%= link_to image_tag(@main_story.first_photo.media.thumb_460.url), @main_story.to_url %>					
