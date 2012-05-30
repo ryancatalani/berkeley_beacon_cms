@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
 		@authors.unshift(["Choose an author",0])
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
+		@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
 	end
 	
 	def create
