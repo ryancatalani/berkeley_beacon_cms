@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503075905) do
+ActiveRecord::Schema.define(:version => 20120530183715) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120503075905) do
     t.boolean  "archive"
     t.text     "archive_images"
     t.boolean  "disable_comments"
+    t.integer  "blog_id"
   end
 
   create_table "attributions", :force => true do |t|
@@ -47,6 +48,13 @@ ActiveRecord::Schema.define(:version => 20120503075905) do
   create_table "authorships", :force => true do |t|
     t.integer  "person_id"
     t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "blogs", :force => true do |t|
+    t.text     "description"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

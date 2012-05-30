@@ -10,6 +10,7 @@ class Article < ActiveRecord::Base
 	serialize :subtitles
 	belongs_to :section
 	belongs_to :series
+	belongs_to :blog
 	before_save :check_clean_title
 	serialize :archive_images
 	# default_scope :order => 'created_at DESC'
