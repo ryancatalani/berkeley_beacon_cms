@@ -1,4 +1,5 @@
 BeaconApp::Application.routes.draw do
+
 	get "admin/home"
 	controller :people do 
 		match "/staff/:name", :to => :show
@@ -35,6 +36,7 @@ BeaconApp::Application.routes.draw do
 	resources :articles, :only => [:new, :create, :edit, :update, :destroy, :index]
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :mediafiles
+  resources :blogs, :only => [:new, :create, :edit, :update, :index]
 	# resources :sections, :only => [:show]	
 	match '/login', :to => 'sessions#new'
 	match '/logout', :to => 'sessions#destroy'
