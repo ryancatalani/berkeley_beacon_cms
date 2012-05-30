@@ -21,7 +21,9 @@ class Article < ActiveRecord::Base
 	end
 	
 	def tweet
-		ret = "#{title.truncate(119, :separator => ' ')} http://berkeleybeacon.com#{to_url}"
+		t = title
+		t = "From #{blog.title}: #{t}" if blog
+		ret = "#{t.truncate(119, :separator => ' ')} http://berkeleybeacon.com#{to_url}"
 		ret << twitter_people unless title.length + 20 + twitter_people.length > 140
 		return ret
 	end
