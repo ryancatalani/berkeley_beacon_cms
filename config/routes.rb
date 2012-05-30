@@ -37,7 +37,6 @@ BeaconApp::Application.routes.draw do
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :mediafiles
   resources :blogs, :only => [:new, :create, :edit, :update, :index]
-  match '/blogs/:title', :to => 'blogs#by_title'
 	# resources :sections, :only => [:show]	
 	match '/login', :to => 'sessions#new'
 	match '/logout', :to => 'sessions#destroy'
@@ -59,7 +58,9 @@ BeaconApp::Application.routes.draw do
 	controller :sections do
 		match ":name", :to => :show
 	end
-	
+  controller :blogs do
+    match "/blogs/:name", :to => :show
+  end	
 	
 	
   # The priority is based upon order of creation:

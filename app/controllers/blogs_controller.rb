@@ -23,6 +23,17 @@ class BlogsController < ApplicationController
   def update
   end
 
+  def show
+    @include_responsive = true
+    begin
+      @blog = Blog.find_by_cleantitle params[:name]
+      @articles = @blog.articles.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    rescue
+      redirect_to root_path
+    end
+
+  end
+
   def by_title
   end
 
