@@ -116,19 +116,19 @@
 			<div class="tab-content">
 				<div class="tab-pane active" id="main_site_options">
 					<div class="field">
-						<%= label_tag :section %>
-						<%= select_tag :section, options_for_select(@sections)  %>
+						<%= f.label :section_id %>
+						<%= f.select :section_id, options_for_select(@sections)  %>
 					</div>
 					<div id="series" class="field">
 						<%= f.label :series_id %>
-						<%= select_tag :series_id, options_for_select(@series) %>
+						<%= f.select :series_id, options_for_select(@series) %>
 					</div>
 					<a href="<%= new_series_path %>" class="btn"><i class="icon-plus"></i> New Series</a>
 				</div>
 				<div class="tab-pane" id="blog_options">
 					<div id="blog" class="field">
 						<%= f.label :blog_id %>
-						<%= select_tag :blog_id, options_for_select(@blogs) %>
+						<%= f.select :blog_id, options_for_select(@blogs) %>
 					</div>
 					<a href="<%= new_blog_path %>" class="btn"><i class="icon-plus"></i> New Blog</a>
 				</div>

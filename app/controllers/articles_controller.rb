@@ -43,7 +43,12 @@ class ArticlesController < ApplicationController
 				end # begin
 			end # each
 		end # else
-		@article = Section.find(params[:section]).articles.build(p)
+		if p[:blog_id].to_i.zero? or p[:blog_id].nil?
+			@article = Section.find(p[:section_id]).articles.build(p)
+		else
+			p[:section_id] = nil
+			@article = Blog.find(p[:blog_id]).articles.build(p)
+		end
 				
 		if @article.save
 			@article.update_attribute(:views,0)
