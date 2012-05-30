@@ -1,3 +1,45 @@
 // Place all the styles related to the Blogs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#blog-articles {
+	border: 1px solid #ccc;
+	padding: 20px;
+	width: 640px;
+	float: left;
+	padding-right: 39px;
+	margin-right: 40px;
+
+}
+
+#blog_title {
+	margin: -35px auto 10px;
+	text-align: center;
+	h2 {
+		background: #fff;
+		padding: 0 20px;
+		width: auto;
+		display: inline-block;
+	}
+}
+
+#blog_description {
+	font-style: italic;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 20px;
+	margin-bottom: 30px;
+}
+
+@media screen and (max-width: 959px) { 
+	#blog-articles {
+		width: 65%;
+		margin-right: 1%;
+	}
+}
+
+@media screen and (max-width: 640px) { 
+	#blog-articles {
+		width: 98%;
+		margin: 0 1% 30px;
+	}
+}

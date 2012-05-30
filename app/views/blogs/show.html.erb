@@ -1,6 +1,8 @@
 <div id="section-wrap">
 
-	<div id="section-articles">
+	<div id="blog-articles">
+		<div id="blog_title"><h2><%= @blog.title %></h2></div>
+		<div id="blog_description"><%= @blog.description %></div>
 		<% @articles.each_with_index do |article,i| %>
 			<div class="article">
 				<% unless article.mediafiles.empty? or article.mediafiles.first.media.url.nil? or article.mediafiles.first.mediatype == 2 %>
@@ -20,10 +22,6 @@
 	</div>
 
 	<div id="section-sidebar">
-		<h2><%= @blog.title %></h2>
-		<p><%= @blog.description %></p>
-
-		<div class="separator"></div>
 
 		<section id="popular">
 			<h4>Popular on the Beacon</h4>
