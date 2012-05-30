@@ -7,7 +7,9 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(params[:blog])
+    p = params[:blog]
+    p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
+    @blog = Blog.new(p)
     if @blog.save
       redirect_to new_article_path
     else
@@ -19,6 +21,9 @@ class BlogsController < ApplicationController
   end
 
   def update
+  end
+
+  def by_title
   end
 
 end

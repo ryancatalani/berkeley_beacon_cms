@@ -37,6 +37,7 @@ BeaconApp::Application.routes.draw do
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :mediafiles
   resources :blogs, :only => [:new, :create, :edit, :update, :index]
+  match '/blogs/:title', :to => 'blogs#by_title'
 	# resources :sections, :only => [:show]	
 	match '/login', :to => 'sessions#new'
 	match '/logout', :to => 'sessions#destroy'

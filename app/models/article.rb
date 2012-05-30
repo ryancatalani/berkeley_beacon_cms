@@ -17,7 +17,8 @@ class Article < ActiveRecord::Base
 	
 	def to_url
 		c = created_at
-		"/#{section.clean_url}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
+		base = blog.nil? ? section.clean_url : blog.cleantitle
+		"/#{base}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
 	end
 	
 	def tweet

@@ -22,6 +22,7 @@ class PagesController < ApplicationController
 		@include_responsive = true
 		number_of_tweets = @main_story.first_photo.nil? ? 4 : 8
 		@tweets = Twitter.user_timeline("beaconupdate").first(number_of_tweets) rescue []
+		@blogs = Blog.all
 		begin
 			tumblr_latest = Feedzirra::Feed.fetch_and_parse("http://berkeleybeacon.tumblr.com/rss").entries.first
 			@tumblr_latest_title = tumblr_latest.title
@@ -154,7 +155,7 @@ class PagesController < ApplicationController
 		end
 
 		def find_section_articles(section_name,number_of_articles=3)
-			Section.find_by_name(section_name).articles.order("created_at DESC").first(number_of_articles)
+			Section.find_by_name(section_name).non_blog_articles.order("created_at DESC").first(number_of_articles)
 		end
 
 end
