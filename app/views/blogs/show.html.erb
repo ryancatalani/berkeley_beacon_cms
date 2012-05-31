@@ -6,9 +6,7 @@
 		<% @articles.each_with_index do |article,i| %>
 			<div class="article">
 				<% unless article.mediafiles.empty? or article.mediafiles.first.media.url.nil? or article.mediafiles.first.mediatype == 2 %>
-					<div class="media">
-						<%= link_to image_tag(article.mediafiles.first.media.thumb_140.url), article.to_url %>
-					</div>
+						<%= link_to image_tag(article.mediafiles.first.media.url), article.to_url %>
 				<% else %>
 				<% end %>
 				<h3><%= link_to article.title, article.to_url %></h3>

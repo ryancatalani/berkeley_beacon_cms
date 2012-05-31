@@ -70,7 +70,7 @@
 				<em>Latest Entry:</em> <%= link_to @tumblr_latest_title.html_safe, @tumblr_latest_url %>
 				<% @blogs.each do |blog| %>
 					<% unless blog.articles.empty? %>
-						<h4><%= link_to blog.title, blog_path(blog) %></h4>
+						<h4><%= link_to blog.title, blog.to_url %></h4>
 						<em>Latest Entry:</em> <%= link_to blog.articles.last.title, blog.articles.last.to_url %>
 					<% end %>
 				<% end %>
