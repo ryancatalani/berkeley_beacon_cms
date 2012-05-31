@@ -1,8 +1,8 @@
 <div id="section-wrap">
 
-	<div id="blog-articles">
-		<div id="blog_page_title"><h2><%= @blog.title %></h2></div>
-		<div id="blog_description"><%= @blog.description %></div>
+	<div class="blog_wrap">
+		<div class="blog_page_title"><h2><%= @blog.title %></h2></div>
+		<div class="blog_description"><%= @blog.description %></div>
 		<% @articles.each_with_index do |article,i| %>
 			<div class="article">
 				<% unless article.mediafiles.empty? or article.mediafiles.first.media.url.nil? or article.mediafiles.first.mediatype == 2 %>
@@ -12,7 +12,7 @@
 				<% else %>
 				<% end %>
 				<h3><%= link_to article.title, article.to_url %></h3>
-				<div class="byline">Posted on <%= (article.created_at - 5.hours).strftime("%B %e, %Y at %l:%M %P") %> | by <%= bylineify article %></div>
+				<div class="byline">Posted on <%= article.nice_created_at %> | by <%= bylineify article %></div>
 
 				<br />
 				<%= article.body.html_safe %>

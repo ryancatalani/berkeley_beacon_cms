@@ -2,17 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#blog-articles {
+.blog_wrap {
 	border: 1px solid #ccc;
 	padding: 20px;
 	width: 640px;
 	float: left;
-	padding-right: 39px;
 	margin-right: 40px;
 
+	&.blogs_index_page {
+		width: 48%;
+		margin: 0 1% 40px;
+		// padding: 0; 
+	}
 }
 
-#blog_page_title {
+
+
+.blog_page_title {
 	margin: -35px auto 10px;
 	text-align: center;
 	h2 {
@@ -23,7 +29,7 @@
 	}
 }
 
-#blog_description {
+.blog_description {
 	font-style: italic;
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 20px;
@@ -31,15 +37,22 @@
 }
 
 @media screen and (max-width: 959px) { 
-	#blog-articles {
+	.blog_wrap {
 		width: 65%;
 		margin-right: 1%;
+		&.blogs_index_page {
+			width: 98%;
+			margin: 0 1% 40px;
+			float: none;
+			// padding: 0; 
+		}
 	}
 }
 
 @media screen and (max-width: 640px) { 
-	#blog-articles {
+	.blog_wrap {
 		width: 98%;
 		margin: 0 1% 30px;
+
 	}
 }

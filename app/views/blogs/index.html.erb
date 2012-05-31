@@ -1,2 +1,62 @@
-<h1>Blogs#index</h1>
-<p>Find me in app/views/blogs/index.html.erb</p>
+<div class="blog_wrap blogs_index_page">
+	<div class="blog_page_title"><h2>The Beacon on Tumblr</h2></div>
+	<div class="blog_description">Curating interesting things from Emerson and around Boston.</div>
+	<div class="article">
+		<% if @tumblr_latest.nil? %>
+			<h3><%= link_to "Click here to see the latest post", "http://berkeleybeacon.tumblr.com" %></h3>
+		<% else %>
+			<h3><%= link_to @tumblr_latest.title, @tumblr_latest.url %></h3>
+			<div class="byline">Posted on <%= @tumblr_latest.published.strftime("%B %e, %Y at %l:%M %P") %></div>
+			<br />
+			<%= @tumblr_latest.summary.html_safe %>
+			<div class="separator"></div>
+		<% end %>
+	</div>
+	<% if @tumblr_last_5 %>
+		<h3>Earlier posts</h3>
+		<% @tumblr_last_5.each do |article| %>
+			<ul>
+				<li>
+					<%= article.published.strftime("%B %e, %Y") %> | <strong><%= link_to article.title, article.url %></strong>
+				</li>
+
+			</ul>
+		<% end %>
+	<% end %>
+</div>
+
+<% @blogs.each do |blog| %>
+	<div class="blog_wrap blogs_index_page">
+		<div class="blog_page_title"><h2><%= blog.title %></h2></div>
+		<div class="blog_description"><%= blog.description %></div>
+		<% blog.articles.first(6).each_with_index do |article,i| %>
+			<% if i.zero? %>
+				<div class="article">
+					<% unless article.mediafiles.empty? or article.mediafiles.first.media.url.nil? or article.mediafiles.first.mediatype == 2 %>
+						<div class="media">
+							<%= link_to image_tag(article.mediafiles.first.media.thumb_140.url), article.to_url %>
+						</div>
+					<% else %>
+					<% end %>
+					<h3><%= link_to article.title, article.to_url %></h3>
+					<div class="byline">Posted on <%= (article.created_at - 5.hours).strftime("%B %e, %Y at %l:%M %P") %> | by <%= bylineify article %></div>
+
+					<br />
+					<%= article.body.html_safe %>
+					<% if blog.articles.first(6).count > 0 %>
+						<div class="separator"></div>
+					<% end %>
+				</div>
+			<% else # All other articles just list %>
+				<h3>Earlier posts</h3>
+				<ul>
+					<li>
+						<%= article.nice_created_at(:short => true) %> | <strong><%= link_to article.title, article.to_url %></strong>
+					</li>
+
+				</ul>
+			<% end %>
+		<% end %>
+		<div class="clear"></div>
+	</div>
+<% end %>

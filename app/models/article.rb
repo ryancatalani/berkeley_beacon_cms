@@ -37,6 +37,14 @@ class Article < ActiveRecord::Base
 	def images
 		mediafiles.where('mediatype <> 2')
 	end
+
+	def nice_created_at(opts=[])
+		if opts[:short]
+			return (created_at - 5.hours).strftime("%B %e, %Y")
+		else
+			return (created_at - 5.hours).strftime("%B %e, %Y at %l:%M %P")
+		end
+	end
 	
 	# As SGA resignations increase, officials discuss term length requirement
 	

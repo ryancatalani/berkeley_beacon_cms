@@ -6,6 +6,10 @@ body {
 	font: 14px/18px "PT Serif", Times, serif;
 }
 
+strong {
+	font-weight: bold;
+}
+
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 input { -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
 
