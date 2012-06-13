@@ -5,6 +5,8 @@ namespace :db do
 			x_arr = ('A'..'z').to_a + (0..9).to_a
 			x_str = x_arr.sort_by{ rand }.first(100).join
 			person.update_attribute(:password, x_str)
+			email = person.email.downcase
+			person.update_attribute(:email, email)
 		end
 
 		editors = [
@@ -34,7 +36,7 @@ namespace :db do
 			"Valerie Adamski",
 			"Christopher Eyer"
 		]
-		
+
 		editors.each do |full_name|
 			first, last = full_name.split(" ")
 			person = Person.find_by_firstname_and_lastname(first, last)
@@ -62,7 +64,7 @@ namespace :db do
 					)
 				email = p.email
 			end
-			BeaconMailer.reset_password_2012(first, "catalani.ryan@gmail.com", new_pw).deliver
+			BeaconMailer.reset_password_2012(first, email, new_pw).deliver
 			puts "Finished"
 			puts ""
 		end
