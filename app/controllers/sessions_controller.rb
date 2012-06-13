@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		person = Person.find_by_email(params[:email])		
+		person = Person.find_by_email(params[:email].downcase)		
 		if person && person.authenticate(params[:password])
 			session[:user_id] = person.id
 			redirect_to new_article_path, :notice => "Logged in!"
