@@ -30,6 +30,8 @@ BeaconApp::Application.routes.draw do
 
   match '/apply', :to => 'pages#apply'
 
+  match '/settings', :to => 'people#settings'
+
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
 	resources :people
@@ -37,7 +39,7 @@ BeaconApp::Application.routes.draw do
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :mediafiles
   resources :blogs, :only => [:new, :create, :edit, :update, :index]
-	# resources :sections, :only => [:show]	
+
 	match '/login', :to => 'sessions#new'
 	match '/logout', :to => 'sessions#destroy'
 	match '/about', :to => 'pages#about'
