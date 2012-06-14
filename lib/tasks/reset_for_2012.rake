@@ -37,8 +37,6 @@ namespace :db do
 		# 	"Christopher Eyer"
 		# ]
 
-		editors = ["Chris Eyer"]
-
 		editors.each do |full_name|
 			first, last = full_name.split(" ")
 			person = Person.find_by_firstname_and_lastname(first, last)
