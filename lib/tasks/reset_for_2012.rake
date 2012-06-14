@@ -1,41 +1,43 @@
 namespace :db do
 	desc "Reset logins for 2012"
 	task :reset_for_2012 => :environment do
-		Person.all.each do |person|
-			x_arr = ('A'..'z').to_a + (0..9).to_a
-			x_str = x_arr.sort_by{ rand }.first(100).join
-			person.update_attribute(:password, x_str)
-			email = person.email.downcase
-			person.update_attribute(:email, email)
-		end
+		# Person.all.each do |person|
+		# 	x_arr = ('A'..'z').to_a + (0..9).to_a
+		# 	x_str = x_arr.sort_by{ rand }.first(100).join
+		# 	person.update_attribute(:password, x_str)
+		# 	email = person.email.downcase
+		# 	person.update_attribute(:email, email)
+		# end
 
-		editors = [
-			"Heidi Moeller",
-			"Hayden Wright",
-			"Ryan Catalani",
-			"Xakota Espinoza",
-			"Jackie Tempera",
-			"Frankie Olito",
-			"Stephanie Bradbury",
-			"Mike Disman",
-			"Eric Twardzik",
-			"Trelawney Davis",
-			"Alanna Grady",
-			"Sarah Black",
-			"Emily Murphy",
-			"Katy Rushlau",
-			"Christina Jedra",
-			"Sofya Levina",
-			"Jason Madanjian",
-			"Jaclyn Diaz",
-			"Sarah Verrill",
-			"Courtney Tharp",
-			"Ally Chapman",
-			"Jessica Nicholson",
-			"Mallory Meyer",
-			"Valerie Adamski",
-			"Christopher Eyer"
-		]
+		# editors = [
+		# 	"Heidi Moeller",
+		# 	"Hayden Wright",
+		# 	"Ryan Catalani",
+		# 	"Xakota Espinoza",
+		# 	"Jackie Tempera",
+		# 	"Frankie Olito",
+		# 	"Stephanie Bradbury",
+		# 	"Mike Disman",
+		# 	"Eric Twardzik",
+		# 	"Trelawney Davis",
+		# 	"Alanna Grady",
+		# 	"Sarah Black",
+		# 	"Emily Murphy",
+		# 	"Katy Rushlau",
+		# 	"Christina Jedra",
+		# 	"Sofya Levina",
+		# 	"Jason Madanjian",
+		# 	"Jaclyn Diaz",
+		# 	"Sarah Verrill",
+		# 	"Courtney Tharp",
+		# 	"Ally Chapman",
+		# 	"Jessica Nicholson",
+		# 	"Mallory Meyer",
+		# 	"Valerie Adamski",
+		# 	"Christopher Eyer"
+		# ]
+
+		editors = ["Chris Eyer"]
 
 		editors.each do |full_name|
 			first, last = full_name.split(" ")
