@@ -160,7 +160,6 @@ GEM
     remotipart (1.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rmagick (2.13.1)
     ruby-hmac (0.4.0)
     ruby-prof (0.10.8)
     rubyzip (0.9.5)
@@ -228,7 +227,6 @@ DEPENDENCIES
   quiet_assets
   rails (= 3.1.1)
   remotipart (~> 1.0)
-  rmagick
   ruby-prof
   sass-rails (~> 3.1.4)
   sqlite3

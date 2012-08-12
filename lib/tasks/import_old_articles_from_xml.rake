@@ -15,7 +15,7 @@ namespace :db do
 		no_author_count = 0
 		short_excerpt_count = 0
 
-		posts.css("row").each_with_index do |row, index|
+		posts.css("row").first(100).last(10).each_with_index do |row, index|
 			puts ''
 			puts index
 			no_author = false
@@ -65,7 +65,7 @@ namespace :db do
 						elsif name.include?("Sports")
 							section_id = Section.find_by_name("Sports").id
 						elsif name.include?("Arts")
-							section_id = Section.find_by_name("Arts & Entertainment").id
+							section_id = Section.find_by_name("Arts").id
 						elsif name.include?("Lifestyle")
 							section_id = Section.find_by_name("Lifestyle").id
 						elsif name.include?("Opinion")
@@ -102,7 +102,8 @@ namespace :db do
 					puts "title: #{title}"
 				when 'post_content'
 					# article content
-					raw_body = field.content.gsub(/<\/?div.*?>/,'')
+					# raw_body = field.content.gsub(/<\/?div.*?>/,'')
+					raw_body = field.content
 					
 					# --- Determining author ---
 					staff = raw_body.downcase.include?("beacon staff")
@@ -161,7 +162,11 @@ namespace :db do
 						archive_images = [{:caption => caption, :src => src}]
 					end
 
+					raw_content = raw_content.split(/\n+/).map { |para| "<p>" + para + "</p>" }.join('')
+
 					content = raw_content
+
+					p content
 						
 				when 'post_modified'
 					date = DateTime.parse field.content.to_s
@@ -226,8 +231,9 @@ namespace :db do
 
 			next if content.blank?
 
-			# Oh god create the article.
+			# create the article.
 			the_article = Article.create!(
+			# the_article = Article.new(
 				:title => title,
 				:cleantitle => cleantitle,
 				:body => content,
@@ -241,6 +247,7 @@ namespace :db do
 
 			the_article.update_attribute(:created_at, date)
 			the_article.update_attribute(:updated_at, date)
+			
 			Authorship.create!(:article_id => the_article.id, :person_id => author_id)
 
 			puts "Created the article! #{the_article.id}"
