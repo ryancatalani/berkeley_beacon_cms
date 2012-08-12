@@ -15,7 +15,7 @@ namespace :db do
 		no_author_count = 0
 		short_excerpt_count = 0
 
-		posts.css("row").first(100).last(10).each_with_index do |row, index|
+		posts.css("row").first(200).last(10).each_with_index do |row, index|
 			puts ''
 			puts index
 			no_author = false
@@ -163,10 +163,9 @@ namespace :db do
 					end
 
 					raw_content = raw_content.split(/\n+/).map { |para| "<p>" + para + "</p>" }.join('')
-
+					raw_content.gsub!('<div>','')
+					raw_content.gsub!('</div>','')
 					content = raw_content
-
-					p content
 						
 				when 'post_modified'
 					date = DateTime.parse field.content.to_s
@@ -250,7 +249,7 @@ namespace :db do
 			
 			Authorship.create!(:article_id => the_article.id, :person_id => author_id)
 
-			puts "Created the article! #{the_article.id}"
+			puts "Created the article! \n #{the_article.to_url}"
 
 		end
 			
