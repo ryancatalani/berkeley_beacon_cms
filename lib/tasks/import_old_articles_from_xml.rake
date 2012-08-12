@@ -15,7 +15,7 @@ namespace :db do
 		no_author_count = 0
 		short_excerpt_count = 0
 
-		posts.css("row").first(200).last(10).each_with_index do |row, index|
+		posts.css("row").each_with_index do |row, index|
 			puts ''
 			puts index
 			no_author = false
@@ -57,7 +57,7 @@ namespace :db do
 					end
 
 					if potential_section_names.count == 0
-						section_id = Section.find_by_name("News")
+						section_id = Section.find_by_name("News").id
 					elsif potential_section_names.count == 1
 						name = potential_section_names.first
 						if name.include?("News")
@@ -156,6 +156,7 @@ namespace :db do
 
 					# Time to find the image! Pray that there's only one image. Cause we're only going to find one for now.
 					if raw_content.first(600).include?("/caption]")
+						puts "has an image"
 						image_stuff, raw_content = raw_content.split("/caption]",2)
 						caption = /caption="(.+?)"/.match(image_stuff)[1] rescue nil
 						src = /href="(.+?)"/.match(image_stuff)[1] rescue nil
