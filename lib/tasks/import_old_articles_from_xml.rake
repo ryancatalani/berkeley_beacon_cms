@@ -82,7 +82,7 @@ namespace :db do
 								section_id = Section.find_by_name("Sports").id
 								break
 							elsif name.include?("Arts")
-								section_id = Section.find_by_name("Arts & Entertainment").id
+								section_id = Section.find_by_name("Arts").id
 								break
 							elsif name.include?("Lifestyle")
 								section_id = Section.find_by_name("Lifestyle").id
