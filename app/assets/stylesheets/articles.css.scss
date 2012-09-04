@@ -311,6 +311,9 @@
 	#show_slideshow_sidebar {
 		display: none;
 	}
+	.slide_cont {
+		height: auto;
+	}
 }
 
 @media screen and (max-width: 640px) {
