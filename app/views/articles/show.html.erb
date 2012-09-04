@@ -9,23 +9,6 @@
 
 </div>
 
-<div id="article_slideshow_wrap">
-	<div id="article_slideshow" class="carousel bs_el">
-		<div class="carousel-inner">
-			<% @article.images.each_with_index do |image,index| %>
-				<div class="item<%= ' active' if index.zero? %>">
-					<%= image_tag image.media.url.html_safe %>
-					<div class="carousel-caption">
-						<%= image.title %> &bull; <em><%= bylineify_linked(image).html_safe %></em>
-					</div>
-				</div>
-			<% end %>
-		</div>
-		<a class="left carousel-control" href="#myCarousel" data-slide="prev" id="carousel_control_left">&lsaquo;</a>
-	    <a class="right carousel-control" href="#myCarousel" data-slide="next" id="carousel_control_right">&rsaquo;</a>
-	</div>
-</div>
-
 <div class="wrap">
 
 <div class="content_wrap article_wrap">
@@ -42,19 +25,23 @@
 	<h3>By <%= bylineify_linked(@article).html_safe %> <br /> <%= (@article.created_at - 5.hours).strftime("%B %e, %Y at %l:%M %P") %></h3>
 	
 	<% unless @article.first_photo.nil? %>
-		<div id="big_photo_wrap">
-			<div id="big_photo"></div>
-			<div id="metadata">
-					<div id="caption">
-						<%= @article.first_photo.title %>
-					</div>
-					<div id="credit">
-						<%= bylineify_linked(@article.first_photo).html_safe %>
-					</div>
-					<div class="clear"></div>
-			</div>
-		</div>		
+
+ 	
+ 		<ul class="rslides">
+ 			<% @article.images.each do |image| %>
+ 				<li>
+ 					<div class="slide_cont"><%= image_tag image.media.url %></div>
+ 					<div class="metadata">
+ 						<%= image.title %>
+ 						<div class="credit"><%= bylineify_linked(image).html_safe %></div>
+ 					</div>
+ 				</li>
+ 			<% end %>
+ 		</ul>
+ 		<div id="slide_controls"></div>
+ 		<div class="clear"></div>
 	<% end %>
+
 	
 	<div id="body">
 		<%= @article.body.html_safe %>
@@ -94,13 +81,6 @@
 		<% end %>
 	</div>
 	<div id="sidebar">
-		<% if @article.images.count > 1 %>
-			<div id="show_slideshow_sidebar">
-				<%= image_tag @article.images[1].media.thumb_220 %>
-				<a href="#" id="show_slideshow">Show slideshow</a>
-				<div class="separator"></div>
-			</div>
-		<% end %>
 
 		<% if !@article.series_id.nil? and @article.series_id != 0 %>
 			<section id="series_info">
@@ -145,9 +125,3 @@
 	</div>
 	<div class="clear"></div>
 </div>
-
-<% unless @article.first_photo.nil? %>
-	<script>
-		$("#big_photo").anystretch("<%= @article.first_photo.media.url.html_safe %>");
-	</script>
-<% end %>

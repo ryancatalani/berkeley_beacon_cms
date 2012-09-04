@@ -16,6 +16,16 @@ jQuery ->
 			return false
 	$("#show_slideshow").click (e) ->
 		$("#article_slideshow_wrap").fadeIn()
+	$(".rslides").responsiveSlides({
+		auto: false,
+		nav: true,
+		pager: true,
+		prevText: "&#9664;",
+		nextText: "&#9654;",
+		controls: "#slide_controls"
+		})
+	$("#slide_controls").append("<div class='clear'></div>")
+
 
 	$("div[rel=popover]").popover()
 	$("div[rel=tooltip]").tooltip()
