@@ -66,6 +66,7 @@ BeaconApp::Application.routes.draw do
 
   match '/go/police' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/an-interview-with-the-new-police-chief")
   match '/go/scaffolding' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/students-react-to-the-little-building-scaffolding-art")
+  match '/go/ols' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/meet-the-orientation-leader-core-staff")
 	
 	
   # The priority is based upon order of creation:
