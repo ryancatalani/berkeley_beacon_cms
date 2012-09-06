@@ -63,6 +63,9 @@ BeaconApp::Application.routes.draw do
   controller :blogs do
     match "/blogs/:name", :to => :show
   end	
+
+  match '/go/police' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/an-interview-with-the-new-police-chief")
+  match '/go/scaffolding' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/students-react-to-the-little-building-scaffolding-art")
 	
 	
   # The priority is based upon order of creation:
