@@ -157,6 +157,7 @@ class ArticlesController < ApplicationController
 		found = Article.where(:cleantitle => params[:title])
 		if found.count == 1
 			@article = found.first
+			redirect_to "/" if @article.draft? and !editor_logged_in
 			@title = @article.title
 			@needs_og = true
 			@og = {}

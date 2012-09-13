@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
 	private
 
+		def editor_logged_in
+			current_user and current_user.editor?
+		end
+
 		def intercept
 			unless current_user and current_user.editor?
 				render 'pages/intercept', :layout => false and return
@@ -119,6 +123,6 @@ class ApplicationController < ActionController::Base
 			return "The Berkeley Beacon"
 		end
 		
-		helper_method :current_user, :check_editor, :bylineify, :bylineify_linked, :bylineify_short, :popular_articles, :video_tag, :og_title
+		helper_method :current_user, :check_editor, :bylineify, :bylineify_linked, :bylineify_short, :popular_articles, :video_tag, :og_title, :editor_logged_in
 	
 end
