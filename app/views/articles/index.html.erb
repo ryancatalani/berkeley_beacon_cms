@@ -90,6 +90,9 @@
 					<% if article.blog %>
 						<span class="label label-info">Blog Post</span> 
 					<% end %>
+					<% if article.draft? %>
+						<span class="label label-warning">Draft, unpublished</span> 
+					<% end %>
 					<% begin %>
 						<%= link_to article.title, article.to_url %>
 					<% rescue %>

@@ -50,7 +50,11 @@ class ArticlesController < ApplicationController
 			p[:section_id] = nil
 			@article = Blog.find(p[:blog_id]).articles.build(p)
 		end
-				
+		if is_draft
+			p[:body] = "[Fill in]" if p[:body].blank?
+			p[:excerpt] = "[Fill in]" if p[:excerpt].blank?
+		end
+
 		if @article.save
 			@article.update_attribute(:views,0)
 			@article.update_attribute(:draft,is_draft)
@@ -126,6 +130,10 @@ class ArticlesController < ApplicationController
 		# p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
 		p[:section_id] = params[:section].to_i
 		p[:series_id] = params[:series_id].to_i
+		if is_draft
+			p[:body] = "[Fill in]" if p[:body].blank?
+			p[:excerpt] = "[Fill in]" if p[:excerpt].blank?
+		end
 		if @article.update_attributes(p)
 		  @article.update_attribute(:draft,is_draft)
 		  Authorship.where(:article_id => @article.id).each { |a| a.delete }
