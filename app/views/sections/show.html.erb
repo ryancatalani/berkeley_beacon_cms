@@ -2,7 +2,7 @@
 
 	<div id="section-articles">
 		<% @articles.each_with_index do |article,i| %>
-	
+			<% next if article.draft? %>
 			<% if i == 0 and (params[:page].nil? or params[:page].to_i == 1) %>
 				<div id="main-section-story">
 					<% if !article.mediafiles.empty? and article.mediafiles.first.mediatype != 2 %>

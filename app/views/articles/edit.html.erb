@@ -167,7 +167,13 @@
 		<% end %>
 	<% end %>
 	<br />	
-	<div class="actions"><%= f.submit "Update Article", :class => "btn btn-primary" %></div>
+	<div class="actions form-actions">
+		<%= f.submit "#{@article.draft? ? 'Publish' : 'Update'} article", :class => "btn btn-primary" %>
+		<%= f.submit "Save article as a draft", :class => "btn" %>
+		<% if @article.draft? %>
+			<p>This article is currently a draft. If you publish this article, a link to it will automatically be tweeted.</p>
+		<% end %>
+	</div>
 <% end %>
 
 <hr />

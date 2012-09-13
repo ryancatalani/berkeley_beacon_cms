@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
 	end
 	
 	def create
+		is_draft = params[:commit].include?("draft")
 		p = params[:article]
 		if params[:mediafiles]
 			cookies[:already_uploaded] ||= ''
@@ -52,6 +53,7 @@ class ArticlesController < ApplicationController
 				
 		if @article.save
 			@article.update_attribute(:views,0)
+			@article.update_attribute(:draft,is_draft)
 			authors.each do |author|
 				authorship = Authorship.create!(:article_id => @article.id, :person_id => author.id)
 			end
@@ -61,8 +63,8 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			Twitter.update(@article.tweet) if Rails.env.production?
-			redirect_to new_article_url, :notice => "Article posted!"
+			Twitter.update(@article.tweet) if Rails.env.production? and !is_draft
+			redirect_to new_article_url, :notice => "Article #{is_draft ? 'saved!' : 'posted'}!"
 		else
 			@display_already_uploaded = true unless cookies[:already_uploaded].nil? or cookies[:already_uploaded].blank?
 			logger.debug "cookies = #{cookies[:already_uploaded]} / already_uploaded = #{@already_uploaded}"
@@ -98,7 +100,7 @@ class ArticlesController < ApplicationController
 	end
 	
 	def update
-		# TODO: Doesn't update authors, etc
+		is_draft = params[:commit].include?("draft")
 		if params[:mediafiles]
 			cookies[:already_uploaded] ||= ''
 			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
@@ -117,6 +119,7 @@ class ArticlesController < ApplicationController
 		end # else
 		
 		@article = Article.find(params[:id])
+		was_draft = @article.draft?
 		p = params[:article]
 		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
 		p[:subtitles] = subs
@@ -124,7 +127,7 @@ class ArticlesController < ApplicationController
 		p[:section_id] = params[:section].to_i
 		p[:series_id] = params[:series_id].to_i
 		if @article.update_attributes(p)
-		  
+		  @article.update_attribute(:draft,is_draft)
 		  Authorship.where(:article_id => @article.id).each { |a| a.delete }
 		  
 		  authors.each do |author|
@@ -137,6 +140,7 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
+			Twitter.update(@article.tweet) if Rails.env.production? and !is_draft and was_draft
 			redirect_to articles_path
 		else
 			@sections = Section.all.map { |s| [s.name, s.id] }
