@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120913010005) do
+ActiveRecord::Schema.define(:version => 20120920024447) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -91,6 +91,15 @@ ActiveRecord::Schema.define(:version => 20120913010005) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "source"
+    t.string   "video_mp4"
+    t.string   "video_ogg"
+    t.string   "video_webm"
+  end
+
+  create_table "pastries", :force => true do |t|
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "people", :force => true do |t|

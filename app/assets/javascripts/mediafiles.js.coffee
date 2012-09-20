@@ -25,3 +25,6 @@ jQuery ->
 		$(del_id).remove()
 		e.preventDefault()
 	)
+
+	$("#articletype_2").click ->
+		$("#video_upload_fields").fadeToggle()

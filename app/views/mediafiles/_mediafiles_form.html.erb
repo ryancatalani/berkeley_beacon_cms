@@ -22,14 +22,14 @@
 		<%= label_tag :source, "Source (include 'via' or 'courtesy of')" %>
 		<%= text_field_tag :source %>
 	</div>
-	<div class="field">
+	<div class="field" id="media_type_field">
 		Type:
 		<div class="radio">
-		<%= radio_button_tag :mediatype, 0, true %>
-		<%= label_tag :mediatype_0, "Media" %>
+		<%= radio_button_tag :mediatype, 0 %>
+		<%= label_tag :mediatype_0, "General media" %>
 		</div>
 		<div class="radio">
-		<%= radio_button_tag :mediatype, 1 %>
+		<%= radio_button_tag :mediatype, 1, true %>
 		<%= label_tag :mediatype_1, "Photograph" %>
 		</div>
 		<div class="radio">
@@ -46,10 +46,24 @@
 		</div>
 	</div>
 	<div class="field">
+		<%= label_tag :media, "Media file (or poster frame for video)" %>
 		<%= f.file_field :media %>
+
 		<%= f.hidden_field :media_cache %>
+
 	</div>
+	<div class="field" id="video_upload_fields" style="">
+		<%= label_tag :video_mp4, "Video (mp4)" %>
+		<%= f.file_field :video_mp4 %>
+
+		<%= label_tag :video_ogg, "Video (Ogg / .ogv)" %>
+		<%= f.file_field :video_ogg %>
+
+		<%= label_tag :video_webm, "Video (webm)" %>
+		<%= f.file_field :video_webm %>
+	</div>
+
 	<div class="alert alert-error">
-		Is the image scaled (to a maximum size of 1000px x 1000px) and converted to RGB?
+		If this is an image, is it scaled (to a maximum size of 1000px x 1000px) and converted to RGB?
 	</div>
 </div>
