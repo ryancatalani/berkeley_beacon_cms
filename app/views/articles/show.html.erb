@@ -46,6 +46,28 @@
  		<div class="clear"></div>
 	<% end %>
 
+	<% if @article.videos %>
+	 		<ul class="rslides">
+	 			<% @article.videos.each do |video| %>
+	 				<li>
+	 					<video width="820" controls="controls" <% if video.media %>poster="<%= video.media %>"<% end %>>
+	 						<% if video.video_mp4 %>
+	 							<source src="<%= video.video_mp4 %>" type="video/mp4">
+	 						<% end %>
+	 						<% if video.video_ogg %>
+	 							<source src="<%= video.video_ogg %>" type="video/ogg">
+	 						<% end %>
+	 						<% if video.video_webm %>
+	 							<source src="<%= video.video_webm %>" type="video/webm">
+	 						<% end %>
+	 					</video>
+	 				</li>
+	 			<% end %>
+	 		</ul>
+	 		<div id="slide_controls"></div>
+	 		<div class="clear"></div>
+		<% end %>
+
 	
 	<div id="body">
 		<%= @article.body.html_safe %>
