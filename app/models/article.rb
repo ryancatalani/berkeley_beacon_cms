@@ -38,6 +38,10 @@ class Article < ActiveRecord::Base
 		mediafiles.where('mediatype <> 2')
 	end
 
+	def videos
+		mediafiles.where(:mediatype => 2)
+	end
+
 	def nice_created_at(opts={})
 		if opts[:short]
 			return (created_at - 5.hours).strftime("%B %e, %Y")
