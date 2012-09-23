@@ -25,6 +25,11 @@ jQuery ->
 		$(del_id).remove()
 		e.preventDefault()
 	)
-
-	$("#articletype_2").click ->
-		$("#video_upload_fields").fadeToggle()
+	video_upload_helpers_shown = false
+	$("#media_type_field").find("input").change ->
+		if $(this).val() == "2" and !video_upload_helpers_shown
+			$(".video_upload_helpers").fadeToggle()
+			video_upload_helpers_shown = true
+		else if $(this).val() != "2" and video_upload_helpers_shown
+			$(".video_upload_helpers").fadeToggle()
+			video_upload_helpers_shown = false
