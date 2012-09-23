@@ -51,6 +51,11 @@
 
 		</script>
 	<% end %>
+
+	<% if @article and !@article.videos.empty? %>
+		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+		<script src="http://vjs.zencdn.net/c/video.js"></script>
+	<% end %>
 </head>
 <body>
 
