@@ -33,7 +33,7 @@
 			<% if !@article.videos.empty? %>
 				<% @article.videos.each do |video| %>
 					<li>
-						<video width="820" controls="controls" <% if video.media %>poster="<%= video.media %>"<% end %>>
+						<video width="100%" controls="controls" <% if video.media %>poster="<%= video.media %>"<% end %>>
 							<% if video.video_mp4 %>
 								<source src="<%= video.video_mp4 %>" type="video/mp4">
 							<% end %>
