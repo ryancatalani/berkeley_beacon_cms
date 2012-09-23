@@ -28,45 +28,40 @@
 	<% end %>
 	<h3>By <%= bylineify_linked(@article).html_safe %> <br /> <%= (@article.created_at - 5.hours).strftime("%B %e, %Y at %l:%M %P") %></h3>
 	
-	<% unless @article.first_photo.nil? %>
-
- 	
- 		<ul class="rslides">
- 			<% @article.images.each do |image| %>
- 				<li>
- 					<div class="slide_cont"><%= image_tag image.media.url %></div>
- 					<div class="metadata">
- 						<%= image.title %>
- 						<div class="credit"><%= bylineify_linked(image).html_safe %></div>
- 					</div>
- 				</li>
- 			<% end %>
- 		</ul>
- 		<div id="slide_controls"></div>
- 		<div class="clear"></div>
-	<% end %>
-
-	<% if @article.videos %>
-	 		<ul class="rslides">
-	 			<% @article.videos.each do |video| %>
-	 				<li>
-	 					<video width="820" controls="controls" <% if video.media %>poster="<%= video.media %>"<% end %>>
-	 						<% if video.video_mp4 %>
-	 							<source src="<%= video.video_mp4 %>" type="video/mp4">
-	 						<% end %>
-	 						<% if video.video_ogg %>
-	 							<source src="<%= video.video_ogg %>" type="video/ogg">
-	 						<% end %>
-	 						<% if video.video_webm %>
-	 							<source src="<%= video.video_webm %>" type="video/webm">
-	 						<% end %>
-	 					</video>
-	 				</li>
-	 			<% end %>
-	 		</ul>
-	 		<div id="slide_controls"></div>
-	 		<div class="clear"></div>
-		<% end %>
+	<% if @article.mediafiles %>
+		<ul class="rslides">
+			<% if !@article.videos.empty? %>
+				<% @article.videos.each do |video| %>
+					<li>
+						<video width="820" controls="controls" <% if video.media %>poster="<%= video.media %>"<% end %>>
+							<% if video.video_mp4 %>
+								<source src="<%= video.video_mp4 %>" type="video/mp4">
+							<% end %>
+							<% if video.video_ogg %>
+								<source src="<%= video.video_ogg %>" type="video/ogg">
+							<% end %>
+							<% if video.video_webm %>
+								<source src="<%= video.video_webm %>" type="video/webm">
+							<% end %>
+						</video>
+					</li>
+				<% end %>
+			<% end #if %>
+			<% if !@article.images.empty? %>
+				<% @article.images.each do |image| %>
+					<li>
+						<div class="slide_cont"><%= image_tag image.media.url %></div>
+						<div class="metadata">
+							<%= image.title %>
+							<div class="credit"><%= bylineify_linked(image).html_safe %></div>
+						</div>
+					</li>
+				<% end %>
+			<% end #if %>
+		</ul>
+		<div id="slide_controls"></div>
+		<div class="clear"></div>
+	<% end %>		
 
 	
 	<div id="body">
