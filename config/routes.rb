@@ -69,7 +69,7 @@ BeaconApp::Application.routes.draw do
   match '/go/ols' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/meet-the-orientation-leader-core-staff")
 	match '/go/fashion-night-out' => redirect("http://www.berkeleybeacon.com/lifestyle/2012/9/13/fashion-night-out")
   match '/go/print-copy' => redirect("http://www.berkeleybeacon.com/news/2012/9/13/print-and-copy-center-finds-new-home")
-  match '/go/leap' => redirect("http://www.berkeleybeacon.com/multimedia")
+  match '/go/leap' => redirect("http://berkeleybeacon.com/lifestyle/2012/9/20/emerson-women-leap-to-teach-selfdefense")
   match '/go/soccer' => redirect("http://www.berkeleybeacon.com/multimedia")
 	
   # The priority is based upon order of creation:
