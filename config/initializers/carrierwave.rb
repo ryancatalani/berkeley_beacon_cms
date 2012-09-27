@@ -1,4 +1,3 @@
 CarrierWave.configure do |config|
-  config.root = Rails.root.join('tmp')
-  config.cache_dir = 'carrierwave' 
+  config.cache_dir = "#{Rails.root}/tmp/uploads"
 end
