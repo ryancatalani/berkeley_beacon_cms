@@ -20,19 +20,19 @@ class Mediafile < ActiveRecord::Base
 	# 4 => Illustration
 
 	def mp4
-		return video_mp4.url if video_mp4
+		return video_mp4.url if video_mp4.url
 		return direct_mp4_url if direct_mp4_url
 		return nil
 	end
 
 	def ogg
-		return video_ogg.url  if video_ogg
+		return video_ogg.url  if video_ogg.url
 		return direct_ogg_url if direct_ogg_url
 		return nil
 	end
 
 	def webm
-		return video_webm.url if video_webm
+		return video_webm.url if video_webm.url
 		return direct_webm_url if direct_webm_url
 		return nil
 	end
