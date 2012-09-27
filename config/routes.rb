@@ -71,7 +71,10 @@ BeaconApp::Application.routes.draw do
   match '/go/print-copy' => redirect("http://www.berkeleybeacon.com/news/2012/9/13/print-and-copy-center-finds-new-home")
   match '/go/leap' => redirect("http://berkeleybeacon.com/lifestyle/2012/9/20/emerson-women-leap-to-teach-selfdefense")
   match '/go/soccer' => redirect("http://www.berkeleybeacon.com/multimedia")
-	
+	match '/go/beacon-beat' => redirect("http://www.berkeleybeacon.com/multimedia")
+  match '/go/magician' => redirect("http://www.berkeleybeacon.com/multimedia")
+  match '/go/collegefest' => redirect("http://berkeleybeacon.com/lifestyle/2012/9/27/students-enjoy-swag-and-songs-at-collegefest-2012")
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
