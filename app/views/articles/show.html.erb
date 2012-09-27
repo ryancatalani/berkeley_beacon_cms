@@ -34,14 +34,14 @@
 				<% @article.videos.each do |video| %>
 					<li>
 						<video width="820" height="460" controls <% if video.media %>poster="<%= video.media %>"<% end %> class="video-js vjs-default-skin" data-setup="{}">
-							<% if video.video_mp4 %>
-								<source src="<%= video.video_mp4 %>" type="video/mp4">
+							<% if video.mp4 %>
+								<source src="<%= video.mp4 %>" type="video/mp4">
 							<% end %>
-							<% if video.video_ogg %>
-								<source src="<%= video.video_ogg %>" type="video/ogg">
+							<% if video.ogg %>
+								<source src="<%= video.ogg %>" type="video/ogg">
 							<% end %>
-							<% if video.video_webm %>
-								<source src="<%= video.video_webm %>" type="video/webm">
+							<% if video.webm %>
+								<source src="<%= video.webm %>" type="video/webm">
 							<% end %>
 						</video>
 					</li>

@@ -1,5 +1,8 @@
 class Mediafile < ActiveRecord::Base
-	attr_accessible :title, :description, :mediatype, :media, :source, :video_webm, :video_mp4, :video_ogg
+	attr_accessible :title, :description, :mediatype, :media, :source,
+		:video_webm, :video_mp4, :video_ogg,
+		:remote_video_mp4_url, :remote_video_ogg_url, :remote_video_webm_url,
+		:direct_mp4_url, :direct_ogg_url, :direct_webm_url
 	mount_uploader :media, MediaUploader
 	mount_uploader :video_mp4, MediaUploader
 	mount_uploader :video_ogg, MediaUploader
@@ -15,5 +18,23 @@ class Mediafile < ActiveRecord::Base
 	# 2 => Video
 	# 3 => Graphic
 	# 4 => Illustration
+
+	def mp4
+		return video_mp4.url if video_mp4
+		return direct_mp4_url if direct_mp4_url
+		return nil
+	end
+
+	def ogg
+		return video_ogg.url  if video_ogg
+		return direct_ogg_url if direct_ogg_url
+		return nil
+	end
+
+	def webm
+		return video_webm.url if video_webm
+		return direct_webm_url if direct_webm_url
+		return nil
+	end
 	
 end

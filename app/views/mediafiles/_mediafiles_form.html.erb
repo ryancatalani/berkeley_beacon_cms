@@ -53,14 +53,17 @@
 
 	</div>
 	<div class="field video_upload_helpers" style="display:none">
-		<%= label_tag :video_mp4, "Video (mp4)" %>
+		<%= label_tag :video_mp4, "Video (.mp4)" %>
 		<%= f.file_field :video_mp4 %>
+		<%= f.text_field :direct_mp4_url %>
 
-		<%= label_tag :video_ogg, "Video (Ogg / .ogv)" %>
+		<%= label_tag :video_ogg, "Video (.ogg / .ogv)" %>
 		<%= f.file_field :video_ogg %>
+		<%= f.text_field :direct_ogg_url %>
 
-		<%= label_tag :video_webm, "Video (webm)" %>
+		<%= label_tag :video_webm, "Video (.webm)" %>
 		<%= f.file_field :video_webm %>
+		<%= f.text_field :direct_webm_url %>
 	</div>
 
 	<div class="alert alert-error video_upload_helpers">
