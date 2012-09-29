@@ -156,19 +156,7 @@
 
 		<div class="group-c">
 			<section id="popular">
-				<h4>Popular on the Beacon</h4>
-				<ol>
-					<% @popular.each do |story| %>
-						<div class="popular-story">
-							<!-- media -->
-							<li>
-								<%= link_to image_tag(story.mediafiles.first.media.thumb_40.url), story.to_url unless story.mediafiles.empty? %>
-								<%= link_to story.title, story.to_url %>
-								<div class="clear"></div>
-							</li>
-						</div>
-					<% end %>
-				</ol>
+				<%= render 'shared/popular' %>
 			</section>
 			<div class="section-box" id="sports-section-box">
 				<h4>Sports</h4>
