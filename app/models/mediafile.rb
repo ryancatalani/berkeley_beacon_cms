@@ -36,5 +36,13 @@ class Mediafile < ActiveRecord::Base
 		return direct_webm_url if direct_webm_url
 		return nil
 	end
+
+	def latest_article
+		articles.first
+	end
+
+	def has_image?
+		!media.nil?
+	end
 	
 end

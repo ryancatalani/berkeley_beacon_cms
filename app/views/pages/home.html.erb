@@ -74,10 +74,15 @@
 						<em>Latest Entry:</em> <%= link_to blog.articles.last.title, blog.articles.last.to_url %>
 					<% end %>
 				<% end %>
-
-
 				<div class="separator"></div>
-
+				<% if editor_logged_in %>
+				<h3>Latest Videos</h3>
+				<% @latest_multimedia.each do |mediafile| %>
+					<%= link_to(image_tag(mediafile.media.url), mediafile.latest_article.to_url, :class => "latest_video_thumb") if mediafile.has_image? %>
+					<h4><%= link_to mediafile.title, mediafile.latest_article.to_url %></h4>
+				<% end %>
+				<div class="separator"></div>
+				<% end %>
 				<a href="https://twitter.com/BeaconUpdate" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @BeaconUpdate</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 

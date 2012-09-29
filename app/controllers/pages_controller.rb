@@ -21,8 +21,10 @@ class PagesController < ApplicationController
 		@home_header = true
 		@include_responsive = true
 		number_of_tweets = @main_story.first_photo.nil? ? 4 : 8
+		number_of_tweets = 1 if editor_logged_in
 		@tweets = Twitter.user_timeline("beaconupdate").first(number_of_tweets) rescue []
 		@blogs = Blog.all
+		@latest_multimedia = Mediafile.where(:mediatype => 2).last(2)
 		begin
 			tumblr_latest = Feedzirra::Feed.fetch_and_parse("http://berkeleybeacon.tumblr.com/rss").entries.first
 			@tumblr_latest_title = tumblr_latest.title
