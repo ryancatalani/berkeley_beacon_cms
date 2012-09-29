@@ -192,8 +192,14 @@
 		font-weight: bold;
 		text-decoration: none;
 	}
-		
+
 }
+
+video {
+	width: 100% !important;
+	height: auto !important;
+}
+
 #sidebar {
 	width: 220px;
 	float: left;
