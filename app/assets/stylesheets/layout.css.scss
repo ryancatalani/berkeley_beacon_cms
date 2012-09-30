@@ -10,6 +10,10 @@ strong {
 	font-weight: bold;
 }
 
+em {
+	font-style: italic;
+}
+
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 input, .add-on { -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
 
@@ -39,6 +43,11 @@ h1 {
 	font-size: 18px;
 	font-weight: bold;
 	margin-bottom: 10px;
+}
+
+h4 {
+	font-weight: bold;
+	color: #666;
 }
 
 #inner_wrap {

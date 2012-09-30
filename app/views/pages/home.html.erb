@@ -59,12 +59,9 @@
 		<section id="right">
 
 				<%= link_to "Send Us a Tip", tips_path, :id => "tip_btn" %>
-				
-				<div class="separator"></div>
-
-				<div class="fb-like" data-href="http://facebook.com/berkeleybeacon" data-send="false" data-width="218" data-show-faces="true"></div>
 
 				<div class="separator"></div>
+
 				<% if editor_logged_in or Rails.env.development? %>
 					<h3>Latest Videos</h3>
 					<div id="latest_video_thumbs">
@@ -95,22 +92,31 @@
 
 				<h3>From the blogs</h3>
 				<h4><a href="http://berkeleybeacon.tumblr.com">The Beacon on Tumblr</a></h4>
-				<em>Latest Entry:</em> <%= link_to @tumblr_latest_title.html_safe, @tumblr_latest_url %>
+				<div class="l_quo_border">Latest Entry: <%= link_to @tumblr_latest_title.html_safe, @tumblr_latest_url %></div>
 				<% @blogs.each do |blog| %>
 					<% unless blog.articles.empty? %>
 						<h4><%= link_to blog.title, blog.to_url %></h4>
-						<em>Latest Entry:</em> <%= link_to blog.articles.last.title, blog.articles.last.to_url %>
+						<div class="l_quo_border">Latest Entry: <%= link_to blog.articles.last.title, blog.articles.last.to_url %></div>
 					<% end %>
 				<% end %>
 				<div class="separator"></div>
-				<a href="https://twitter.com/BeaconUpdate" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @BeaconUpdate</a>
-				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-				<ol id="latest_tweets">
+				<a href="https://twitter.com/BeaconUpdate" class="sm_btn" id="twitter_btn">
+					<%= image_tag "twitter_icon.png" %> @BeaconUpdate
+				</a>
+				<a href="https://facebook.com/BerkeleyBeacon" class="sm_btn" id="fb_btn">
+					<%= image_tag "fb_icon.png" %> BerkeleyBeacon
+				</a>
+				<div class="clear"></div>
+				<h4>On Facebook</h4>
+				<div class="l_quo_border">
+					<div class="fb-like" data-href="http://facebook.com/berkeleybeacon" data-send="false" data-width="218" data-show-faces="true"></div>
+				</div>
+				<h4>On Twitter</h4>
+				<ol id="latest_tweets" class="l_quo_border">
 					<% @tweets.each do |tweet| %>
 						<li>
 							<a href="http://twitter.com/BeaconUpdate/status/<%= tweet.attrs["id_str"] %>">
-								<div class="time_ago"><%= distance_of_time_in_words_to_now tweet.created_at %> ago</div>
+								<em><%= distance_of_time_in_words_to_now tweet.created_at %> ago</em>
 								<%= tweet.text %>
 							</a>
 						</li>

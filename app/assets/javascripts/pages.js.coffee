@@ -3,6 +3,13 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+	if $(".balance_height")
+		max = 0
+		$(".balance_height").each ->
+			max = $(this).height() if ($(this).height() > max) 
+		$(".balance_height").each ->
+			$(this).css("height",max)
+
 	$("#search_btn").click ->
 		$("#search_box_wrap").fadeToggle()
 

@@ -35,7 +35,6 @@
 }
 
 #latest_tweets {
-	margin-top: 1.5em;
 	li {
 		margin-bottom: 0.5em;
 		border-bottom: 1px dotted #ccc;
@@ -44,10 +43,8 @@
 	li:last-child {
 		border-bottom: none;
 	}
-	.time_ago {
-		font-weight: bold;
-		display: inline;
-		color: #666;
+	h4 {
+		display: inline;	
 	}
 }
 
@@ -662,9 +659,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 		line-height: 1.3em;
 		margin-bottom: 1em;
 	}
-	em {
-		font-style: italic;
-	}
 }
 
 #ourvoice_text.right {
@@ -803,4 +797,41 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 		border-right: 9px solid transparent;		
 		border-top: 9px solid #fff;
 	}
+}
+
+.sm_btn {
+	width: 49%;
+	margin: 0;
+	color: #fff;
+	display: block;
+	float: left;
+	padding: 4px 2px 2px;
+	font-size: 0.85em;
+	text-align: center;
+	background: #666;
+	margin-bottom: 20px;
+	img {
+		height: 12px;
+	}
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+#fb_btn:hover {
+	background: #3c589e;
+}
+
+#twitter_btn {
+	margin-right: 2%;
+	&:hover {
+		background: #34b6f3;
+	}
+}
+
+.l_quo_border {
+	border-left: 1px solid #ddd;
+	margin: 5px 0 5px 10px;
+	padding-left: 10px;
+	display: block;
 }
