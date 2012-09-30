@@ -65,6 +65,34 @@
 				<div class="fb-like" data-href="http://facebook.com/berkeleybeacon" data-send="false" data-width="218" data-show-faces="true"></div>
 
 				<div class="separator"></div>
+				<% if editor_logged_in or Rails.env.development? %>
+					<h3>Latest Videos</h3>
+					<div id="latest_video_thumbs">
+						<% @latest_multimedia.each_with_index do |mediafile,index| %>
+							<a href="#" class="latest_video_thumb" data-video="<%= index %>">
+							<%= image_tag mediafile.media.thumb_140.url %>
+							<div class="video_thumb_label"><%= mediafile.latest_article.section.name %></div>
+							</a>
+						<% end %>
+					</div>
+					<div class="clear"></div>
+					<div id="latest_videos_separator">
+						<div id="latest_video_position">&nbsp;</div>
+					</div>
+					
+					<div id="latest_videos_container">
+						<div id="latest_videos_inner">
+							<% @latest_multimedia.each_with_index do |mediafile,index| %>
+								<div class="latest_video" id="" data-video="<%= index %>">
+									<%= render 'shared/video_tag', :video => mediafile, :preload => false %>
+									<strong><%= mediafile.title %></strong> &raquo; <%= link_to "Read the story", mediafile.latest_article.to_url %>
+								</div>
+							<% end %>
+						</div>
+					</div>
+					<div class="separator"></div>
+				<% end %>
+
 				<h3>From the blogs</h3>
 				<h4><a href="http://berkeleybeacon.tumblr.com">The Beacon on Tumblr</a></h4>
 				<em>Latest Entry:</em> <%= link_to @tumblr_latest_title.html_safe, @tumblr_latest_url %>
@@ -75,33 +103,6 @@
 					<% end %>
 				<% end %>
 				<div class="separator"></div>
-				<% if editor_logged_in or Rails.env.development? %>
-				<h3>Latest Videos</h3>
-				<div id="latest_video_thumbs">
-				<% @latest_multimedia.each_with_index do |mediafile,index| %>
-					<a href="#" class="latest_video_thumb" data-video="<%= index %>">
-					<%= image_tag mediafile.media.thumb_140.url %>
-					<div class="video_thumb_label"><%= mediafile.latest_article.section.name %></div>
-					</a>
-				<% end %>
-				</div>
-				<div class="clear"></div>
-				<div id="latest_videos_separator">
-					<div id="latest_video_position">&nbsp;</div>
-				</div>
-				
-				<div id="latest_videos_container">
-					<div id="latest_videos_inner">
-						<% @latest_multimedia.each_with_index do |mediafile,index| %>
-							<div class="latest_video" id="" data-video="<%= index %>">
-								<%= render 'shared/video_tag', :video => mediafile, :preload => false %>
-								<strong><%= mediafile.title %></strong> &raquo; <%= link_to "Read the story", mediafile.latest_article.to_url %>
-							</div>
-						<% end %>
-					</div>
-				</div>
-				<div class="separator"></div>
-				<% end %>
 				<a href="https://twitter.com/BeaconUpdate" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @BeaconUpdate</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
