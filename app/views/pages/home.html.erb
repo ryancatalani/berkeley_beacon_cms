@@ -75,12 +75,31 @@
 					<% end %>
 				<% end %>
 				<div class="separator"></div>
-				<% if editor_logged_in %>
+				<% if editor_logged_in or Rails.env.development? %>
 				<h3>Latest Videos</h3>
-				<% @latest_multimedia.each do |mediafile| %>
-					<%= link_to(image_tag(mediafile.media.url), mediafile.latest_article.to_url, :class => "latest_video_thumb") if mediafile.has_image? %>
-					<h4><%= link_to mediafile.title, mediafile.latest_article.to_url %></h4>
+				<div id="latest_video_thumbs">
+				<% @latest_multimedia.each_with_index do |mediafile,index| %>
+					<a href="#" class="latest_video_thumb" data-video="<%= index %>">
+					<%= image_tag mediafile.media.thumb_140.url %>
+					<div class="video_thumb_label"><%= mediafile.latest_article.section.name %></div>
+					</a>
 				<% end %>
+				</div>
+				<div class="clear"></div>
+				<div id="latest_videos_separator">
+					<div id="latest_video_position">&nbsp;</div>
+				</div>
+				
+				<div id="latest_videos_container">
+					<div id="latest_videos_inner">
+						<% @latest_multimedia.each_with_index do |mediafile,index| %>
+							<div class="latest_video" id="" data-video="<%= index %>">
+								<%= render 'shared/video_tag', :video => mediafile, :preload => false %>
+								<strong><%= mediafile.title %></strong> &raquo; <%= link_to "Read the story", mediafile.latest_article.to_url %>
+							</div>
+						<% end %>
+					</div>
+				</div>
 				<div class="separator"></div>
 				<% end %>
 				<a href="https://twitter.com/BeaconUpdate" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @BeaconUpdate</a>

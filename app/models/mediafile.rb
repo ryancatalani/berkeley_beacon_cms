@@ -38,7 +38,8 @@ class Mediafile < ActiveRecord::Base
 	end
 
 	def latest_article
-		articles.first
+		return articles.first if !articles.empty?
+		return Article.last if articles.empty? and Rails.env.development?
 	end
 
 	def has_image?

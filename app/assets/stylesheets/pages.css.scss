@@ -729,7 +729,78 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 }
 
 .latest_video_thumb {
+	width: 32%;
+	float: left;
+	position: relative;
+	height: auto;
+	padding: 0;
+	&:first-child {
+		margin-right: 2%;
+	}
+	&:last-child {
+		margin-left: 2%;
+	}
 	img {
 		width: 100%;
+	}
+}
+
+.video_thumb_label {
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 4px;
+	background: rgba(0,0,0,0.8);
+	width: 100%;
+	color: #fff;
+	font-size: 0.7em;
+	text-transform: uppercase;
+	padding: 1px 4px;
+}
+
+.latest_video {
+	float: left;
+}
+
+#latest_videos_container {
+	overflow: hidden;
+}
+
+#latest_videos_separator {
+	width: 100%;
+	height: 10px;
+	border-top: 1px solid #ccc;
+	margin-bottom: 5px;
+}
+
+#latest_video_position {
+	// background: white;
+	// border: 1px solid #ccc;
+	// padding: 10px;
+	// margin: 10px 0 0;
+	// width: 200px;
+	position: relative;
+	height: 9px;
+	overflow: hidden;
+	margin-top: -1px;
+	// text-align: center;
+
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;		
+		border-top: 10px solid #aaa;
+		top: -1px;
+	}
+	&:after {
+		top: -1px;
+		margin-left: 1px;
+		content: '';
+		display: block;
+		position: absolute;
+		border-left: 9px solid transparent;
+		border-right: 9px solid transparent;		
+		border-top: 9px solid #fff;
 	}
 }

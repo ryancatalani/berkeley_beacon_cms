@@ -122,7 +122,11 @@ class ApplicationController < ActionController::Base
 			return @title if !@title.nil?
 			return "The Berkeley Beacon"
 		end
+
+		def bb_video_tag mediafile
+			render 'shared/video_tag', :video => mediafile
+		end
 		
-		helper_method :current_user, :check_editor, :bylineify, :bylineify_linked, :bylineify_short, :popular_articles, :video_tag, :og_title, :editor_logged_in
+		helper_method :current_user, :check_editor, :bylineify, :bylineify_linked, :bylineify_short, :popular_articles, :video_tag, :og_title, :editor_logged_in, :bb_video_tag
 	
 end

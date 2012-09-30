@@ -1,0 +1,11 @@
+<video controls <% if video.media %>poster="<%= video.media %>"<% end %> <% if preload == false %>preload="none"<% end %> class="" data-setup="{}">
+	<% if video.mp4 %>
+		<source src="<%= video.mp4 %>" type="video/mp4">
+	<% end %>
+	<% if video.ogg %>
+		<source src="<%= video.ogg %>" type="video/ogg">
+	<% end %>
+	<% if video.webm %>
+		<source src="<%= video.webm %>" type="video/webm">
+	<% end %>
+</video>
