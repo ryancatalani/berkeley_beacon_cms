@@ -30,8 +30,8 @@ class Article < ActiveRecord::Base
 	end
 
 	def first_photo
-		return mediafiles.where(:mediatype => 1).first if mediafiles.count > 0
-		return nil
+		return mediafiles.first if mediafiles.count > 0 and !mediafiles.first.media.nil? rescue nil
+		# return nil
 	end
 
 	def images
