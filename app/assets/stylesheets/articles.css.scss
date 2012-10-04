@@ -78,9 +78,11 @@
 			bottom: auto;
 			background: none;
 			padding-right: 0;
-			color: #aaa;
+			.credit {
+				color: #333;
+			}
 			a {
-				color: #aaa;
+				color: #333;
 			}
 		}
 	}
