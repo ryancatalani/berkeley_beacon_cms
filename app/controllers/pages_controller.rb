@@ -20,8 +20,7 @@ class PagesController < ApplicationController
 		@popular = popular_articles
 		@home_header = true
 		@include_responsive = true
-		number_of_tweets = @main_story.first_photo.nil? ? 4 : 8
-		number_of_tweets = 3 if editor_logged_in or Rails.env.development?
+		number_of_tweets = @main_story.first_photo.nil? ? 1 : 3
 		@tweets = Twitter.user_timeline("beaconupdate").first(number_of_tweets) rescue []
 		@blogs = Blog.all
 		@latest_multimedia = Mediafile.where(:mediatype => 2).last(3).reverse
