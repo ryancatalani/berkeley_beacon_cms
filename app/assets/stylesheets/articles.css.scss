@@ -72,6 +72,15 @@
 		a {
 			color: #ccc;
 		}
+		&.video_meta {
+			position: relative;
+			bottom: auto;
+			background: none;
+			padding-right: 0;
+			a {
+				color: #aaa;
+			}
+		}
 	}
 }
 

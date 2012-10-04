@@ -44,6 +44,9 @@
 								<source src="<%= video.webm %>" type="video/webm">
 							<% end %>
 						</video>
+						<div class="metadata video_meta">
+							<div class="credit"><%= bylineify_linked(video).html_safe %></div>
+						</div>
 					</li>
 				<% end %>
 			<% end #if %>
