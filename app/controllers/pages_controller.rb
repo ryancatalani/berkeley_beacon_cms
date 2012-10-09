@@ -144,6 +144,10 @@ class PagesController < ApplicationController
 		@og[:description] = "Pick up the completely redesigned Berkeley Beacon this Thursday."
 		render :layout => 'new_header'
 	end
+
+	def videos
+		
+	end
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)

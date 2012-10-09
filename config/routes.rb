@@ -31,6 +31,7 @@ BeaconApp::Application.routes.draw do
   match '/apply', :to => 'pages#apply'
 
   match '/settings', :to => 'people#settings'
+  match '/videos', :to => 'pages#videos'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
