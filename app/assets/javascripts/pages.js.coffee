@@ -10,6 +10,13 @@ jQuery ->
 		$(".balance_height").each ->
 			$(this).css("height",max)
 
+
+	# $(".video_page_video").each ->
+	# 	width = $(this).width()
+	# 	height = Math.round(width * 9 / 16)
+	# 	$(this).css height: height
+	# 	console.log height
+
 	$("#search_btn").click ->
 		$("#search_box_wrap").fadeToggle()
 
@@ -33,8 +40,3 @@ jQuery ->
 			marginLeft: pos_offset
 			300
 		return false
-		# v_id = $(this).data("video")
-		# pos = $(".latest_video[data-video='#{v_id}']").offset();
-		# console.log pos
-	# console.log new_width
-	# $("#latest_videos_inner").css width: new_width

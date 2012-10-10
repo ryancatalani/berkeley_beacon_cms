@@ -57,7 +57,7 @@
 		<script src="http://vjs.zencdn.net/c/video.js"></script>
 	<% end %>
 </head>
-<body>
+<body <% if @body_id %><%= "id=#{@body_id}" %><% end %>>
 
 <div class="wrap">
 	<%= render 'layouts/header' %>

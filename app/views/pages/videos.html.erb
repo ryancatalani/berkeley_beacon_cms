@@ -1,0 +1,7 @@
+<% @videos.each_with_index do |video, index| %>
+		
+	<% if (index % 3).zero? %><div class="row"><% end %>
+		<%= render "video", :video => video %>
+	<% if index % 3 == 2 %><div class="clear"></div></div><% end %>
+
+<% end %>

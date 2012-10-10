@@ -146,7 +146,8 @@ class PagesController < ApplicationController
 	end
 
 	def videos
-		
+		@body_id = "video_page"
+		@videos = Mediafile.where(:mediatype => 2).reject{|m| m.articles.count.zero? }
 	end
 	
 	private

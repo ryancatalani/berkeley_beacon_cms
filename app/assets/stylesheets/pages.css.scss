@@ -835,3 +835,38 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	padding-left: 10px;
 	display: block;
 }
+
+.video_page_video {
+	width: 31%;
+	margin: 0 1% 30px;
+	float: left;
+	video {
+		width: 100%;
+		height: 181px;
+		background: #000;
+		margin-bottom: 10px;
+	}
+	@media screen and (max-width: 959px) {
+		width: 46%;
+		margin: 0 2% 30px;
+	}
+	@media screen and (max-width: 640px) {
+		width: 90%;
+		margin: 0 auto 30px;
+		float: none;
+		video {
+			height: auto;
+		}
+	}
+}
+
+#video_page {
+	background: #121212;
+	color: #fff;
+	a {
+		color: #ddd;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		color: #ddd;
+	}
+}
