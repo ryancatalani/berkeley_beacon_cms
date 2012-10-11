@@ -30,7 +30,12 @@ class Article < ActiveRecord::Base
 	end
 
 	def first_photo
-		return mediafiles.first if mediafiles.count > 0 and !mediafiles.first.media.nil? rescue nil
+		if images.count > 0 and !images.first.media.nil?
+			return images.first 
+		elsif mediafiles.count > 0
+			return mediafiles.first
+		end
+		 return nil
 		# return nil
 	end
 

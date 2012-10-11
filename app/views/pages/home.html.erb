@@ -30,7 +30,7 @@
 						<!-- media -->
 						<% unless story.mediafiles.empty? %>
 							<div class="featured-story-img-wrap">
-							<%= link_to image_tag(story.mediafiles.first.media.thumb_220.url), story.to_url %>
+							<%= link_to image_tag(story.first_photo.media.thumb_220.url), story.to_url %>
 							</div>
 						<% end %>
 						<h3><%= link_to story.title, story.to_url %></h3>
@@ -135,7 +135,7 @@
 			<div class="section-box" id="news-section-box">
 				<h4>News</h4>
 				<!-- media -->
-				<div class="mediawrap"><%= link_to image_tag(@news.first.mediafiles.first.media.thumb_220.url), @news.first.to_url unless @news.first.mediafiles.empty? %></div>
+				<div class="mediawrap"><%= link_to image_tag(@news.first.first_photo.media.thumb_220.url), @news.first.to_url unless @news.first.mediafiles.empty? %></div>
 				<h5><%= link_to @news.first.title, @news.first.to_url %></h5>
 				<%= @news.first.excerpt %>
 				<ul>
@@ -149,7 +149,7 @@
 			<div class="section-box" id="ae-section-box">
 				<h4>Arts</h4>
 				<!-- media from first -->
-				<div class="mediawrap"><%= link_to image_tag(@ae.first.mediafiles.first.media.thumb_220.url), @ae.first.to_url unless @ae.first.mediafiles.empty? %></div>
+				<div class="mediawrap"><%= link_to image_tag(@ae.first.first_photo.media.thumb_220.url), @ae.first.to_url unless @ae.first.mediafiles.empty? %></div>
 				<h5><%= link_to @ae.first.title, @ae.first.to_url %></h5>
 				<%= @ae.first.excerpt %>
 				<ul>
@@ -172,7 +172,7 @@
 			<div class="section-box" id="lifestyle-section-box">
 				<h4>Lifestyle</h4>
 				<!-- media from first -->
-				<div class="mediawrap"><%= link_to image_tag(@lifestyle.first.mediafiles.first.media.thumb_220.url), @lifestyle.first.to_url unless @lifestyle.first.mediafiles.empty? %></div>
+				<div class="mediawrap"><%= link_to image_tag(@lifestyle.first.first_photo.media.thumb_220.url), @lifestyle.first.to_url unless @lifestyle.first.mediafiles.empty? %></div>
 				<h5><%= link_to @lifestyle.first.title, @lifestyle.first.to_url %></h5>
 				<%= @lifestyle.first.excerpt %>
 				<ul>
@@ -190,7 +190,7 @@
 			<div class="section-box" id="sports-section-box">
 				<h4>Sports</h4>
 				<!-- media from first -->
-				<div class="mediawrap"><%= link_to image_tag(@sports.first.mediafiles.first.media.thumb_220.url), @sports.first.to_url unless @sports.first.mediafiles.empty? %></div>
+				<div class="mediawrap"><%= link_to image_tag(@sports.first.first_photo.media.thumb_220.url), @sports.first.to_url unless @sports.first.mediafiles.empty? %></div>
 				<h5><%= link_to @sports.first.title, @sports.first.to_url %></h5>
 				<%= @sports.first.excerpt %>
 				<ul>
