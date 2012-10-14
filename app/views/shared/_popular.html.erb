@@ -4,7 +4,7 @@
 		<div class="popular-story">
 			<!-- media -->
 			<li>
-				<%= link_to image_tag(story.mediafiles.first.media.thumb_40.url), story.to_url unless story.mediafiles.empty? or story.mediafiles.first.media.nil? %>
+				<%= link_to image_tag(story.first_photo.media.thumb_40.url), story.to_url if story.first_photo %>
 				<%= link_to truncate(story.title, :length => 60), story.to_url %>
 				<div class="clear"></div>
 			</li>

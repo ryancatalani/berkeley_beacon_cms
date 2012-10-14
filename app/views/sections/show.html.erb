@@ -5,9 +5,9 @@
 			<% next if article.draft? %>
 			<% if i == 0 and (params[:page].nil? or params[:page].to_i == 1) %>
 				<div id="main-section-story">
-					<% if !article.mediafiles.empty? and article.mediafiles.first.mediatype != 2 %>
+					<% if article.first_photo %>
 						<div class="media">
-							<%= link_to image_tag(article.mediafiles.first.media.url), article.to_url %>
+							<%= link_to image_tag(article.first_photo.media.url), article.to_url %>
 						</div>
 					<% else %>
 					<% end %>
