@@ -13,9 +13,23 @@
 		<%= label_tag :sourcetype_out, "Outside Source" %>
 		</div>
 	</div>
-	<div class="field" id="source_in_field">
-		<%= label_tag :creator %>
-		<%= select_tag :creator, options_for_select(@authors) %>
+	<div class="field creators" id="source_in_field">
+		<%= label_tag :creator_1 %>
+		<% if @mediafile and @mediafile.people %>
+			<% @mediafile.people.each_with_index do |person, index| %>
+				<% i = index+1 %>
+				<div class="field">
+					<%= label_tag "creator_#{i}" if i != 1 %>
+					<%= select_tag "creator_#{i}", options_for_select(@authors, person.id), :name => "creator[#{i}]" %>
+					<% if i != 1 %>
+						<a href="#" class="removeauth btn btn-danger"><i class="icon-trash icon-white"></i> Remove Creator <%= i %></a>
+					<% end %>
+				</div>
+			<% end %>
+		<% else %>
+			<%= select_tag :creator_1, options_for_select(@authors), :name => "creator[1]" %>
+		<% end %>
+		<a href="#" id="newcreatorbtn" class="btn"><i class="icon-plus"></i> Add another creator</a>
 		<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_media_person_modal"><i class="icon-user"></i> Create a new person</a>	
 	</div>
 	<div class="field" id="source_out_field" style="display:none">
@@ -70,3 +84,41 @@
 		Is this image scaled (to a maximum size of 1000px x 1000px) and converted to RGB?
 	</div>
 </div>
+<script>
+	$(function(){
+		function cfield(c) {
+			var ret = '<div class="field">';
+			ret += '<label for="creator_' + c + '">' + 'Creator ' + c + '</label>';
+			ret += '<select id="creator_' + c + '" name="creator[' + c + ']">';
+			ret += $("#creator_1").clone().attr("id","#creator_" + c).attr("name","creator[" + c+ "]").html();
+			ret += '</select><a href="#" class="removeauth btn btn-danger"><i class="icon-trash icon-white"></i> Remove Creator ' + c + '</a></div>';
+			return ret;
+		}
+		function remove_f(which) { 
+			$(this).closest('.field').fadeOut().remove();
+			which === "auth" ? acount -= 1 : scount -= 1 ;
+		}
+		<% if @mediafile and @mediafile.people %>
+			acount = <%= @mediafile.people.count + 1 %>
+		<% else %>
+			acount = 2;
+		<% end %>
+		$("#newcreatorbtn").click(function(){
+			
+			$(".creators").append(cfield(acount));
+			acount += 1;
+			// e.preventDefault();
+			// return false;
+		});			
+		$(".creators").click(function(e){
+			e.preventDefault();
+			if ($(e.target).is('.removeauth'))
+				remove_f.call(e.target,"auth");
+			// return false;
+		});
+
+	});
+
+
+
+</script>
