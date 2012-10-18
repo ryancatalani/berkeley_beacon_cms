@@ -147,7 +147,7 @@ class PagesController < ApplicationController
 
 	def videos
 		@body_id = "video_page"
-		@videos = Mediafile.find(:all, :order => "created_at DESC").where(:mediatype => 2).reject{|m| m.articles.count.zero? }
+		@videos = Mediafile.where(:mediatype => 2).order("created_at DESC").reject{|m| m.articles.count.zero? }
 	end
 	
 	private
