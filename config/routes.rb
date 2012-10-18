@@ -79,6 +79,8 @@ BeaconApp::Application.routes.draw do
   match '/go/sexapalooza' => redirect("http://www.berkeleybeacon.com/lifestyle/2012/10/4/sexapalooza-education-and-lubrication")
   match '/go/womens-soccer' => redirect("http://www.berkeleybeacon.com/sports/2012/10/11/emerson-crucified-by-saints")
   match '/go/lb-maintenance' => redirect("http://www.berkeleybeacon.com/news/2012/10/11/little-building-construction-continues")
+  match '/go/cleaning' => redirect("http://berkeleybeacon.com/lifestyle/2012/10/18/christian-students-offer-cleaning-services")
+  match '/go/mens-soccer' => redirect("http://berkeleybeacon.com/sports/2012/10/18/determined-defensive-display")
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
