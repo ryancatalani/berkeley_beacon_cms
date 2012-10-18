@@ -870,3 +870,20 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 		color: #ddd;
 	}
 }
+
+.new_video {
+	background: #df9d00;
+	display: block;
+	float: left;
+	margin-top: 1px;
+	margin-right: 7px;
+	width: auto;
+	padding: 0 3px;
+	font-size: 0.5em;
+	color: #fff;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	text-transform: uppercase;
+	line-height: 1.8em;
+	text-shadow: 0 1px rgba(0,0,0,0.8);
+}

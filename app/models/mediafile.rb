@@ -45,5 +45,9 @@ class Mediafile < ActiveRecord::Base
 	def has_image?
 		!media.nil?
 	end
+
+	def is_new?
+		created_at > 7.days.ago
+	end
 	
 end
