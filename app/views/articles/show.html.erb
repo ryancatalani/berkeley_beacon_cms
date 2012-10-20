@@ -26,7 +26,7 @@
 			<h2><%= subtitle %></h2>
 		<% end %>
 	<% end %>
-	<h3>By <%= bylineify_linked(@article).html_safe %> <br /> <%= (@article.created_at - 5.hours).strftime("%B %e, %Y at %l:%M %P") %></h3>
+	<h3>By <%= bylineify_linked(@article).html_safe %> <br /> <%= (@article.created_at - 5.hours).to_s(:pretty_date_and_time) %></h3>
 	
 	<% if @article.mediafiles %>
 		<ul class="rslides">

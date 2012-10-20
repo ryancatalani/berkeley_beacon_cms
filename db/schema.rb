@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927181824) do
+ActiveRecord::Schema.define(:version => 20121019160612) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20120927181824) do
     t.string   "direct_mp4_url"
     t.string   "direct_ogg_url"
     t.string   "direct_webm_url"
+    t.integer  "series_id"
   end
 
   create_table "pastries", :force => true do |t|

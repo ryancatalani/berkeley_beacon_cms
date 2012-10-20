@@ -15,7 +15,7 @@
 	</div>
 	<div class="field creators" id="source_in_field">
 		<%= label_tag :creator_1 %>
-		<% if @mediafile and @mediafile.people %>
+		<% if @mediafile and !@mediafile.people.empty? %>
 			<% @mediafile.people.each_with_index do |person, index| %>
 				<% i = index+1 %>
 				<div class="field">
@@ -28,6 +28,7 @@
 			<% end %>
 		<% else %>
 			<%= select_tag :creator_1, options_for_select(@authors), :name => "creator[1]" %>
+			<br/>
 		<% end %>
 		<a href="#" id="newcreatorbtn" class="btn"><i class="icon-plus"></i> Add another creator</a>
 		<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_media_person_modal"><i class="icon-user"></i> Create a new person</a>	

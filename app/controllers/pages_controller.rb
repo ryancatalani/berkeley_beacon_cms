@@ -1,6 +1,8 @@
 require 'will_paginate/array'
 
 class PagesController < ApplicationController
+	before_filter :check_editor, :only => [:new_editorial_cartoon]
+
 	def home
 		@current_user = current_user
 		@main_story = find_tag_articles("Main Story", 1).pop
@@ -148,6 +150,19 @@ class PagesController < ApplicationController
 	def videos
 		@body_id = "video_page"
 		@videos = Mediafile.where(:mediatype => 2).order("created_at DESC").reject{|m| m.articles.count.zero? }
+	end
+
+	def new_editorial_cartoon
+		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
+		@mediafile = Mediafile.new
+		@ed_series = Series.find_by_title("Editorial Cartoons")
+	end
+
+	def editorial_cartoons
+		s = Series.find_by_title("Editorial Cartoons")
+		redirect_to root_path and return if s.nil?
+		@include_responsive = true
+		@cartoons = s.mediafiles.order("created_at DESC")
 	end
 	
 	private

@@ -1,0 +1,22 @@
+<h2>Upload Editorial Cartoon</h2>
+<br/>
+<%= form_for @mediafile, :remote => true, :html => { :multipart => true } do |f| %>
+	
+	<%= render 'mediafiles/mediafiles_form', :f => f %>
+	<%= select_date Date.today, :prefix => :cartoon_date %>
+	<% if @ed_series %>
+		<%= f.hidden_field :series_id, :value => @ed_series.id %>
+	<% else %>
+		<div class="alert alert-error">
+		No Editorial Cartoon series.
+		</div>
+	<% end %>
+	<div class="actions">
+		<%= f.submit "Upload", :id => "mediauploadbtn", :class => "btn btn-primary" %>
+		<div id="loading">
+			<%= image_tag "loading.gif" %>
+			Uploading...
+		</div>
+	</div>
+	
+<% end %>

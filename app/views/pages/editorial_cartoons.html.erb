@@ -1,0 +1,7 @@
+<h2>Editorial Cartoons</h2>
+<br/><br/>
+<div id="editorial_cartoons">
+<% @cartoons.each_with_index do |cartoon, index| %>
+	<%= render "cartoon", :cartoon => cartoon %>
+<% end %>
+</div>

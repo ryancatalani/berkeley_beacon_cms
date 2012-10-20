@@ -36,6 +36,16 @@
 	</div>
 
 	<div id="section-sidebar">
+		<% if @sname == "Opinion" %>
+			<div class="sidebar-box" id="ed-cartoon-box">
+				<h4>Latest Editorial Cartoon</h4>
+				<div class="upcase"><%= link_to "See all &rarr;".html_safe, "/opinion/editorial_cartoons" %></div>
+				<%= image_tag latest_ed_cartoon.media.thumb_220 %>
+				<br/>
+				<em><%= latest_ed_cartoon.title %></em>
+			</div>
+		<% end %>
+
 		<section id="popular">
 			<%= render 'shared/popular' %>
 		</section>

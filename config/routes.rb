@@ -41,6 +41,9 @@ BeaconApp::Application.routes.draw do
 	resources :mediafiles
   resources :blogs, :only => [:new, :create, :edit, :update, :index]
 
+  match '/new_editorial_cartoon', :to => 'pages#new_editorial_cartoon'
+  match '/opinion/editorial_cartoons', :to => 'pages#editorial_cartoons'
+
 	match '/login', :to => 'sessions#new'
 	match '/logout', :to => 'sessions#destroy'
 	match '/about', :to => 'pages#about'

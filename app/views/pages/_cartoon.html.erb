@@ -1,0 +1,12 @@
+<div class="cartoon_box">
+	<div class="cartoon_image">
+		<%= image_tag cartoon.media %>
+	</div>
+	<div class="cartoon_caption">
+		<div class="cartoon_date"><%= cartoon.created_at.to_s(:pretty_date) %></div>
+		<%= cartoon.title %>
+		<br/>
+		<em><%= bylineify_linked(cartoon).html_safe %></em>
+	</div>
+	<div class="clear"></div>
+</div>

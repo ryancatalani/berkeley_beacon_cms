@@ -126,7 +126,21 @@ class ApplicationController < ActionController::Base
 		def bb_video_tag mediafile
 			render 'shared/video_tag', :video => mediafile
 		end
+
+		def latest_ed_cartoon
+			s = Series.find_by_title("Editorial Cartoons")
+			if s
+				return s.mediafiles.order("created_at DESC").first
+			else
+				return nil
+			end
+		end
 		
-		helper_method :current_user, :check_editor, :bylineify, :bylineify_linked, :bylineify_short, :popular_articles, :video_tag, :og_title, :editor_logged_in, :bb_video_tag
+		helper_method :current_user, :check_editor,
+			:bylineify, :bylineify_linked, :bylineify_short,
+			:popular_articles,
+			:video_tag, :og_title, :editor_logged_in, :bb_video_tag,
+			:latest_ed_cartoon
+
 	
 end

@@ -27,6 +27,12 @@ class MediafilesController < ApplicationController
 				end # begin
 			end # each
 		end # else
+		date = nil
+		if params[:cartoon_date]
+			d = params[:cartoon_date]
+			date = Time.new(d[:year], d[:month], d[:day])
+			logger.debug ("different date: #{date}")
+		end
 		@mediafile = Mediafile.new(p)
 		if @mediafile.save
 			if params[:sourcetype] == "in"
@@ -34,6 +40,8 @@ class MediafilesController < ApplicationController
 					attribution = Attribution.create!(:mediafile_id => @mediafile.id, :person_id => creator.id)
 				end
 			end
+			@mediafile.update_attribute(:created_at, date) if date
+			@mediafile.update_attribute(:updated_at, date) if date
 			respond_with @mediafile #, :location => mediafiles_url
 			# # format.html { redirect_to mediafiles_path }
 			# format.js
