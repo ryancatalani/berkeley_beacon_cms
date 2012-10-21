@@ -15,21 +15,21 @@
 <%= render 'shared/radio_group', :opts => @yesno, :name => :q4, :f => f %>
 <br/>
 <%= f.label :q5, "5. If you are registered to vote, what state or country are you registered in?" %>
-<%= f.select :q5, @locations %>
+<%= f.select :q5, @locations_na %>
 <br/><br/>
-<%= f.label :q6, "6. If you are registered to vote, how likely is it that you will vote in the Presidential election in November?" %>
+<%= f.label :q6, "6. If you are registered to vote in the U.S., how likely is it that you will vote in the Presidential election in November?" %>
 <%= render 'shared/radio_group', :opts => @vote_prob, :name => :q6, :f => f %>
 <br/>
-<%= f.label :q7, "7. If you are registered to vote, is this the first election you have been able to vote in?" %>
-<%= render 'shared/radio_group', :opts => @yesno, :name => :q7, :f => f %>
+<%= f.label :q7, "7. If you are registered to vote, is this the first election season you have been able to vote in?" %>
+<%= render 'shared/radio_group', :opts => @yesno_na, :name => :q7, :f => f %>
 <br/>
-<%= f.label :q8, "8. Which political party are you currently registered with? If you are not registered to vote, which party are you most affiliated with?" %>
+<%= f.label :q8, "8. If you are registered to vote in the U.S., which political party are you currently registered with? If you are not registered to vote, or registered to vote in a different country, which party are you most affiliated with?" %>
 <%= render 'shared/radio_group', :opts => @parties, :name => :q8, :f => f %>
 
 <div class="form_section_header">Presidential Campaign</div>
 
-<%= f.label :q9, "9. In thinking about the 2012 general election for President, suppose you had a choice between Democrat Barack Obama and Republican Mitt Romney. If the election were held today, who would you vote for?" %>
-<%= render 'shared/radio_group', :opts => @obama_romney, :name => :q9, :f => f %>
+<%= f.label :q9, "9. In thinking about the 2012 general election for President, suppose you had a choice between Democrat Barack Obama and Republican Mitt Romney. If the election were held today, who would you vote for? If you are undecided, not registered to vote, or registered in a different country, do you lean more toward Obama or Romney as of today?" %>
+<%= render 'shared/radio_group', :opts => @obama_romney_other, :name => :q9, :f => f %>
 <br/>
 <%= f.label :q10, "10. Is your mind made up, or do you think you might change your mind before the election?" %>
 <%= render 'shared/radio_group', :opts => @certainty, :name => :q10, :f => f %>
@@ -39,7 +39,7 @@
 
 <div class="form_section_header">The Issues</div>
 
-<label>Regardless of how you intend to vote, who do you think would do a better job on the following issues:</label>
+<label>Regardless of how you intend to vote, or if you can vote in the U.S., who do you think would do a better job on the following issues:</label>
 
 <%= f.label :q12, "12. The economy and creating jobs" %>
 <%= render 'shared/radio_group', :opts => @obama_romney, :name => :q12, :f => f %>
