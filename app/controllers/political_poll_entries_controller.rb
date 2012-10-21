@@ -25,7 +25,7 @@ class PoliticalPollEntriesController < ApplicationController
     p = params[:political_poll_entry]
     p[:ip_digest] = Digest::SHA1.hexdigest(request.remote_ip).to_s
     p[:end_time] = Time.now.to_i
-    p[:already_completed] = !cookies[:ppc].nil? and cookies.signed[:ppc] == "true"
+    p[:already_completed] = !cookies[:ppc].nil?
     @entry = PoliticalPollEntry.new(p)
     if @entry.save
       cookies.permanent.signed[:ppc] = true # i.e. political poll completed
