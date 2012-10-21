@@ -1,0 +1,18 @@
+// Place all the styles related to the PoliticalPollEntries controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.political_poll {
+	width: 500px;
+	margin: 40px auto;
+}
+
+.form_section_header {
+	font-weight: bold;
+	font-size: 1.2em;
+	margin: 2em 0 0.8em;
+}
+
+#poll_submitted {
+	display: none;
+}

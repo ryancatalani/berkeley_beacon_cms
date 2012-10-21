@@ -1,0 +1,70 @@
+<div class="form_section_header">Demographic Information</div>
+
+<%= f.label :q1, "1. What is your gender?" %>
+<%= render 'shared/radio_group', :opts => @genders, :name => :q1, :f => f %>
+<br/>
+<%= f.label :q2, "2. What is your class status?" %>
+<%= render 'shared/radio_group', :opts => @classes, :name => :q2, :f => f %>
+<br/>
+<%= f.label :q3, "3. What is your home state or country?" %>
+<%= f.select :q3, @locations %>
+
+<div class="form_section_header">Voting</div>
+
+<%= f.label :q4, "4. Are you registered to vote?" %>
+<%= render 'shared/radio_group', :opts => @yesno, :name => :q4, :f => f %>
+<br/>
+<%= f.label :q5, "5. If you are registered to vote, what state or country are you registered in?" %>
+<%= f.select :q5, @locations %>
+<br/><br/>
+<%= f.label :q6, "6. If you are registered to vote, how likely is it that you will vote in the Presidential election in November?" %>
+<%= render 'shared/radio_group', :opts => @vote_prob, :name => :q6, :f => f %>
+<br/>
+<%= f.label :q7, "7. If you are registered to vote, is this the first election you have been able to vote in?" %>
+<%= render 'shared/radio_group', :opts => @yesno, :name => :q7, :f => f %>
+<br/>
+<%= f.label :q8, "8. Which political party are you currently registered with? If you are not registered to vote, which party are you most affiliated with?" %>
+<%= render 'shared/radio_group', :opts => @parties, :name => :q8, :f => f %>
+
+<div class="form_section_header">Presidential Campaign</div>
+
+<%= f.label :q9, "9. In thinking about the 2012 general election for President, suppose you had a choice between Democrat Barack Obama and Republican Mitt Romney. If the election were held today, who would you vote for?" %>
+<%= render 'shared/radio_group', :opts => @obama_romney, :name => :q9, :f => f %>
+<br/>
+<%= f.label :q10, "10. Is your mind made up, or do you think you might change your mind before the election?" %>
+<%= render 'shared/radio_group', :opts => @certainty, :name => :q10, :f => f %>
+<br/>
+<%= f.label :q11, "11. How much attention have you been paying to the election campaign for President?" %>
+<%= render 'shared/radio_group', :opts => @attention, :name => :q11, :f => f %>
+
+<div class="form_section_header">The Issues</div>
+
+<label>Regardless of how you intend to vote, who do you think would do a better job on the following issues:</label>
+
+<%= f.label :q12, "12. The economy and creating jobs" %>
+<%= render 'shared/radio_group', :opts => @obama_romney, :name => :q12, :f => f %>
+<br/>
+<%= f.label :q13, "13. Health care" %>
+<%= render 'shared/radio_group', :opts => @obama_romney, :name => :q13, :f => f %>
+<br/>
+<%= f.label :q14, "14. LGBTQ and women’s issues" %>
+<%= render 'shared/radio_group', :opts => @obama_romney, :name => :q14, :f => f %>
+<br/>
+<%= f.label :q15, "15. Student loans" %>
+<%= render 'shared/radio_group', :opts => @obama_romney, :name => :q15, :f => f %>
+
+<div class="form_section_header">The Media</div>
+
+<%= f.label :q16, "16. How often do you read or watch major national or international newspapers, magazines, or other media, like The New York Times, Wall Street Journal, CNN, Al-Jazeera, etc?" %>
+<%= render 'shared/radio_group', :opts => @frequency, :name => :q16, :f => f %>
+<br/>
+<%= f.label :q17, "17. How often do you read online-only news sources, like Aol News, Yahoo News, etc?" %>
+<%= render 'shared/radio_group', :opts => @frequency, :name => :q17, :f => f %>
+<br/>
+<%= f.label :q18, "18. How often do you read Boston- or Massachusetts-focused publications, like The Boston Globe, Boston Magazine, etc?" %>
+<%= render 'shared/radio_group', :opts => @frequency, :name => :q18, :f => f %>
+<br/>
+<%= f.label :q19, "19. How often do you read or watch media by Emerson College organizations, like The Berkeley Beacon, Emerson Channel, WERS, etc?" %>
+<%= render 'shared/radio_group', :opts => @frequency, :name => :q19, :f => f %>
+
+<%= f.hidden_field :start_time, :value => Time.now.to_i %>

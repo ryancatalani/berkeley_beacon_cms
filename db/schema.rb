@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121019160612) do
+ActiveRecord::Schema.define(:version => 20121021171946) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -122,6 +122,34 @@ ActiveRecord::Schema.define(:version => 20121019160612) do
     t.string   "profile"
     t.string   "clean_full_name"
     t.boolean  "from_archive"
+  end
+
+  create_table "political_poll_entries", :force => true do |t|
+    t.integer  "q1"
+    t.integer  "q2"
+    t.integer  "q3"
+    t.integer  "q4"
+    t.integer  "q5"
+    t.integer  "q6"
+    t.integer  "q7"
+    t.integer  "q8"
+    t.integer  "q9"
+    t.integer  "q10"
+    t.integer  "q11"
+    t.integer  "q12"
+    t.integer  "q13"
+    t.integer  "q14"
+    t.integer  "q15"
+    t.integer  "q16"
+    t.integer  "q17"
+    t.integer  "q18"
+    t.integer  "q19"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ip_digest"
+    t.integer  "start_time"
+    t.integer  "end_time"
+    t.boolean  "already_completed"
   end
 
   create_table "sections", :force => true do |t|

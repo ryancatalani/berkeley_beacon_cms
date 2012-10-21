@@ -32,6 +32,7 @@ BeaconApp::Application.routes.draw do
 
   match '/settings', :to => 'people#settings'
   match '/videos', :to => 'pages#videos'
+  match '/political_poll', :to => 'political_poll_entries#new'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
@@ -40,6 +41,7 @@ BeaconApp::Application.routes.draw do
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :mediafiles
   resources :blogs, :only => [:new, :create, :edit, :update, :index]
+  resources :political_poll_entries, :only => [:index, :new, :create]
 
   match '/new_editorial_cartoon', :to => 'pages#new_editorial_cartoon'
   match '/opinion/editorial_cartoons', :to => 'pages#editorial_cartoons'

@@ -1,0 +1,35 @@
+
+<div class="political_poll">
+	<h1>2012 Emerson College Political Poll</h1>
+	<p>Sponsored by <%= link_to "The Berkeley Beacon", "http://berkeleybeacon.com" %>.</p>
+	<p>Please answer all of the following questions. You may only complete this poll once. All demographic information is for statistical purposes only; no specific entries will be shared.</p>
+	<p>This poll will close on Monday, October 28, 2012 at 8 a.m. Results will be released in the November 1 issue of The Berkeley Beacon.</p>
+
+<%= form_for @entry, :remote => true do |f| %>
+	<%= render 'political_poll_entry_form', :f => f %>
+	<div class="form-actions">
+		<%= f.submit "Submit poll", :class => "btn btn-primary"  %>
+		<div id="loading">
+			<%= image_tag "loading.gif" %>
+			Submitting...
+		</div>
+		<div id="poll_submitted">
+			Thank you for your response. Check back on November 1 to see the results. And share this poll with your friends:<br/>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-text="Fill out the 2012 @EmersonCollege political poll and see how your peers are voting:" data-via="BeaconUpdate" data-related="BeaconUpdate" data-hashtags="emersonpolitics">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			<div class="fb-like" data-href="http://localhost:3000/political_poll_entries/new" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div>
+			<br/><br/>
+			<a href="http://berkeleybeacon.com">&larr; Back to the Berkeley Beacon</a>
+	</div>
+<% end %>
+</div>
+<br/><br/>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=128499383927655";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

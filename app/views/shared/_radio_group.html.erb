@@ -1,0 +1,7 @@
+<% # Inputs: opts (array), name %>
+<% opts.each do |opt| %>
+	<label class="radio">
+		<%= f.radio_button name, opt[1] %>
+		<%= opt[0] %>
+	</label>
+<% end %>
