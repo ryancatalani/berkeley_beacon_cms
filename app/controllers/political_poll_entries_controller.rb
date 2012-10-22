@@ -23,6 +23,7 @@ class PoliticalPollEntriesController < ApplicationController
     @certainty = @entry.poll_options(:certainty)
     @attention = @entry.poll_options(:attention)
     @frequency = @entry.poll_options(:frequency)
+    @issues = @entry.poll_options(:issues)
     render 'new', :layout => 'bare'
   end
 

@@ -29,6 +29,8 @@ class PoliticalPollEntry < ActiveRecord::Base
 			opts = ["A lot", "Some", "Only a little", "None at all"]
 		when :frequency
 			opts = ["More than once daily", "Daily", "At least once a week", "At least once a month", "Rarely or never"]
+		when :issues
+			opts = ["National security", "Economy", "Health care", "LGBTQ and women's issues", "Budget deficit", "Taxes", "Immigration", "Student loans", "Other", "Don't know or not applicable"]
 		end
 		create_indexed_arrays opts
 	end
