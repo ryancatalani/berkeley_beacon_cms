@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021171946) do
+ActiveRecord::Schema.define(:version => 20121022021425) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20121021171946) do
     t.integer  "start_time"
     t.integer  "end_time"
     t.boolean  "already_completed"
+    t.string   "q8_other"
   end
 
   create_table "sections", :force => true do |t|

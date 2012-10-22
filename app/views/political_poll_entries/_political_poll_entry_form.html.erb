@@ -25,6 +25,7 @@
 <br/>
 <%= f.label :q8, "8. If you are registered to vote in the U.S., which political party are you currently registered with? If you are not registered to vote, or registered to vote in a different country, which party are you most affiliated with?" %>
 <%= render 'shared/radio_group', :opts => @parties, :name => :q8, :f => f %>
+<%= f.text_field :q8_other, :placeholder => "If you choose other, please write the party name here.", :style => "width:350px" %>
 
 <div class="form_section_header">Presidential Campaign</div>
 

@@ -5,4 +5,5 @@
 $("#new_political_poll_entry").submit ->
 	$("#loading").fadeIn()
 	return true
-	
+
+$("#new_political_poll_entry").find('input, textarea').placeholder()
