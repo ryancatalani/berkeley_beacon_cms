@@ -6,6 +6,8 @@ class PoliticalPollEntriesController < ApplicationController
 
   def new
     @title = "2012 Emerson College Political Poll"
+    @og = {}
+    @og[:description] = "Fill out the 2012 Emerson College political poll, and see how your peers are voting! The poll closes on Oct. 28."
   	@entry = PoliticalPollEntry.new
   	@include_bootstrap = true
   	@genders = @entry.poll_options(:genders)
