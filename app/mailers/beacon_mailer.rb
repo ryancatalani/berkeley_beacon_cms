@@ -1,5 +1,6 @@
 class BeaconMailer < ActionMailer::Base
-  default from: "The Berkeley Beacon Robot <postmaster@app1905056.mailgun.org>"
+  default :from => "The Berkeley Beacon <postmaster@app1905056.mailgun.org>",
+  	:reply_to => "The Berkeley Beacon <contact@berkeleybeacon.com>"
 
   	def reset_password_2012(name, email, password)
   		@name, @email, @password = name, email, password
@@ -16,5 +17,10 @@ class BeaconMailer < ActionMailer::Base
 	def archive_problem(url)
 		@url = url
 		mail(:to => "catalani.ryan@gmail.com", :subject => "[Beacon] Archive Problem")
+	end
+
+	def confirm_political_poll(email, email_hash, code)
+		@link = "http://berkeleybeacon.com/political_poll/confirm?e=#{email_hash}&c=#{code}"
+		mail(:to => email, :subject => "Confirm your response - Emerson College Political Poll")
 	end
 end

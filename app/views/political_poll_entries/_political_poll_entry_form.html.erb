@@ -72,4 +72,11 @@
 <%= f.label :q20, "20. How often do you read or watch media by Emerson College organizations, like The Berkeley Beacon, Emerson Channel, WERS, etc?" %>
 <%= render 'shared/radio_group', :opts => @frequency, :name => :q19, :f => f %>
 
+<div class="form_section_header">Email confirmation</div>
+
+<%= label_tag :email, "To confirm that you are an Emerson College student, please enter your Emerson email username below (you don't need to include @emerson.edu). You will receive a confirmation email shortly after you submit the form; <strong>please click the link in the email to ensure your response is counted</strong>. Your email address will not be saved or associated with your poll responses.".html_safe %>
+<div class="input-append">
+	<%= text_field_tag :email %><span class="add-on">@emerson.edu</span>
+</div>
+
 <%= f.hidden_field :start_time, :value => Time.now.to_i %>

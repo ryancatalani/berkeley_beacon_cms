@@ -33,6 +33,7 @@ BeaconApp::Application.routes.draw do
   match '/settings', :to => 'people#settings'
   match '/videos', :to => 'pages#videos'
   match '/political_poll', :to => 'political_poll_entries#new'
+  match '/political_poll/confirm', :to => 'political_poll_entries#check_confirmation'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]

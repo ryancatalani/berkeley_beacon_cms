@@ -32,13 +32,30 @@ class PoliticalPollEntriesController < ApplicationController
     p[:ip_digest] = Digest::SHA1.hexdigest(request.remote_ip).to_s
     p[:end_time] = Time.now.to_i
     p[:already_completed] = !cookies[:ppc].nil?
+    if params[:email].include? "@emerson.edu"
+      email = params[:email]
+    else
+      email = params[:email] + "@emerson.edu"
+    end
+    p[:email_hash] = email_hash = Digest::SHA1.hexdigest(email).to_s
+    chars =  ('a'..'z').to_a + ('0'..'9').to_a
+    confirmation_code = ""
+    10.times {|x| confirmation_code << chars[Random.rand(chars.count)] }
+    p[:confirmation] = confirmation_code
+    p[:confirmed] = false
     @entry = PoliticalPollEntry.new(p)
     if @entry.save
       cookies.permanent.signed[:ppc] = true # i.e. political poll completed
-      logger.debug "saved"
+      BeaconMailer.confirm_political_poll(email, email_hash, confirmation_code)
       respond_with "true"
     end
   end
 
+  def check_confirmation
+    entry = Entry.find_by_email_hash(params[:e])
+    if params[:c] == entry.confirmation
+      entry.update_attribute(:confirmed, true)
+    end
+  end
 
 end
