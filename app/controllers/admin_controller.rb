@@ -3,5 +3,9 @@ class AdminController < ApplicationController
 	
 	def home
 	end
+
+	def poll_results
+		@entries = PoliticalPollEntry.all
+	end
 		
 end

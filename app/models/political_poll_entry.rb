@@ -35,6 +35,12 @@ class PoliticalPollEntry < ActiveRecord::Base
 		create_indexed_arrays opts
 	end
 
+	def self.find_results(q, choices)
+		results = Array.new(choices.count)
+		all.each do |r|
+
+		end
+	end
 
 	# private
 

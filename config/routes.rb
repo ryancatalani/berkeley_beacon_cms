@@ -1,6 +1,5 @@
 BeaconApp::Application.routes.draw do
 
-	get "admin/home"
 	controller :people do 
 		match "/staff/:name", :to => :show
 	end
@@ -34,6 +33,7 @@ BeaconApp::Application.routes.draw do
   match '/videos', :to => 'pages#videos'
   match '/political_poll', :to => 'political_poll_entries#new'
   match '/political_poll/confirm', :to => 'political_poll_entries#check_confirmation'
+  match '/admin/poll_results', :to => 'admin#poll_results'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
