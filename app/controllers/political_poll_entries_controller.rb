@@ -46,16 +46,19 @@ class PoliticalPollEntriesController < ApplicationController
     @entry = PoliticalPollEntry.new(p)
     if @entry.save
       cookies.permanent.signed[:ppc] = true # i.e. political poll completed
-      BeaconMailer.confirm_political_poll(email, email_hash, confirmation_code)
+      BeaconMailer.confirm_political_poll(email, email_hash, confirmation_code).deliver
       respond_with "true"
     end
   end
 
   def check_confirmation
-    entry = Entry.find_by_email_hash(params[:e])
+    entry = PoliticalPollEntry.order('created_at DESC').find_by_email_hash(params[:e])
+    @confirmed = false
     if params[:c] == entry.confirmation
       entry.update_attribute(:confirmed, true)
+      @confirmed = true
     end
+    render 'check_confirmation', :layout => 'bare'
   end
 
 end

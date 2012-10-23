@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $("#new_political_poll_entry").submit ->
-	$("#loading").fadeIn()
+	$("#poll_loading").fadeIn()
 	return true
 
 $("#new_political_poll_entry").find('input, textarea').placeholder()
