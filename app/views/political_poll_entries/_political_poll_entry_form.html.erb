@@ -78,5 +78,8 @@
 <div class="input-append">
 	<%= text_field_tag :email %><span class="add-on">@emerson.edu</span>
 </div>
+<div class="alert" id="email_username_alert" style="display:none">
+  You only need to include your Emerson email username (e.g. joe_smith), not the @emerson.edu part. You must use your Emerson username to confirm you're an Emerson student.
+</div>
 
 <%= f.hidden_field :start_time, :value => Time.now.to_i %>
