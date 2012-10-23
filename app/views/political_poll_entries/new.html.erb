@@ -8,8 +8,8 @@
 <%= form_for @entry, :remote => true do |f| %>
 	<%= render 'political_poll_entry_form', :f => f %>
 	<div class="form-actions">
-		<%= f.submit "Submit poll", :class => "btn btn-primary"  %>
-		<div id="poll_loading" style="display:none">
+		<%= f.submit "Submit poll", :class => "btn btn-primary", :id => "poll_submit_btn" %>
+		<div id="loading">
 			<%= image_tag "loading.gif" %>
 			Submitting...
 		</div>

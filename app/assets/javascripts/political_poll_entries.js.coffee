@@ -2,8 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$("#new_political_poll_entry").submit ->
-	$("#poll_loading").fadeIn()
-	return true
+jQuery ->
 
-$("#new_political_poll_entry").find('input, textarea').placeholder()
+	$("#new_political_poll_entry").submit ->
+		$("#loading").fadeIn()
+		return true
+
+	$("#new_political_poll_entry").find('input, textarea').placeholder()
