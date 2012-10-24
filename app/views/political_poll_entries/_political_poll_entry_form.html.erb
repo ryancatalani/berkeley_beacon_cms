@@ -47,30 +47,30 @@
 <label>(13-16) Regardless of how you intend to vote, and if you can vote in the U.S., who do you think would do a better job on the following issues:</label>
 
 <%= f.label :q13, "13. The economy and creating jobs" %>
-<%= render 'shared/radio_group', :opts => @obama_romney, :name => :q12, :f => f %>
-<br/>
-<%= f.label :q14, "14. Health care" %>
 <%= render 'shared/radio_group', :opts => @obama_romney, :name => :q13, :f => f %>
 <br/>
-<%= f.label :q15, "15. LGBTQ and women’s issues" %>
+<%= f.label :q14, "14. Health care" %>
 <%= render 'shared/radio_group', :opts => @obama_romney, :name => :q14, :f => f %>
 <br/>
-<%= f.label :q16, "16. Student loans" %>
+<%= f.label :q15, "15. LGBTQ and women’s issues" %>
 <%= render 'shared/radio_group', :opts => @obama_romney, :name => :q15, :f => f %>
+<br/>
+<%= f.label :q16, "16. Student loans" %>
+<%= render 'shared/radio_group', :opts => @obama_romney, :name => :q16, :f => f %>
 
 <div class="form_section_header">The Media</div>
 
 <%= f.label :q17, "17. How often do you read or watch major news-focused national or international newspapers, magazines, or other media, like The New York Times, Wall Street Journal, CNN, The Guardian, Huffington Post, Al-Jazeera, etc?" %>
-<%= render 'shared/radio_group', :opts => @frequency, :name => :q16, :f => f %>
-<br/>
-<%= f.label :q18, "18. How often do you read online-only news sources or aggregators, like AOL News, Yahoo News, Daily Mail, etc?" %>
 <%= render 'shared/radio_group', :opts => @frequency, :name => :q17, :f => f %>
 <br/>
-<%= f.label :q19, "19. How often do you read Boston- or Massachusetts-focused publications, like The Boston Globe, Boston Magazine, etc?" %>
+<%= f.label :q18, "18. How often do you read online-only news sources or aggregators, like AOL News, Yahoo News, Daily Mail, etc?" %>
 <%= render 'shared/radio_group', :opts => @frequency, :name => :q18, :f => f %>
 <br/>
-<%= f.label :q20, "20. How often do you read or watch media by Emerson College organizations, like The Berkeley Beacon, Emerson Channel, WERS, etc?" %>
+<%= f.label :q19, "19. How often do you read Boston- or Massachusetts-focused publications, like The Boston Globe, Boston Magazine, etc?" %>
 <%= render 'shared/radio_group', :opts => @frequency, :name => :q19, :f => f %>
+<br/>
+<%= f.label :q20, "20. How often do you read or watch media by Emerson College organizations, like The Berkeley Beacon, Emerson Channel, WERS, etc?" %>
+<%= render 'shared/radio_group', :opts => @frequency, :name => :q20, :f => f %>
 
 <div class="form_section_header">Email confirmation</div>
 

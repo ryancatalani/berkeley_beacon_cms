@@ -1,18 +1,170 @@
 <table class="table">
   <thead>
     <tr>
-      <% 20.times do |x| %>
-        <th>Q<%= x+1 %></th>
-      <% end %>
+      <th>Question</th>
+      <th>Responses</th>
     </tr>
   </thead>
   <tbody>
-    <% @entries.each do |entry| %>
-      <tr>
-        <% 20.times do |x| %>
-          <td><%= entry.send("q#{x+1}") %></td>
+    <tr>
+      <td>1</td>
+      <td>
+        <% PoliticalPollEntry.find_results(1, :genders).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
         <% end %>
-      </tr>
-    <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>
+        <% PoliticalPollEntry.find_results(2, :classes).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>
+        <% PoliticalPollEntry.find_results(3, :locations).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>
+        <% PoliticalPollEntry.find_results(4, :yesno).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>
+        <% PoliticalPollEntry.find_results(5, :locations_na).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>
+        <% PoliticalPollEntry.find_results(6, :vote_prob).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>
+        <% PoliticalPollEntry.find_results(7, :yesno_na).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>
+        <% PoliticalPollEntry.find_results(8, :parties).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>
+        <% PoliticalPollEntry.find_results(9, :obama_romney_other).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>
+        <% PoliticalPollEntry.find_results(10, :certainty).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>
+        <% PoliticalPollEntry.find_results(11, :attention).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>
+        <% PoliticalPollEntry.find_results(12, :issues).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>
+        <% PoliticalPollEntry.find_results(13, :obama_romney).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>
+        <% PoliticalPollEntry.find_results(14, :obama_romney).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>
+        <% PoliticalPollEntry.find_results(15, :obama_romney).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>
+        <% PoliticalPollEntry.find_results(16, :obama_romney).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>
+        <% PoliticalPollEntry.find_results(17, :frequency).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>
+        <% PoliticalPollEntry.find_results(18, :frequency).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>
+        <% PoliticalPollEntry.find_results(19, :frequency).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>
+        <% PoliticalPollEntry.find_results(20, :frequency).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
+      </td>
+    </tr>
   </tbody>
 </table>

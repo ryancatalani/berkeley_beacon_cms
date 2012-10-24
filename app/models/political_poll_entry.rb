@@ -1,6 +1,6 @@
 class PoliticalPollEntry < ActiveRecord::Base
 
-	def poll_options(which)
+	def self.create_options(which)
 		opts = []
 		case which
 		when :genders
@@ -32,14 +32,24 @@ class PoliticalPollEntry < ActiveRecord::Base
 		when :issues
 			opts = ["National security", "Economy", "Health care", "LGBTQ and women's issues", "Budget deficit", "Taxes", "Immigration", "Student loans", "Other", "Don't know or not applicable"]
 		end
+		return opts
+	end
+
+	def poll_options(which)
+		opts = self.class.create_options(which)
 		create_indexed_arrays opts
 	end
 
-	def self.find_results(q, choices)
-		results = Array.new(choices.count)
+	def self.find_results(qnum, which)
+		results = [["No answer", 0]]
+		opts = create_options(which)
+		opts.each {|o| results << [o, 0]}
 		all.each do |r|
-
+			choice = r.send("q#{qnum}")
+			choice = -1 if choice.nil?
+			results[choice+1][1] += 1
 		end
+		return results
 	end
 
 	# private
