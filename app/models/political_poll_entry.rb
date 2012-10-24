@@ -47,7 +47,7 @@ class PoliticalPollEntry < ActiveRecord::Base
 		all.each do |r|
 			fnum = qnum
 			if Rails.env.production? and r.id < 62 and qnum > 11
-				fnum += 1
+				fnum -= 1
 			end
 			choice = r.send("q#{fnum}")
 			choice = -1 if choice.nil?
