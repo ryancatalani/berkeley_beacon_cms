@@ -67,7 +67,7 @@
 					<% @latest_multimedia.each_with_index do |mediafile,index| %>
 						<a href="#" class="latest_video_thumb" data-video="<%= index %>">
 						<%= image_tag mediafile.media.thumb_140.url %>
-						<div class="video_thumb_label"><%= mediafile.latest_article.section.name %></div>
+						<div class="video_thumb_label"><%= mediafile.latest_article.section.name rescue "Video" %></div>
 						</a>
 					<% end %>
 				</div>
