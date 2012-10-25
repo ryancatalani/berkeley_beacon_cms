@@ -45,7 +45,16 @@ class PoliticalPollEntry < ActiveRecord::Base
 		opts = create_options(which)
 		opts.each {|o| results << [o, 0]}
 		all.each do |r|
-			choice = r.send("q#{qnum}")
+			fnum = qnum
+			logger.debug r.id
+			logger.debug qnum
+			logger.debug results
+			# if Rails.env.production? and r.id < 62 and qnum > 11
+			if qnum > 12
+				fnum -= 1
+			end
+			choice = r.send("q#{fnum}")
+			logger.debug choice
 			choice = -1 if choice.nil?
 			results[choice+1][1] += 1
 		end

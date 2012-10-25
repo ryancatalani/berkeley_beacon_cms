@@ -101,12 +101,18 @@
       <td>12</td>
       <td>
         Results pending.
+        <% PoliticalPollEntry.find_results(12, :issues).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
       </td>
     </tr>
     <tr>
       <td>13</td>
       <td>
         Results pending.
+        <% PoliticalPollEntry.find_results(13, :obama_romney).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
       </td>
     </tr>
     <tr>
@@ -129,6 +135,9 @@
       <td>16</td>
       <td>
         Results pending.
+        <% PoliticalPollEntry.find_results(16, :frequency).each do |r| %>
+          <%= "#{r[0]}: #{r[1]}" %><br/>
+        <% end %>
       </td>
     </tr>
     <tr>
@@ -158,7 +167,7 @@
     <tr>
       <td>20</td>
       <td>
-        <p>Results pending.</p>
+        Results
         <% PoliticalPollEntry.find_results(20, :frequency).each do |r| %>
           <%= "#{r[0]}: #{r[1]}" %><br/>
         <% end %>
