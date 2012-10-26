@@ -21,7 +21,7 @@
 			<hr>
 
 			<h2>Media contributed</h2>
-			<% @person.mediafiles.order('created_at ASC').each do |mediafile| %>
+			<% @person.mediafiles.order('created_at DESC').each do |mediafile| %>
 				<% if !mediafile.latest_article.nil? %>
 					<a href="<%= mediafile.latest_article.to_url %>" class="person_media">
 						<%= image_tag mediafile.media.thumb_220.url %>
@@ -38,7 +38,7 @@
 			<hr>
 
 			<h2>Articles</h2>
-			<% @person.articles.each do |article| %>
+			<% @person.articles.order('created_at DESC').each do |article| %>
 
 				<div class="article">
 					<% unless article.mediafiles.empty? %>
