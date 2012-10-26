@@ -71,6 +71,26 @@ h3 em {
 	font-style: italic;
 }
 
+a.person_media {
+	width: 31%;
+	margin: 0 1% 1em;
+	float: left;
+	border: none;
+	position: relative;
+	&:link, &:visited {
+		border-bottom: none !important;
+	}
+	img {
+		width: 100%;
+	}
+	.person_media_caption {
+		position: absolute;
+		bottom: 0;
+		color: #fff;
+		background: rgba(0,0,0,0.8);
+	}
+}
+
 @media screen and (max-width: 640px) { 
 	#people_wrap {
 		width: 98%;

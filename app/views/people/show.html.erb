@@ -15,26 +15,48 @@
 		<p><%= @person.contact_info.html_safe %></p>
 		
 		<div class="clear"></div>
-		
-		<hr />
-		
-		<% @person.all_content.each do |article| %>
 
-			<div class="article">
-				<% unless article.mediafiles.empty? %>
-					<div class="media">
-						<%= link_to image_tag(article.mediafiles.first.media.url), article.to_url %>
-					</div>
-				<% else %>
+		<% if !@person.mediafiles.empty? %>
+
+			<hr>
+
+			<h2>Media contributed</h2>
+			<% @person.mediafiles.order('created_at ASC').each do |mediafile| %>
+				<% if !mediafile.latest_article.nil? %>
+					<a href="<%= mediafile.latest_article.to_url %>" class="person_media">
+						<%= image_tag mediafile.media.thumb_220.url %>
+					</a>
 				<% end %>
-				<h3>
-					<% unless article.people.map{|p| p.id}.include?(@person.id) %><em>Contributed media to </em><% end %>
-					<%= link_to article.title, article.to_url %>
-				</h3>
-				<div class="byline"><%= bylineify article %></div>
-				<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
-				<div class="clear"></div>
-			</div>
+			<% end %>
+
+		<% end %>
+		
+		<div class="clear"></div>
+
+		<% if !@person.articles.empty? %>
+
+			<hr>
+
+			<h2>Articles</h2>
+			<% @person.articles.each do |article| %>
+
+				<div class="article">
+					<% unless article.mediafiles.empty? %>
+						<div class="media">
+							<%= link_to image_tag(article.mediafiles.first.media.url), article.to_url %>
+						</div>
+					<% else %>
+					<% end %>
+					<h3>
+						<% unless article.people.map{|p| p.id}.include?(@person.id) %><em>Contributed media to </em><% end %>
+						<%= link_to article.title, article.to_url %>
+					</h3>
+					<div class="byline"><%= bylineify article %></div>
+					<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
+					<div class="clear"></div>
+				</div>
+
+			<% end %>
 
 		<% end %>
 	</div>
@@ -72,19 +94,7 @@
 		<% end %>
 
 		<section id="popular">
-			<h4>Popular on the Beacon</h4>
-			<ol>
-				<% popular_articles.each do |story| %>
-					<div class="popular-story">
-						<!-- media -->
-						<li>
-							<%= link_to image_tag(story.mediafiles.first.media.url, :size=>"40x40"), story.to_url unless story.mediafiles.empty? %>
-							<%= link_to truncate(story.title, :length => 60), story.to_url %>
-							<div class="clear"></div>
-						</li>
-					</div>
-				<% end %>
-			</ol>
+			<%= render 'shared/popular' %>
 		</section>
 		
 	</div>
