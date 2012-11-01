@@ -71,7 +71,7 @@ BeaconApp::Application.routes.draw do
     match "/blogs/:name", :to => :show
   end	
 
-  match '/go/beacon-beat' => redirect("http://www.berkeleybeacon.com/news/2012/10/11/the-beacon-beat-october-25-2012")
+  match '/go/beacon-beat' => redirect("http://www.berkeleybeacon.com/news/2012/10/11/the-beacon-beat-november-1-2012")
   match '/go/police' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/an-interview-with-the-new-police-chief")
   match '/go/scaffolding' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/students-react-to-the-little-building-scaffolding-art")
   match '/go/ols' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/meet-the-orientation-leader-core-staff")
@@ -89,6 +89,7 @@ BeaconApp::Application.routes.draw do
   match '/go/mens-soccer' => redirect("http://berkeleybeacon.com/sports/2012/10/18/determined-defensive-display")
   match '/go/marchingband' => redirect("http://www.berkeleybeacon.com/lifestyle/2012/10/25/students-march-to-a-bc-beat")
   match '/go/womens-tennis' => redirect("http://www.berkeleybeacon.com/sports/2012/10/25/duo-shines-in-gnac-finale")
+  match '/go/gregpayne' => redirect("http://berkeleybeacon.com/news/2012/11/1/political-insert-gregory-payne")
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
