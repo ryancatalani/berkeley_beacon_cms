@@ -167,6 +167,12 @@ class PagesController < ApplicationController
 
 	def election_guide_2012
 	end
+
+	def political_poll_results
+	end
+
+	def election_map
+	end
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)

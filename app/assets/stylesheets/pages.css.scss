@@ -25,6 +25,35 @@
 	float: left;
 }
 
+@mixin normal_text_styles {
+	strong {
+		font-weight: bold;
+	}
+	em {
+		font-style: italic;
+	}
+	p {
+		margin-bottom: 10px;
+	}
+	ul {
+		list-style-type: disc;
+		list-style-position: inside;
+	}
+	ol {
+		list-style-type: decimal;
+		list-style-position: inside;
+	}
+	
+	a:link, a:visited {
+		border-bottom: 1px dotted #ccc;
+	}
+	
+	a:hover {
+		color: #000;
+		text-decoration: none;
+	}
+}
+
 #left, #center, #right { 
 	float: left;
 }
@@ -1054,5 +1083,32 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 		a {
 			color: #fff;
 		}		
+	}
+}
+
+.single_50_centered_col {
+	width: 50%;
+	margin: 0 auto;
+	@include normal_text_styles;
+}
+
+#elect_poll_img {
+	width: 50%;
+	float: left;
+	margin-right: 10%;
+	img {
+		width: 100%;
+	}
+}
+
+#elect_poll_text {
+	@include normal_text_styles;
+	width: 40%;
+	float: left;
+	h2 {
+		margin-bottom: 7px;
+	}
+	h3 {
+		color: #666;
 	}
 }

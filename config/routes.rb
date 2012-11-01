@@ -33,6 +33,8 @@ BeaconApp::Application.routes.draw do
   match '/videos', :to => 'pages#videos'
   match '/admin/poll_results', :to => 'admin#poll_results'
   match '/election_guide_2012', :to => 'pages#election_guide_2012'
+  match '/election_guide_2012/poll_results', :to => 'pages#political_poll_results'
+  match '/election_guide_2012/map', :to => 'pages#election_map'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
