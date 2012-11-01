@@ -166,12 +166,24 @@ class PagesController < ApplicationController
 	end
 
 	def election_guide_2012
+		@og = {}
+		@og[:title] = "Beacon Election Guide 2012"
+		@og[:image] = "http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/election_guide_thumb.jpg"
+		@og[:description] = "A special political section with op-eds, the Beacon's poll results, and more."
 	end
 
 	def political_poll_results
+		@og = {}
+		@og[:title] = "Poll Results | Beacon Election Guide 2012"
+		@og[:image] = "http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/poll_thumb_460.jpg"
+		@og[:description] = "See how Emerson students stand on election issues."
 	end
 
 	def election_map
+		@og = {}
+		@og[:title] = "Voting Locations | Beacon Election Guide 2012"
+		@og[:image] = "http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/voting%20map-01-thumb.jpg"
+		@og[:description] = "See voting locations around Boston, and how to find out where to vote."
 	end
 	
 	private
