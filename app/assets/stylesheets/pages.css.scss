@@ -7,6 +7,24 @@
 	font-size: 0.8em;
 }
 
+@mixin col($percent) {
+	width: $percent - 2;
+	margin: 0 1%;
+	float: left;
+	&:last-child {
+		margin-right: 0;
+	}
+	&:first-child {
+		margin-left: 0;
+	}
+}
+
+@mixin col_tight($percent) {
+	width: $percent;
+	margin: 0;
+	float: left;
+}
+
 #left, #center, #right { 
 	float: left;
 }
@@ -944,5 +962,97 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 			float: none;
 			width: 100%;
 		}
+	}
+}
+
+#elect_featured {
+	@include col(66%);
+	position: relative;
+	img {
+		width: 100%;
+	}
+	.text_wrap {
+		position: absolute;
+		bottom: 5px;
+		background: rgba(0,0,0,0.7);
+		padding: 15px;
+		color: #fff;
+		h2 {
+			margin-bottom: 10px;
+		}
+		a {
+			color: #fff;
+		}
+	}
+}
+
+#elect_contents {
+	@include col(33%);
+
+	h1 {
+		color: #01428b;
+		font-size: 33px;
+		line-height: 35px;
+		margin-top: -4px;
+	}
+	#elect_stars {
+		float: left;
+		width: 18px;
+		margin-right: 10px;
+	}
+	ul {
+		padding: 0;
+		margin: 0;
+		li {
+			list-style-type: none;
+			padding-bottom: 10px;
+			border-bottom: 1px solid #ccc;
+			margin-bottom: 10px;
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+}
+
+#elect_obama, #elect_romney {
+	@include col_tight(50%);
+	display: block;
+	img {
+		width: 100%;
+	}
+}
+
+#elect_obamaromney {
+	margin: 30px 0;
+	position: relative;
+}
+
+#elect_obamaromney_text {
+	position: absolute;
+	background: #fff;
+	width: 30%;
+	left: 35%;
+	margin-top: 40px;
+	text-align: center;
+	padding: 25px;
+}
+
+.elect_box {
+	@include col(25%);
+	position: relative;
+	img {
+		width: 100%;
+	}
+	.elect_box_img_text {
+		position: absolute;
+		bottom: 5px;
+		background: rgba(0,0,0,0.7);
+		padding: 10px;
+		color: #fff;
+		width: 100%;
+		a {
+			color: #fff;
+		}		
 	}
 }

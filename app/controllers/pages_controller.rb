@@ -164,6 +164,9 @@ class PagesController < ApplicationController
 		@include_responsive = true
 		@cartoons = s.mediafiles.order("created_at DESC")
 	end
+
+	def election_guide_2012
+	end
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
