@@ -62,7 +62,7 @@
 	</div>
 	
 	<div id="person_sidebar">
-		<% if @person.twitter %>
+		<% if !@person.twitter.blank? %>
 			<script src="http://widgets.twimg.com/j/2/widget.js"></script>
 			<script>
 			new TWTR.Widget({
