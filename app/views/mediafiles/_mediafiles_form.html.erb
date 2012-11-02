@@ -34,8 +34,8 @@
 		<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_media_person_modal"><i class="icon-user"></i> Create a new person</a>	
 	</div>
 	<div class="field" id="source_out_field" style="display:none">
-		<%= label_tag :source, "Source (include 'via' or 'courtesy of')" %>
-		<%= text_field_tag :source %>
+		<%= f.label :source, "Source (include 'via' or 'courtesy of')" %>
+		<%= f.text_field :source %>
 	</div>
 	<div class="field" id="media_type_field">
 		Type:

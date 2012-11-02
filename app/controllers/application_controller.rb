@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
 		end
 		
 		def bylineify_linked mediafile
-			if mediafile.kind_of? Mediafile and mediafile.people.count == 0 and !mediafile.source.nil?
+			if mediafile.kind_of? Mediafile and !mediafile.source.blank?
 				return mediafile.source
 			end
 			people = mediafile.people
