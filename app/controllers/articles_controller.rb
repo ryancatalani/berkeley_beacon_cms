@@ -152,7 +152,7 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			Twitter.update(@article.tweet) if Rails.env.production? and !is_draft and was_draft
+			Twitter.update(@article.tweet) if Rails.env.production? and !@article.link_only and !is_draft and was_draft
 			redirect_to articles_path
 		else
 			@sections = Section.all.map { |s| [s.name, s.id] }
