@@ -26,6 +26,13 @@ jQuery ->
 		})
 	$("#slide_controls").append("<div class='clear'></div>")
 
+	$("#article_link_only").change ->
+		if $(this).is(":checked")
+			$("#article_body_field").slideUp()
+			$("#article_link_field").slideDown()
+		else
+			$("#article_body_field").slideDown()
+			$("#article_link_field").slideUp()
 
 	$("div[rel=popover]").popover()
 	$("div[rel=tooltip]").tooltip()

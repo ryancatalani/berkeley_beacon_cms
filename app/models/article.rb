@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
 	validates_presence_of :title, :body, :articletype
-	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id, :section_id, :archive, :archive_images
+	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id, :section_id, :archive, :archive_images, :blog_id, :link_only, :link
 	has_many :authorships
 	has_many :people, :through => :authorships
 	has_many :taggings
@@ -13,12 +13,15 @@ class Article < ActiveRecord::Base
 	belongs_to :blog
 	before_save :check_clean_title
 	serialize :archive_images
-	# default_scope where('draft IN (?)', [false,nil])
 	
 	def to_url
-		c = created_at
-		base = blog.nil? ? section.clean_url : blog.cleantitle
-		"/#{base}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
+		if link_only
+			return link
+		else
+			c = created_at
+			base = blog.nil? ? section.clean_url : blog.cleantitle
+			return "/#{base}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
+		end
 	end
 	
 	def tweet
@@ -58,9 +61,7 @@ class Article < ActiveRecord::Base
 			return (created_at - 5.hours).strftime("%B %e, %Y at %l:%M %P")
 		end
 	end
-	
-	# As SGA resignations increase, officials discuss term length requirement
-	
+		
 	private
 		def check_clean_title
 			c = created_at

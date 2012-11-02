@@ -110,8 +110,9 @@
 		</div>
 		<div class="span6">
 			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#main_site_options">Post on Main Site</a></li>
-				<li><a data-toggle="tab" href="#blog_options">Post on a Blog</a></li>
+				<li class="active"><a data-toggle="tab" href="#main_site_options">Post on main site</a></li>
+				<li><a data-toggle="tab" href="#blog_options">Post on a blog</a></li>
+				<li><a data-toggle="tab" href="#link_only_option">Link only</a></li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active" id="main_site_options">
@@ -132,13 +133,19 @@
 					</div>
 					<a href="<%= new_blog_path %>" class="btn"><i class="icon-plus"></i> New Blog</a>
 				</div>
+				<div class="tab-pane" id="link_only_option">
+					<div class="field">
+						<%= f.check_box :link_only, :style => "display:inline;width:auto" %>
+						<%= f.label :link_only, :style => "display:inline;width:auto" %>
+					</div>
+				</div>
 			</div>
 
 
 			
 		</div>
 	</div>
-	<div class="field">
+	<div class="field" id="article_body_field">
 		<%= f.label :body %>
 		<%= f.text_area :body %>
 		<script type="text/javascript">
@@ -163,6 +170,10 @@
 				});
 			});
 		</script>
+	</div>
+	<div class="field" id="article_link_field">
+		<%= f.label :link %>
+		<%= f.text_field :link %>
 	</div>
 	<div class="field">
 		<%= f.label :excerpt, "Excerpt or Summary (shorter is better)" %>

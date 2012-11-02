@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023045600) do
+ActiveRecord::Schema.define(:version => 20121102001441) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20121023045600) do
     t.boolean  "disable_comments"
     t.integer  "blog_id"
     t.boolean  "draft"
+    t.boolean  "link_only"
+    t.string   "link"
   end
 
   create_table "attributions", :force => true do |t|

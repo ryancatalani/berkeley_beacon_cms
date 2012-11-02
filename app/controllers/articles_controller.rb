@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 		@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
 	end
-	
+
 	def create
 		is_draft = params[:commit].include?("draft")
 		p = params[:article]
@@ -44,15 +44,17 @@ class ArticlesController < ApplicationController
 				end # begin
 			end # each
 		end # else
+		if is_draft
+			p[:body] = "[Fill in]" if p[:body].blank?
+			p[:excerpt] = " " if p[:excerpt].blank?
+		end
+		p[:body] = p[:excerpt] if p[:link_only] == "1"
+
 		if p[:blog_id].to_i.zero? or p[:blog_id].nil?
 			@article = Section.find(p[:section_id]).articles.build(p)
 		else
 			p[:section_id] = nil
 			@article = Blog.find(p[:blog_id]).articles.build(p)
-		end
-		if is_draft
-			p[:body] = "[Fill in]" if p[:body].blank?
-			p[:excerpt] = "[Fill in]" if p[:excerpt].blank?
 		end
 
 		if @article.save
@@ -70,11 +72,12 @@ class ArticlesController < ApplicationController
 			Twitter.update(@article.tweet) if Rails.env.production? and !is_draft
 			redirect_to new_article_url, :notice => "Article #{is_draft ? 'saved!' : 'posted'}!"
 		else
+			logger.debug @article.errors.full_messages.join("\n")
 			@display_already_uploaded = true unless cookies[:already_uploaded].nil? or cookies[:already_uploaded].blank?
-			logger.debug "cookies = #{cookies[:already_uploaded]} / already_uploaded = #{@already_uploaded}"
 			@authors = Person.all.map {|person| ["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}", person.id]}
 			@sections = Section.all.map { |s| [s.name, s.id] }
 			@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
+			@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
 			render "new"
 		end
 	end
@@ -132,8 +135,9 @@ class ArticlesController < ApplicationController
 		p[:series_id] = params[:series_id].to_i
 		if is_draft
 			p[:body] = "[Fill in]" if p[:body].blank?
-			p[:excerpt] = "[Fill in]" if p[:excerpt].blank?
+			p[:excerpt] = " " if p[:excerpt].blank?
 		end
+		p[:body] = p[:excerpt] if p[:link_only] == "1"
 		if @article.update_attributes(p)
 		  @article.update_attribute(:draft,is_draft)
 		  Authorship.where(:article_id => @article.id).each { |a| a.delete }
