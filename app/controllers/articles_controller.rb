@@ -69,7 +69,7 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			Twitter.update(@article.tweet) if Rails.env.production? and !is_draft
+			Twitter.update(@article.tweet) if Rails.env.production? and !@article.link_only and !is_draft
 			redirect_to new_article_url, :notice => "Article #{is_draft ? 'saved!' : 'posted'}!"
 		else
 			logger.debug @article.errors.full_messages.join("\n")
