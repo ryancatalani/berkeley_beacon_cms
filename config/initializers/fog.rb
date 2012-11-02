@@ -5,6 +5,6 @@ CarrierWave.configure do |config|
 		:aws_secret_access_key	=> '***REMOVED***',
 	}
 	config.fog_directory = 'BerkeleyBeacon/beacon_uploads'
-	config.fog_public = false
+	config.fog_public = true
 	# config.fog_attributes = {'Cache-Control'=>'max-age=31540000'}
 end
