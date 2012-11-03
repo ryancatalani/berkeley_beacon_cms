@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121103201835) do
+ActiveRecord::Schema.define(:version => 20121103202412) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -180,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20121103201835) do
     t.integer  "network"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "article_id"
   end
 
   add_index "social_posts", ["network"], :name => "index_social_posts_on_network"
