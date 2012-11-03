@@ -12,6 +12,14 @@ class SocialPost < ActiveRecord::Base
 		[["Twitter", 1]]
 	end
 
+	def self.ready_to_post
+		where(:posted => false, :post_time => (1.year.ago..(Time.zone.now+Time.zone.utc_offset)))
+	end
+
+	def ready_to_post?
+		post_time < Time.zone.now+Time.zone.utc_offset
+	end
+
 	def network_name
 		networks = self.class.networks
 		return networks[network-1][0]
