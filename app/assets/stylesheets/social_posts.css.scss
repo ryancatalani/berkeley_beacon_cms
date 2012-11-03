@@ -1,3 +1,17 @@
 // Place all the styles related to the SocialPosts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#post_time_controls {
+	select {
+		width: auto;
+	}
+}
+
+.post_text_warning {
+	background: #fcf8e3;
+}
+
+.post_text_over {
+	background: #f2dede;
+}

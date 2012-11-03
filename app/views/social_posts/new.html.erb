@@ -1,2 +1,8 @@
-<h1>SocialPosts#new</h1>
-<p>Find me in app/views/social_posts/new.html.erb</p>
+<h2>New Scheduled Post</h2>
+<%= form_for @post do |f| %>
+	<%= render 'social_post_form', :f => f %>
+
+	<div class="actions form-actions">
+		<%= f.submit "Save", :class => "btn btn-primary" %>
+	</div>
+<% end %>

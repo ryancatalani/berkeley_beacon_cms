@@ -15,20 +15,26 @@ class Article < ActiveRecord::Base
 	before_save :check_clean_title
 	serialize :archive_images
 	
-	def to_url
+	def to_url(opts={})
 		if link_only
 			return link
 		else
 			c = created_at
 			base = blog.nil? ? section.clean_url : blog.cleantitle
-			return "/#{base}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
+			path = "/#{base}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
+			return "http://berkeleybeacon.com"+path if opts[:full] and opts[:full] = true
+			return path
 		end
+	end
+
+	def to_url_with_tracking(name,id)
+		"#{to_url(:full=>true)}?n=#{name}&sp=#{id}"
 	end
 	
 	def tweet
 		t = title
 		t = "From #{blog.title}: #{t}" if blog
-		ret = "#{t.truncate(119, :separator => ' ')} http://berkeleybeacon.com#{to_url}"
+		ret = "#{t.truncate(119, :separator => ' ').strip}: #{to_url(:full=>true)}"
 		ret << twitter_people unless title.length + 20 + twitter_people.length > 140
 		return ret
 	end
@@ -62,6 +68,27 @@ class Article < ActiveRecord::Base
 			return (created_at - 5.hours).strftime("%B %e, %Y at %l:%M %P")
 		end
 	end
+
+	def twitter_names
+		if people.map{ |p| !p.twitter.blank? }.all?
+			t = []
+			ret = ''
+			people.each do |p|
+				t << "@#{p.twitter}" unless p.twitter.blank?
+			end
+			if t.count == 1
+				ret = t.first
+			elsif t.count == 2
+				ret = t.join(' & ')
+			else
+				last = t.pop
+				ret = t.join(' ')
+				ret << " & #{last}"
+			end
+			return ret
+		end
+		return ''
+	end
 		
 	private
 		def check_clean_title
@@ -71,25 +98,11 @@ class Article < ActiveRecord::Base
 		end
 		
 		def twitter_people
-			if people.map{ |p| !p.twitter.blank? }.all?
-				# all have twitter usernames
-				t = people.map{ |p| "@#{p.twitter}" }
-				ret = ' by '
-				if t.count == 1
-					ret << t.first
-				elsif t.count == 2
-					ret << t.join(' & ')
-				else
-					last = t.pop
-					ret << t.join(' ')
-					ret << " & #{last}"
-				end
-				return ret
-			else
-				# at least one doesn't have twitter username
+			if twitter_names.blank?
 				return ''
-			end
-				
+			else
+				return " by #{twitter_names}"
+			end				
 		end
 		
 end

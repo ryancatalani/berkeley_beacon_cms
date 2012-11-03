@@ -1,0 +1,30 @@
+<p><em>The default text includes the article's title, and twitter usernames (if all authors have Twitter usernames).</em></p>
+
+<%= f.label :status_text %>
+Chars: <span id="text_length"><%= @char_init %></span> / <%= @char_limit %><br/>
+<%= f.text_area :status_text, :rows => 4 %>
+
+<div class="controls" id="post_time_controls">
+<%= f.label :time %>
+<%= f.datetime_select :post_time, :ampm => true, :minute_step => 15 %>
+</div>
+
+<%= f.label :network %>
+<%= f.select :network, options_for_select(@networks) %>
+
+<br/>
+<strong>Preview</strong>
+<div class="well">
+	<span id="post_preview"><%= @post.status_text %></span> <%= @url %>
+</div>
+
+<% if @post.errors %>
+	<% @post.errors.full_messages.each do |msg| %>
+		<div class="alert alert-error">
+		  <button type="button" class="close" data-dismiss="alert">×</button>
+		  <%= msg %>
+		</div>
+	<% end %>
+<% end %>
+
+<%= f.hidden_field :article_id, :value => @article_id %>
