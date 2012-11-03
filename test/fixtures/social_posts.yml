@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  status_text: MyText
+  time: 1
+  network: 1
+
+two:
+  status_text: MyText
+  time: 1
+  network: 1

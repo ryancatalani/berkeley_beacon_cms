@@ -7,6 +7,7 @@ class Article < ActiveRecord::Base
 	has_many :tags, :through => :taggings
 	has_many :articlemediacontents
 	has_many :mediafiles, :through => :articlemediacontents
+	has_many :social_posts
 	serialize :subtitles
 	belongs_to :section
 	belongs_to :series
