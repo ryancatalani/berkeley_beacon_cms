@@ -1,0 +1,8 @@
+<h2>New Scheduled Post</h2>
+<%= form_for @post do |f| %>
+	<%= render 'social_post_form', :f => f %>
+
+	<div class="actions form-actions">
+		<%= f.submit "Save", :class => "btn btn-primary" %>
+	</div>
+<% end %>

@@ -1,0 +1,8 @@
+<h2>Edit Scheduled Post</h2>
+<%= form_for @post do |f| %>
+	<%= render 'social_post_form', :f => f %>
+
+	<div class="actions form-actions">
+		<%= f.submit "Update", :class => "btn btn-primary" %>
+	</div>
+<% end %>
