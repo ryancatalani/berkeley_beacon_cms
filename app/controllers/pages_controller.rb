@@ -185,6 +185,30 @@ class PagesController < ApplicationController
 		@og[:image] = "http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/voting%20map-01-thumb.jpg"
 		@og[:description] = "See voting locations around Boston, and how to find out where to vote."
 	end
+
+	def find_voting_location
+		
+		# final_voting_address = ''
+
+		# # Check maps API
+		# address = URI.encode "80 Boylston St. 02116"
+		# uri = URI.parse("http://maps.googleapis.com/maps/api/geocode/json?address=#{address}&sensor=false")
+		# http = Net::HTTP.new(uri.host, uri.port)
+		# request = Net::HTTP::Get.new(uri.request_uri)
+		# request["Content-Type"] = "application/json"
+		# response = http.request(request)
+		# maps_json = ActiveSupport::JSON.decode(response.body)
+		# maps_json_results = maps_json["results"]
+		
+		# if maps_json_results.count > 1
+		# 	final_voting_address = maps_json_results.first["formatted_address"]
+		# else
+		# 	maps_json_results.each do |r|
+		# 		r["formatted_address"]
+		# 	end
+		# end
+
+	end
 	
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
