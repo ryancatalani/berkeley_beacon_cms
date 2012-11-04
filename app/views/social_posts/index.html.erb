@@ -23,7 +23,6 @@
 				</td>
 				<td>
 					<% if post.ready_to_post? %><span class="label label-info">Next Post</span><br/><% end %>
-					<em><%= distance_of_time_in_words_to_now(post.post_time) %></em><br/>
 					<%= post.post_time.to_s(:pretty_date_and_time) %>
 				</td>
 				<td><%= post.full_post %></td>

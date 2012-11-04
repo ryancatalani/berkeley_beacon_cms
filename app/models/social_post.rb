@@ -13,11 +13,11 @@ class SocialPost < ActiveRecord::Base
 	end
 
 	def self.ready_to_post
-		where(:posted => false, :post_time => (1.year.ago..(Time.zone.now+Time.zone.utc_offset)))
+		where(:posted => false, :post_time => (1.year.ago..(Time.now)))
 	end
 
 	def ready_to_post?
-		post_time < Time.zone.now+Time.zone.utc_offset
+		post_time < Time.zone.now
 	end
 
 	def network_name
