@@ -23,4 +23,9 @@ class BeaconMailer < ActionMailer::Base
 		@link = "http://berkeleybeacon.com/political_poll/confirm?e=#{email_hash}&c=#{code}"
 		mail(:to => email, :subject => "Confirm your response - Emerson College Political Poll")
 	end
+
+	def just_posted(posts,titles)
+		@posts = posts
+		mail(:to => "catalani.ryan@gmail.com", :subject => "[Beacon] Just posted")
+	end
 end
