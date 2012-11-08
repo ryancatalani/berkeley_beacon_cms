@@ -70,7 +70,7 @@ class ArticlesController < ApplicationController
 				cookies[:already_uploaded] = []
 			end
 			Twitter.update(@article.tweet) if Rails.env.production? and !@article.link_only and !is_draft
-			expire_article_touches
+			# expire_article_touches
 			redirect_to new_article_url, :notice => "Article #{is_draft ? 'saved!' : 'posted'}!"
 		else
 			logger.debug @article.errors.full_messages.join("\n")
@@ -154,7 +154,7 @@ class ArticlesController < ApplicationController
 				cookies[:already_uploaded] = []
 			end
 			Twitter.update(@article.tweet) if Rails.env.production? and !@article.link_only and !is_draft and was_draft
-			expire_article_touches
+			# expire_article_touches
 			redirect_to articles_path
 		else
 			@sections = Section.all.map { |s| [s.name, s.id] }

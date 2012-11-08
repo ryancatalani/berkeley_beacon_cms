@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
 	# before_filter :gohome
-	caches_action :show
+	# caches_action :show
 
 	def show
 		@include_responsive = true
