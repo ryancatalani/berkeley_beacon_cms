@@ -204,7 +204,12 @@
 	<div class="actions form-actions">
 		<%= f.submit "Publish article", :class => "btn btn-primary" %>
 		<%= f.submit "Save article as a draft", :class => "btn" %>
-		<p>If you publish this article, a link to it will automatically be tweeted.</p>
+		<% if @can_queue_tweet %>
+			<p><%= radio_button_tag :post_when, :post_later, true %> Add to tweet queue (to be posted later in the day)
+			<%= radio_button_tag :post_when, :post_now %> Tweet now</p>
+		<% else %>
+			<p>If you publish this article, a link to it will automatically be tweeted.</p>
+		<% end %>
 	</div>
 <% end %>
 

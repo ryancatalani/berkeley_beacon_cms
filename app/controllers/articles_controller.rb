@@ -19,6 +19,7 @@ class ArticlesController < ApplicationController
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 		@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
+		@can_queue_tweet = (Time.now.strftime("%A") == "Wednesday" && Time.now.hour > 18) || (Time.now.strftime("%A") == "Thursday" && Time.now.hour < 6) || Rails.env.development?
 	end
 
 	def create
@@ -57,6 +58,8 @@ class ArticlesController < ApplicationController
 			@article = Blog.find(p[:blog_id]).articles.build(p)
 		end
 
+		queue_tweet = !params[:post_when].nil? and params[:post_when] == "post_later"
+
 		if @article.save
 			@article.update_attribute(:views,0)
 			@article.update_attribute(:draft,is_draft)
@@ -69,7 +72,8 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			Twitter.update(@article.tweet) if Rails.env.production? and !@article.link_only and !is_draft
+			Twitter.update(@article.tweet) if Rails.env.production? and !is_draft and !queue_tweet
+			@article.social_posts.create!(:status_text => @article.title, :network => 1, :in_queue => true, :posted => false) if !is_draft and queue_tweet
 			# expire_article_touches
 			redirect_to new_article_url, :notice => "Article #{is_draft ? 'saved!' : 'posted'}!"
 		else
@@ -105,6 +109,7 @@ class ArticlesController < ApplicationController
 		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
 		@authors.unshift(["Choose an author",0])
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
+		@can_queue_tweet = (Time.now.strftime("%A") == "Wednesday" && Time.now.hour > 18) || (Time.now.strftime("%A") == "Thursday" && Time.now.hour < 6) || Rails.env.development?
 	end
 	
 	def update
@@ -139,6 +144,9 @@ class ArticlesController < ApplicationController
 			p[:excerpt] = " " if p[:excerpt].blank?
 		end
 		p[:body] = p[:excerpt] if p[:link_only] == "1"
+		
+		queue_tweet = !params[:post_when].nil? and params[:post_when] == "post_later"
+
 		if @article.update_attributes(p)
 		  @article.update_attribute(:draft,is_draft)
 		  Authorship.where(:article_id => @article.id).each { |a| a.delete }
@@ -153,7 +161,8 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			Twitter.update(@article.tweet) if Rails.env.production? and !@article.link_only and !is_draft and was_draft
+			Twitter.update(@article.tweet) if Rails.env.production? and !is_draft and was_draft and !queue_tweet
+			@article.social_posts.create!(:status_text => @article.title, :network => 1, :in_queue => true, :posted => false) and !is_draft and was_draft and queue_tweet
 			# expire_article_touches
 			redirect_to articles_path
 		else

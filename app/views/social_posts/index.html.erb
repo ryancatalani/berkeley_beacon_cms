@@ -22,8 +22,12 @@
 					<% end %>
 				</td>
 				<td>
-					<% if post.ready_to_post? %><span class="label label-info">Next Post</span><br/><% end %>
-					<%= post.post_time.to_s(:pretty_date_and_time) %>
+					<% if post.in_queue %>
+						In tweet queue
+					<% else %>
+						<% if post.ready_to_post? %><span class="label label-info">Next Post</span><br/><% end %>
+						<%= post.post_time.to_s(:pretty_date_and_time) %>
+					<% end %>
 				</td>
 				<td><%= post.full_post %></td>
 				<td><%= link_to post.article.title, post.article.to_url rescue "<strong>No Article</strong>".html_safe %></td>

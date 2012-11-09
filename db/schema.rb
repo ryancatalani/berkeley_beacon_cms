@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121103224415) do
+ActiveRecord::Schema.define(:version => 20121108020133) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20121103224415) do
     t.integer  "article_id"
     t.datetime "post_time"
     t.boolean  "posted"
+    t.boolean  "in_queue"
   end
 
   add_index "social_posts", ["network"], :name => "index_social_posts_on_network"
