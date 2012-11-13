@@ -21,7 +21,7 @@ class SocialPost < ActiveRecord::Base
 	end
 
 	def ready_to_post?
-		!posted and post_time < Time.zone.now
+		!posted and post_time < Time.zone.now and !in_queue
 	end
 
 	def network_name

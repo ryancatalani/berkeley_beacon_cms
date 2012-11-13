@@ -1,10 +1,12 @@
 namespace :db do
 	desc "Post scheduled social posts"
 	task :post_scheduled_posts => :environment do
+		include ActionView::Helpers::ApplicationHelper
+		
 		if SocialPost.ready_to_post.count > 0
 			posts = []
 			SocialPost.ready_to_post.each do |post|
-				t = Twitter.update(post.full_post)
+				t = current_twitter.update(post.full_post)
 				t_id = t.attrs["id_str"]
 				posts << {:url => "https://twitter.com/BeaconUpdate/status/#{t_id}", :title => post.article.title, :text => post.full_post}
 				post.update_attribute(:posted, true)
@@ -15,7 +17,7 @@ namespace :db do
 			posts = []
 			num_to_post = ((20 - (Time.now.hour - 9)).to_d / 12.to_d).ceil
 			SocialPost.twitter_queue.to_a.shuffle.first(num_to_post).each do |post|
-				t = Twitter.update(post.full_post)
+				t = current_twitter.update(post.full_post)
 				t_id = t.attrs["id_str"]
 				posts << {:url => "https://twitter.com/BeaconUpdate/status/#{t_id}", :title => post.article.title, :text => post.full_post}
 				post.update_attribute(:posted, true)

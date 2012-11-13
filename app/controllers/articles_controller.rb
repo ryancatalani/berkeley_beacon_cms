@@ -72,7 +72,7 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			Twitter.update(@article.tweet) if Rails.env.production? and !is_draft and !queue_tweet
+			current_twitter.update(@article.tweet) if Rails.env.production? and !is_draft and !queue_tweet
 			@article.social_posts.create!(:status_text => @article.title, :network => 1, :in_queue => true, :posted => false) if !is_draft and queue_tweet
 			# expire_article_touches
 			redirect_to new_article_url, :notice => "Article #{is_draft ? 'saved!' : 'posted'}!"
@@ -161,7 +161,7 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			Twitter.update(@article.tweet) if Rails.env.production? and !is_draft and was_draft and !queue_tweet
+			current_twitter.update(@article.tweet) if Rails.env.production? and !is_draft and was_draft and !queue_tweet
 			@article.social_posts.create!(:status_text => @article.title, :network => 1, :in_queue => true, :posted => false) and !is_draft and was_draft and queue_tweet
 			# expire_article_touches
 			redirect_to articles_path

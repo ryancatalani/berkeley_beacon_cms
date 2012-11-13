@@ -135,6 +135,8 @@ class ApplicationController < ActionController::Base
 				return nil
 			end
 		end
+
+		
 		
 		helper_method :current_user, :check_editor,
 			:bylineify, :bylineify_linked, :bylineify_short,

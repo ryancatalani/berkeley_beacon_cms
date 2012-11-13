@@ -12,9 +12,14 @@ end
 
 Twitter.configure do |config|
 	config.consumer_key = "***REMOVED***"
-  config.consumer_secret = "***REMOVED***"
-  config.oauth_token = "***REMOVED***"
-  config.oauth_token_secret = "***REMOVED***"
+	config.consumer_secret = "***REMOVED***"
   # config.endpoint = "http://" + endpoint
   # config.search_endpoint = "http://" + search_endpoint
 end
+
+# @@beacon_twitter = Twitter::Client.new(
+# 	:consumer_key => "***REMOVED***",
+# 	:consumer_secret => "***REMOVED***",
+# 	:oauth_token => "***REMOVED***",
+# 	:oauth_token_secret => "***REMOVED***"
+# )
