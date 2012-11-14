@@ -31,6 +31,7 @@ gem 'geocoder'
 gem 'indextank'
 gem 'fb_graph'
 gem 'feedzirra'
+gem 'newrelic_rpm'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
