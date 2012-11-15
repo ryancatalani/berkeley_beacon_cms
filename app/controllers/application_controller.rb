@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery
 
 	# before_filter :intercept
-	before_filter :acpsea
+	# before_filter :acpsea
 
 	private
 
