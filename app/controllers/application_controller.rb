@@ -136,13 +136,33 @@ class ApplicationController < ActionController::Base
 			end
 		end
 
+		def current_twitter
+			beacon = {
+				:consumer_key => "***REMOVED***",
+				:consumer_secret => "***REMOVED***",
+				:oauth_token => "***REMOVED***",
+				:oauth_token_secret => "***REMOVED***"
+			}
+			magicofpi_test = {
+				:consumer_key => "***REMOVED***",
+				:consumer_secret => "***REMOVED***",
+				:oauth_token => "***REMOVED***",
+				:oauth_token_secret => "***REMOVED***"
+			}
+			if Rails.env.production?
+				return Twitter::Client.new(beacon)
+			else
+				return Twitter::Client.new(magicofpi_test)
+			end
+		end
+
 		
 		
 		helper_method :current_user, :check_editor,
 			:bylineify, :bylineify_linked, :bylineify_short,
 			:popular_articles,
 			:video_tag, :og_title, :editor_logged_in, :bb_video_tag,
-			:latest_ed_cartoon
+			:latest_ed_cartoon, :current_twitter
 
 	
 end

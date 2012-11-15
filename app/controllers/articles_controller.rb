@@ -1,5 +1,5 @@
 include ActionView::Helpers::AssetTagHelper
-include ActionView::Helpers::ApplicationHelper
+# include ActionView::Helpers::ApplicationHelper
 
 class ArticlesController < ApplicationController
 	before_filter :check_editor, :except => [:show]
