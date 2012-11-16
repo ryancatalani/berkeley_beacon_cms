@@ -19,19 +19,19 @@ gem 'carrierwave'
 gem "remotipart", "~> 1.0"
 gem 'tinymce-rails'
 gem "heroku"
-gem 'fog'
+gem "fog", "~> 1.7.0"
 gem 'faker'
 gem 'exception_notification'
 gem 'nokogiri'
 gem 'mini_magick'
 # gem 'rmagick'
-gem 'twitter'
+gem "twitter", "~> 4.2.0"
 gem 'will_paginate', '~> 3.0'
 gem 'geocoder'
-gem 'indextank'
 gem 'fb_graph'
 gem 'feedzirra'
 gem 'newrelic_rpm'
+gem 'swiftype'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
