@@ -13,7 +13,7 @@ namespace :db do
 			end
 			BeaconMailer.just_posted(posts).deliver
 		end
-		if !(Time.zone.now.strftime("%A") == "Wednesday" && Time.zone.now.hour > 18) || (Time.zone.now.strftime("%A") == "Thursday" && Time.zone.now.hour < 6) and (Time.zone.now.hour > 6 and Time.zone.now.hour < 21) and SocialPost.twitter_queue.count > 0
+		if !(Time.zone.now.strftime("%A") == "Wednesday" && Time.zone.now.hour > 18) || (Time.zone.now.strftime("%A") == "Thursday" && Time.zone.now.hour < 6) and (Time.zone.now.hour > 9 and Time.zone.now.hour < 21) and SocialPost.twitter_queue.count > 0
 			posts = []
 			# num_to_post = ((20 - (Time.zone.now.hour - 9)).to_f.to_d / 12.to_f.to_d).ceil
 			num_to_post = 2
