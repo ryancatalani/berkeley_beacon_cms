@@ -89,6 +89,78 @@ class Article < ActiveRecord::Base
 		end
 		return ''
 	end
+
+	def indexable_info
+		a = {}
+		a[:external_id] = id.to_s
+		fields = []
+
+		title_f = {}
+		title_f[:name] = "title"
+		title_f[:value] = title
+		title_f[:type] = "string"
+		fields << title_f
+
+		unless subtitles.blank? or subtitles.empty?
+			sub_f = {}
+			sub_f[:name] = "subtitle"
+			sub_f[:value] = subtitles.flatten
+			sub_f[:type] = "text"
+			fields << sub_f
+		end
+
+		body_f = {}
+		body_f[:name] = "body"
+		body_f[:value] = body
+		body_f[:type] = "text"
+		fields << body_f
+
+		authors_f = {}
+		authors_f[:name] = "authors"
+		authors_f[:value] = people.map(&:full_name)
+		authors_f[:type] = "text"
+		fields << authors_f
+
+		updated_f = {}
+		updated_f[:name] = "updated_at"
+		updated_f[:value] = updated_at.iso8601
+		updated_f[:type] = "date"
+		fields << updated_f
+
+		created_f = {}
+		created_f[:name] = "created_at"
+		created_f[:value] = created_at.iso8601
+		created_f[:type] = "date"
+		fields << created_f
+
+		unless section.nil?
+			section_f = {}
+			section_f[:name] = "section"
+			section_f[:value] = section.name
+			section_f[:type] = "enum"
+			fields << section_f
+		end
+
+		unless blog.nil?
+			blog_f = {}
+			blog_f[:name] = "blog"
+			blog_f[:value] = blog.title
+			blog_f[:type] = "enum"
+			fields << blog_f
+		end
+
+		unless series.nil?
+			series_f = {}
+			series_f[:name] = "series"
+			series_f[:value] = series.title
+			series_f[:type] = "enum"
+			fields << series_f
+		end
+
+		a[:fields] = fields
+
+		return a
+	end
 		
 	private
 		def check_clean_title

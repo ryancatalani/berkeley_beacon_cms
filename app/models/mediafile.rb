@@ -58,5 +58,51 @@ class Mediafile < ActiveRecord::Base
 		created_at > 7.days.ago
 	end
 
+	def indexable_info
+		m = {}
+		m[:external_id] = id.to_s
+		fields = []
+
+		title_f = {}
+		title_f[:name] = "title"
+		title_f[:value] = title
+		title_f[:type] = "string"
+		fields << title_f
+
+		article_titles_f = {}
+		article_titles_f[:name] = "article_titles"
+		article_titles_f[:value] = articles.map(&:title)
+		article_titles_f[:type] = "text"
+		fields << article_titles_f
+
+		creators_f = {}
+		creators_f[:name] = "creators"
+		creators_f[:value] = people.map(&:full_name)
+		creators_f[:type] = "text"
+		fields << creators_f
+
+		updated_f = {}
+		updated_f[:name] = "updated_at"
+		updated_f[:value] = updated_at.iso8601
+		updated_f[:type] = "date"
+		fields << updated_f
+
+		created_f = {}
+		created_f[:name] = "created_at"
+		created_f[:value] = created_at.iso8601
+		created_f[:type] = "date"
+		fields << created_f
+
+		type_f = {}
+		type_f[:name] = "mediatype"
+		type_f[:value] = mediatype_str
+		type_f[:type] = "enum"
+		fields << type_f
+
+		m[:fields] = fields
+
+		return m
+	end
+
 	
 end
