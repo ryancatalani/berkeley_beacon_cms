@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108020133) do
+ActiveRecord::Schema.define(:version => 20121116175453) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -157,6 +157,13 @@ ActiveRecord::Schema.define(:version => 20121108020133) do
     t.string   "confirmation"
     t.boolean  "confirmed"
     t.string   "email_hash"
+  end
+
+  create_table "popular_snapshots", :force => true do |t|
+    t.text     "most_viewed"
+    t.text     "most_shared"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sections", :force => true do |t|

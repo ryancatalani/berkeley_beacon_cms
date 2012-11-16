@@ -2,6 +2,8 @@ namespace :db do
 	desc "Find most popular recent articles"
 	task :find_popular_articles => :environment do
 
+		popular = PopularSnapshot.new
+
 		# Number of popular articles to display
 		num = 5
 
@@ -16,7 +18,7 @@ namespace :db do
 			pop_by_views.uniq!
 		end
 		pop_by_views_final = pop_by_views.first(num).sort_by{|a| a.views}.reverse
-
+		popular.most_viewed = pop_by_views_final.map {|a| [a.id, a.views]}
 
 		# --- Popular on Facebook and Twitter, i.e. most shared on social networks
 
@@ -52,7 +54,10 @@ namespace :db do
 			pop_social_candidates[url][:total] = pop_social_candidates[url][:fb] + twt_share_data["count"]
 		end
 
-		pop_social = pop_social_candidates.sort_by{|k,v| v[:total]}.reverse.first(5).map{ |a| a[1] }
+		pop_social = pop_social_candidates.sort_by{|k,v| v[:total]}.reverse.first(5).map{ |a| [a[1][:id], a[1][:total]] }
+		popular.most_shared = pop_social
+
+		popular.save!
 
 
 	end

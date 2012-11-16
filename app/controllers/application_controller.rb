@@ -90,15 +90,16 @@ class ApplicationController < ActionController::Base
 		end
 		
 		def popular_articles num=5
-			num_days = 2
-			ret = Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
-			while ret.count < num
-				num_days += 1
-				ret << Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
-				ret.flatten!
-				ret.uniq!
-			end
-			return ret.first(num).sort_by{|a| a.views}.reverse
+			return PopularSnapshot.latest_most_viewed
+			# num_days = 2
+			# ret = Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
+			# while ret.count < num
+			# 	num_days += 1
+			# 	ret << Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
+			# 	ret.flatten!
+			# 	ret.uniq!
+			# end
+			# return ret.first(num).sort_by{|a| a.views}.reverse
 		end
 		
 		def video_tag mediafile, height=500, width=820
