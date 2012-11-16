@@ -26,7 +26,7 @@ namespace :db do
 		end
 
 		pop_urls = pop_initial.map {|a| a.to_url(:full => true)}
-		pop_urls.each {|url| pop_social_candidates[url] = {:fb => 0, :twt => 0}  }
+		pop_urls.each {|url| pop_social_candidates[url] = {:fb => 0, :twt => 0, :total => 0} }
 		fb_shares_uri = URI.parse('http://graph.facebook.com/?ids=' + pop_urls.join(','))
 		fb_shares_res = Net::HTTP.get_response(fb_shares_uri).body
 		fb_shares_data = ActiveSupport::JSON.decode(fb_shares_res)
@@ -41,6 +41,7 @@ namespace :db do
 			twt_share_res = Net::HTTP.get_response(twt_share_uri).body
 			twt_share_data = ActiveSupport::JSON.decode(twt_share_res)
 			pop_social_candidates[url][:twt] = twt_share_data["count"]
+			pop_social_candidates[url][:total] = pop_social_candidates[url][:fb] + twt_share_data["count"]
 		end
 
 		puts pop_social_candidates
