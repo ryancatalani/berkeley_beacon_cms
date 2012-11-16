@@ -34,14 +34,11 @@
 				<div class="popular-story">
 					<li>
 						<a href="<%= story.to_url %>">
-							<div class="popular_img_wrap">
-								<%= story.first_photo ? image_tag(story.first_photo.media.thumb_40.url) : "&nbsp;".html_safe %>
-							</div>
-							<%= truncate story.title, :length => 60 %>
 							<div class="popular_shares_wrap">
 								<%= arr[1] %>
 								<div class="popular_shares_t">shares</div>
 							</div>
+							<%= truncate story.title, :length => 60 %>
 							<div class="clear"></div>
 						</a>
 					</li>

@@ -244,6 +244,12 @@
 	margin-bottom: 40px;
 }
 
+.article_popular {
+	#popular_most_viewed_h, #popular_most_shared_h {
+		font-size: 0.85em;
+	}
+}
+
 #popular {
 	width: 100%;
 
@@ -320,12 +326,13 @@
 		@include arvo;
 		font-size: 15px;
 		line-height: 15px;
-		float: right;
+		float: left;
 		background: #666;
 		color: #fff;
 		text-align: center;
 		width: 50px;
 		padding: 7px 0 5px;
+		margin-right: 10px;
 	}
 	.popular_shares_t {
 		@include upcase;

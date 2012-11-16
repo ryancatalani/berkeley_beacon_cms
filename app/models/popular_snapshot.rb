@@ -7,11 +7,11 @@ class PopularSnapshot < ActiveRecord::Base
 	serialize :most_shared
 
 	def self.latest_most_viewed
-		last.most_viewed.map {|a| Article.find(a[0]) }
+		last.most_viewed.map {|a| Article.find(a[0]) } rescue []
 	end
 
 	def self.latest_most_shared
-		last.most_shared.map {|a| [Article.find(a[0]), a[1]] }
+		last.most_shared.map {|a| [Article.find(a[0]), a[1]] } rescue []
 	end
 
 end
