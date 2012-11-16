@@ -20,6 +20,13 @@ class Mediafile < ActiveRecord::Base
 	# 3 => Graphic
 	# 4 => Illustration
 
+	def mediatype_str
+		if mediatype and mediatype <= 4
+			return %w(Media Photograph Video Graphic Illustration)[mediatype]
+		end
+		return "Media"
+	end
+
 	def mp4
 		return video_mp4.url if video_mp4.url
 		return direct_mp4_url if direct_mp4_url
