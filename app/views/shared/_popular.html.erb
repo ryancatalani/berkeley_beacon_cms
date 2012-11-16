@@ -1,13 +1,52 @@
-<h4>Popular on the Beacon</h4>
-<ol>
-	<% popular_articles.each do |story| %>
-		<div class="popular-story">
-			<!-- media -->
-			<li>
-				<%= link_to image_tag(story.first_photo.media.thumb_40.url), story.to_url if story.first_photo %>
-				<%= link_to truncate(story.title, :length => 60), story.to_url %>
-				<div class="clear"></div>
-			</li>
-		</div>
-	<% end %>
-</ol>
+	<a id="popular_most_viewed_h" href="#" class="active">Most Viewed</a>
+	<a id="popular_most_shared_h" href="#" class="inactive">Most Shared</a>
+	<div class="clear"></div>
+	<div id="popular_separator">
+		<div id="popular_selected">&nbsp;</div>
+	</div>
+	<div id="popular_inactive_separator">
+		&nbsp;
+	</div>
+	<div class="clear"></div>
+
+	<div id="popular_most_viewed">
+		<ol>
+			<% popular_articles.each do |story| %>
+				<div class="popular-story">
+					<li>
+						<a href="<%= story.to_url %>">
+							<div class="popular_img_wrap">
+								<%= story.first_photo ? image_tag(story.first_photo.media.thumb_40.url) : "&nbsp;".html_safe %>
+							</div>
+							<%= truncate story.title, :length => 60 %>
+							<div class="clear"></div>
+						</a>
+					</li>
+				</div>
+			<% end %>
+		</ol>
+	</div>
+
+	<div id="popular_most_shared">
+		<ol>
+			<% PopularSnapshot.latest_most_shared.each do |arr| %>
+				<% story = arr[0] %>
+				<div class="popular-story">
+					<li>
+						<a href="<%= story.to_url %>">
+							<div class="popular_img_wrap">
+								<%= story.first_photo ? image_tag(story.first_photo.media.thumb_40.url) : "&nbsp;".html_safe %>
+							</div>
+							<%= truncate story.title, :length => 60 %>
+							<div class="popular_shares_wrap">
+								<%= arr[1] %>
+								<div class="popular_shares_t">shares</div>
+							</div>
+							<div class="clear"></div>
+						</a>
+					</li>
+				</div>
+			<% end %>
+		</ol>
+	</div>
+<div class="clear"></div>

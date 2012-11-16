@@ -7,6 +7,10 @@
 	font-size: 0.8em;
 }
 
+@mixin arvo {
+	font-family: "Arvo", Rockwell, serif;
+}
+
 @mixin col($percent) {
 	width: $percent - 2;
 	margin: 0 1%;
@@ -52,6 +56,32 @@
 	a:hover {
 		color: #8aadd3;
 		text-decoration: none;
+	}
+}
+
+@mixin bottom-white-triangle {
+	position: relative;
+	height: 9px;
+	overflow: hidden;
+	margin-top: -1px;
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;		
+		border-top: 10px solid #aaa;
+		top: -1px;
+	}
+	&:after {
+		top: -1px;
+		margin-left: 1px;
+		content: '';
+		display: block;
+		position: absolute;
+		border-left: 9px solid transparent;
+		border-right: 9px solid transparent;		
+		border-top: 9px solid #fff;
 	}
 }
 
@@ -215,6 +245,40 @@
 }
 
 #popular {
+	width: 100%;
+
+	#popular_most_viewed_h, #popular_most_shared_h {
+		@include arvo;
+		font-weight: bold;
+		display: block;
+		width: 50%;
+		text-align: center;
+		text-transform: uppercase;
+		color: #666;
+		float: left;
+		padding: 10px 0;
+		&:hover {
+			text-decoration: none;
+		}
+		&.inactive {
+			color: #999;
+		}
+	}
+
+	#popular_most_viewed_h.active {
+		box-shadow: 1px 0 3px #aaa;
+		-moz-box-shadow: 1px 0 3px #aaa;
+		-webkit-box-shadow: 1px 0 3px #aaa;
+	}
+
+	#popular_most_shared_h.active {
+		box-shadow: -1px 0 3px #aaa;
+		-moz-box-shadow: -1px 0 3px #aaa;
+		-webkit-box-shadow: -1px 0 3px #aaa;
+	}
+
+	
+
 	ol {
 		list-style: decimal;
 		list-style-position: inside;
@@ -227,10 +291,45 @@
 			min-height: 60px;
 		}
 	}
-	img {
+	.popular_img_wrap {
 		float: left;
-		margin-top: 5px;
+		// margin-top: 5px;
 		margin-right: 10px;
+		width: 40px;
+	}
+	#popular_most_shared {
+		display: none;
+	}
+	#popular_selected {
+		@include bottom-white-triangle;
+		margin-left: 45%;
+	}
+	#popular_separator, #popular_inactive_separator {
+		width: 50%;
+		height: 10px;
+		margin-bottom: 5px;
+		float: left;
+	}
+	#popular_separator {
+		border-top: 1px solid #ccc;
+	}
+	#popular_inactive_separator {
+		border-top: 1px solid #e7e7e7;
+	}
+	.popular_shares_wrap {
+		@include arvo;
+		font-size: 15px;
+		line-height: 15px;
+		float: right;
+		background: #666;
+		color: #fff;
+		text-align: center;
+		width: 50px;
+		padding: 7px 0 5px;
+	}
+	.popular_shares_t {
+		@include upcase;
+		font-size: 10px;
 	}
 }
 
@@ -824,36 +923,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 }
 
 #latest_video_position {
-	// background: white;
-	// border: 1px solid #ccc;
-	// padding: 10px;
-	// margin: 10px 0 0;
-	// width: 200px;
-	position: relative;
-	height: 9px;
-	overflow: hidden;
-	margin-top: -1px;
-	// text-align: center;
-
-	&:before {
-		content: '';
-		display: block;
-		position: absolute;
-		border-left: 10px solid transparent;
-		border-right: 10px solid transparent;		
-		border-top: 10px solid #aaa;
-		top: -1px;
-	}
-	&:after {
-		top: -1px;
-		margin-left: 1px;
-		content: '';
-		display: block;
-		position: absolute;
-		border-left: 9px solid transparent;
-		border-right: 9px solid transparent;		
-		border-top: 9px solid #fff;
-	}
+	@include bottom-white-triangle;
 }
 
 .sm_btn {

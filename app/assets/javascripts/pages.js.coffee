@@ -10,6 +10,23 @@ jQuery ->
 		$(".balance_height").each ->
 			$(this).css("height",max)
 
+	$("#popular_most_viewed_h").click (e) ->
+		$("#popular_most_shared").hide()
+		$("#popular_most_viewed").show()
+		$("#popular_separator, #popular_inactive_separator").css("float", "left")
+		$(this).addClass("active").removeClass("inactive")
+		$("#popular_most_shared_h").removeClass("active").addClass("inactive")
+		e.preventDefault()
+		return false
+
+	$("#popular_most_shared_h").click (e) ->
+		$("#popular_most_viewed").hide()
+		$("#popular_most_shared").show()
+		$("#popular_separator, #popular_inactive_separator").css("float", "right")
+		$(this).addClass("active").removeClass("inactive")
+		$("#popular_most_viewed_h").removeClass("active").addClass("inactive")
+		e.preventDefault()
+		return false
 
 	# $(".video_page_video").each ->
 	# 	width = $(this).width()
