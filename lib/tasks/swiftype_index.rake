@@ -18,16 +18,25 @@ namespace :db do
 			to_index << article.indexable_info
 		end
 
-		article_type.create_documents(to_index)
-		mediafile_type.create_documents(to_index_media)
+		# article_type.create_documents(to_index)
+		# mediafile_type.create_documents(to_index_media)
 
-		# i = 0
-		# slice_size = 25
-		# to_index.each_slice(slice_size) do |slice|
-		# 	puts i
-		# 	type.create_documents(slice)
-		# 	i += slice_size
-		# end
+		i = 0
+		slice_size = 100
+
+		to_index.each_slice(slice_size) do |slice|
+			puts i
+			article_type.create_documents(slice)
+			i += slice_size
+		end
+
+		i = 0
+		to_index_media.each_slice(slice_size) do |slice|
+			puts i
+			mediafile_type.create_documents(slice)
+			i += slice_size
+		end
+
 
 		to_index.each do |doc|
 			# puts doc
