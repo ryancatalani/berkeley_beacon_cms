@@ -2,18 +2,23 @@ namespace :db do
 	desc "Find most popular recent articles"
 	task :find_popular_articles => :environment do
 
+		# Number of popular articles to display
 		num = 5
 
-		# num_days = 2
-		# pop_by_views = Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
-		# while pop_by_views.count < num
-		# 	num_days += 1
-		# 	pop_by_views << Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
-		# 	pop_by_views.flatten!
-		# 	pop_by_views.uniq!
-		# end
-		# pop_by_views_final = pop_by_views.first(num).sort_by{|a| a.views}.reverse
+		# --- Popular by views, i.e. most viewed
 
+		num_days = 2
+		pop_by_views = Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
+		while pop_by_views.count < num
+			num_days += 1
+			pop_by_views << Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
+			pop_by_views.flatten!
+			pop_by_views.uniq!
+		end
+		pop_by_views_final = pop_by_views.first(num).sort_by{|a| a.views}.reverse
+
+
+		# --- Popular on Facebook and Twitter, i.e. most shared on social networks
 
 		num_days = 2
 		pop_social = []
@@ -27,6 +32,8 @@ namespace :db do
 
 		pop_urls = pop_initial.map {|a| a.to_url(:full => true)}
 		pop_initial.each {|a| pop_social_candidates[a.to_url(:full=>true)] = {:id => a.id, :fb => 0, :twt => 0, :total => 0} }
+		
+		# Facebook
 		fb_shares_uri = URI.parse('http://graph.facebook.com/?ids=' + pop_urls.join(','))
 		fb_shares_res = Net::HTTP.get_response(fb_shares_uri).body
 		fb_shares_data = ActiveSupport::JSON.decode(fb_shares_res)
@@ -36,6 +43,7 @@ namespace :db do
 			end
 		end
 
+		# Twitter
 		pop_urls.each do |url|
 			twt_share_uri = URI.parse('http://urls.api.twitter.com/1/urls/count.json?url=' + url)
 			twt_share_res = Net::HTTP.get_response(twt_share_uri).body
@@ -44,15 +52,8 @@ namespace :db do
 			pop_social_candidates[url][:total] = pop_social_candidates[url][:fb] + twt_share_data["count"]
 		end
 
-		puts pop_social_candidates
+		pop_social = pop_social_candidates.sort_by{|k,v| v[:total]}.reverse.first(5).map{ |a| a[1] }
 
-		# while pop_social.count < num
-		# 	num_days += 1
-		# 	pop_social << Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
-		# 	pop_social.flatten!
-		# 	pop_social.uniq!
-		# end
-		# pop_social_final = pop_social.first(num).sort_by{|a| a.views}.reverse		
 
 	end
 end
