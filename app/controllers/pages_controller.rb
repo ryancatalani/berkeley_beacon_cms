@@ -125,11 +125,17 @@ class PagesController < ApplicationController
 
 	def search
 		@title = "Search results: #{params[:q]}"
-		index_name = Rails.env.production? ? "idx_production" : "idx"
-		client = IndexTank::Client.new(ENV['SEARCHIFY_API_URL'] || 'http://:y1GqHmgP0jH2lL@dphiu.api.searchify.com')
-		index = client.indexes(index_name)
-		results = index.search(params[:q])
-		@articles = results['results'].map{|r| r['docid']}.map{|id| Article.find(id.to_i)}.paginate(:page => params[:page], :per_page => 15)
+		engine_slug = Rails.env.production? ? "berkeleybeacon" : "berkeleybeaconsandbox"
+		# engine = Swiftype::Engine.find(engine_slug)
+		if params[:q]
+			client = Swiftype::Easy.new
+			results = client.search(engine_slug, params[:q])		
+			@articles = results.records['articles'].map{|r| Article.find(r.external_id.to_i) } #.paginate(:page => params[:page], :per_page => 15)
+			@mediafiles = results.records['mediafiles'].map{|r| Mediafile.find(r.external_id.to_i) }
+		else
+			@articles = []
+			@mediafiles = []
+		end
 	end
 
 	def tweet

@@ -28,6 +28,18 @@ jQuery ->
 		e.preventDefault()
 		return false
 
+	if $(".search_mediafile")
+		old_height = 0
+		$(".search_mediafile_caption").each ->
+			h = ($(this).height() + 14) * -1
+			$(this).css("marginBottom", h)
+		$(".search_mediafile").hover ->
+			old_height = $(this).find(".search_mediafile_caption").css("marginBottom")
+			$(this).find(".search_mediafile_caption").animate({"marginBottom": 0}, 250)
+		, ->
+			$(this).find(".search_mediafile_caption").animate({"marginBottom": old_height}, 250)
+
+
 	# $(".video_page_video").each ->
 	# 	width = $(this).width()
 	# 	height = Math.round(width * 9 / 16)

@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$link_blue: #4c6d92;
+$link_hover_blue: #8aadd3;
+
 @mixin upcase {
 	text-transform: uppercase;
 	font-size: 0.8em;
@@ -49,12 +52,12 @@
 	}
 	
 	a:link, a:visited {
-		color: #4c6d92;
+		color: $link_blue;
 		border-bottom: 1px dotted #b4bfcd;
 	}
 	
 	a:hover {
-		color: #8aadd3;
+		color: $link_hover_blue;
 		text-decoration: none;
 	}
 }
@@ -244,9 +247,9 @@
 	margin-bottom: 40px;
 }
 
-.article_popular {
+#popular.home_popular {
 	#popular_most_viewed_h, #popular_most_shared_h {
-		font-size: 0.85em;
+		font-size: 1em;
 	}
 }
 
@@ -257,6 +260,7 @@
 		@include arvo;
 		font-weight: bold;
 		display: block;
+		font-size: 0.85em;
 		width: 50%;
 		text-align: center;
 		text-transform: uppercase;
@@ -1193,5 +1197,69 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	}
 	h3 {
 		color: #666;
+	}
+}
+
+#search_page_search {
+	input {
+		height: 25px;
+		padding: 3px 10px;
+		margin: 0;
+		font-size: 13px;
+	}
+	input#q {
+		@include arvo;
+		border: 1px solid #ccc;
+		width: 50%;
+	}
+	input#search_page_commit {
+		@include arvo;
+		@include upcase;
+		background: $link_blue;
+		border: none;
+		color: #fff;
+		cursor: pointer;
+		border: 1px solid darken($link_blue, 10%);
+		&:hover {
+			background: $link_hover_blue;
+			border: 1px solid darken($link_hover_blue, 10%);
+		}
+	}
+}
+
+#search_separator {
+	border-top: 1px solid #ccc;
+	background-color: #f4f3f5;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(244, 243, 245)), to(rgb(254, 253, 255)));
+	background-image: -webkit-linear-gradient(top, rgb(244, 243, 245), rgb(254, 253, 255));
+	background-image: -moz-linear-gradient(top, rgb(244, 243, 245), rgb(254, 253, 255));
+	background-image: -o-linear-gradient(top, rgb(244, 243, 245), rgb(254, 253, 255));
+	background-image: -ms-linear-gradient(top, rgb(244, 243, 245), rgb(254, 253, 255));
+	background-image: linear-gradient(top, rgb(244, 243, 245), rgb(254, 253, 255));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#f4f3f5', EndColorStr='#fefdff');
+	height: 8px;
+	margin: 20px 0 40px;
+}
+
+#search_mediafiles {
+	margin: 20px 0;
+}
+
+.search_mediafile {
+	width: 31%;
+	margin: 0 1%;
+	float: left;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	img {
+		width: 100%;
+	}
+	.search_mediafile_caption {
+		position: absolute;
+		bottom: 4px;
+		color: #fff;
+		padding: 5px;
+		background: rgba(0,0,0,0.8);
 	}
 }

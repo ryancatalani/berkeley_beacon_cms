@@ -64,7 +64,7 @@
 				<li class="show_section"><%= link_to 'Arts', '/arts' %></li>
 				<li class="show_section"><%= link_to 'Blogs', blogs_path %></li>
 				<li class="show_section"><%= link_to 'Videos', videos_path %></li>
-				<% if false and @home_header %>
+				<% if @home_header %>
 					<li id="search_btn_wrap">
 						<%= link_to 'Search', '#', :id => 'search_btn' %>
 						<div id="search_box_wrap">
