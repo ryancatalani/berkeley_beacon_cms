@@ -4,11 +4,13 @@
 
 jQuery ->
 	if $(".balance_height")
-		max = 0
-		$(".balance_height").each ->
-			max = $(this).height() if ($(this).height() > max) 
-		$(".balance_height").each ->
-			$(this).css("height",max)
+		setTimeout ->
+			max = 0
+			$(".balance_height").each ->
+				max = $(this).height() if ($(this).height() > max)
+			$(".balance_height").each ->
+				$(this).css("height",max)
+		, 500
 
 	$("#popular_most_viewed_h").click (e) ->
 		$("#popular_most_shared").hide()
@@ -51,7 +53,7 @@ jQuery ->
 
 	w = $("#latest_videos_inner").width()
 	$("#latest_videos_container").css width: w
-	$(".latest_video").each -> 
+	$(".latest_video").each ->
 		$(this).css width: w
 	$("#latest_videos_inner").css width: w * 3
 
