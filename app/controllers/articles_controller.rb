@@ -94,11 +94,10 @@ class ArticlesController < ApplicationController
 	end
 
 	def search_edit
-		index_name = Rails.env.production? ? "idx_production" : "idx"
-		client = IndexTank::Client.new(ENV['SEARCHIFY_API_URL'] || 'http://:y1GqHmgP0jH2lL@dphiu.api.searchify.com')
-		index = client.indexes(index_name)
-		results = index.search(params[:q])
-		@articles = results['results'].map{|r| r['docid']}.map{|id| Article.find(id.to_i)}.paginate(:page => params[:page], :per_page => 15)
+		engine_slug = Rails.env.production? ? "berkeleybeacon" : "berkeleybeaconsandbox"
+		client = Swiftype::Easy.new
+		results = client.search(engine_slug, params[:q])		
+		@articles = results.records['articles'].map{|r| Article.find(r.external_id.to_i) } #.paginate(:page => params[:page], :per_page => 15)
 		@q = params[:q]
 	end
 	

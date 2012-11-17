@@ -1,7 +1,7 @@
-<h1>Articles: Search for <%= @q %> <%= link_to 'Back to last 50 articles', articles_path, :class => "btn" %></h1>
+<h1>Articles: Search for <%= @q %> <%= link_to 'Back to last 30 articles', articles_path, :class => "btn" %></h1>
 
 <%= form_tag search_edit_path do %>
-	<%= text_field_tag :q, nil, :placeholder => 'Search for...' %>
+	<%= text_field_tag :q, params[:q] %>
 	<%= submit_tag "Search", :class => "btn btn-primary" %>
 <% end %>
 
