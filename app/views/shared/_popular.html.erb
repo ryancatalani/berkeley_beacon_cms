@@ -1,3 +1,4 @@
+<% cache ["popular", PopularSnapshot.maximum(:updated_at).to_i] do %>
 	<a id="popular_most_viewed_h" href="#" class="active">Most Viewed</a>
 	<a id="popular_most_shared_h" href="#" class="inactive">Most Shared</a>
 	<div class="clear"></div>
@@ -46,4 +47,5 @@
 			<% end %>
 		</ol>
 	</div>
-<div class="clear"></div>
+	<div class="clear"></div>
+<% end %>
