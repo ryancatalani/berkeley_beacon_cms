@@ -59,6 +59,7 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'sqlite3'
   gem 'ruby-prof'
+  gem 'bullet'
 end
 
 group :production do
