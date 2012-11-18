@@ -1,0 +1,8 @@
+<div class="mediawrap"><%= link_to image_tag(section_articles.first.first_photo.media.thumb_220.url), section_articles.first.to_url unless section_articles.first.mediafiles.empty? %></div>
+<h5><%= link_to section_articles.first.title, section_articles.first.to_url %></h5>
+<%= section_articles.first.excerpt %>
+<ul>
+	<% section_articles.last(section_articles.count-1).each do |story| %>
+		<li><%= link_to story.title, story.to_url %></li>
+	<% end %>
+</ul>

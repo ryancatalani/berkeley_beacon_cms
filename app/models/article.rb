@@ -14,7 +14,7 @@ class Article < ActiveRecord::Base
 	belongs_to :blog
 	before_save :check_clean_title
 	serialize :archive_images
-	
+
 	def to_url(opts={})
 		if link_only
 			return link
@@ -30,7 +30,7 @@ class Article < ActiveRecord::Base
 	def to_url_with_tracking(name,id)
 		"#{to_url(:full=>true)}?n=#{name}&sp=#{id}"
 	end
-	
+
 	def tweet
 		t = title
 		t = "From #{blog.title}: #{t}" if blog
@@ -41,7 +41,7 @@ class Article < ActiveRecord::Base
 
 	def first_photo
 		if images.count > 0 and !images.first.media.nil?
-			return images.first 
+			return images.first
 		elsif mediafiles.count > 0
 			return mediafiles.first
 		end
@@ -161,20 +161,20 @@ class Article < ActiveRecord::Base
 
 		return a
 	end
-		
+
 	private
 		def check_clean_title
 			c = created_at
 			a = Article.where(:cleantitle => cleantitle)
 			cleantitle << "-#{a.count + 1}" if a.count > 1
 		end
-		
+
 		def twitter_people
 			if twitter_names.blank?
 				return ''
 			else
 				return " by #{twitter_names}"
-			end				
+			end
 		end
-		
+
 end

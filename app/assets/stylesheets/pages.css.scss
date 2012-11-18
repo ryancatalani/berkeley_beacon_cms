@@ -50,12 +50,12 @@ $link_hover_blue: #8aadd3;
 		list-style-type: decimal;
 		list-style-position: inside;
 	}
-	
+
 	a:link, a:visited {
 		color: $link_blue;
 		border-bottom: 1px dotted #b4bfcd;
 	}
-	
+
 	a:hover {
 		color: $link_hover_blue;
 		text-decoration: none;
@@ -72,7 +72,7 @@ $link_hover_blue: #8aadd3;
 		display: block;
 		position: absolute;
 		border-left: 10px solid transparent;
-		border-right: 10px solid transparent;		
+		border-right: 10px solid transparent;
 		border-top: 10px solid #aaa;
 		top: -1px;
 	}
@@ -83,12 +83,12 @@ $link_hover_blue: #8aadd3;
 		display: block;
 		position: absolute;
 		border-left: 9px solid transparent;
-		border-right: 9px solid transparent;		
+		border-right: 9px solid transparent;
 		border-top: 9px solid #fff;
 	}
 }
 
-#left, #center, #right { 
+#left, #center, #right {
 	float: left;
 }
 
@@ -130,7 +130,7 @@ $link_hover_blue: #8aadd3;
 		border-bottom: none;
 	}
 	h4 {
-		display: inline;	
+		display: inline;
 	}
 }
 
@@ -222,14 +222,9 @@ $link_hover_blue: #8aadd3;
 		text-transform: uppercase;
 		font-weight: bold;
 		margin-bottom: 10px;
-	}
-	
-	ul {
-		list-style-type: disc;
-		list-style-position: inside;
-	}
-	img {
-		// margin-top: 10px;
+		a {
+			color: #666;
+		}
 	}
 	margin-bottom: 1em;
 	.mediawrap {
@@ -240,6 +235,12 @@ $link_hover_blue: #8aadd3;
 			width: 100%;
 			margin-top: -10px;
 		}
+		margin-bottom: 10px;
+	}
+	ul li {
+		border-top: 1px solid #cbcbcb;
+		margin: 5px 0;
+		padding: 5px 0;
 	}
 }
 
@@ -287,12 +288,12 @@ $link_hover_blue: #8aadd3;
 		-webkit-box-shadow: -1px 0 3px #aaa;
 	}
 
-	
+
 
 	ol {
 		list-style: decimal;
 		list-style-position: inside;
-		
+
 		li {
 			margin-bottom: 5px;
 			padding-bottom: 5px;
@@ -350,11 +351,11 @@ $link_hover_blue: #8aadd3;
 }
 
 h2 {
-	font: 25px/28px "Arvo", Rockwell, serif;	
+	font: 25px/28px "Arvo", Rockwell, serif;
 }
 
 h3 {
-	font: 18px/20px "Arvo", Rockwell, serif;	
+	font: 18px/20px "Arvo", Rockwell, serif;
 	margin-bottom: 5px;
 }
 
@@ -375,11 +376,11 @@ a {
 	width: 400px;
 	margin: 30px auto;
 	h1 {
-		font: 30px/40px "Arvo", Rockwell, serif;	
+		font: 30px/40px "Arvo", Rockwell, serif;
 	}
 	h2 {
 		margin-top: 10px;
-		font: 20px/30px "Arvo", Rockwell, serif;	
+		font: 20px/30px "Arvo", Rockwell, serif;
 	}
 	a:link, a:visited {
 		text-decoration: underline;
@@ -394,7 +395,7 @@ a {
 
 }
 
-@media screen and (max-width: 640px) { 
+@media screen and (max-width: 640px) {
 	.wrap {
 		width: 98%;
 		margin: 0 1%;
@@ -466,6 +467,7 @@ a {
 		margin: 0;
 		padding-bottom: 1em;
 		padding-top: 1em;
+
 		border-bottom: 1px solid #cbcbcb;
 		li {
 			list-style-type: none;
@@ -490,7 +492,7 @@ a {
 		border: none;
 	}
 
-	
+
 }
 
 .about {
@@ -588,7 +590,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 }
 
 .oscars h2 {
-	font-size: 25px;	
+	font-size: 25px;
 }
 
 .oscars a {
@@ -1068,7 +1070,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 			padding-top: 0;
 		}
 	}
-	@media screen and (max-width: 640px) { 
+	@media screen and (max-width: 640px) {
 		.cartoon_image, .cartoon_caption {
 			float: none;
 			width: 100%;
@@ -1164,7 +1166,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 		width: 100%;
 		a {
 			color: #fff;
-		}		
+		}
 	}
 }
 

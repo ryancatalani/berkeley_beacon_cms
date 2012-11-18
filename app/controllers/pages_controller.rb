@@ -16,7 +16,7 @@ class PagesController < ApplicationController
 		@middle_stories = find_tag_articles "Middle Strip Story", 5
 		@news = find_section_articles "News"
 		@opinion = find_section_articles "Opinion", 2
-		@ae = find_section_articles "Arts"
+		@arts = find_section_articles "Arts"
 		@lifestyle = find_section_articles "Lifestyle"
 		@sports = find_section_articles "Sports"
 		@popular = popular_articles
@@ -38,12 +38,12 @@ class PagesController < ApplicationController
 		@og ||= {}
 		@og[:description] = "Emerson College's independent student newspaper"
 	end
-	
+
 	def tips
 		@title = "Send a tip"
 		@include_bootstrap = true
 	end
-	
+
 	def send_tip
 		BeaconMailer.tip(params[:body],params[:name],params[:contact]).deliver
 		redirect_to root_path
@@ -63,7 +63,7 @@ class PagesController < ApplicationController
 		@title = "Special Feature: Emerson College LA"
 		@include_bootstrap = true
 		@include_gmaps = true
-		@articles = Series.find_by_title("ECLA").articles.where(:articletype => 1) rescue nil 
+		@articles = Series.find_by_title("ECLA").articles.where(:articletype => 1) rescue nil
 		@media = Series.find_by_title("ECLA").articles.where("articletype <> 1") rescue nil
 		begin
 			@tweets = Twitter.search("#emersonla", :rpp => 10, :result_type => "recent")
@@ -93,7 +93,7 @@ class PagesController < ApplicationController
 		# unless found_tweets
 		# 	tweets.map do |tweet|
 		# 		EclaAnyTweet.create!(tweet_id => )
-		
+
 		@results = Twitter.search("#emersonla OR #ecla from:magicofpi OR from:AlexCKaufman OR from:heidimoeller", :rpp => 5, :result_type => "recent")
 		render :json => @results
 	end
@@ -129,7 +129,7 @@ class PagesController < ApplicationController
 		# engine = Swiftype::Engine.find(engine_slug)
 		if params[:q]
 			client = Swiftype::Easy.new
-			results = client.search(engine_slug, params[:q])		
+			results = client.search(engine_slug, params[:q])
 			@articles = results.records['articles'].map{|r| Article.find(r.external_id.to_i) } #.paginate(:page => params[:page], :per_page => 15)
 			@mediafiles = results.records['mediafiles'].map{|r| Mediafile.find(r.external_id.to_i) }
 		else
@@ -193,7 +193,7 @@ class PagesController < ApplicationController
 	end
 
 	def find_voting_location
-		
+
 		# final_voting_address = ''
 
 		# # Check maps API
@@ -205,7 +205,7 @@ class PagesController < ApplicationController
 		# response = http.request(request)
 		# maps_json = ActiveSupport::JSON.decode(response.body)
 		# maps_json_results = maps_json["results"]
-		
+
 		# if maps_json_results.count > 1
 		# 	final_voting_address = maps_json_results.first["formatted_address"]
 		# else
@@ -215,7 +215,7 @@ class PagesController < ApplicationController
 		# end
 
 	end
-	
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}
@@ -227,7 +227,12 @@ class PagesController < ApplicationController
 		end
 
 		def find_section_articles(section_name,number_of_articles=3)
-			Section.find_by_name(section_name).non_blog_articles.order("created_at DESC").first(number_of_articles)
+			# Section.find_by_name(section_name).non_blog_articles.order("created_at DESC").first(number_of_articles)
+			if Rails.env.production?
+				Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 1.week.ago).order('created_at desc').partition{|a| !a.mediafiles.empty? }.flatten
+			else
+				Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 1.year.ago).order('created_at desc').first(5).partition{|a| !a.mediafiles.empty? }.flatten
+			end
 		end
 
 end

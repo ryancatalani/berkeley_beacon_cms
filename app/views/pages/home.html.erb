@@ -1,19 +1,20 @@
 <div id="main">
 
-	<section id="top">		
-		
+	<section id="top">
+
 		<section id="left">
-			
+
+
 			<div id="main-story">
 				<% if @main_story.first_photo.nil? %>
 					<div class="story-text">
 						<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
 						<div class="byline">By <%= bylineify_short @main_story.people %></div>
 					</div>
-					<div class="excerpt"><%= @main_story.excerpt %></div>	
+					<div class="excerpt"><%= @main_story.excerpt %></div>
 				<% else %>
 					<div class="main-story-img-wrap">
-						<%= link_to image_tag(@main_story.first_photo.media.thumb_460.url), @main_story.to_url %>					
+						<%= link_to image_tag(@main_story.first_photo.media.thumb_460.url), @main_story.to_url %>
 					</div>
 					<div class="story-text">
 						<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
@@ -23,7 +24,7 @@
 				<% end %>
 				<div class="clear"></div>
 			</div>
-		
+
 			<section id="featured-stories">
 				<% @featured_stories.each_with_index do |story,i| %>
 					<div class="featured-story num-<%= i+1 %>">
@@ -41,7 +42,7 @@
 				<% end %>
 				<div class="clear"></div>
 			</section>
-			
+
 		</section>
 
 		<section id="center">
@@ -55,7 +56,8 @@
 				</div>
 			<% end %>
 		</section>
-		
+
+
 		<section id="right">
 
 				<%= link_to "Send Us a Tip", tips_path, :id => "tip_btn" %>
@@ -75,7 +77,7 @@
 				<div id="latest_videos_separator">
 					<div id="latest_video_position">&nbsp;</div>
 				</div>
-				
+
 				<div id="latest_videos_container">
 					<div id="latest_videos_inner">
 						<% @latest_multimedia.each_with_index do |mediafile,index| %>
@@ -123,86 +125,51 @@
 				</ol>
 
 			</section>
-		
+
 		<div class="clear"></div>
-		
+
 	</section>
 
-	<div class="clear"></div>	
+	<div class="clear"></div>
 	<div class="separator"></div>
-	
+
 	<section id="bottom">
 		<div class="group-a">
-			<div class="section-box" id="news-section-box">
-				<h4>News</h4>
-				<!-- media -->
-				<div class="mediawrap"><%= link_to image_tag(@news.first.first_photo.media.thumb_220.url), @news.first.to_url unless @news.first.mediafiles.empty? %></div>
-				<h5><%= link_to @news.first.title, @news.first.to_url %></h5>
-				<%= @news.first.excerpt %>
-				<ul>
-					<% @news.last(2).each do |story| %>
-						<li><%= link_to story.title, story.to_url %></li>
-					<% end %>
-				</ul>
-				<div class="clear"></div>
-			</div>
+				<div class="section-box" id="news-section-box">
+					<h4><%= link_to "News", "/news" %></h4>
+					<%= render 'section_box', :section_articles => @news %>
+				</div>
 			<div class="separator"></div>
-			<div class="section-box" id="ae-section-box">
-				<h4>Arts</h4>
-				<!-- media from first -->
-				<div class="mediawrap"><%= link_to image_tag(@ae.first.first_photo.media.thumb_220.url), @ae.first.to_url unless @ae.first.mediafiles.empty? %></div>
-				<h5><%= link_to @ae.first.title, @ae.first.to_url %></h5>
-				<%= @ae.first.excerpt %>
-				<ul>
-					<% @ae.last(2).each do |story| %>
-						<li><%= link_to story.title, story.to_url %></li>
-					<% end %>
-				</ul>
-			</div>
+				<div class="section-box" id="ae-section-box">
+					<h4><%= link_to "Arts", "/arts" %></h4>
+					<%= render 'section_box', :section_articles => @arts %>
+				</div>
 		</div>
-			
+
 		<div class="group-b">
-			<div class="section-box" id="opinion-section-box">
-				<h4>Opinion</h4>
-				<% @opinion.each do |story| %>
-					<h5><%= link_to story.title, story.to_url %></h5>
-					<%= story.excerpt %>
-				<% end %>
-			</div>
+				<div class="section-box" id="opinion-section-box">
+					<h4><%= link_to "Opinion", "/opinion" %></h4>
+					<%= render 'section_box', :section_articles => @opinion %>
+				</div>
 			<div class="separator"></div>
-			<div class="section-box" id="lifestyle-section-box">
-				<h4>Lifestyle</h4>
-				<!-- media from first -->
-				<div class="mediawrap"><%= link_to image_tag(@lifestyle.first.first_photo.media.thumb_220.url), @lifestyle.first.to_url unless @lifestyle.first.mediafiles.empty? %></div>
-				<h5><%= link_to @lifestyle.first.title, @lifestyle.first.to_url %></h5>
-				<%= @lifestyle.first.excerpt %>
-				<ul>
-					<% @lifestyle.last(2).each do |story| %>
-						<li><%= link_to story.title, story.to_url %></li>
-					<% end %>
-				</ul>
-			</div>
+				<div class="section-box" id="lifestyle-section-box">
+					<h4><%= link_to "Lifestyle", "/lifestyle" %></h4>
+					<%= render 'section_box', :section_articles => @lifestyle %>
+				</div>
 		</div>
 
 		<div class="group-c">
 			<section id="popular" class="home_popular">
 				<%= render 'shared/popular' %>
 			</section>
-			<div class="section-box" id="sports-section-box">
-				<h4>Sports</h4>
-				<!-- media from first -->
-				<div class="mediawrap"><%= link_to image_tag(@sports.first.first_photo.media.thumb_220.url), @sports.first.to_url unless @sports.first.mediafiles.empty? %></div>
-				<h5><%= link_to @sports.first.title, @sports.first.to_url %></h5>
-				<%= @sports.first.excerpt %>
-				<ul>
-					<% @sports.last(2).each do |story| %>
-						<li><%= link_to story.title, story.to_url %></li>
-					<% end %>
-				</ul>				
-			</div>
+			<div class="separator"></div>
+				<div class="section-box" id="sports-section-box">
+					<h4><%= link_to "Sports", "/sports" %></h4>
+					<%= render 'section_box', :section_articles => @sports %>
+				</div>
 		</div>
-		
-		
+
+
 	</section>
 	<div class="clear"></div>
 </div>
