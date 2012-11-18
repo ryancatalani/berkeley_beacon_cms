@@ -32,6 +32,8 @@ gem 'fb_graph'
 gem 'feedzirra'
 gem 'newrelic_rpm'
 gem 'swiftype'
+gem 'memcachier'
+gem 'dalli'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
