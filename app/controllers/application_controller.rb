@@ -34,11 +34,11 @@ class ApplicationController < ActionController::Base
 		def current_user
 			@current_user ||= Person.find(session[:user_id]) if session[:user_id]
 		end
-		
+
 		def check_editor
 			redirect_to root_path unless current_user and current_user.editor?
 		end
-						
+
 		def bylineify mediafile
 			if mediafile.kind_of? Mediafile and mediafile.people.count == 0 and !mediafile.source.nil?
 				return mediafile.source
@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
 			end
 			return ret
 		end
-		
+
 		def bylineify_linked mediafile
 			if mediafile.kind_of? Mediafile and !mediafile.source.blank?
 				return mediafile.source
@@ -72,8 +72,8 @@ class ApplicationController < ActionController::Base
 			end
 			return ret
 		end
-		
-		
+
+
 		def bylineify_short people
 			return "Beacon Staff" if people.count == 0
 			return people.first.full_name if people.count == 1
@@ -86,9 +86,9 @@ class ApplicationController < ActionController::Base
 				ret << ', ' << last.full_name
 			end
 			return ret
-			
+
 		end
-		
+
 		def popular_articles num=5
 			return PopularSnapshot.latest_most_viewed
 			# num_days = 2
@@ -101,11 +101,11 @@ class ApplicationController < ActionController::Base
 			# end
 			# return ret.first(num).sort_by{|a| a.views}.reverse
 		end
-		
+
 		def video_tag mediafile, height=500, width=820
 			othertypes = Mediafile.where(:title => mediafile.title)
 			return nil if othertypes.nil?
-						
+
 			ret = "<video width='#{width}' height='#{height}' controls='controls'>"
 
 			othertypes.each do |v|
@@ -157,13 +157,17 @@ class ApplicationController < ActionController::Base
 			end
 		end
 
-		
-		
+		def tagging_or_article_last_updated
+			Digest::MD5.hexdigest "#{Tagging.maximum(:updated_at).to_i}-#{Article.maximum(:updated_at).to_i}-#{Article.count}"
+		end
+
+
+
 		helper_method :current_user, :check_editor,
 			:bylineify, :bylineify_linked, :bylineify_short,
 			:popular_articles,
 			:video_tag, :og_title, :editor_logged_in, :bb_video_tag,
-			:latest_ed_cartoon, :current_twitter
+			:latest_ed_cartoon, :current_twitter, :tagging_or_article_last_updated
 
-	
+
 end

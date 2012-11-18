@@ -4,7 +4,7 @@
 
 		<section id="left">
 
-
+			<% cache ["home_top_stories", tagging_or_article_last_updated] do %>
 			<div id="main-story">
 				<% if @main_story.first_photo.nil? %>
 					<div class="story-text">
@@ -56,6 +56,7 @@
 				</div>
 			<% end %>
 		</section>
+		<% end # cache home_top_stories %>
 
 
 		<section id="right">
@@ -113,6 +114,7 @@
 					<div class="fb-like" data-href="http://facebook.com/berkeleybeacon" data-send="false" data-width="218" data-show-faces="true"></div>
 				</div>
 				<h4>On Twitter</h4>
+				<% cache("home_twitter", :expires_in => 1.hour) do %>
 				<ol id="latest_tweets" class="l_quo_border">
 					<% @tweets.each do |tweet| %>
 						<li>
@@ -123,6 +125,7 @@
 						</li>
 					<% end %>
 				</ol>
+				<% end #cache home_twitter %>
 
 			</section>
 
@@ -135,27 +138,35 @@
 
 	<section id="bottom">
 		<div class="group-a">
+			<% cache ["home_news_stories", Section.home_cache_key("news")] do %>
 				<div class="section-box" id="news-section-box">
 					<h4><%= link_to "News", "/news" %></h4>
 					<%= render 'section_box', :section_articles => @news %>
 				</div>
+			<% end #home_news_stories %>
 			<div class="separator"></div>
+			<% cache ["home_arts_stories", Section.home_cache_key("arts")] do %>
 				<div class="section-box" id="ae-section-box">
 					<h4><%= link_to "Arts", "/arts" %></h4>
 					<%= render 'section_box', :section_articles => @arts %>
 				</div>
+			<% end %>
 		</div>
 
 		<div class="group-b">
+			<% cache ["home_opinion_stories", Section.home_cache_key("opinion")] do %>
 				<div class="section-box" id="opinion-section-box">
 					<h4><%= link_to "Opinion", "/opinion" %></h4>
 					<%= render 'section_box', :section_articles => @opinion %>
 				</div>
+			<% end %>
 			<div class="separator"></div>
+			<% cache ["home_lifestyle_stories", Section.home_cache_key("lifestyle")] do %>
 				<div class="section-box" id="lifestyle-section-box">
 					<h4><%= link_to "Lifestyle", "/lifestyle" %></h4>
 					<%= render 'section_box', :section_articles => @lifestyle %>
 				</div>
+			<% end %>
 		</div>
 
 		<div class="group-c">
@@ -163,10 +174,12 @@
 				<%= render 'shared/popular' %>
 			</section>
 			<div class="separator"></div>
-				<div class="section-box" id="sports-section-box">
-					<h4><%= link_to "Sports", "/sports" %></h4>
-					<%= render 'section_box', :section_articles => @sports %>
-				</div>
+				<% cache ["home_sports_stories", Section.home_cache_key("sports")] do %>
+					<div class="section-box" id="sports-section-box">
+						<h4><%= link_to "Sports", "/sports" %></h4>
+						<%= render 'section_box', :section_articles => @sports %>
+					</div>
+				<% end %>
 		</div>
 
 
