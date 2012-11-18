@@ -1,5 +1,5 @@
 class MediafilesController < ApplicationController
-	
+
 	respond_to :html, :js
 
 	def index
@@ -11,11 +11,10 @@ class MediafilesController < ApplicationController
 	  @authors_type = '[' + Person.order("lastname ASC").all.map { |person| "'#{person.official_name}'" }.join(',') + ']'
 	  @authors_count = Person.count
 	end
-	
+
 	def create
 		p = params[:mediafile]
 		p[:mediatype] = params[:mediatype].to_i
-		p[:source] = params[:source]
 		creators = []
 		if params[:creator].nil?
 			creators << current_user
@@ -51,12 +50,12 @@ class MediafilesController < ApplicationController
 			# format.js
 		end
 	end
-	
+
 	def edit
 	  @mediafile = Mediafile.find(params[:id])
 	  @authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
   end
-  
+
   def update
 		@mediafile = Mediafile.find(params[:id])
 		creators = []
@@ -78,16 +77,16 @@ class MediafilesController < ApplicationController
 				end
 			end
 			redirect_to articles_path
-		else 
+		else
 			render 'edit'
-		end    
+		end
   end
-  
+
   def destroy
     file = Mediafile.find(params[:id])
     file.destroy
     redirect_to articles_path
   end
-  
+
 
 end
