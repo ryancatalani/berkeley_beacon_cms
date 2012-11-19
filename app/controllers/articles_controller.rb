@@ -164,7 +164,7 @@ class ArticlesController < ApplicationController
 			current_twitter.update(@article.tweet) if Rails.env.production? and !is_draft and was_draft and !queue_tweet
 			@article.social_posts.create!(:status_text => @article.title, :network => 1, :in_queue => true, :posted => false) and !is_draft and was_draft and queue_tweet
 			# expire_article_touches
-			redirect_to articles_path
+			redirect_to "/articles#a_#{@article.id}"
 		else
 			@sections = Section.all.map { |s| [s.name, s.id] }
 			@authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }

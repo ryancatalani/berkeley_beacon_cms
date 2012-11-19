@@ -25,17 +25,17 @@
 				</td>
 				<td>
 					<% if article.blog %>
-						<span class="label label-info">Blog Post</span> 
+						<span class="label label-info">Blog Post</span>
 					<% end %>
 					<% if article.draft? %>
-						<span class="label label-warning">Draft, unpublished</span> 
+						<span class="label label-warning">Draft, unpublished</span>
 					<% end %>
 					<% begin %>
 						<%= link_to article.title, article.to_url %>
 					<% rescue %>
 						<%= article.title %>
 					<% end %>
-				</td>			
+				</td>
 				<td>
 					<ul>
 					<% article.mediafiles.each do |file| %>
@@ -61,7 +61,7 @@
 					<div rel="popover" data-content="One of the three stories directly below the lead story on the hompeage." data-original-title="Featured Story">
 						<%= link_to "Featured story", "/new_tag/2/article/#{article.id}", :method => :post, :class => "btn" %>
 					</div>
-					<div rel="popover" data-content="One of the three stories in the strip between the featured stories and the section boxes on the homepage." data-original-title="Middle Strip Story">					
+					<div rel="popover" data-content="One of the three stories in the strip between the featured stories and the section boxes on the homepage." data-original-title="Middle Strip Story">
 					<%= link_to "Middle strip story", "/new_tag/3/article/#{article.id}", :method => :post, :class => "btn" %>
 				</td>
 			</tr>
@@ -84,24 +84,25 @@
 		<% @articles.each do |article| %>
 			<tr>
 				<td>
+					<a id="a_<%= article.id %>"></a>
 					<%= link_to "<i class='icon-edit'></i> Edit".html_safe, edit_article_url(article), :class => "btn" %>
 					<%= link_to "<i class='icon-trash icon-white'></i> Delete".html_safe, article_url(article), :method => :delete, :confirm => "Are you sure you want to delete this article?", :class => "btn btn-danger" %>
 					<%= link_to "<i class='icon-calendar'></i> Schedule post".html_safe, new_social_post_path(:a => article.id), :class => "btn" %>
 				</td>
-			
+
 				<td>
 					<% if article.blog %>
-						<span class="label label-info">Blog Post</span> 
+						<span class="label label-info">Blog Post</span>
 					<% end %>
 					<% if article.draft? %>
-						<span class="label label-warning">Draft, unpublished</span> 
+						<span class="label label-warning">Draft, unpublished</span>
 					<% end %>
 					<% begin %>
 						<%= link_to article.title, article.to_url %>
 					<% rescue %>
 						<%= article.title %>
 					<% end %>
-				</td>			
+				</td>
 				<td>
 					<ul>
 					<% article.mediafiles.each do |file| %>
@@ -127,7 +128,7 @@
 					<div rel="popover" data-content="One of the three stories directly below the lead story on the hompeage." data-original-title="Featured Story">
 						<%= link_to "Featured story", "/new_tag/2/article/#{article.id}", :method => :post, :class => "btn" %>
 					</div>
-					<div rel="popover" data-content="One of the three stories in the strip between the featured stories and the section boxes on the homepage." data-original-title="Middle Strip Story">					
+					<div rel="popover" data-content="One of the three stories in the strip between the featured stories and the section boxes on the homepage." data-original-title="Middle Strip Story">
 					<%= link_to "Middle strip story", "/new_tag/3/article/#{article.id}", :method => :post, :class => "btn" %>
 				</td>
 			</tr>
