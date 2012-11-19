@@ -109,9 +109,10 @@
 	}
 	.vertical.single_image {
 		@media screen and (min-width: 959px) {
+			width: 480px;
 			img {
+				width: 100%;
 				height: auto;
-				width: 480px;
 				float: none;
 			}
 			.metadata {
