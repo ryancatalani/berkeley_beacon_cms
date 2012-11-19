@@ -1,9 +1,9 @@
 BeaconApp::Application.routes.draw do
 
-	controller :people do 
+	controller :people do
 		match "/staff/:name", :to => :show
 	end
-	
+
   match '/search', :to => 'pages#search', :as => 'search'
   match '/search_edit', :to => 'articles#search_edit', :as => 'search_edit', :via => :post
 
@@ -16,7 +16,7 @@ BeaconApp::Application.routes.draw do
 
   match '/ecla', :to => 'pages#ecla'
   match '/emersonla', :to => 'pages#ecla'
-  
+
   match '/emersonla_live', :to => 'pages#emersonla_live'
   match '/emersonla-live', :to => 'pages#emersonla_live'
   match '/beacon_ecla_tweets', :to => 'pages#beacon_ecla_tweets'
@@ -64,16 +64,16 @@ BeaconApp::Application.routes.draw do
 			end
 		end
 	end
-	
+
   match "/arts-and-entertainment" => redirect("/arts")
 	controller :sections do
 		match ":name", :to => :show
 	end
   controller :blogs do
     match "/blogs/:name", :to => :show
-  end	
+  end
 
-  match '/go/beacon-beat' => redirect("http://www.berkeleybeacon.com/news/2012/10/11/the-beacon-beat-november-8-2012")
+  match '/go/beacon-beat' => redirect("http://www.berkeleybeacon.com/news/2012/10/11/the-beacon-beat-november-15-2012")
   match '/go/police' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/an-interview-with-the-new-police-chief")
   match '/go/scaffolding' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/students-react-to-the-little-building-scaffolding-art")
   match '/go/ols' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/meet-the-orientation-leader-core-staff")
@@ -94,6 +94,7 @@ BeaconApp::Application.routes.draw do
   match '/go/gregpayne' => redirect("http://berkeleybeacon.com/news/2012/11/1/political-insert-gregory-payne")
   match '/go/feminist-panel' => redirect("http://www.berkeleybeacon.com/lifestyle/2012/11/8/feminist-panel-hopes-to-stomp-out-stereotypes?n=go")
   match '/go/engagement-lab' => redirect("http://www.berkeleybeacon.com/news/2012/11/8/the-engagement-game-lab-relocates?n=go")
+  match '/go/lb-art-installation' => redirect("http://berkeleybeacon.com/lifestyle/2012/11/15/mag-to-choose-new-scaffolding-artist")
 
 
   # The priority is based upon order of creation:
