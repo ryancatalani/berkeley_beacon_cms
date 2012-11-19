@@ -2,25 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin clear_meta {
+	position: relative;
+	bottom: auto;
+	background: none;
+	padding-right: 0;
+	color: #333;
+	margin-top: 5px;
+	a, .credit {
+		color: #333;
+	}
+	.credit {
+		margin-left: 5px;
+	}
+}
+
 .article_wrap {
 	width: 820px;
 }
 
 .content_wrap {
 	margin: 0 auto;
-	
+
 	h1 {
-		font: 25px/28px "Arvo", Rockwell, serif;	
+		font: 25px/28px "Arvo", Rockwell, serif;
 		margin-bottom: 5px;
 	}
 	h2 {
-		font: 16px/18px "Arvo", Rockwell, serif;	
+		font: 16px/18px "Arvo", Rockwell, serif;
 		margin-top: 0px;
 		margin-bottom: 5px;
 	}
 	h3 {
 		margin-top: 10px;
-		font: 14px "Arvo", Rockwell, serif;	
+		font: 14px "Arvo", Rockwell, serif;
 		color: #898989;
 		margin-bottom: 20px;
 	}
@@ -44,16 +59,6 @@
 		background-repeat: no-repeat;
 		background-position: center;
 	}
-	
-	#big_photo_wrap {
-		margin-bottom: 20px;
-	}
-
-	#big_photo {
-		height: 600px;
-		width: 820px;
-	}
-		
 	.metadata {
 		position: absolute;
 		z-index: 1;
@@ -74,15 +79,77 @@
 			color: #ccc;
 		}
 		&.video_meta {
-			position: relative;
-			bottom: auto;
-			background: none;
-			padding-right: 0;
-			.credit {
-				color: #333;
+			@include clear_meta;
+		}
+	}
+	.has_slideshow {
+		.slide_cont {
+			display: block;
+			height: 546px;
+			overflow: hidden;
+		}
+		.vertical {
+			img {
+				height: 546px;
+				width: auto;
+				margin: 0 auto;
+				float: none;
 			}
-			a {
-				color: #333;
+		}
+		.metadata {
+			@include clear_meta;
+		}
+	}
+	.horizontal.single_image {
+		position: relative;
+		img, .metadata {
+			width: 100%;
+		}
+		margin-bottom: 30px;
+	}
+	.vertical.single_image {
+		@media screen and (min-width: 959px) {
+			img {
+				height: auto;
+				width: 480px;
+				float: none;
+			}
+			.metadata {
+				clear: both;
+				@include clear_meta;
+			}
+			display: inline;
+			float: right;
+			margin-left: 35px;
+			margin-bottom: 20px;
+		}
+		@media screen and (max-width: 959px) {
+			img {
+				width: 100%;
+			}
+			margin-bottom: 30px;
+		}
+	}
+	&.single_image_body.vertical_single_image_body {
+		@media screen and (min-width: 959px) {
+			position: relative;
+			h3 {
+				margin-bottom: 0;
+			}
+			#article_header {
+				display: inline-block;
+				width: 295px;
+				padding-bottom: 25px;
+				border-bottom: 1px solid #ccc;
+				margin-bottom: 80px;
+			}
+			#body {
+				float: none;
+			}
+			#sidebar {
+				position: absolute;
+				right: 0;
+				top: 40%;
 			}
 		}
 	}
@@ -119,12 +186,8 @@
   border: 0;
   }
 
-.slide_cont {
-	display: block;
-	height: 546px;
-	overflow: hidden;
-}
-	
+
+
 #slide_controls {
 	width: auto;
 	position: relative;
@@ -155,7 +218,7 @@
 			line-height: 22px;
 		}
 		&.rslides_here a {
-			border: 1px solid #999;			
+			border: 1px solid #999;
 		}
 	}
 	a.prev {
@@ -178,7 +241,7 @@
 	float: left;
 	margin-right: 50px;
 	font: 14px/20px "PT Serif", Times, serif;
-	
+
 	strong {
 		font-weight: bold;
 	}
@@ -196,18 +259,19 @@
 		list-style-type: decimal;
 		list-style-position: inside;
 	}
-	
+
 	a:link, a:visited {
 		color: #4c6d92;
 		border-bottom: 1px dotted #b4bfcd;
 	}
-	
+
 	a:hover {
 		color: #8aadd3;
 		text-decoration: none;
 	}
-
 }
+
+
 
 video {
 	width: 100%;
@@ -241,7 +305,7 @@ video {
 			font-weight: bold;
 		}
 	}
-	
+
 	#popular {
 		float: none;
 		width: 220px;
@@ -277,20 +341,20 @@ video {
 #new_article_wrap {
 	width: 940px;
 	margin: 0 auto;
-		
+
 	.field {
 		margin-top: 10px;
-		
+
 		#articletype_1, #articletype_2, #articletype_3, #sourcetype_in, #sourcetype_out, #mediatype_0, #mediatype_1, #mediatype_2, #mediatype_3, #mediatype_4 {
 			display: inline;
 			width: auto;
 		}
-		
+
 		input, select, textarea {
 			display: block;
 			width: 400px;
 		}
-				
+
 	}
 }
 
@@ -307,14 +371,6 @@ video {
 	.content_wrap {
 		width: 90%;
 		padding: 0 5%;
-		
-		#big_photo {
-			width: 100%;
-			height: 20em;
-		}
-		#metadata {
-			width: 100%;
-		}
 
 		#body {
 			width: 100%;
@@ -330,6 +386,7 @@ video {
 		.metadata {
 			position: relative;
 			background: rgba(0,0,0,0.9);
+			margin-top: -5px;
 		}
 
 	}
@@ -345,14 +402,6 @@ video {
 	.content_wrap {
 		width: 90%;
 		padding: 0 5%;
-		
-		#big_photo {
-			width: 100%;
-			height: 20em;
-		}
-		#metadata {
-			width: 100%;
-		}
 
 		#body {
 			width: 100%;
@@ -366,5 +415,5 @@ video {
 			}
 		}
 	}
-	
+
 }

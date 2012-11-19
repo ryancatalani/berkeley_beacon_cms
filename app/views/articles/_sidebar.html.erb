@@ -1,4 +1,5 @@
 <div id="sidebar">
+
 	<% if !@article.series_id.nil? and @article.series_id != 0 %>
 		<section id="series_info">
 			<%= image_tag(@article.series.logo.url) if !@article.series.logo.url.nil? %>
@@ -9,7 +10,7 @@
 			<%= @article.series.description if @article.series.description %>
 		</section>
 	<% end %>
-	
+
 	<section id="share">
 		<h4>Share this story online</h4>
 		<div id="fb">
@@ -23,20 +24,8 @@
 		</div>
 		<div class="clear"></div>
 	</section>
-	
-	<section id="popular">
-		<h4>Popular on the Beacon</h4>
-		<ol>
-			<% popular_articles.each do |story| %>
-				<div class="popular-story">
-					<!-- media -->
-					<li>
-						<%= link_to image_tag(story.mediafiles.first.media.thumb_40.url), story.to_url unless story.mediafiles.empty? or story.mediafiles.first.mediatype == 2 %>
-						<%= link_to truncate(story.title, :length => 60), story.to_url %>
-						<div class="clear"></div>
-					</li>
-				</div>
-			<% end %>
-		</ol>
+	<section id="popular" class="article_popular">
+		<%= render 'shared/popular' %>
 	</section>
+
 </div>

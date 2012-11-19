@@ -4,7 +4,7 @@ include ActionView::Helpers::AssetTagHelper
 class ArticlesController < ApplicationController
 	before_filter :check_editor, :except => [:show]
 	# caches_action :show
-	
+
 	def new
 		@article = Article.new
 		@authors = Person.order("firstname ASC").all.map do |person|
@@ -87,7 +87,7 @@ class ArticlesController < ApplicationController
 			render "new"
 		end
 	end
-	
+
 	def index
 		@articles = Article.order("created_at DESC").first(30)
 		@user_articles = current_user.articles.order("created_at DESC").first(6)
@@ -96,11 +96,11 @@ class ArticlesController < ApplicationController
 	def search_edit
 		engine_slug = Rails.env.production? ? "berkeleybeacon" : "berkeleybeaconsandbox"
 		client = Swiftype::Easy.new
-		results = client.search(engine_slug, params[:q])		
+		results = client.search(engine_slug, params[:q])
 		@articles = results.records['articles'].map{|r| Article.find(r.external_id.to_i) } #.paginate(:page => params[:page], :per_page => 15)
 		@q = params[:q]
 	end
-	
+
 	def edit
 		# TODO: Doesn't update authors, etc
 		@article = Article.find(params[:id])
@@ -111,14 +111,14 @@ class ArticlesController < ApplicationController
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 		@can_queue_tweet = (Time.now.strftime("%A") == "Wednesday" && Time.now.hour > 18) || (Time.now.strftime("%A") == "Thursday" && Time.now.hour < 6) || Rails.env.development?
 	end
-	
+
 	def update
 		is_draft = params[:commit].include?("draft")
 		if params[:mediafiles]
 			cookies[:already_uploaded] ||= ''
 			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
 		end
-		
+
 		authors = []
 		if params[:author].nil?
 			authors << current_user
@@ -130,7 +130,7 @@ class ArticlesController < ApplicationController
 				end # begin
 			end # each
 		end # else
-		
+
 		@article = Article.find(params[:id])
 		was_draft = @article.draft?
 		p = params[:article]
@@ -144,17 +144,17 @@ class ArticlesController < ApplicationController
 			p[:excerpt] = " " if p[:excerpt].blank?
 		end
 		p[:body] = p[:excerpt] if p[:link_only] == "1"
-		
+
 		queue_tweet = !params[:post_when].nil? and params[:post_when] == "post_later"
 
 		if @article.update_attributes(p)
 		  @article.update_attribute(:draft,is_draft)
 		  Authorship.where(:article_id => @article.id).each { |a| a.delete }
-		  
+
 		  authors.each do |author|
 				authorship = Authorship.create!(:article_id => @article.id, :person_id => author.id)
 			end
-			
+
 			if params[:mediafiles]
 				params[:mediafiles].values.each do |m_id|
 					Articlemediacontent.create!(:mediafile_id => m_id, :article_id => @article.id)
@@ -173,7 +173,7 @@ class ArticlesController < ApplicationController
 			render 'edit'
 		end
 	end
-	
+
 	def show
 		@include_responsive = true
 		@include_bootstrap_carousel = true
@@ -192,6 +192,15 @@ class ArticlesController < ApplicationController
 				@og[:image] = nil
 			end
 			@og[:description] = @article.excerpt.blank? ? nil : @article.excerpt
+			@article_mediafiles = @article.mediafiles
+			@article_img_class = ""
+			if @article_mediafiles.count == 1 and @article.videos.empty?
+				if @article_mediafiles.first.horizontal?
+					@article_img_class = "single_image_body"
+				else
+					@article_img_class = "single_image_body vertical_single_image_body"
+				end
+			end
 			if @article.views.nil?
 				@article.update_attribute(:views, 1)
 			else
@@ -234,5 +243,5 @@ class ArticlesController < ApplicationController
 		def expire_article_touches
 			expire_page :controller => 'sections', :action => 'show'
 		end
-	
+
 end

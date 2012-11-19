@@ -41,6 +41,7 @@ class MediafilesController < ApplicationController
 			end
 			@mediafile.update_attribute(:created_at, date) if date
 			@mediafile.update_attribute(:updated_at, date) if date
+			@mediafile.check_dimensions
 			respond_with @mediafile #, :location => mediafiles_url
 			# # format.html { redirect_to mediafiles_path }
 			# format.js
@@ -76,6 +77,7 @@ class MediafilesController < ApplicationController
 					attribution = Attribution.create!(:mediafile_id => @mediafile.id, :person_id => creator.id)
 				end
 			end
+			@mediafile.check_dimensions
 			redirect_to articles_path
 		else
 			render 'edit'

@@ -11,7 +11,7 @@
 
 <div class="wrap">
 
-<div class="content_wrap article_wrap">
+<div class="content_wrap article_wrap <%= @article_img_class %>">
 	<% if editor_logged_in %>
 		<%= link_to "Edit this story", edit_article_url(@article), :class => "btn" %>
 		<% if @article.draft? %>
@@ -20,53 +20,64 @@
 		<br/><br/>
 	<% end %>
 
-	<h1><%= @article.title.html_safe %></h1>
-	<% if @article.subtitles %>
-		<% @article.subtitles.each do |subtitle| %>
-			<h2><%= subtitle %></h2>
+	<div id="article_header">
+		<h1><%= @article.title.html_safe %></h1>
+		<% if @article.subtitles %>
+			<% @article.subtitles.each do |subtitle| %>
+				<h2><%= subtitle %></h2>
+			<% end %>
+		<% end %>
+		<h3>By <%= bylineify_linked(@article).html_safe %> <br /> <%= (@article.created_at).to_s(:pretty_date_and_time) %></h3>
+	</div>
+	<% if @article_mediafiles %>
+		<% if @article_mediafiles.count == 1 and @article.videos.empty? %>
+			<div class="<%= @article_mediafiles.first.aspect_ratio_str %> single_image">
+				<div class="slide_cont"><%= image_tag @article_mediafiles.first.media.url %></div>
+				<div class="metadata">
+					<%= @article_mediafiles.first.title %>
+					<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+				</div>
+			</div>
+		<% else %>
+			<ul class="rslides <%= "has_slideshow" if @article_mediafiles.count > 1 %>">
+				<% if !@article.videos.empty? %>
+					<% @article.videos.each do |video| %>
+						<li>
+							<video controls <% if video.media %>poster="<%= video.media %>"<% end %> class="" data-setup="{}">
+								<% if video.mp4 %>
+									<source src="<%= video.mp4 %>" type="video/mp4">
+								<% end %>
+								<% if video.ogg %>
+									<source src="<%= video.ogg %>" type="video/ogg">
+								<% end %>
+								<% if video.webm %>
+									<source src="<%= video.webm %>" type="video/webm">
+								<% end %>
+							</video>
+							<div class="metadata video_meta">
+								<div class="credit"><%= bylineify_linked(video).html_safe %></div>
+							</div>
+						</li>
+					<% end %>
+				<% end #if %>
+				<% if !@article.images.empty? %>
+					<% @article.images.each do |image| %>
+						<li class="<%= image.aspect_ratio_str %>">
+							<div class="slide_cont"><%= image_tag image.media.url %></div>
+							<div class="metadata">
+								<%= image.title %>
+								<div class="credit"><%= bylineify_linked(image).html_safe %></div>
+							</div>
+						</li>
+					<% end %>
+				<% end #if %>
+			</ul>
+			<div id="slide_controls"></div>
+			<div class="clear"></div>
 		<% end %>
 	<% end %>
-	<h3>By <%= bylineify_linked(@article).html_safe %> <br /> <%= (@article.created_at - 5.hours).to_s(:pretty_date_and_time) %></h3>
-	
-	<% if @article.mediafiles %>
-		<ul class="rslides">
-			<% if !@article.videos.empty? %>
-				<% @article.videos.each do |video| %>
-					<li>
-						<video controls <% if video.media %>poster="<%= video.media %>"<% end %> class="" data-setup="{}">
-							<% if video.mp4 %>
-								<source src="<%= video.mp4 %>" type="video/mp4">
-							<% end %>
-							<% if video.ogg %>
-								<source src="<%= video.ogg %>" type="video/ogg">
-							<% end %>
-							<% if video.webm %>
-								<source src="<%= video.webm %>" type="video/webm">
-							<% end %>
-						</video>
-						<div class="metadata video_meta">
-							<div class="credit"><%= bylineify_linked(video).html_safe %></div>
-						</div>
-					</li>
-				<% end %>
-			<% end #if %>
-			<% if !@article.images.empty? %>
-				<% @article.images.each do |image| %>
-					<li>
-						<div class="slide_cont"><%= image_tag image.media.url %></div>
-						<div class="metadata">
-							<%= image.title %>
-							<div class="credit"><%= bylineify_linked(image).html_safe %></div>
-						</div>
-					</li>
-				<% end %>
-			<% end #if %>
-		</ul>
-		<div id="slide_controls"></div>
-		<div class="clear"></div>
-	<% end %>		
 
-	
+
 	<div id="body">
 		<%= @article.body.html_safe %>
 		<br /><% @article.people.each do |p| %>
@@ -104,36 +115,6 @@
 			<a href="http://disqus.com" class="dsq-brlink" style="display:none">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 		<% end %>
 	</div>
-	<div id="sidebar">
-
-		<% if !@article.series_id.nil? and @article.series_id != 0 %>
-			<section id="series_info">
-				<%= image_tag(@article.series.logo.url) if !@article.series.logo.url.nil? %>
-				<% if @article.series.title %>
-					<strong><%= @article.series.title %></strong>
-					<br />
-				<% end %>
-				<%= @article.series.description if @article.series.description %>
-			</section>
-		<% end %>
-		
-		<section id="share">
-			<h4>Share this story online</h4>
-			<div id="fb">
-				<div class="fb-like" data-send="true" data-layout="box_count" data-width="9" data-show-faces="false" data-action="recommend"></div>
-			</div>
-			<div id="twitter">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="beaconupdate">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-			</div>
-			<div id="tumblr">
-				<a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:61px; height:20px; background:url('http://platform.tumblr.com/v1/share_2.png') top left no-repeat transparent;">Share on Tumblr</a>
-			</div>
-			<div class="clear"></div>
-		</section>
-		<section id="popular" class="article_popular">
-			<%= render 'shared/popular' %>
-		</section>
-		
-	</div>
+	<%= render 'sidebar' %>
 	<div class="clear"></div>
 </div>

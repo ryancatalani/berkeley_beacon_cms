@@ -12,7 +12,7 @@ class Mediafile < ActiveRecord::Base
 	has_many :attributions
 	has_many :people, :through => :attributions
 	belongs_to :series
-	
+
 	# Types
 	# 0 => Media
 	# 1 => Photograph
@@ -104,5 +104,21 @@ class Mediafile < ActiveRecord::Base
 		return m
 	end
 
-	
+	def check_dimensions
+		# begin
+			image = MiniMagick::Image.open(media.url)
+			dims_str = image["%w %h"]
+			dims = dims_str.split(' ').map(&:to_i)
+			if dims[1] > dims[0]
+				update_attribute(:horizontal, false)
+			end
+		# rescue
+			# Don't change the horizontal attribute.
+		# end
+	end
+
+	def aspect_ratio_str
+		horizontal? ? "horizontal" : "vertical"
+	end
+
 end
