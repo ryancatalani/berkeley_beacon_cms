@@ -27,14 +27,14 @@ namespace :db do
 		pop_social_candidates = {}
 
 		pop_initial = Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil])
-		if pop_initial.count < num
-			num_days = 7
+		while pop_initial.count < num
+			num_days += 7
 			pop_initial = Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil])
 		end
 
 		pop_urls = pop_initial.map {|a| a.to_url(:full => true)}
 		pop_initial.each {|a| pop_social_candidates[a.to_url(:full=>true)] = {:id => a.id, :fb => 0, :twt => 0, :total => 0} }
-		
+
 		# Facebook
 		fb_shares_uri = URI.parse('http://graph.facebook.com/?ids=' + pop_urls.join(','))
 		fb_shares_res = Net::HTTP.get_response(fb_shares_uri).body
