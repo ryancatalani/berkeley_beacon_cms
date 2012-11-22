@@ -229,9 +229,14 @@ class PagesController < ApplicationController
 		def find_section_articles(section_name,number_of_articles=3)
 			# Section.find_by_name(section_name).non_blog_articles.order("created_at DESC").first(number_of_articles)
 			if Rails.env.production?
-				Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 1.week.ago).order('created_at desc').partition{|a| !a.mediafiles.empty? }.flatten
+				a = Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 1.week.ago).order('created_at desc').partition{|a| !a.mediafiles.empty? }.flatten
+				if a.count > 0
+					return a
+				else
+					return Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 2.weeks.ago).order('created_at desc').partition{|a| !a.mediafiles.empty? }.flatten.first(5)
+				end
 			else
-				Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 1.year.ago).order('created_at desc').first(5).partition{|a| !a.mediafiles.empty? }.flatten
+				return Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 1.year.ago).order('created_at desc').first(5).partition{|a| !a.mediafiles.empty? }.flatten
 			end
 		end
 
