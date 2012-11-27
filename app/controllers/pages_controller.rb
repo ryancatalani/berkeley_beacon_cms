@@ -145,6 +145,7 @@ class PagesController < ApplicationController
 	def apply
 		@title = "Join the Beacon"
 		@new_header = true
+		@needs_og = true
 		@og ||= {}
 		@og[:title] = "Join the Beacon"
 		@og[:url] = "http://berkeleybeacon.com/apply"
