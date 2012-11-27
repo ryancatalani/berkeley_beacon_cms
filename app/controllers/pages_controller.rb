@@ -146,10 +146,10 @@ class PagesController < ApplicationController
 		@title = "Join the Beacon"
 		@new_header = true
 		@og ||= {}
-		@og[:title] = "Our new voice"
+		@og[:title] = "Join the Beacon"
 		@og[:url] = "http://berkeleybeacon.com/apply"
-		@og[:image] = "http://berkeleybeacon.com/assets/redesign-promo-#{Random.rand(4)+1}-thumb.jpg"
-		@og[:description] = "Pick up the completely redesigned Berkeley Beacon this Thursday."
+		@og[:image] = "http://berkeleybeacon.com/assets/apply_small.jpg"
+		@og[:description] = "Applications for any staff position are due on Thursday, November 29 April 22 at 7 p.m. Download an application here."
 		render :layout => 'new_header'
 	end
 
