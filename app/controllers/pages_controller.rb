@@ -234,7 +234,7 @@ class PagesController < ApplicationController
 				if a.count > 0
 					return a
 				else
-					return Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 2.weeks.ago).order('created_at desc').partition{|a| !a.mediafiles.empty? }.flatten.first(5)
+					return Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 3.weeks.ago).order('created_at desc').partition{|a| !a.mediafiles.empty? }.flatten.first(5)
 				end
 			else
 				return Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 1.year.ago).order('created_at desc').first(5).partition{|a| !a.mediafiles.empty? }.flatten
