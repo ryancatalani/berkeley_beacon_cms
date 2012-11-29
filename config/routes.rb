@@ -95,6 +95,9 @@ BeaconApp::Application.routes.draw do
   match '/go/feminist-panel' => redirect("http://www.berkeleybeacon.com/lifestyle/2012/11/8/feminist-panel-hopes-to-stomp-out-stereotypes?n=go")
   match '/go/engagement-lab' => redirect("http://www.berkeleybeacon.com/news/2012/11/8/the-engagement-game-lab-relocates?n=go")
   match '/go/lb-art-installation' => redirect("http://berkeleybeacon.com/lifestyle/2012/11/15/mag-to-choose-new-scaffolding-artist")
+  match '/go/maxine-renning' => redirect("http://berkeleybeacon.com/lifestyle/2012/11/29/friends-share-a-bonedeep-bond")
+  match '/go/battleofthebands' => redirect("/")
+
 
 
   # The priority is based upon order of creation:
