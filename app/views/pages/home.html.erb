@@ -84,7 +84,7 @@
 						<% @latest_multimedia.each_with_index do |mediafile,index| %>
 							<div class="latest_video" id="" data-video="<%= index %>">
 								<%= render 'shared/video_tag', :video => mediafile, :preload => false %>
-								<strong><%= mediafile.title %></strong> &raquo; <%= link_to "Read the story", mediafile.latest_article.to_url %>
+								<strong><%= mediafile.title %></strong> &raquo; <%= link_to("Read the story", mediafile.latest_article.to_url) unless mediafile.articles.empty? %>
 							</div>
 						<% end %>
 					</div>
