@@ -17,8 +17,7 @@ BeaconApp::Application.routes.draw do
   match '/ecla', :to => 'pages#ecla'
   match '/emersonla', :to => 'pages#ecla'
 
-  match '/emersonla_live', :to => 'pages#emersonla_live'
-  match '/emersonla-live', :to => 'pages#emersonla_live'
+  # match '/emersonla-live', :to => 'pages#emersonla_live'
   match '/beacon_ecla_tweets', :to => 'pages#beacon_ecla_tweets'
   match '/all_ecla_tweets', :to => 'pages#all_ecla_tweets'
   match '/archive_problem/:url', :to => 'pages#archive_problem', :via => :post
