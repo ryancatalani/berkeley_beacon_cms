@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121118223103) do
+ActiveRecord::Schema.define(:version => 20121213002147) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -102,6 +102,17 @@ ActiveRecord::Schema.define(:version => 20121118223103) do
     t.integer  "series_id"
     t.boolean  "horizontal",      :default => true, :null => false
   end
+
+  create_table "pageviews", :force => true do |t|
+    t.integer  "obj_pageviews_id"
+    t.string   "encoded_ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "obj_pageviews_type"
+  end
+
+  add_index "pageviews", ["encoded_ip_address"], :name => "index_pageviews_on_encoded_ip_address"
+  add_index "pageviews", ["obj_pageviews_id"], :name => "index_pageviews_on_obj_pageviews_id"
 
   create_table "pastries", :force => true do |t|
     t.text     "data"

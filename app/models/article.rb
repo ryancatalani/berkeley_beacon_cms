@@ -8,12 +8,13 @@ class Article < ActiveRecord::Base
 	has_many :articlemediacontents
 	has_many :mediafiles, :through => :articlemediacontents
 	has_many :social_posts
-	serialize :subtitles
+	has_many :pageviews, :as => :obj_pageviews
 	belongs_to :section
 	belongs_to :series
 	belongs_to :blog
-	before_save :check_clean_title
 	serialize :archive_images
+	serialize :subtitles
+	before_save :check_clean_title
 
 	def to_url(opts={})
 		if link_only
@@ -160,6 +161,14 @@ class Article < ActiveRecord::Base
 		a[:fields] = fields
 
 		return a
+	end
+
+	def pageview_count
+		pageviews.size
+	end
+
+	def unique_pageview_count
+		pageviews.group(:encoded_ip_address).size
 	end
 
 	private

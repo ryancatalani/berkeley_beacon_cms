@@ -48,6 +48,8 @@ BeaconApp::Application.routes.draw do
   match '/new_editorial_cartoon', :to => 'pages#new_editorial_cartoon'
   match '/opinion/editorial_cartoons', :to => 'pages#editorial_cartoons'
 
+  match '/pgvw/:article_id', :to => 'articles#increase_pageview'
+
 	match '/login', :to => 'sessions#new'
 	match '/logout', :to => 'sessions#destroy'
 	match '/about', :to => 'pages#about'

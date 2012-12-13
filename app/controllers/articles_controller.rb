@@ -2,47 +2,46 @@ include ActionView::Helpers::AssetTagHelper
 # include ActionView::Helpers::ApplicationHelper
 
 class ArticlesController < ApplicationController
-	before_filter :check_editor, :except => [:show]
-	# caches_action :show
+	before_filter :check_editor, :except => [:show, :increase_pageview]
 
 	def new
 		@article = Article.new
 		@authors = Person.order("firstname ASC").all.map do |person|
 			if person.other_designation.blank?
 				["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}",
-				person.id]
-			else
-				["#{person.firstname} #{person.lastname} #{person.other_designation == "*" ? "" : "/ #{person.other_designation}"}",
-				person.id]
+					person.id]
+				else
+					["#{person.firstname} #{person.lastname} #{person.other_designation == "*" ? "" : "/ #{person.other_designation}"}",
+						person.id]
+					end
+				end
+				@authors.unshift(["Choose an author",0])
+				@sections = Section.all.map { |s| [s.name, s.id] }
+				@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
+				@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
+				@can_queue_tweet = (Time.now.strftime("%A") == "Wednesday" && Time.now.hour > 18) || (Time.now.strftime("%A") == "Thursday" && Time.now.hour < 6) || Rails.env.development?
 			end
-		end
-		@authors.unshift(["Choose an author",0])
-		@sections = Section.all.map { |s| [s.name, s.id] }
-		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
-		@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
-		@can_queue_tweet = (Time.now.strftime("%A") == "Wednesday" && Time.now.hour > 18) || (Time.now.strftime("%A") == "Thursday" && Time.now.hour < 6) || Rails.env.development?
-	end
 
-	def create
-		is_draft = params[:commit].include?("draft")
-		p = params[:article]
-		if params[:mediafiles]
-			cookies[:already_uploaded] ||= ''
-			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
-		end
-		p[:articletype] = params[:articletype].to_i
-		p[:series_id] = params[:series_id].to_i
-		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
-		p[:subtitles] = subs
-		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
-		authors = []
-		if params[:author].nil?
-			authors << current_user
-		else
-			params[:author].values.each do |author_id|
-				begin
-					authors << Person.find(author_id.to_i)
-				rescue
+			def create
+				is_draft = params[:commit].include?("draft")
+				p = params[:article]
+				if params[:mediafiles]
+					cookies[:already_uploaded] ||= ''
+					cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
+				end
+				p[:articletype] = params[:articletype].to_i
+				p[:series_id] = params[:series_id].to_i
+				subs = params[:subtitle].nil? ? [] : params[:subtitle].values
+				p[:subtitles] = subs
+				p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
+				authors = []
+				if params[:author].nil?
+					authors << current_user
+				else
+					params[:author].values.each do |author_id|
+						begin
+							authors << Person.find(author_id.to_i)
+						rescue
 				end # begin
 			end # each
 		end # else
@@ -148,10 +147,10 @@ class ArticlesController < ApplicationController
 		queue_tweet = !params[:post_when].nil? and params[:post_when] == "post_later"
 
 		if @article.update_attributes(p)
-		  @article.update_attribute(:draft,is_draft)
-		  Authorship.where(:article_id => @article.id).each { |a| a.delete }
+			@article.update_attribute(:draft,is_draft)
+			Authorship.where(:article_id => @article.id).each { |a| a.delete }
 
-		  authors.each do |author|
+			authors.each do |author|
 				authorship = Authorship.create!(:article_id => @article.id, :person_id => author.id)
 			end
 
@@ -201,47 +200,44 @@ class ArticlesController < ApplicationController
 					@article_img_class = "single_image_body vertical_single_image_body"
 				end
 			end
-			if @article.views.nil?
-				@article.update_attribute(:views, 1)
-			else
-				@article.update_attribute(:views, @article.views+1)
-			end
 		else
-		  begin
-		    date = Date.new(params[:year].to_i,params[:month].to_i,params[:day].to_i)
-	    rescue
-	      redirect_to root_path and return
-      end
-		  a = Article.where(:created_at => (date.midnight)..(date + 1.day).midnight, :cleantitle => params[:title])
-		  if a.count == 1
-		    @article = a.first
-  			@title = @article.title
-  			@needs_og = true
-  			@og = {}
-  			@og[:title] = @article.title
-  			@og[:url] = @article.to_url
+			begin
+				date = Date.new(params[:year].to_i,params[:month].to_i,params[:day].to_i)
+			rescue
+				redirect_to root_path and return
+			end
+			a = Article.where(:created_at => (date.midnight)..(date + 1.day).midnight, :cleantitle => params[:title])
+			if a.count == 1
+				@article = a.first
+				@title = @article.title
+				@needs_og = true
+				@og = {}
+				@og[:title] = @article.title
+				@og[:url] = @article.to_url
         # @og[:image] = "http://berkeleybeacon.com/sample_image.jpg"
-  			@og[:description] = @article.excerpt.blank? ? false : @article.excerpt.blank?
-  			begin
-  				@article.update_attribute(:views, @article.views+1)
-  			rescue
-  				@article.update_attribute(:views, 1)
-  			end
-			else
-			  redirect_to root_path
-		  end
-		end
-	end
+        @og[:description] = @article.excerpt.blank? ? false : @article.excerpt.blank?
+    else
+    	redirect_to root_path
+    end
+end
+end
 
-	def destroy
-		Article.find(params[:id]).destroy
-		redirect_to articles_path
-	end
+def destroy
+	Article.find(params[:id]).destroy
+	redirect_to articles_path
+end
 
-	private
+def increase_pageview
+	article_id = params[:article_id].to_i
+	encoded_ip_address = Digest::SHA1.hexdigest(request.remote_ip).to_s
+	Pageview.create!(:obj_pageviews_id => article_id, :encoded_ip_address => encoded_ip_address, :obj_pageviews_type => "Article")
+	render :text => "Done."
+end
 
-		def expire_article_touches
-			expire_page :controller => 'sections', :action => 'show'
-		end
+private
+
+def expire_article_touches
+	expire_page :controller => 'sections', :action => 'show'
+end
 
 end
