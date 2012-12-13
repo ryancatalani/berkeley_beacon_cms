@@ -121,6 +121,6 @@
 
 <script>
 	$(document).ready(function(){
-		$.get("/pgvw/<%= @article.id %>");
+		setTimeout(function(){ $.get("/pgvw/<%= @article.id %>"); }, 100);
 	});
 </script>
