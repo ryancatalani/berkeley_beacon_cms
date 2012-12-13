@@ -90,6 +90,22 @@ class ArticlesController < ApplicationController
 	def index
 		@articles = Article.order("created_at DESC").first(30)
 		@user_articles = current_user.articles.order("created_at DESC").first(6)
+		latest_pop = PopularSnapshot.last(24 * 7)
+
+		# latest_* = [ [hour], [hour], etc ]
+		# hour = [ [first most popular], [second most popular], etc ]
+
+		@pop_views = latest_pop.map &:most_viewed
+		@pop_shares = latest_pop.map &:most_shared
+
+		pop_views_for_axes = @pop_views.flatten(1).map(&:last)
+		@pop_views_max = pop_views_for_axes.max
+		@pop_views_min = pop_views_for_axes.min
+
+		pop_shares_for_axes = @pop_shares.flatten(1).map(&:last)
+		@pop_shares_max = pop_shares_for_axes.max
+		@pop_shares_min = pop_shares_for_axes.min
+
 	end
 
 	def search_edit
@@ -189,7 +205,7 @@ class ArticlesController < ApplicationController
 		# 	end
 		# end
 
-		redirect_to root_path and return if @article.draft? && !editor_logged_in
+		redirect_to root_path and return if @article.nil || (@article.draft? && !editor_logged_in)
 
 		@include_responsive = true
 		@include_bootstrap_carousel = true
