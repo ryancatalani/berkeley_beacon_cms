@@ -174,32 +174,9 @@ class ArticlesController < ApplicationController
 	end
 
 	def show
-		@include_responsive = true
-		@include_bootstrap_carousel = true
 		found = Article.where(:cleantitle => params[:title])
 		if found.count == 1
 			@article = found.first
-			redirect_to "/" if @article.draft? and !editor_logged_in
-			@title = @article.title
-			@needs_og = true
-			@og = {}
-			@og[:title] = @article.title
-			@og[:url] = @article.to_url
-			if @article.mediafiles.any?
-				@og[:image] = @article.mediafiles.first.media.thumb_140.url.html_safe rescue nil
-			else
-				@og[:image] = nil
-			end
-			@og[:description] = @article.excerpt.blank? ? nil : @article.excerpt
-			@article_mediafiles = @article.mediafiles
-			@article_img_class = ""
-			if @article_mediafiles.count == 1 and @article.videos.empty?
-				if @article_mediafiles.first.horizontal?
-					@article_img_class = "single_image_body"
-				else
-					@article_img_class = "single_image_body vertical_single_image_body"
-				end
-			end
 		else
 			begin
 				date = Date.new(params[:year].to_i,params[:month].to_i,params[:day].to_i)
@@ -209,35 +186,52 @@ class ArticlesController < ApplicationController
 			a = Article.where(:created_at => (date.midnight)..(date + 1.day).midnight, :cleantitle => params[:title])
 			if a.count == 1
 				@article = a.first
-				@title = @article.title
-				@needs_og = true
-				@og = {}
-				@og[:title] = @article.title
-				@og[:url] = @article.to_url
-        # @og[:image] = "http://berkeleybeacon.com/sample_image.jpg"
-        @og[:description] = @article.excerpt.blank? ? false : @article.excerpt.blank?
-    else
-    	redirect_to root_path
-    end
-end
-end
+			end
+		end
 
-def destroy
-	Article.find(params[:id]).destroy
-	redirect_to articles_path
-end
+		redirect_to root_path and return if @article.draft? and !editor_logged_in
 
-def increase_pageview
-	article_id = params[:article_id].to_i
-	encoded_ip_address = Digest::SHA1.hexdigest(request.remote_ip).to_s
-	Pageview.create!(:obj_pageviews_id => article_id, :encoded_ip_address => encoded_ip_address, :obj_pageviews_type => "Article")
-	render :text => "Done."
-end
+		@include_responsive = true
+		@include_bootstrap_carousel = true
+		@title = @article.title
+		@article_mediafiles = @article.mediafiles
+		@article_img_class = ""
+		if @article_mediafiles.count == 1 and @article.videos.empty?
+			if @article_mediafiles.first.horizontal?
+				@article_img_class = "single_image_body"
+			else
+				@article_img_class = "single_image_body vertical_single_image_body"
+			end
+		end
 
-private
+		@needs_og = true
+		@og = {}
+		@og[:title] = @article.title
+		@og[:url] = @article.to_url
+		if @article.mediafiles.any?
+			@og[:image] = @article.mediafiles.first.media.thumb_140.url.html_safe rescue nil
+		else
+			@og[:image] = nil
+		end
+		@og[:description] = @article.excerpt.blank? ? nil : @article.excerpt
+	end
 
-def expire_article_touches
-	expire_page :controller => 'sections', :action => 'show'
-end
+	def destroy
+		Article.find(params[:id]).destroy
+		redirect_to articles_path
+	end
+
+	def increase_pageview
+		article_id = params[:article_id].to_i
+		encoded_ip_address = Digest::SHA1.hexdigest(request.remote_ip).to_s
+		Pageview.create!(:obj_pageviews_id => article_id, :encoded_ip_address => encoded_ip_address, :obj_pageviews_type => "Article")
+		render :text => "Done."
+	end
+
+	private
+
+	def expire_article_touches
+		expire_page :controller => 'sections', :action => 'show'
+	end
 
 end
