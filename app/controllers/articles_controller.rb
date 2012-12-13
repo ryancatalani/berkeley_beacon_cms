@@ -174,22 +174,22 @@ class ArticlesController < ApplicationController
 	end
 
 	def show
-		found = Article.where(:cleantitle => params[:title])
-		if found.count == 1
-			@article = found.first
-		else
-			begin
-				date = Date.new(params[:year].to_i,params[:month].to_i,params[:day].to_i)
-			rescue
-				redirect_to root_path and return
-			end
-			a = Article.where(:created_at => (date.midnight)..(date + 1.day).midnight, :cleantitle => params[:title])
-			if a.count == 1
-				@article = a.first
-			end
-		end
+		@article = Article.where(:cleantitle => params[:title]).order('created_at DESC').first
+		# if found.count == 1
+		# 	@article = found.first
+		# else
+		# 	begin
+		# 		date = Date.new(params[:year].to_i,params[:month].to_i,params[:day].to_i)
+		# 	rescue
+		# 		redirect_to root_path and return
+		# 	end
+		# 	a = Article.where(:created_at => (date.midnight)..(date + 1.day).midnight, :cleantitle => params[:title])
+		# 	if a.count == 1
+		# 		@article = a.first
+		# 	end
+		# end
 
-		redirect_to root_path and return if @article.draft? and !editor_logged_in
+		redirect_to root_path and return if @article.draft? && !editor_logged_in
 
 		@include_responsive = true
 		@include_bootstrap_carousel = true

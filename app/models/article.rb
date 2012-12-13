@@ -164,11 +164,15 @@ class Article < ActiveRecord::Base
 	end
 
 	def pageview_count
-		pageviews.size
+		if views.nil? || views.zero?
+			return pageviews.size
+		else
+			return pageviews.size + views
+		end
 	end
 
 	def unique_pageview_count
-		pageviews.group(:encoded_ip_address).size
+		pageviews.group(:encoded_ip_address).length
 	end
 
 	private
