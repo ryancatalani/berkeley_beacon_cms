@@ -205,7 +205,7 @@ class ArticlesController < ApplicationController
 		# 	end
 		# end
 
-		redirect_to root_path and return if @article.nil || (@article.draft? && !editor_logged_in)
+		redirect_to root_path and return if @article.nil? || (@article.draft? && !editor_logged_in)
 
 		@include_responsive = true
 		@include_bootstrap_carousel = true
