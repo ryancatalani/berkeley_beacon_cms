@@ -172,7 +172,7 @@ class Article < ActiveRecord::Base
 	end
 
 	def unique_pageview_count
-		pageviews.group(:encoded_ip_address).length
+		pageviews.to_a.group_by(&:encoded_ip_address).length
 	end
 
 	private
