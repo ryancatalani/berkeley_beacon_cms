@@ -205,7 +205,8 @@ class ArticlesController < ApplicationController
 		# 	end
 		# end
 
-		redirect_to root_path and return if @article.nil? || (@article.draft? && !editor_logged_in)
+		raise ActionController::RoutingError.new('Not Found') if @article.nil?
+		redirect_to root_path and return if @article.draft? && !editor_logged_in
 
 		@include_responsive = true
 		@include_bootstrap_carousel = true
