@@ -391,17 +391,20 @@ video {
 				background: #eee;
 			}
 		}
-		.label {
-			background: none;
-			color: #666;
-			text-transform: none;
-			display: inline-block;
+		.legend_line {
+			margin-bottom: 5px;
+		}
+		.rickshaw_label {
+			display: inline;
+			font-size: 11px;
+			line-height: 8px;
 		}
 		.swatch {
 			width: 10px;
 			height: 10px;
 			border-radius: 2px;
 			display: inline-block;
+			margin-right: 3px;
 		}
 	}
 }
