@@ -5,6 +5,114 @@
 
 <%= link_to "Upload Editorial Cartoon", new_editorial_cartoon_path, :class => "btn" %>
 
+<h1>Most viewed articles</h1>
+
+<div id="pop_views_chart_container">
+	<div id="pop_views_chart"></div>
+	<div id="pop_views_chart_legend"></div>
+	<div class="clear"></div>
+</div>
+
+<script>
+var pop_views = <%= @pop_views_final %>;
+var pop_shares = <%= @pop_shares_final %>;
+var pop_views_keys = <%= @pop_views_final_keys.html_safe %>;
+var pop_views_min = <%= @pop_views_min %>;
+var times = <%= @times %>;
+
+var pop_views_rs = [];
+var colors = d3.scale.category10();
+
+for (var i = 0; i < pop_views.length; i++) {
+	var data = [];
+	var set = pop_views[i];
+
+	for (var j = 0; j < set.length; j++) {
+		data.push({
+			x: j,
+			y: set[j]
+		});
+	};
+	pop_views_rs.push({
+		data: data,
+		color: colors(i),
+		name: pop_views_keys[i]
+	});
+
+};
+
+console.log(pop_views_rs);
+
+var graph = new Rickshaw.Graph({
+	element: document.querySelector("#pop_views_chart"),
+	renderer: "line",
+	min: pop_views_min,
+	width: 760,
+	series: pop_views_rs
+});
+
+graph.render();
+
+var legend = document.querySelector("#pop_views_chart_legend");
+
+var Hover = Rickshaw.Class.create(Rickshaw.Graph.HoverDetail, {
+
+	render: function(args) {
+
+		this.xFormatter = function(x) { return new Date(Date.now() - (x * 1000 * 60 * 60)).toString() };
+		this.yFormatter = function(y) { return Math.floor(y) + " views" };
+
+		legend.innerHTML = args.formattedXValue;
+
+		args.detail.sort(function(a, b) { return a.order - b.order }).forEach( function(d) {
+
+			var line = document.createElement('div');
+			line.className = 'line';
+
+			var swatch = document.createElement('div');
+			swatch.className = 'swatch';
+			swatch.style.backgroundColor = d.series.color;
+
+			var label = document.createElement('div');
+			label.className = 'label';
+			label.innerHTML = d.name + ": " + d.formattedYValue;
+
+			line.appendChild(swatch);
+			line.appendChild(label);
+
+			legend.appendChild(line);
+
+			this.show();
+
+		}, this );
+        }
+});
+
+var hover = new Hover( { graph: graph } );
+
+// var legend = new Rickshaw.Graph.Legend({
+//     graph: graph,
+//     element: document.querySelector('#pop_views_chart_legend')
+// });
+
+// var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+//     graph: graph,
+//     xFormatter: function(x) { return x },
+//     yFormatter: function(y) { return Math.floor(y) + " views" }
+// } );
+
+// var shelving = new Rickshaw.Graph.Behavior.Series.Toggle({
+//     graph: graph,
+//     legend: legend
+// });
+
+// var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
+//     graph: graph,
+//     legend: legend
+// });
+
+</script>
+
 <h1>Last 6 articles you posted</h1>
 <table class="table table-striped table-bordered">
 	<thead>

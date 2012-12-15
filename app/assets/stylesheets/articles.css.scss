@@ -368,6 +368,118 @@ video {
 	margin-top: -3px;
 }
 
+#pop_views_chart_container {
+	position: relative;
+	margin: 20px 0;
+	border-bottom: 1px solid #ccc;
+	#pop_views_chart {
+		float: left;
+		path {
+			stroke-width: 3px;
+		}
+	}
+	#pop_views_chart_legend {
+		float: left;
+		width: 180px;
+		margin-left: 10px;
+		ul {
+			list-style-type: none;
+		}
+		li {
+			cursor: pointer;
+			&:hover {
+				background: #eee;
+			}
+		}
+		.label {
+			background: none;
+			color: #666;
+			text-transform: none;
+			display: inline-block;
+		}
+		.swatch {
+			width: 10px;
+			height: 10px;
+			border-radius: 2px;
+			display: inline-block;
+		}
+	}
+}
+
+.rickshaw_graph .detail {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.1);
+  bottom: 0;
+  width: 1px;
+  transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  -webkit-transition: opacity 0.25s linear;
+  &.inactive {
+    opacity: 0;
+  }
+  .item.active {
+    opacity: 1;
+  }
+  .x_label {
+    font-family: Arial, sans-serif;
+    border-radius: 3px;
+    padding: 6px;
+    opacity: 0.5;
+    border: 1px solid #e0e0e0;
+    font-size: 12px;
+    position: absolute;
+    background: white;
+    white-space: nowrap;
+  }
+  .item {
+    position: absolute;
+    z-index: 2;
+    border-radius: 3px;
+    padding: 0.25em;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    margin-left: 1em;
+    margin-top: -1em;
+    white-space: nowrap;
+    &.active {
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.8);
+    }
+    &:before {
+      content: "\25c2";
+      position: absolute;
+      left: -0.5em;
+      color: rgba(0, 0, 0, 0.7);
+      width: 0;
+    }
+  }
+  .dot {
+    width: 4px;
+    height: 4px;
+    margin-left: -4px;
+    margin-top: -3px;
+    border-radius: 5px;
+    position: absolute;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    background: white;
+    border-width: 2px;
+    border-style: solid;
+    display: none;
+    background-clip: padding-box;
+    &.active {
+      display: block;
+    }
+  }
+}
+
 @media screen and (max-width: 959px) {
 	.content_wrap {
 		width: 90%;

@@ -90,21 +90,66 @@ class ArticlesController < ApplicationController
 	def index
 		@articles = Article.order("created_at DESC").first(30)
 		@user_articles = current_user.articles.order("created_at DESC").first(6)
-		latest_pop = PopularSnapshot.last(24 * 7)
+		snapshot_count = 24 * 7
+		latest_pop = PopularSnapshot.last(snapshot_count)
 
 		# latest_* = [ [hour], [hour], etc ]
 		# hour = [ [first most popular], [second most popular], etc ]
 
-		@pop_views = latest_pop.map &:most_viewed
-		@pop_shares = latest_pop.map &:most_shared
+		pop_views = latest_pop.map &:most_viewed
+		pop_shares = latest_pop.map &:most_shared
 
-		pop_views_for_axes = @pop_views.flatten(1).map(&:last)
+		@pop_views_final = {}
+		@pop_shares_final = {}
+
+		pop_views.flatten(1).map(&:first).uniq.each do |artcl|
+			@pop_views_final[artcl] = Array.new(snapshot_count, 0)
+		end
+
+		pop_shares.flatten(1).map(&:first).uniq.each do |artcl|
+			@pop_shares_final[artcl] = Array.new(snapshot_count, 0)
+		end
+
+		pop_views.each_with_index do |snapshot, i|
+			snapshot.each do |inner|
+				article_id = inner.first
+				count = inner.last
+				@pop_views_final[article_id][i] = count
+			end
+		end
+
+		pop_shares.each_with_index do |snapshot, i|
+			snapshot.each do |inner|
+				article_id = inner.first
+				count = inner.last
+				@pop_shares_final[article_id][i] = count
+			end
+		end
+
+		@pop_views_final_keys = @pop_views_final.map{|k,v| Article.find(k).title rescue "Article #{k}" }.to_s
+		@pop_shares_final_keys = @pop_shares_final.map{|k,v| Article.find(k).title rescue "Article #{k}" }.to_s
+
+		@pop_views_final = @pop_views_final.map{|k,v| v}
+		@pop_shares_final = @pop_shares_final.map{|k,v| v}
+
+
+		# Returns:
+		# [
+		#	[views, views, views, ...],
+		#	[views, views, views, ...],
+		#	etc
+		# ]
+
+		pop_views_for_axes = pop_views.flatten(1).map(&:last)
 		@pop_views_max = pop_views_for_axes.max
 		@pop_views_min = pop_views_for_axes.min
 
-		pop_shares_for_axes = @pop_shares.flatten(1).map(&:last)
+		pop_shares_for_axes = pop_shares.flatten(1).map(&:last)
 		@pop_shares_max = pop_shares_for_axes.max
 		@pop_shares_min = pop_shares_for_axes.min
+
+		@times = []
+		snapshot_count.times{|n| @times << n+1 }
 
 	end
 

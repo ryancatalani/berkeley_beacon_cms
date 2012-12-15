@@ -3,16 +3,18 @@
 <head>
 	<title><%= "#{@title} | " if @title %>The Berkeley Beacon</title>
 	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700|PT+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<%= javascript_include_tag "application" %>
 	<%= stylesheet_link_tag "/reset.css" %>
 	<% if @include_custom_bootstrap %>
 		<%= stylesheet_link_tag "/bootstrap-custom.min.css" %>
 	<% elsif editor_logged_in or @include_bootstrap %>
 		<%= stylesheet_link_tag "/bootstrap.min.css" %>
+		<%= javascript_include_tag "/d3.js" %>
+		<%= javascript_include_tag "/rickshaw.min.js" %>
 	<% end %>
 	<%= stylesheet_link_tag    "application" %>
-	<%= javascript_include_tag "application" %>
 	<% if @include_bootstrap_carousel %>
-		<%= stylesheet_link_tag "/bootstrap-justcarousel.min.css" %>		
+		<%= stylesheet_link_tag "/bootstrap-justcarousel.min.css" %>
 	<% end %>
 	<%= favicon_link_tag "/favicon.ico" %>
 	<meta property="og:title" content="<%= og_title %>" />
@@ -27,7 +29,7 @@
 	<% end %>
 	<meta property="fb:admins" content="1600232313" />
 	<script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>
-	
+
 	<%= csrf_meta_tags %>
 
 	<% if @include_bootstrap or @include_responsive %>
