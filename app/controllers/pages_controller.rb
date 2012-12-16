@@ -39,6 +39,10 @@ class PagesController < ApplicationController
 		@og[:description] = "Emerson College's independent student newspaper"
 	end
 
+	def static_home
+		render :layout => false
+	end
+
 	def tips
 		@title = "Send a tip"
 		@include_bootstrap = true

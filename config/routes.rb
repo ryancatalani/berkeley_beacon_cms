@@ -54,6 +54,7 @@ BeaconApp::Application.routes.draw do
 	match '/logout', :to => 'sessions#destroy'
 	match '/about', :to => 'pages#about'
 	root :to => 'pages#home'
+  # root :to => 'pages#static_home'
 	controller :articles do
 		scope ":sectionname" do
 			scope ":year" do
