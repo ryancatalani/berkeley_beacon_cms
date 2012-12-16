@@ -157,8 +157,8 @@ class ApplicationController < ActionController::Base
 			end
 		end
 
-		def tagging_or_article_last_updated
-			Digest::MD5.hexdigest "#{Tagging.maximum(:updated_at).to_i}-#{Article.maximum(:updated_at).to_i}-#{Article.count}"
+		def home_layout_or_article_last_updated
+			Digest::MD5.hexdigest "#{HomeLayout.maximum(:updated_at).to_i}-#{Article.maximum(:updated_at).to_i}-#{Article.count}"
 		end
 
 
@@ -167,7 +167,7 @@ class ApplicationController < ActionController::Base
 			:bylineify, :bylineify_linked, :bylineify_short,
 			:popular_articles,
 			:video_tag, :og_title, :editor_logged_in, :bb_video_tag,
-			:latest_ed_cartoon, :current_twitter, :tagging_or_article_last_updated
+			:latest_ed_cartoon, :current_twitter, :home_layout_or_article_last_updated
 
 
 end

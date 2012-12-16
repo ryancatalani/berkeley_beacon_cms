@@ -5,15 +5,19 @@ class PagesController < ApplicationController
 
 	def home
 		@current_user = current_user
-		@main_story = find_tag_articles("Main Story", 1).pop
-		@featured_stories = find_tag_articles "Featured Story"
-		# fs = @featured_stories.map {|s| s.mediafiles.count >= 1 }.count(false)
-		# unless fs.zero?
-		# 	@featured_stories << find_more_tag_articles("Featured Story", fs)
-		# 	@featured_stories.flatten!
-		# end
-		@section_first_stories = Section.order("name ASC").map {|s| s.articles.order("created_at DESC").first }
-		@middle_stories = find_tag_articles "Middle Strip Story", 5
+
+		layout = HomeLayout.last
+
+		if layout
+			@main_story = Article.find(layout.articles[:lead])
+			@featured_stories = layout.articles[:featured].map{|id| Article.find(id) }
+			@middle_stories = layout.articles[:middle].map{|id| Article.find(id) }
+		else
+			@main_story = find_tag_articles("Main Story", 1).pop
+			@featured_stories = find_tag_articles "Featured Story"
+			@middle_stories = find_tag_articles "Middle Strip Story", 5
+		end
+
 		@news = find_section_articles "News"
 		@opinion = find_section_articles "Opinion", 2
 		@arts = find_section_articles "Arts"

@@ -4,7 +4,7 @@
 
 		<section id="left">
 
-			<% cache ["home_top_stories", tagging_or_article_last_updated] do %>
+			<% cache ["home_top_stories", home_layout_or_article_last_updated] do %>
 			<div id="main-story">
 				<% if @main_story.first_photo.nil? %>
 					<div class="story-text">
