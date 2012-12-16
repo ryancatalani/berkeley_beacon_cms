@@ -158,9 +158,9 @@ class ApplicationController < ActionController::Base
 		end
 
 		def home_layout_or_article_last_updated
-			if Object.const_defined? 'HomeLayout'
+			begin
 				return Digest::MD5.hexdigest "#{HomeLayout.maximum(:updated_at).to_i}-#{Article.maximum(:updated_at).to_i}-#{Article.count}"
-			else
+			rescue
 				return Digest::MD5.hexdigest "#{Tagging.maximum(:updated_at).to_i}-#{Article.maximum(:updated_at).to_i}-#{Article.count}"
 			end
 		end

@@ -6,12 +6,13 @@ class PagesController < ApplicationController
 	def home
 		@current_user = current_user
 
-		if Object.const_defined? 'HomeLayout'
+		begin
+			raise 'false'
 			layout = HomeLayout.last
 			@main_story = Article.find(layout.articles[:lead])
 			@featured_stories = layout.articles[:featured].map{|id| Article.find(id) }
 			@middle_stories = layout.articles[:middle].map{|id| Article.find(id) }
-		else
+		rescue
 			@main_story = find_tag_articles("Main Story", 1).pop
 			@featured_stories = find_tag_articles "Featured Story"
 			@middle_stories = find_tag_articles "Middle Strip Story", 5
