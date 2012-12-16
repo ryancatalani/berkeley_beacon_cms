@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  layout_type: 1
+  articles: MyText
+  breaking_text: MyText
+  breaking_article: 1
+  custom_top_html: MyText
+
+two:
+  layout_type: 1
+  articles: MyText
+  breaking_text: MyText
+  breaking_article: 1
+  custom_top_html: MyText
