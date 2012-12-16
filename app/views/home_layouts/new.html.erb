@@ -1,2 +1,58 @@
-<h1>HomeLayouts#new</h1>
-<p>Find me in app/views/home_layouts/new.html.erb</p>
+<h2>Homepage layout editor</h2>
+<br/>
+
+<%= form_tag home_layouts_path do %>
+	<%= hidden_field_tag :lead %>
+	<%= hidden_field_tag :featured_0 %>
+	<%= hidden_field_tag :featured_1 %>
+	<%= hidden_field_tag :featured_2 %>
+	<% 5.times do |n| %>
+		<%= hidden_field_tag "middle_#{n}" %>
+	<% end %>
+	<div id="home_layout_actions">
+		<%= submit_tag "Save", :class => "btn btn-primary" %>
+		<%= link_to "Cancel", articles_path, :class => "btn" %>
+	</div>
+<% end %>
+
+
+<div id="home_layout_panel_left">
+	<% @articles.each do |article| %>
+		<div class="home_layout_article" data-article-id="<%= article.id %>">
+			<span class="label"><%= article.section.name %></span>
+			<span class="article_title"><%= article.title %></span>
+			<br/>
+			<button class="btn btn-small set_lead">Lead</button>
+			<button class="btn btn-small set_featured">Featured</button>
+			<button class="btn btn-small set_middle">Middle</button>
+		</div>
+	<% end %>
+</div>
+<div id="home_layout_panel_right">
+	<div id="col_1">
+		<div class="article_placer lead" id="home_layout_lead">
+		</div>
+		<div class="article_placer featured" id="home_layout_featured_0">
+		</div>
+		<div class="article_placer featured" id="home_layout_featured_1">
+		</div>
+		<div class="article_placer featured" id="home_layout_featured_2">
+		</div>
+	</div>
+	<div id="col_2">
+		<div class="article_placer middle" id="home_layout_middle_0">
+		</div>
+		<div class="article_placer middle" id="home_layout_middle_1">
+		</div>
+		<div class="article_placer middle" id="home_layout_middle_2">
+		</div>
+		<div class="article_placer middle" id="home_layout_middle_3">
+		</div>
+		<div class="article_placer middle" id="home_layout_middle_4">
+		</div>
+	</div>
+	<div id="col_3">
+		<em>Sidebar</em>
+	</div>
+</div>
+<div class="clear"></div>

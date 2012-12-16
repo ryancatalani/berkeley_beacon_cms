@@ -1,3 +1,60 @@
 // Place all the styles related to the HomeLayouts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#home_layout_actions {
+	background: #eee;
+	padding: 10px 10px 0 10px;
+}
+
+#home_layout_panel_left {
+	width: 22%;
+	float: left;
+	padding-right: 2%;
+	border-right: 1px solid #aaa;
+	overflow: scroll;
+	.home_layout_article {
+		padding: 10px 0;
+		border-bottom: 1px solid #ccc;
+		cursor: pointer;
+		&:hover {
+			background: #eee;
+		}
+	}
+}
+
+#home_layout_panel_right {
+	width: 73%;
+	float: left;
+	padding-left: 2%;
+	overflow: scroll;
+	#col_1, #col_2, #col_3 {
+		margin: 0 1%;
+		float: left;
+	}
+	#col_1 {
+		width: 48%;
+	}
+	#col_2 {
+		width: 23%;
+	}
+	#col_3 {
+		width: 23%;
+		background: #eee;
+		height: 725px;
+	}
+	.article_placer {
+		background: #ccc;
+		width: 100%;
+		margin-bottom: 10px;
+		&.lead {
+			height: 250px;
+		}
+		&.featured {
+			height: 150px;
+		}
+		&.middle {
+			height: 135px;
+		}
+	}
+}

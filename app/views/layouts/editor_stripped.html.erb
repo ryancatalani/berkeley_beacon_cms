@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= "#{@title} | " if @title %>The Berkeley Beacon</title>
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700|PT+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<%= javascript_include_tag "application" %>
+	<%= stylesheet_link_tag "/reset.css" %>
+	<% if @include_custom_bootstrap %>
+		<%= stylesheet_link_tag "/bootstrap-custom.min.css" %>
+	<% elsif editor_logged_in or @include_bootstrap %>
+		<%= stylesheet_link_tag "/bootstrap.min.css" %>
+		<%= javascript_include_tag "/d3.js" %>
+		<%= javascript_include_tag "/rickshaw.min.js" %>
+	<% end %>
+	<%= stylesheet_link_tag    "application" %>
+	<%= favicon_link_tag "/favicon.ico" %>
+
+	<%= csrf_meta_tags %>
+
+	<% if @include_bootstrap or @include_responsive %>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<% end %>
+
+	<% if Rails.env.production? %>
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-27435507-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
+	<% end %>
+
+	<% if @article and !@article.videos.empty? and false %>
+		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+		<script src="http://vjs.zencdn.net/c/video.js"></script>
+	<% end %>
+</head>
+<body <% if @body_id %><%= "id=#{@body_id}" %><% end %>>
+
+<div class="wrap">
+	<div class="navbar navbar-static">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#">Beacon Admin</a>
+
+				<ul class="nav">
+					<li><%= link_to "New Article", new_article_path %></li>
+					<li><%= link_to "New Person", new_person_path %></li>
+					<li><%= link_to "New Series", new_series_path %></li>
+					<li><%= link_to "New Blog", new_blog_path %></li>
+					<li><%= link_to "All Articles", articles_path %></li>
+					<li><%= link_to "All People", people_path %></li>
+					<li><%= link_to "Scheduled Posts", social_posts_path %></li>
+					<li><%= link_to "Settings", settings_path %></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<%= yield %>
+</div>
+
+</body>
+</html>
