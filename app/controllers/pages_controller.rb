@@ -6,9 +6,8 @@ class PagesController < ApplicationController
 	def home
 		@current_user = current_user
 
-		layout = HomeLayout.last
-
-		if layout
+		if Object.const_defined? 'HomeLayout'
+			layout = HomeLayout.last
 			@main_story = Article.find(layout.articles[:lead])
 			@featured_stories = layout.articles[:featured].map{|id| Article.find(id) }
 			@middle_stories = layout.articles[:middle].map{|id| Article.find(id) }
