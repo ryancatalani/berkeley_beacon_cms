@@ -10,15 +10,15 @@ namespace :db do
 		# --- Popular by views, i.e. most viewed
 
 		num_days = 2
-		pop_by_views = Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
+		pop_by_views = Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).sort_by{|a| a.pageview_count }.reverse.first(num)
 		while pop_by_views.count < num
 			num_days += 1
-			pop_by_views << Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).order("views DESC").first(num)
+			pop_by_views << Article.where(:created_at => (Time.now.midnight - num_days.days)..(Time.now.midnight + 1.day)).where(:draft => [false, nil]).sort_by{|a| a.pageview_count }.reverse.first(num)
 			pop_by_views.flatten!
 			pop_by_views.uniq!
 		end
-		pop_by_views_final = pop_by_views.first(num).sort_by{|a| a.views}.reverse
-		popular.most_viewed = pop_by_views_final.map {|a| [a.id, a.views]}
+		pop_by_views_final = pop_by_views.first(num).sort_by{|a| a.pageview_count}.reverse
+		popular.most_viewed = pop_by_views_final.map {|a| [a.id, a.pageview_count]}
 
 		# --- Popular on Facebook and Twitter, i.e. most shared on social networks
 
