@@ -16,7 +16,7 @@
 	.home_layout_article {
 		padding: 10px 0;
 		border-bottom: 1px solid #ccc;
-		cursor: pointer;
+		cursor: move;
 		&:hover {
 			background: #eee;
 		}
@@ -46,6 +46,7 @@
 	.article_placer {
 		background: #ccc;
 		width: 100%;
+		padding: 5%;
 		margin-bottom: 10px;
 		&.lead {
 			height: 250px;
@@ -56,5 +57,8 @@
 		&.middle {
 			height: 135px;
 		}
+	}
+	.article_placer_hover {
+		background: #ddd;
 	}
 }
