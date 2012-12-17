@@ -7,7 +7,6 @@ class PagesController < ApplicationController
 		@current_user = current_user
 
 		begin
-			raise 'false'
 			layout = HomeLayout.last
 			@main_story = Article.find(layout.articles[:lead])
 			@featured_stories = layout.articles[:featured].map{|id| Article.find(id) }
