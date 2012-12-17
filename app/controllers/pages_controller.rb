@@ -15,7 +15,7 @@ class PagesController < ApplicationController
 		@section_first_stories = Section.order("name ASC").map {|s| s.articles.order("created_at DESC").first }
 		@middle_stories = find_tag_articles "Middle Strip Story", 5
 		@news = find_section_articles "News"
-		@opinion = find_section_articles "Opinion", 2
+		@opinion = find_section_articles "Opinion"
 		@arts = find_section_articles "Arts"
 		@lifestyle = find_section_articles "Lifestyle"
 		@sports = find_section_articles "Sports"
@@ -231,18 +231,12 @@ class PagesController < ApplicationController
 			Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).offset(3).map{|t| t.article}
 		end
 
-		def find_section_articles(section_name,number_of_articles=3)
-			# Section.find_by_name(section_name).non_blog_articles.order("created_at DESC").first(number_of_articles)
-			if Rails.env.production?
-				a = Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 1.week.ago).order('created_at desc').partition{|a| !a.mediafiles.empty? }.flatten
-				if a.count > 0
-					return a
-				else
-					return Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 3.weeks.ago).order('created_at desc').partition{|a| !a.mediafiles.empty? }.flatten.first(5)
-				end
-			else
-				return Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 1.year.ago).order('created_at desc').first(5).partition{|a| !a.mediafiles.empty? }.flatten
+		def find_section_articles(section_name,number_of_articles=5)
+			a = Section.find_by_name(section_name).non_blog_articles.where('created_at >= ?', 1.week.ago).order('created_at desc')
+			if a.count.zero?
+				a = Section.find_by_name(section_name).non_blog_articles.order('created_at desc')
 			end
+			return a.first(number_of_articles).partition{|a| !a.mediafiles.empty? }.flatten
 		end
 
 end
