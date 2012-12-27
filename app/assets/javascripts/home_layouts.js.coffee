@@ -61,18 +61,21 @@ jQuery ->
 		article = $(this).parent()
 		set_middle(article)
 
-	$('.home_layout_article').draggable({
-		helper: 'clone'
-	})
-	$('.article_placer').droppable({
-		hoverClass: 'article_placer_hover'
-		drop: (event, ui) ->
-			if $(this).hasClass('lead')
-				set_lead(ui.draggable)
-			else if $(this).hasClass('featured')
-				position = parseInt($(this).attr('data-position'))
-				set_featured(ui.draggable, position)
-			else if $(this).hasClass('middle')
-				position = parseInt($(this).attr('data-position'))
-				set_middle(ui.draggable, position)
-	})
+	try
+		$('.home_layout_article').draggable({
+			helper: 'clone'
+		})
+		$('.article_placer').droppable({
+			hoverClass: 'article_placer_hover'
+			drop: (event, ui) ->
+				if $(this).hasClass('lead')
+					set_lead(ui.draggable)
+				else if $(this).hasClass('featured')
+					position = parseInt($(this).attr('data-position'))
+					set_featured(ui.draggable, position)
+				else if $(this).hasClass('middle')
+					position = parseInt($(this).attr('data-position'))
+					set_middle(ui.draggable, position)
+		})
+
+	catch error
