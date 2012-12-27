@@ -1,0 +1,86 @@
+<h2>Homepage layout editor</h2>
+<br/>
+
+<%= form_tag home_layouts_path do %>
+	<%= hidden_field_tag :lead %>
+	<%= hidden_field_tag :featured_0 %>
+	<%= hidden_field_tag :featured_1 %>
+	<%= hidden_field_tag :featured_2 %>
+	<% 5.times do |n| %>
+		<%= hidden_field_tag "middle_#{n}" %>
+	<% end %>
+	<div id="home_layout_actions">
+		<%= submit_tag "Save", :class => "btn btn-primary" %>
+		<%= link_to "Cancel", articles_path, :class => "btn" %>
+		<% if @previous_layout_js %>
+			<%= link_to "Restore Previous Layout", '#', :class => "btn", :id => 'restore_previous_layout_btn' %>
+		<% end %>
+	</div>
+<% end %>
+
+
+<div id="home_layout_panel_left">
+	<% @articles.each do |article| %>
+		<div class="home_layout_article" data-article-id="<%= article.id %>">
+			<span class="label"><%= article.section.name %></span>
+			<span class="article_title"><%= article.title %></span>
+			<br/>
+			<button class="btn btn-small set_lead">Lead</button>
+			<button class="btn btn-small set_featured">Featured</button>
+			<button class="btn btn-small set_middle">Middle</button>
+		</div>
+	<% end %>
+</div>
+<div id="home_layout_panel_right">
+	<div id="col_1">
+		<div class="article_placer lead" id="home_layout_lead">
+		</div>
+		<div class="article_placer featured" id="home_layout_featured_0" data-position="0">
+		</div>
+		<div class="article_placer featured" id="home_layout_featured_1" data-position="1">
+		</div>
+		<div class="article_placer featured" id="home_layout_featured_2" data-position="2">
+		</div>
+	</div>
+	<div id="col_2">
+		<div class="article_placer middle" id="home_layout_middle_0" data-position="0">
+		</div>
+		<div class="article_placer middle" id="home_layout_middle_1" data-position="1">
+		</div>
+		<div class="article_placer middle" id="home_layout_middle_2" data-position="2">
+		</div>
+		<div class="article_placer middle" id="home_layout_middle_3" data-position="3">
+		</div>
+		<div class="article_placer middle" id="home_layout_middle_4" data-position="4">
+		</div>
+	</div>
+	<div id="col_3">
+		<em>Sidebar</em>
+	</div>
+</div>
+<div class="clear"></div>
+
+<script>
+	<% if @previous_layout_js %>
+		$(function(){
+			var previous_layout = <%= @previous_layout_js.html_safe %>;
+			$('#restore_previous_layout_btn').click(function(){
+				lead = previous_layout.lead;
+				$('#home_layout_lead').text(lead.title);
+				$('input#lead').val(lead.id);
+				featured = previous_layout.featured;
+				for (var i = 0; i < featured.length; i++) {
+					ar = featured[i];
+					$('input#featured_' + i).val(ar.id);
+					$('#home_layout_featured_' + i).text(ar.title);
+				};
+				middle = previous_layout.middle;
+				for (var i = 0; i < middle.length; i++) {
+					ar = middle[i];
+					$('input#middle_' + i).val(ar.id);
+					$('#home_layout_middle_' + i).text(ar.title);
+				};
+			});
+		});
+	<% end %>
+</script>

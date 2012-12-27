@@ -3,6 +3,7 @@
 	<%= submit_tag "Search", :class => "btn btn-primary" %>
 <% end %>
 
+<%= link_to "Edit home page", new_home_layout_path, :class => "btn" %>
 <%= link_to "Upload Editorial Cartoon", new_editorial_cartoon_path, :class => "btn" %>
 
 <h1>Most viewed articles</h1>
@@ -122,7 +123,6 @@ var shelving = new Rickshaw.Graph.Behavior.Series.Toggle({
 			<th>Media</th>
 			<th>Views</th>
 			<th>Unique Views</th>
-			<th>Set as...</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -139,7 +139,6 @@ var shelving = new Rickshaw.Graph.Behavior.Series.Toggle({
 			<th>Media</th>
 			<th>Views</th>
 			<th>Unique Views</th>
-			<th>Set as...</th>
 		</tr>
 	</thead>
 	<tbody>

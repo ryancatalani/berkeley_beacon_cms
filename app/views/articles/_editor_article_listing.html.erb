@@ -37,14 +37,4 @@
 	<td>
 		<%= article.unique_pageview_count %>
 	</td>
-	<td>
-		<div rel="popover" data-content="The biggest story on the homepage." data-original-title="Lead Story">
-			<%= link_to "Lead story", "/new_tag/1/article/#{article.id}", :method => :post, :class => "btn" %>
-		</div>
-		<div rel="popover" data-content="One of the three stories directly below the lead story on the hompeage." data-original-title="Featured Story">
-			<%= link_to "Featured story", "/new_tag/2/article/#{article.id}", :method => :post, :class => "btn" %>
-		</div>
-		<div rel="popover" data-content="One of the three stories in the strip between the featured stories and the section boxes on the homepage." data-original-title="Middle Strip Story">
-		<%= link_to "Middle strip story", "/new_tag/3/article/#{article.id}", :method => :post, :class => "btn" %>
-	</td>
 </tr>
