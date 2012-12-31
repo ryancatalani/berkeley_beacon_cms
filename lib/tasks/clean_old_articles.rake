@@ -20,8 +20,8 @@ namespace :db do
 			elsif b.last(6) == '/p</p>'
 				b[-6,6] = '</p>'
 			end
-			article.update_attribute(:body, b)
-			puts "#{article.id} completed"
+			saved = article.update_attribute(:body, b)
+			puts "#{article.id} completed #{saved}"
 		end
 
 	end
