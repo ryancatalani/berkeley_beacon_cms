@@ -1,8 +1,9 @@
 namespace :db do
 	desc "Clean up old articles"
 	task :clean_old_articles => :environment do
+		include ActionView::Helpers::SanitizeHelper
 
-		Article.where('body LIKE ?', '%/pp/pp%').first(25).each do |article|
+		Article.where('body LIKE ?', '%/pp/pp%').each do |article|
 			puts "#{article.id} starting"
 			b = article.body
 			b = b.gsub('/pp/pp','</p><p>')
@@ -20,8 +21,12 @@ namespace :db do
 			elsif b.last(6) == '/p</p>'
 				b[-6,6] = '</p>'
 			end
-			saved = article.update_attribute(:body, b)
-			puts "#{article.id} completed #{saved}"
+			saved_body = article.update_attribute(:body, b)
+
+			new_excerpt = strip_tags(b).truncate(100, :separator => ' ')
+			saved_excerpt = article.update_attribute(:excerpt, new_excerpt)
+
+			puts "#{article.id} completed / body: #{saved_body} excerpt: #{saved_excerpt}"
 		end
 
 	end
