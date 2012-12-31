@@ -2,9 +2,10 @@ namespace :db do
 	desc "Clean up old articles"
 	task :clean_old_articles => :environment do
 
-		Article.where('body LIKE ?', '%/pp/pp%').all.each do |article|
+		Article.where('body LIKE ?', '%/pp/pp%').first(25).each do |article|
 			puts "#{article.id} starting"
 			body = article.body
+			p body
 			body.gsub!('/pp/pp','</p><p>')
 			body.gsub!('#44',',')
 			body.gsub!('quot;','"')
@@ -20,8 +21,12 @@ namespace :db do
 			elsif body.last(6) == '/p</p>'
 				body[-6,6] = '</p>'
 			end
+			puts ''
+			p body
 			article.update_attribute(:body, body)
 			puts "#{article.id} completed"
+			puts ''
+			puts ''
 		end
 
 	end
