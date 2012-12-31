@@ -4,29 +4,24 @@ namespace :db do
 
 		Article.where('body LIKE ?', '%/pp/pp%').first(25).each do |article|
 			puts "#{article.id} starting"
-			body = article.body
-			p body
-			body.gsub!('/pp/pp','</p><p>')
-			body.gsub!('#44',',')
-			body.gsub!('quot;','"')
-			body.gsub!('apos;',"'")
-			body.gsub!('[gallery]','')
-			if body.first == 'p'
-				body[0] = '<p>'
-			elsif body.first(4) == '<p>p'
-				body[0,4] = '<p>'
+			b = article.body
+			b = b.gsub('/pp/pp','</p><p>')
+			b = b.gsub('#44;',',')
+			b = b.gsub('quot;','"')
+			b = b.gsub('apos;',"'")
+			b = b.gsub('[gallery]','')
+			if b.first == 'p'
+				b[0] = '<p>'
+			elsif b.first(4) == '<p>p'
+				b[0,4] = '<p>'
 			end
-			if body.last(2) == '/p'
-				body[-2,2] = '</p>'
-			elsif body.last(6) == '/p</p>'
-				body[-6,6] = '</p>'
+			if b.last(2) == '/p'
+				b[-2,2] = '</p>'
+			elsif b.last(6) == '/p</p>'
+				b[-6,6] = '</p>'
 			end
-			puts ''
-			p body
-			article.update_attribute(:body, body)
+			article.update_attribute(:body, b)
 			puts "#{article.id} completed"
-			puts ''
-			puts ''
 		end
 
 	end
