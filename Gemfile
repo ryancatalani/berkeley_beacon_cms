@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.10'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -25,7 +25,7 @@ gem 'exception_notification'
 gem 'nokogiri'
 gem 'mini_magick'
 # gem 'rmagick'
-gem "twitter", "~> 4.2.0"
+gem "twitter", "~> 4.4.4"
 gem 'will_paginate', '~> 3.0'
 gem 'geocoder'
 gem 'fb_graph'
