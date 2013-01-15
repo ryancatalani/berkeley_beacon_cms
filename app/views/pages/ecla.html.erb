@@ -7,7 +7,7 @@
 				Groundbreaking: Thursday, March 8, 2012
 			</div>
 			<% @articles.all.each_with_index do |article, index| %>
-				<div class="ecla_article <% if !article.mediafiles.count.zero? and !index.zero? %>with_thumb<%end%>" <%= "id='first'" if index.zero? %>>
+				<div class="ecla_article <% if !article.mediafiles.count.zero? and !index.zero? %>with_thumb<%end%>" <%= "id='first'".html_safe if index.zero? %>>
 					<% if index.zero? and !article.mediafiles.count.zero? %>
 						<div class="ecla_mediawrap">
 							<%= image_tag article.mediafiles.first.media.url, :width => 640 %>

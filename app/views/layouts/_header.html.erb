@@ -3,7 +3,7 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="brand" href="#">Beacon Admin</a>
-				
+
 				<ul class="nav">
 					<li><%= link_to "New Article", new_article_path %></li>
 					<li><%= link_to "New Person", new_person_path %></li>
@@ -25,8 +25,8 @@
 			<div id="masthead">
 				<h1>The Berkeley Beacon</h1>
 			</div>
-			
-			<div id="nav">		
+
+			<div id="nav">
 				<ol>
 					<li><%= link_to "Home", "/" %></li>
 					<li><%= link_to "News", "/news" %></li>
@@ -38,22 +38,22 @@
 					<li><%= link_to 'Videos', videos_path %></li>
 					<li id="nav_date"><%= Date.today.strftime("%A, %B %e, %Y") %></li>
 				</ol>
-				
+
 			</div>
-			
+
 			<div class="clear"></div>
 		</div>
 	</div>
 <% else %>
-	<div class="header" <%= "id='home_header'" if @home_header %>>
+	<div class="header" <%= "id='home_header'".html_safe if @home_header %>>
 		<div id="masthead">
 			<h1>The Berkeley Beacon</h1>
 			<% unless @home_header %>
 				<h2><%= Date.today.strftime("%A, %B %e, %Y") %></h2>
 			<% end %>
 		</div>
-		
-		<div id="nav">		
+
+		<div id="nav">
 			<ol>
 				<li><%= link_to "Home", "/" %></li>
 				<li id="sections"><%= link_to "Sections", '#' %></li>
@@ -77,13 +77,13 @@
 				<% end %>
 				<div class="clear"></div>
 			</ol>
-			
+
 			<% if @home_header %>
 				<h2><%= Date.today.strftime("%A, %B %e, %Y") %></h2>
 				<div class="clear"></div>
 			<% end %>
 		</div>
-		
+
 		<div class="clear"></div>
 	</div>
 <% end %>
