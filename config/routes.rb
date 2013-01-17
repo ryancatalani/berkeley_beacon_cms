@@ -76,7 +76,7 @@ BeaconApp::Application.routes.draw do
     match "/blogs/:name", :to => :show
   end
 
-  match '/go/beacon-beat' => redirect("http://berkeleybeacon.com/news/2012/12/6/the-beacon-beat-december-6-2012")
+  match '/go/beacon-beat' => redirect("http://berkeleybeacon.com/news/2013/1/17/the-beacon-beat-january-17-2013")
   match '/go/police' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/an-interview-with-the-new-police-chief")
   match '/go/scaffolding' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/students-react-to-the-little-building-scaffolding-art")
   match '/go/ols' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/meet-the-orientation-leader-core-staff")
@@ -102,6 +102,7 @@ BeaconApp::Application.routes.draw do
   match '/go/battleofthebands' => redirect("/")
   match '/go/notebook' => redirect("http://berkeleybeacon.com/multimedia/2012/12/6/the-notebook")
   match '/go/reactions-to-5' => redirect("http://berkeleybeacon.com/arts/2012/12/6/rockettes-and-zombies-edc-graces-the-stage")
+  match '/go/pelton-initiative' => redirect("http://berkeleybeacon.com/news/2013/1/17/college-pres-talks-gun-control")
 
 
   # The priority is based upon order of creation:
