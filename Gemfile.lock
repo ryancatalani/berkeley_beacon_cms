@@ -29,7 +29,6 @@ GEM
       activesupport (= 3.1.10)
     activesupport (3.1.10)
       multi_json (>= 1.0, < 1.3)
-    addressable (2.3.2)
     ansi (1.4.1)
     arel (2.2.3)
     attr_required (0.0.5)
@@ -89,11 +88,6 @@ GEM
     formatador (0.2.4)
     geocoder (1.1.1)
     hashie (1.2.0)
-    heroku (2.25.0)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.1)
-      rest-client (~> 1.6.1)
-      rubyzip
     hike (1.2.1)
     httpclient (2.2.4)
     i18n (0.6.1)
@@ -101,8 +95,6 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.7.6)
-    launchy (2.1.2)
-      addressable (~> 2.3)
     loofah (1.2.0)
       nokogiri (>= 1.4.4)
     mail (2.3.3)
@@ -118,7 +110,6 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.1)
-    netrc (0.7.7)
     newrelic_rpm (3.5.3.25)
     nokogiri (1.5.0)
     pg (0.11.0)
@@ -160,11 +151,8 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     remotipart (1.0)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     ruby-hmac (0.4.0)
     ruby-prof (0.10.8)
-    rubyzip (0.9.9)
     sass (3.1.10)
     sass-rails (3.1.4)
       actionpack (~> 3.1.0)
@@ -226,7 +214,6 @@ DEPENDENCIES
   feedzirra
   fog (~> 1.7.0)
   geocoder
-  heroku
   jquery-rails
   memcachier
   mini_magick

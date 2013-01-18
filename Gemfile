@@ -18,7 +18,6 @@ gem 'jquery-rails'
 gem 'carrierwave'
 gem "remotipart", "~> 1.0"
 gem 'tinymce-rails'
-gem "heroku"
 gem "fog", "~> 1.7.0"
 gem 'faker'
 gem 'exception_notification'
