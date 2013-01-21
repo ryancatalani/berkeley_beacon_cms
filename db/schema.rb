@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121216175502) do
+ActiveRecord::Schema.define(:version => 20130121224420) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20121216175502) do
     t.boolean  "draft"
     t.boolean  "link_only"
     t.string   "link"
+    t.integer  "print_issue_id"
   end
 
   create_table "attributions", :force => true do |t|
@@ -146,6 +147,9 @@ ActiveRecord::Schema.define(:version => 20121216175502) do
     t.string   "profile"
     t.string   "clean_full_name"
     t.boolean  "from_archive"
+    t.string   "profile_video_mp4_url"
+    t.string   "profile_video_ogg_url"
+    t.string   "profile_video_webm_url"
   end
 
   create_table "political_poll_entries", :force => true do |t|
@@ -187,6 +191,16 @@ ActiveRecord::Schema.define(:version => 20121216175502) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "print_issues", :force => true do |t|
+    t.datetime "publication_date"
+    t.string   "pdf"
+    t.string   "front_page_photo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "print_issues", ["publication_date"], :name => "index_print_issues_on_publication_date"
 
   create_table "sections", :force => true do |t|
     t.string   "name"

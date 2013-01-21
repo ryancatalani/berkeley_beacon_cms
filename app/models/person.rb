@@ -16,11 +16,11 @@ class Person < ActiveRecord::Base
                     	:uniqueness => { :case_sensitive => false },
                     	:length     => { :within => 4..254 }
   	mount_uploader :profile, ProfileUploader
-	
+
 	def is_editor?
 		editor == true
 	end
-	
+
 	def all_content
 		begin
 			ret = Attribution.where(:person_id => id).map{|a| a.mediafile}.map{|m| m.articles}.flatten.uniq
@@ -30,7 +30,7 @@ class Person < ActiveRecord::Base
 		ret << articles.all
 		return ret.flatten.uniq
 	end
-	
+
 	def official_name
 		if other_designation.blank?
 			"#{firstname} #{lastname} / Beacon #{staff? ? "Staff" : "Correspondent" }"
@@ -38,15 +38,15 @@ class Person < ActiveRecord::Base
 			"#{firstname} #{lastname} #{other_designation == "*" ? "" : "/ #{other_designation}"}"
 		end
 	end
-	
+
 	def official_linked_name
 		return "<a href='/staff/#{clean_full_name}/'>#{official_name}</a>"
 	end
-	
+
 	def full_name
 		"#{firstname} #{lastname}"
 	end
-	
+
 	def designation
 		return "Editor" if editor?
 		return "Staff" if staff?
@@ -54,7 +54,7 @@ class Person < ActiveRecord::Base
 		return "" if !other_designation.blank? and other_designation == "*"
 		return "Correspondent"
 	end
-	
+
 	def pos
 		return position if !position.blank?
 		return "Beacon Staff" if staff?
@@ -62,7 +62,7 @@ class Person < ActiveRecord::Base
 		return "" if !other_designation.blank? and other_designation == "*"
 		return "Beacon Correspondent"
 	end
-	
+
 	def contact_info
 		ret = "#{lastname} can be reached at <a href='mailto:#{email}'>#{email}</a>. "
 		unless twitter.blank?
@@ -71,8 +71,20 @@ class Person < ActiveRecord::Base
 		  ret << twitter
 		  ret << '</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>'
 		end
-    # ret << "Follow #{lastname} on Twitter at <a href='http://twitter.com/#{twitter}'>@#{twitter}</a>. " 
+    # ret << "Follow #{lastname} on Twitter at <a href='http://twitter.com/#{twitter}'>@#{twitter}</a>. "
 		return ret
 	end
-	
+
+	def profile_video
+		# To use same syntax as mediafile
+		require 'ostruct'
+		video_hash = {}
+		video_hash[:mp4] = profile_video_mp4_url
+		video_hash[:ogg] = profile_video_ogg_url
+		video_hash[:webm] = profile_video_webm_url
+
+		video = OpenStruct.new(video_hash)
+		return video
+	end
+
 end

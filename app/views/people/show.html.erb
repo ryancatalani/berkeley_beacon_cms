@@ -1,10 +1,9 @@
-<div id="people_wrap" class="content_wrap">
+<% unless @person.profile.blank? %>
+	<div id="person_big_bkgd"></div>
+<% end %>
+<div id="people_wrap" class="content_wrap <% unless @person.profile.blank? %>bio_with_big_bkgd<% end %>">
 	<div id="body">
-		<% unless @person.profile.blank? %>
-			<div id="profile_img">
-				<%= image_tag @person.profile.url %>
-			</div>
-		<% end %>
+
 		<h1><%= @person.full_name %></h1>
 		<h2><%= @person.pos %></h2>
 		<% if !@person.bio.blank? %>
@@ -13,7 +12,7 @@
 			</div>
 		<% end %>
 		<p><%= @person.contact_info.html_safe %></p>
-		
+
 		<div class="clear"></div>
 
 		<% if !@person.mediafiles.empty? %>
@@ -30,7 +29,7 @@
 			<% end %>
 
 		<% end %>
-		
+
 		<div class="clear"></div>
 
 		<% if !@person.articles.empty? %>
@@ -60,7 +59,7 @@
 
 		<% end %>
 	</div>
-	
+
 	<div id="person_sidebar">
 		<% if !@person.twitter.blank? %>
 			<script src="http://widgets.twimg.com/j/2/widget.js"></script>
@@ -93,11 +92,28 @@
 			</script>
 		<% end %>
 
-		<section id="popular">
-			<%= render 'shared/popular' %>
-		</section>
-		
 	</div>
 	<div class="clear"></div>
 
 </div>
+
+<script>
+	console.log("1 hi");
+	$(document).ready(function(){
+		$.getScript("/jquery.videoBG.js", function(){
+			console.log("hi");
+			if ($(window).width() > 640) {
+				$("#person_big_bkgd").videoBG({
+					zIndex:0,
+					mp4:'<%= @person.profile_video_mp4_url %>',
+					ogv:'<%= @person.profile_video_ogg_url %>',
+					webm:'<%= @person.profile_video_webm_url %>',
+					poster:'<%= @person.profile.url %>',
+					opacity:1,
+					autoplay: true,
+					loop: true,
+				});
+			}
+		});
+	});
+</script>

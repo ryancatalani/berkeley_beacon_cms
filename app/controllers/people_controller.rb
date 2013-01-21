@@ -1,14 +1,14 @@
 class PeopleController < ApplicationController
 	before_filter :check_editor, :except => [:show]
-	
-	def index 
+
+	def index
 		@people = Person.all
 	end
-	
+
 	def new
 		@person = Person.new
 	end
-	
+
 	def create
 		p = params[:person]
 		if p[:editor] == "0"
@@ -18,7 +18,7 @@ class PeopleController < ApplicationController
 		end
 		fullname = p[:firstname].downcase.gsub(/[^a-zA-Z]/,'-') + '-' + p[:lastname].downcase.gsub(/[^a-zA-Z]/,'-')
 		p[:clean_full_name] = fullname.gsub(/-{2,}/,'-')
-		@person = Person.new(p)		
+		@person = Person.new(p)
 		if @person.save
 		  respond_to do |f|
         f.html { redirect_to new_person_url, :notice => "Person created!" }
@@ -28,7 +28,7 @@ class PeopleController < ApplicationController
 			render "new"
 		end
 	end
-	
+
 	def new_media_person
 	  logger.debug "new media person called"
 		p = params[:person]
@@ -39,7 +39,7 @@ class PeopleController < ApplicationController
 		end
 		fullname = p[:firstname].downcase.gsub(/[^a-zA-Z]/,'-') + '-' + p[:lastname].downcase.gsub(/[^a-zA-Z]/,'-')
 		p[:clean_full_name] = fullname.gsub(/-{2,}/,'-')
-		@person = Person.new(p)		
+		@person = Person.new(p)
 		if @person.save
 		  respond_to do |f|
         f.html { redirect_to new_person_url, :notice => "Person created!" }
@@ -47,9 +47,9 @@ class PeopleController < ApplicationController
       end
 		else
 			render "new"
-		end	  
+		end
   end
-	
+
 	def edit
 		@person = Person.find(params[:id])
 	end
@@ -58,7 +58,7 @@ class PeopleController < ApplicationController
 		@person = current_user
 		render 'edit'
 	end
-	
+
 	def update
 		@person = Person.find(params[:id])
 		p = params[:person]
@@ -70,9 +70,10 @@ class PeopleController < ApplicationController
 			render 'edit'
 		end
 	end
-	
+
 	def show
 		@include_responsive = true
+		@new_header = true
 		if params[:id]
 			@person = Person.find(params[:id])
 		elsif params[:name]
@@ -82,7 +83,8 @@ class PeopleController < ApplicationController
 		end
 		redirect_to root_path and return if @person.nil?
 		@articles = @person.articles.order("created_at DESC")
+		render :layout => 'new_header'
 	end
-		
-	
+
+
 end

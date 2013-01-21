@@ -39,6 +39,17 @@
 		<%= f.file_field :profile %>
 	</div>
 	<div class="field">
+		<%= label_tag :video_mp4, "Video (.mp4)" %>
+		<%= f.text_field :profile_video_mp4_url %>
+
+		<%= label_tag :video_ogg, "Video (.ogg / .ogv)" %>
+		<%= f.text_field :profile_video_ogg_url %>
+
+		<%= label_tag :video_webm, "Video (.webm)" %>
+		<%= f.text_field :profile_video_webm_url %>
+
+	</div>
+	<div class="field">
 		<%= f.label :bio %>
 		<%= f.text_area :bio %>
 		<script type="text/javascript">
