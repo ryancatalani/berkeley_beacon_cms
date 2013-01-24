@@ -103,6 +103,8 @@ BeaconApp::Application.routes.draw do
   match '/go/notebook' => redirect("http://berkeleybeacon.com/multimedia/2012/12/6/the-notebook")
   match '/go/reactions-to-5' => redirect("http://berkeleybeacon.com/arts/2012/12/6/rockettes-and-zombies-edc-graces-the-stage")
   match '/go/pelton-initiative' => redirect("http://berkeleybeacon.com/news/2013/1/17/college-pres-talks-gun-control")
+  match '/go/morgan-podcast' => redirect("/")
+  match '/go/canvas-tutorial' => redirect("http://berkeleybeacon.com/news/2013/1/24/students-and-faculty-welcome-new-learning-management-system")
 
 
   # The priority is based upon order of creation:
