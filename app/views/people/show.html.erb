@@ -16,13 +16,13 @@
 
 		<div class="clear"></div>
 
-		<% if !@person.visual_mediafiles.empty? %>
+		<% if !@person.mediafiles.empty? %>
 
 			<hr>
 
 			<h2>Media contributed</h2>
 			<% @person.mediafiles.order('created_at DESC').each do |mediafile| %>
-				<% if !mediafile.latest_article.nil? %>
+				<% if !mediafile.latest_article.nil? and mediafile.has_image? %>
 					<a href="<%= mediafile.latest_article.to_url %>" class="person_media">
 						<%= image_tag mediafile.media.thumb_220.url %>
 					</a>

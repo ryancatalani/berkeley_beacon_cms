@@ -24,7 +24,7 @@ class Mediafile < ActiveRecord::Base
 
 	def mediatype_str
 		if mediatype and mediatype <= 4
-			return %w(Media Photograph Video Graphic Illustration)[mediatype]
+			return %w(Media Photograph Video Graphic Illustration Audio)[mediatype]
 		end
 		return "Media"
 	end
@@ -58,7 +58,7 @@ class Mediafile < ActiveRecord::Base
 	end
 
 	def has_image?
-		!media.nil?
+		mediatype != 5 and !media.nil?
 	end
 
 	def is_new?
