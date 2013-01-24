@@ -41,7 +41,7 @@ class MediafilesController < ApplicationController
 			end
 			@mediafile.update_attribute(:created_at, date) if date
 			@mediafile.update_attribute(:updated_at, date) if date
-			@mediafile.check_dimensions
+			@mediafile.check_dimensions unless @mediafile.mediatype == 5
 			respond_with @mediafile #, :location => mediafiles_url
 			# # format.html { redirect_to mediafiles_path }
 			# format.js

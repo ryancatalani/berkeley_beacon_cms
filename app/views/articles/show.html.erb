@@ -68,6 +68,10 @@
 
 
 	<div id="body">
+		<% if @article.audio_files %>
+			<%= render :partial => 'shared/audio_tag', :collection => @article.audio_files, :as => :audio %>
+		<% end %>
+
 		<%= @article.body.html_safe %>
 		<br /><% @article.people.each do |p| %>
 			<p><em>

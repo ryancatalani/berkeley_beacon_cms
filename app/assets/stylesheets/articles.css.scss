@@ -346,7 +346,7 @@ video {
 	.field {
 		margin-top: 10px;
 
-		#articletype_1, #articletype_2, #articletype_3, #sourcetype_in, #sourcetype_out, #mediatype_0, #mediatype_1, #mediatype_2, #mediatype_3, #mediatype_4 {
+		#articletype_1, #articletype_2, #articletype_3, #sourcetype_in, #sourcetype_out, #mediatype_0, #mediatype_1, #mediatype_2, #mediatype_3, #mediatype_4, #mediatype_5 {
 			display: inline;
 			width: auto;
 		}
@@ -481,6 +481,27 @@ video {
       display: block;
     }
   }
+}
+
+#body .audio_box {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+	audio {
+		width: 100%;
+	}
+	.credit {
+		text-transform: uppercase;
+		font-size: 10px;
+		margin-left: 5px;
+		a {
+			color: #333;
+			border: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
 }
 
 @media screen and (max-width: 959px) {

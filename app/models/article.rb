@@ -51,11 +51,19 @@ class Article < ActiveRecord::Base
 	end
 
 	def images
-		mediafiles.where('mediatype <> 2')
+		mediafiles.where('mediatype <> 2 AND mediatype <> 5')
 	end
 
 	def videos
 		mediafiles.where(:mediatype => 2)
+	end
+
+	def audio_files
+		mediafiles.where(:mediatype => 5)
+	end
+
+	def visual_mediafiles
+		mediafiles.where('mediatype <> 5')
 	end
 
 	def first_video_poster

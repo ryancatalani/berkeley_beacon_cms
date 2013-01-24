@@ -8,7 +8,7 @@
 		<%= radio_button_tag :sourcetype, "in", true %>
 		<%= label_tag :sourcetype_in, "Beacon Staff/Correspondent" %>
 		</div>
-		<div class="radio">		
+		<div class="radio">
 		<%= radio_button_tag :sourcetype, "out" %>
 		<%= label_tag :sourcetype_out, "Outside Source" %>
 		</div>
@@ -31,7 +31,7 @@
 			<br/>
 		<% end %>
 		<a href="#" id="newcreatorbtn" class="btn"><i class="icon-plus"></i> Add another creator</a>
-		<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_media_person_modal"><i class="icon-user"></i> Create a new person</a>	
+		<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_media_person_modal"><i class="icon-user"></i> Create a new person</a>
 	</div>
 	<div class="field" id="source_out_field" style="display:none">
 		<%= f.label :source, "Source (include 'via' or 'courtesy of')" %>
@@ -59,6 +59,10 @@
 		<%= radio_button_tag :mediatype, 4 %>
 		<%= label_tag :mediatype_4, "Illustration" %>
 		</div>
+		<div class="radio">
+		<%= radio_button_tag :mediatype, 5 %>
+		<%= label_tag :mediatype_5, "Audio" %>
+		</div>
 	</div>
 	<div class="field">
 		<%= label_tag :media, "<div class='video_upload_helpers'>Media file</div><div class='video_upload_helpers' style='display:none'>Poster frame for video</div>".html_safe %>
@@ -81,6 +85,14 @@
 		<%= f.text_field :direct_webm_url %>
 	</div>
 
+	<div class="field audio_upload_helpers" style="display:none">
+		<%= label_tag :direct_audio_mp3_url, "Audio (.mp3)" %>
+		<%= f.text_field :direct_audio_mp3_url %>
+
+		<%= label_tag :direct_audio_ogg_url, "Audio (.ogg)" %>
+		<%= f.text_field :direct_audio_ogg_url %>
+	</div>
+
 	<div class="alert alert-error video_upload_helpers">
 		Is this image scaled (to a maximum size of 1000px x 1000px) and converted to RGB?
 	</div>
@@ -95,7 +107,7 @@
 			ret += '</select><a href="#" class="removeauth btn btn-danger"><i class="icon-trash icon-white"></i> Remove Creator ' + c + '</a></div>';
 			return ret;
 		}
-		function remove_f(which) { 
+		function remove_f(which) {
 			$(this).closest('.field').fadeOut().remove();
 			which === "auth" ? acount -= 1 : scount -= 1 ;
 		}
@@ -105,12 +117,12 @@
 			acount = 2;
 		<% end %>
 		$("#newcreatorbtn").click(function(){
-			
+
 			$(".creators").append(cfield(acount));
 			acount += 1;
 			// e.preventDefault();
 			// return false;
-		});			
+		});
 		$(".creators").click(function(e){
 			e.preventDefault();
 			if ($(e.target).is('.removeauth'))

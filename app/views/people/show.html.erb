@@ -16,7 +16,7 @@
 
 		<div class="clear"></div>
 
-		<% if !@person.mediafiles.empty? %>
+		<% if !@person.visual_mediafiles.empty? %>
 
 			<hr>
 
@@ -41,9 +41,9 @@
 			<% @person.articles.order('created_at DESC').each do |article| %>
 
 				<div class="article">
-					<% unless article.mediafiles.empty? %>
+					<% unless article.visual_mediafiles.empty? %>
 						<div class="media">
-							<%= link_to image_tag(article.mediafiles.first.media.thumb_140.url), article.to_url %>
+							<%= link_to image_tag(article.visual_mediafiles.first.media.thumb_140.url), article.to_url %>
 						</div>
 					<% else %>
 					<% end %>

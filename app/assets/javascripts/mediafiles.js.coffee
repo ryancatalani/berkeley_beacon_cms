@@ -26,6 +26,8 @@ jQuery ->
 		e.preventDefault()
 	)
 	video_upload_helpers_shown = false
+	audio_upload_helpers_shown = false
+
 	$("#media_type_field").find("input").change ->
 		if $(this).val() == "2" and !video_upload_helpers_shown
 			$(".video_upload_helpers").fadeToggle()
@@ -33,3 +35,10 @@ jQuery ->
 		else if $(this).val() != "2" and video_upload_helpers_shown
 			$(".video_upload_helpers").fadeToggle()
 			video_upload_helpers_shown = false
+
+		if $(this).val() == "5" and !audio_upload_helpers_shown
+			$(".audio_upload_helpers").fadeToggle()
+			audio_upload_helpers_shown = true
+		else if $(this).val() != "5" and audio_upload_helpers_shown
+			$(".audio_upload_helpers").fadeToggle()
+			audio_upload_helpers_shown = false

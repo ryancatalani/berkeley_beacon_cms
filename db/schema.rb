@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121224420) do
+ActiveRecord::Schema.define(:version => 20130124204455) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -111,7 +111,9 @@ ActiveRecord::Schema.define(:version => 20130121224420) do
     t.string   "direct_ogg_url"
     t.string   "direct_webm_url"
     t.integer  "series_id"
-    t.boolean  "horizontal",      :default => true, :null => false
+    t.boolean  "horizontal",           :default => true, :null => false
+    t.string   "direct_audio_mp3_url"
+    t.string   "direct_audio_ogg_url"
   end
 
   create_table "pageviews", :force => true do |t|

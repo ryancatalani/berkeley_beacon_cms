@@ -21,12 +21,12 @@
 		</div>
 
 		<% @articles.each do |article| %>
-	
+
 
 			<div class="article">
-				<% unless article.mediafiles.empty? or article.mediafiles.first.media.url.nil? or article.mediafiles.first.mediatype == 2 %>
+				<% unless article.visual_mediafiles.empty? or article.visual_mediafiles.first.media.url.nil? or article.visual_mediafiles.first.mediatype == 2 %>
 					<div class="media">
-						<%= link_to image_tag(article.mediafiles.first.media.thumb_140.url), article.to_url %>
+						<%= link_to image_tag(article.visual_mediafiles.first.media.thumb_140.url), article.to_url %>
 					</div>
 				<% else %>
 				<% end %>
@@ -35,7 +35,7 @@
 				<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
 				<div class="clear"></div>
 			</div>
-	
+
 		<% end %>
 		<%= will_paginate @articles if false %>
 	</div>
