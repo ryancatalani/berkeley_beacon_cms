@@ -239,7 +239,7 @@ class PagesController < ApplicationController
 			if a.count.zero?
 				a = Section.find_by_name(section_name).non_blog_articles.order('created_at desc')
 			end
-			return a.first(number_of_articles).partition{|a| !a.mediafiles.empty? }.flatten
+			return a.first(number_of_articles).partition{|a| !a.visual_mediafiles.empty? }.flatten
 		end
 
 end
