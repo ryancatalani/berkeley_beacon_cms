@@ -43,8 +43,8 @@ class Article < ActiveRecord::Base
 	def first_photo
 		if images.count > 0 and !images.first.media.nil?
 			return images.first
-		elsif mediafiles.count > 0
-			return mediafiles.first
+		elsif visual_mediafiles.count > 0
+			return visual_mediafiles.first
 		end
 		 return nil
 		# return nil
