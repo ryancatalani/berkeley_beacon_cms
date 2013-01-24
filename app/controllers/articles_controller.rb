@@ -256,7 +256,7 @@ class ArticlesController < ApplicationController
 		@include_responsive = true
 		@include_bootstrap_carousel = true
 		@title = @article.title
-		@article_mediafiles = @article.mediafiles
+		@article_mediafiles = @article.visual_mediafiles
 		@article_img_class = ""
 		if @article_mediafiles.count == 1 and @article.videos.empty?
 			if @article_mediafiles.first.horizontal?
@@ -270,8 +270,8 @@ class ArticlesController < ApplicationController
 		@og = {}
 		@og[:title] = @article.title
 		@og[:url] = @article.to_url
-		if @article.mediafiles.any?
-			@og[:image] = @article.mediafiles.first.media.thumb_220.url.html_safe rescue nil
+		if @article.visual_mediafiles.any?
+			@og[:image] = @article.visual_mediafiles.first.media.thumb_220.url.html_safe rescue nil
 		else
 			@og[:image] = nil
 		end
