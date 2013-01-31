@@ -76,7 +76,7 @@ BeaconApp::Application.routes.draw do
     match "/blogs/:name", :to => :show
   end
 
-  match '/go/beacon-beat' => redirect("http://berkeleybeacon.com/news/2013/1/17/the-beacon-beat-january-17-2013")
+  match '/go/beacon-beat' => redirect("http://berkeleybeacon.com/news/2013/1/31/the-beacon-beat-january-31-2013")
   match '/go/police' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/an-interview-with-the-new-police-chief")
   match '/go/scaffolding' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/students-react-to-the-little-building-scaffolding-art")
   match '/go/ols' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/meet-the-orientation-leader-core-staff")
@@ -105,7 +105,9 @@ BeaconApp::Application.routes.draw do
   match '/go/pelton-initiative' => redirect("http://berkeleybeacon.com/news/2013/1/17/college-pres-talks-gun-control")
   match '/go/morgan-podcast' => redirect("http://berkeleybeacon.com/opinion/2013/1/24/sticks-and-stones-words-hurt")
   match '/go/canvas-tutorial' => redirect("http://berkeleybeacon.com/news/2013/1/24/students-and-faculty-welcome-new-learning-management-system")
-
+  match '/go/kristin-brice' => redirect("http://berkeleybeacon.com/sports/2013/1/31/sophomore-emerges-as-star-of-womens-basketball")
+  match '/go/mane-events' => redirect("http://berkeleybeacon.com/news/2013/1/31/poetry-project-granted-392380")
+  match '/go/poetry-project' => redirect("http://berkeleybeacon.com/lifestyle/2013/1/31/emerson-mane-events-hosts-headphone-disco")
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
