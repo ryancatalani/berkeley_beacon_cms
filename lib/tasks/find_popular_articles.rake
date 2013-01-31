@@ -35,18 +35,20 @@ namespace :db do
 		pop_urls = pop_initial.map {|a| a.to_url(:full => true)}
 		pop_initial.each {|a| pop_social_candidates[a.to_url(:full=>true)] = {:id => a.id, :fb => 0, :twt => 0, :total => 0} }
 
-		# Facebook
-		fb_shares_uri = URI.parse('http://graph.facebook.com/?ids=' + pop_urls.join(','))
-		fb_shares_res = Net::HTTP.get_response(fb_shares_uri).body
-		fb_shares_data = ActiveSupport::JSON.decode(fb_shares_res)
-		fb_shares_data.each do |k,v|
-			if v["shares"]
-				pop_social_candidates[k][:fb] = v["shares"]
-			end
-		end
-
-		# Twitter
 		pop_urls.each do |url|
+			# Facebook
+			fb_shares_uri = URI.parse(URI.escape("https://graph.facebook.com/fql?q=SELECT url, total_count FROM link_stat WHERE url='#{url}'"))
+			fb_http = Net::HTTP.new(fb_shares_uri.host, fb_shares_uri.port)
+			fb_http.use_ssl = true
+			fb_http.verify_mode = Rails.env.production? ? OpenSSL::SSL::VERIFY_PEER : OpenSSL::SSL::VERIFY_NONE
+			fb_request = Net::HTTP::Get.new(fb_shares_uri.request_uri)
+			fb_shares_res = fb_http.request(fb_request)
+			fb_shares_data = ActiveSupport::JSON.decode(fb_shares_res.body)
+			if fb_shares_data["data"] && fb_shares_data["data"][0]["total_count"]
+				pop_social_candidates[url][:fb] = fb_shares_data["data"][0]["total_count"]
+			end
+
+			# Twitter
 			twt_share_uri = URI.parse('http://urls.api.twitter.com/1/urls/count.json?url=' + url)
 			twt_share_res = Net::HTTP.get_response(twt_share_uri).body
 			twt_share_data = ActiveSupport::JSON.decode(twt_share_res)
