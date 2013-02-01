@@ -1,9 +1,13 @@
 <div class="container about">
 	<div class="row">
 		<div class="span3 offset1">
-			<p>The Berkeley Beacon is Emerson College's independent, student-run newspaper. Founded in 1947, the weekly publishes in print on Thursdays each fall and spring semester and online daily. The paper is a chronicle of life at Emerson &mdash; covering student government politics, campus performances, and school-wide trends. In recent years, the paper's reporting has revealed racial biases in the college's tenure practices, performance space struggles for student groups, and food code violations in the campus dining facilities.</p>
+			<p>The Berkeley Beacon is Emerson College's independent, student-run newspaper. Founded in 1947, the weekly publishes in print on Thursdays each fall and spring semester and online daily. The paper is a chronicle of life at Emerson &mdash; covering student government politics, campus performances, and school-wide trends.</p>
 
-			<p>In 2011, the paper took strides in increasing its online presence by launching the first college newspaper website built on HTML5, following The Boston Globe's release of BostonGlobe.com, the world's first HTML5, responsive-designed newspaper site.</p>
+			<p>In recent years, the paper's reporting has revealed racial biases in the college's tenure practices, performance space struggles for student groups, and food code violations in the campus dining facilities.</p>
+
+			<p>In 2011, the paper took strides in increasing its online presence by launching the <a href="http://www.niemanlab.org/2012/04/emerson-college-student-paper-completes-a-fully-responsive-mobile-friendly-redesign/">first college newspaper website with a responsive design</a>, following The Boston Globe's release of BostonGlobe.com, the world's first HTML5, responsive-designed newspaper site.</p>
+
+			<p><strong>Email:</strong> <%= link_to "contact@berkeleybeacon.com", "mailto:contact@berkeleybeacon.com" %></p>
 
 			<p><strong>Phone:</strong> (617) 824-8687</p>
 
@@ -14,35 +18,39 @@
 					<br/>Boston, MA 02116</a>
 			</p>
 		</div>
-		
+
 		<div class="span3 offset1">
 			<p>
 				<strong>Editor-in-Chief</strong>
 				<%= link_to "Heidi Moeller", "/staff/heidi-moeller" %>
 			</p>
 			<p>
-				<strong>Managing Editor</strong>
+				<strong>Managing Editors</strong>
+				<em>Arts & Lifestyle</em><br/>
+				<%= link_to "Andrew Doerfler", "/staff/andrew-doerfler" %><br/>
+				<em>Opinion</em><br/>
 				<%= link_to "Eric Twardzik", "/staff/eric-twardzik" %>
 			</p>
 			<p>
 				<strong>Managing Editor and Design Director</strong>
+				<em>News & Sports</em><br/>
 				<%= link_to "Ryan Catalani", "/staff/ryan-catalani" %>
 			</p>
 			<p>
 				<strong>News Editor</strong>
-				<%= link_to "Frankie Olito", "/staff/frankie-olito" %>
+				<%= link_to "Evan Sporer", "/staff/evan-sporer" %>
 			</p>
 			<p>
 				<strong>Opinion Editor</strong>
-				<%= link_to "Hayden Wright", "/staff/hayden-wright" %><br />
+				<%= link_to "Trelawney Davis", "/staff/trelawney-davis" %>
 			</p>
 			<p>
 				<strong>Sports Editor</strong>
-				<%= link_to "Alanna Grady", "/staff/alanna-grady" %>
+				<%= link_to "Tyler Deffebach", "/staff/tyler-deffebach" %>
 			</p>
 			<p>
 				<strong>Lifestyle Editor</strong>
-				<%= link_to "Emily Murphy", "/staff/emily-murphy" %><br />
+				<%= link_to "Emily Murphy", "/staff/emily-murphy" %>
 			</p>
 			<p>
 				<strong>Arts Editor</strong>
@@ -51,52 +59,51 @@
 			<p>
 				<strong>Photography Editor</strong>
 				<%= link_to "Sarah Verrill", "/staff/sarah-verrill" %>
-			</p>			
+			</p>
 			<p>
 				<strong>Video Producers</strong>
 				<%= link_to "Mallory Meyer", "/staff/mallory-meyer" %><br/>
-				<%= link_to "Valerie Adamski", "/staff/valerie-adamski" %>
+				<%= link_to "Ryan Williams", "/staff/ryan-williams" %>
 			</p>
 			<p>
 				<strong>Business Manager</strong>
-				<%= link_to "Christopher Eyer", "/staff/chris-eyer" %>
+				<%= link_to "Jaclyn Diaz", "/staff/jaclyn-diaz" %>
 			</p>
 			<p>
 				<strong>Advisor</strong>
 				Ric Kahn
 			</p>
-			
+
 		</div>
-		
+
 		<div class="span3">
 			<p>
 				<strong>Deputy News Editor</strong>
-				<%= link_to "Stephanie Bradbury", "/staff/stephanie-bradbury" %>
+				<%= link_to "Jackie Tempera", "/staff/jackie-tempera" %>
 			</p>
 			<p>
 				<strong>Assistant News Editor</strong>
-				<%= link_to "Tyler Deffebach", "/staff/tyler-deffebach" %>
+				<%= link_to "Christopher Gavin", "/staff/christopher-gavin" %>
 			</p>
 			<p>
 				<strong>SGA Correspondents</strong>
-				<%= link_to "Meghan Allen", "/staff/meghan-allen" %>
-				<%= link_to "Mike Disman", "/staff/mike-disman" %>
+				<%= link_to "Rebecca Fiore", "/staff/rebecca-fiore" %>
 			</p>
 			<p>
-				<strong>Deputy Opinion Editor</strong>
-				<%= link_to "Trelawney Davis", "/staff/trelawney-davis" %>
+				<strong>Assistant Opinion Editor</strong>
+				<%= link_to "Hunter Harris", "/staff/hunter-harris" %>
 			</p>
 			<p>
-				<strong>Deputy Sports Editor</strong>
-				<%= link_to "Ian Brophy", "/staff/ian-brophy" %>
+				<strong>Assistant Sports Editor</strong>
+				<%= link_to "Damon Turbitt", "/staff/damon-turbitt" %>
 			</p>
 			<p>
 				<strong>Deputy Lifestyle Editor</strong>
-				<%= link_to "Katy Rushlau", "/staff/katy-rushlau" %><br />
+				<%= link_to "Anna Buckley", "/staff/anna-buckley" %>
 			</p>
 			<p>
 				<strong>Assistant Lifestyle Editor</strong>
-				<%= link_to "Christina Jedra", "/staff/christina-jedra" %><br />
+				<%= link_to "Brittany Gervais", "/staff/brittany-gervais" %>
 			</p>
 			<p>
 				<strong>Deputy Arts Editor</strong>
@@ -104,15 +111,16 @@
 			</p>
 			<p>
 				<strong>Assistant Arts Editor</strong>
-				<%= link_to "Jaclyn Diaz", "/staff/jaclyn-diaz" %>
+				<%= link_to "Mercedes Lakatos", "staff/mercedes-lakatos" %><br/>
+				<%= link_to "Emily Woods", "/staff/emily-woods" %>
 			</p>
 			<p>
 				<strong>Deputy Photography Editor</strong>
-				<%= link_to "Courtney Tharp", "/staff/courtney-tharp" %>
+				<%= link_to "Andrew Harwood", "/staff/andrew-harwood" %>
 			</p>
 			<p>
 				<strong>Assistant Photography Editor</strong>
-				<%= link_to "Ally Chapman", "/staff/ally-chapman" %>
+				<%= link_to "Sarah Tedesco", "/staff/sarah-tedesco" %>
 			</p>
 			<p>
 				<strong>Chief Copyeditor</strong>
