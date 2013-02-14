@@ -76,7 +76,7 @@ BeaconApp::Application.routes.draw do
     match "/blogs/:name", :to => :show
   end
 
-  match '/go/beacon-beat' => redirect("http://berkeleybeacon.com/news/2013/2/7/the-beacon-beat-february-7-2013")
+  match '/go/beacon-beat' => redirect("http://berkeleybeacon.com/news/2013/2/14/the-beacon-beat-february-14-2013")
   match '/go/police' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/an-interview-with-the-new-police-chief")
   match '/go/scaffolding' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/students-react-to-the-little-building-scaffolding-art")
   match '/go/ols' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/meet-the-orientation-leader-core-staff")
@@ -110,6 +110,8 @@ BeaconApp::Application.routes.draw do
   match '/go/poetry-project' => redirect("http://berkeleybeacon.com/lifestyle/2013/1/31/emerson-mane-events-hosts-headphone-disco")
   match '/go/valentines-day-pie' => redirect("http://berkeleybeacon.com/lifestyle/2013/2/7/valentines-sweetiepie")
   match '/go/rhodes-carbone' => redirect("http://berkeleybeacon.com/sports/2013/2/7/rhodes-and-carbone-add-to-emerson-offensive-attack")
+  match '/go/graffiti' => redirect("http://berkeleybeacon.com/news/2013/2/14/vandalism-found-on-and-inside-dormitory-elevator")
+  match '/go/Nemo-fun' => redirect("http://berkeleybeacon.com/multimedia/2013/2/14/students-enjoy-nemos-snow")
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
