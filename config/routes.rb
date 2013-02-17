@@ -77,42 +77,8 @@ BeaconApp::Application.routes.draw do
     match "/blogs/:name", :to => :show
   end
 
-  match '/go/beacon-beat' => redirect("http://berkeleybeacon.com/news/2013/2/14/the-beacon-beat-february-14-2013")
-  match '/go/police' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/an-interview-with-the-new-police-chief")
-  match '/go/scaffolding' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/students-react-to-the-little-building-scaffolding-art")
-  match '/go/ols' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/6/meet-the-orientation-leader-core-staff")
-	match '/go/fashion-night-out' => redirect("http://www.berkeleybeacon.com/lifestyle/2012/9/13/fashion-night-out")
-  match '/go/print-copy' => redirect("http://www.berkeleybeacon.com/news/2012/9/13/print-and-copy-center-finds-new-home")
-  match '/go/leap' => redirect("http://berkeleybeacon.com/lifestyle/2012/9/20/emerson-women-leap-to-teach-selfdefense")
-  match '/go/soccer' => redirect("http://www.berkeleybeacon.com/multimedia")
-  match '/go/magician' => redirect("http://www.berkeleybeacon.com/multimedia/2012/9/27/emerson-mane-events-brings-magic-to-campus")
-  match '/go/collegefest' => redirect("http://berkeleybeacon.com/lifestyle/2012/9/27/students-enjoy-swag-and-songs-at-collegefest-2012")
-  match '/go/quinnterviews' => redirect("http://www.berkeleybeacon.com/news/2012/10/4/quinnterviews-picked-up-by-mtvu")
-  match '/go/sexapalooza' => redirect("http://www.berkeleybeacon.com/lifestyle/2012/10/4/sexapalooza-education-and-lubrication")
-  match '/go/womens-soccer' => redirect("http://www.berkeleybeacon.com/sports/2012/10/11/emerson-crucified-by-saints")
-  match '/go/lb-maintenance' => redirect("http://www.berkeleybeacon.com/news/2012/10/11/little-building-construction-continues")
-  match '/go/cleaning' => redirect("http://berkeleybeacon.com/lifestyle/2012/10/18/christian-students-offer-cleaning-services")
-  match '/go/mens-soccer' => redirect("http://berkeleybeacon.com/sports/2012/10/18/determined-defensive-display")
-  match '/go/marchingband' => redirect("http://www.berkeleybeacon.com/lifestyle/2012/10/25/students-march-to-a-bc-beat")
-  match '/go/womens-tennis' => redirect("http://www.berkeleybeacon.com/sports/2012/10/25/duo-shines-in-gnac-finale")
-  match '/go/gregpayne' => redirect("http://berkeleybeacon.com/news/2012/11/1/political-insert-gregory-payne")
-  match '/go/feminist-panel' => redirect("http://www.berkeleybeacon.com/lifestyle/2012/11/8/feminist-panel-hopes-to-stomp-out-stereotypes?n=go")
-  match '/go/engagement-lab' => redirect("http://www.berkeleybeacon.com/news/2012/11/8/the-engagement-game-lab-relocates?n=go")
-  match '/go/lb-art-installation' => redirect("http://berkeleybeacon.com/lifestyle/2012/11/15/mag-to-choose-new-scaffolding-artist")
-  match '/go/maxine-renning' => redirect("http://berkeleybeacon.com/lifestyle/2012/11/29/friends-share-a-bonedeep-bond")
-  match '/go/battleofthebands' => redirect("/")
-  match '/go/notebook' => redirect("http://berkeleybeacon.com/multimedia/2012/12/6/the-notebook")
-  match '/go/reactions-to-5' => redirect("http://berkeleybeacon.com/arts/2012/12/6/rockettes-and-zombies-edc-graces-the-stage")
-  match '/go/pelton-initiative' => redirect("http://berkeleybeacon.com/news/2013/1/17/college-pres-talks-gun-control")
-  match '/go/morgan-podcast' => redirect("http://berkeleybeacon.com/opinion/2013/1/24/sticks-and-stones-words-hurt")
-  match '/go/canvas-tutorial' => redirect("http://berkeleybeacon.com/news/2013/1/24/students-and-faculty-welcome-new-learning-management-system")
-  match '/go/kristin-brice' => redirect("http://berkeleybeacon.com/sports/2013/1/31/sophomore-emerges-as-star-of-womens-basketball")
-  match '/go/mane-events' => redirect("http://berkeleybeacon.com/news/2013/1/31/poetry-project-granted-392380")
-  match '/go/poetry-project' => redirect("http://berkeleybeacon.com/lifestyle/2013/1/31/emerson-mane-events-hosts-headphone-disco")
-  match '/go/valentines-day-pie' => redirect("http://berkeleybeacon.com/lifestyle/2013/2/7/valentines-sweetiepie")
-  match '/go/rhodes-carbone' => redirect("http://berkeleybeacon.com/sports/2013/2/7/rhodes-and-carbone-add-to-emerson-offensive-attack")
-  match '/go/graffiti' => redirect("http://berkeleybeacon.com/news/2013/2/14/vandalism-found-on-and-inside-dormitory-elevator")
-  match '/go/Nemo-fun' => redirect("http://berkeleybeacon.com/multimedia/2013/2/14/students-enjoy-nemos-snow")
+  match '/go/:slug', :to => 'short_links#redirect'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

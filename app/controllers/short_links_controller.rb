@@ -25,4 +25,10 @@ class ShortLinksController < ApplicationController
 		respond_with @short_link
 	end
 
+	def redirect
+		# Ignoring prefix for now; assuming it's 'berkeleybeacon.com/go/'
+		short_link = ShortLink.find_by_link_text(params[:slug])
+		redirect_to short_link.destination and return
+	end
+
 end
