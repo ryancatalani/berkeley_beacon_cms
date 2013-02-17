@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124204455) do
+ActiveRecord::Schema.define(:version => 20130217032421) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -218,6 +218,16 @@ ActiveRecord::Schema.define(:version => 20130124204455) do
     t.datetime "updated_at"
     t.string   "title"
   end
+
+  create_table "short_links", :force => true do |t|
+    t.string   "prefix"
+    t.string   "link_text"
+    t.string   "destination"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "short_links", ["link_text"], :name => "index_short_links_on_link_text"
 
   create_table "social_posts", :force => true do |t|
     t.text     "status_text"

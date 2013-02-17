@@ -1,0 +1,53 @@
+<h1>Short Links</h1>
+
+<div id="new_short_link" class="well">
+
+	<div class="alert alert-error" id="new_short_link_error" style="display:none">
+		<a href="#" class="close" data-dismiss="alert">&times;</a>
+		<span class="alert_text"></span>
+	</div>
+
+	<div class="alert alert-success" id="new_short_link_success" style="display:none">
+		<a href="#" class="close" data-dismiss="alert">&times;</a>
+		<span class="alert_text">Successfully created short link</span>
+	</div>
+
+	<h3>New short link</h3>
+	<br/>
+
+	<%= form_for ShortLink.new, :remote => true do |f| %>
+
+		berkeleybeacon.com/
+		<%= f.select :prefix, options_for_select(['go']) %> /
+		<%= f.text_field :link_text, :placeholder => 'Link text' %>
+
+		<br/>
+		&rarr; Will redirect to: <%= f.text_field :destination, :value => 'http://' %>
+
+		<br/>
+		<%= f.submit "Create", :class => 'btn btn-primary' %>
+
+	<% end %>
+
+</div>
+
+<table class="table" id="short_links_table">
+	<thead>
+		<tr>
+			<th>Link</th>
+			<th>Destination</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @links.each do |link| %>
+		<tr data-id="<%= link.id %>">
+			<td><%= link.full_path %></td>
+			<td><%= link.destination %></td>
+			<td>
+				<%= link_to "<i class='icon-trash icon-white'></i> Delete".html_safe, short_link_url(link), :method => :delete, :confirm => "Are you sure you want to delete this short link?", :remote => true, :class => "btn btn-danger btn-small" %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
