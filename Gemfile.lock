@@ -110,7 +110,7 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.1)
-    newrelic_rpm (3.5.3.25)
+    newrelic_rpm (3.5.7.59)
     nokogiri (1.5.0)
     pg (0.11.0)
     polyglot (0.3.3)
@@ -217,7 +217,7 @@ DEPENDENCIES
   jquery-rails
   memcachier
   mini_magick
-  newrelic_rpm (~> 3.5.3.25)
+  newrelic_rpm (~> 3.5.7.59)
   nokogiri
   pg
   quiet_assets
