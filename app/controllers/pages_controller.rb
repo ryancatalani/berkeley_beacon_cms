@@ -66,6 +66,17 @@ class PagesController < ApplicationController
 		@include_bootstrap = true
 	end
 
+	def oscars2013
+		@title = "2013 Oscar Predictions"
+		@include_bootstrap = true
+		@needs_og = true
+		@og = {}
+		@og[:title] = "The Beacon's Oscar picks"
+		@og[:url] = "http://berkeleybeacon.com/oscars"
+		@og[:image] = "http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/zero_web_thumb.jpg"
+		@og[:description] = "See the films that Beacon staff members think should win Academy Awards."
+	end
+
 	def ecla
 		@title = "Special Feature: Emerson College LA"
 		@include_bootstrap = true
