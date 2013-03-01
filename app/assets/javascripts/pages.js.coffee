@@ -12,6 +12,15 @@ jQuery ->
 				$(this).css("height",max)
 		, 500
 
+	if $(".balance_height_nophone") && $(window).width() > 640
+		setTimeout ->
+			max = 0
+			$(".balance_height_nophone").each ->
+				max = $(this).height() if ($(this).height() > max)
+			$(".balance_height_nophone").each ->
+				$(this).css("height",max)
+		, 500
+
 	$("#popular_most_viewed_h").click (e) ->
 		$("#popular_most_shared").hide()
 		$("#popular_most_viewed").show()

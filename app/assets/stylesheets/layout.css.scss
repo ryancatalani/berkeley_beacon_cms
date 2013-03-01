@@ -73,21 +73,21 @@ h4 {
 		font: 14px/14px "PT Serif", Times, serif;
 		font-style: italic;
 	}
-	
+
 	#nav {
 		float: right;
 		padding-top: 12px;
-		
+
 		li {
 			display: inline;
 			margin-left: 10px;
 		}
-		
+
 		a {
 			&:hover {
 				text-decoration: none;
 				padding-bottom: 12px;
-				border-bottom: 5px solid #cbcbcb;	
+				border-bottom: 5px solid #cbcbcb;
 			}
 		}
 	}
@@ -95,7 +95,7 @@ h4 {
 	li#sections {
 		display: none;
 	}
-	
+
 }
 
 .new_header {
@@ -140,7 +140,7 @@ h4 {
 		border-bottom: 1px solid #cbcbcb;
 		padding-top: 7px;
 		padding-bottom: 8px;
-		
+
 		ol {
 			float: left;
 		}
@@ -152,7 +152,7 @@ h4 {
 			&:hover {
 				text-decoration: none;
 				padding-bottom: 5px;
-				border-bottom: 3px solid #cbcbcb;	
+				border-bottom: 3px solid #cbcbcb;
 			}
 		}
 		h2 {
@@ -166,7 +166,7 @@ h4 {
 	margin: 0 auto;
 	margin-top: 20px;
 	padding-top: 5px;
-	border-top: 1px solid #cbcbcb;	
+	border-top: 1px solid #cbcbcb;
 	font-size: 12px;
 	padding-bottom: 30px;
 }

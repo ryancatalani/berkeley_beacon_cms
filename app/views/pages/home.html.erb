@@ -2,7 +2,7 @@
 
 	<section id="top">
 
-		<section id="left">
+		<section id="left" class="balance_height_nophone">
 
 			<% cache ["home_top_stories", home_layout_or_article_last_updated] do %>
 			<div id="main-story">
@@ -45,7 +45,7 @@
 
 		</section>
 
-		<section id="center">
+		<section id="center" class="balance_height_nophone">
 			<% @middle_stories.each do |story| %>
 				<div class="story">
 					<%= image_tag story.first_photo.media.thumb_140.url if story.first_photo %>
@@ -59,7 +59,7 @@
 		<% end # cache home_top_stories %>
 
 
-		<section id="right">
+		<section id="right" class="balance_height_nophone">
 
 				<%= link_to "Send Us a Tip", tips_path, :id => "tip_btn" %>
 
@@ -102,30 +102,26 @@
 					<% end %>
 				<% end %>
 				<div class="separator"></div>
+				<div class="fb-like" data-href="http://facebook.com/berkeleybeacon" data-send="false" data-width="218" data-show-faces="true"></div>
+				<br/>
 				<a href="https://twitter.com/BeaconUpdate" class="sm_btn" id="twitter_btn">
-					<%= image_tag "twitter_icon.png" %> @BeaconUpdate
+					<%= image_tag "twitter_icon.png" %>
+					<br/>@BeaconUpdate
 				</a>
 				<a href="https://facebook.com/BerkeleyBeacon" class="sm_btn" id="fb_btn">
-					<%= image_tag "fb_icon.png" %> BerkeleyBeacon
+					<%= image_tag "fb_icon.png" %>
+					<br/>/BerkeleyBeacon
 				</a>
+				<a href="http://berkeleybeacon.tumblr.com" class="sm_btn" id="tumblr_btn">
+					<%= image_tag "tumblr.png" %>
+					<br/>/BerkeleyBeacon
+				</a>
+				<a href="http://storify.com/berkeleybeacon" class="sm_btn" id="storify_btn">
+					<%= image_tag "storify.png" %>
+					<br/>/BerkeleyBeacon
+				</a>
+
 				<div class="clear"></div>
-				<h4>On Facebook</h4>
-				<div class="l_quo_border">
-					<div class="fb-like" data-href="http://facebook.com/berkeleybeacon" data-send="false" data-width="218" data-show-faces="true"></div>
-				</div>
-				<h4>On Twitter</h4>
-				<% cache("home_twitter", :expires_in => 1.hour) do %>
-				<ol id="latest_tweets" class="l_quo_border">
-					<% @tweets.each do |tweet| %>
-						<li>
-							<a href="http://twitter.com/BeaconUpdate/status/<%= tweet.attrs["id_str"] %>">
-								<em><%= distance_of_time_in_words_to_now tweet.created_at %> ago</em>
-								<%= tweet.text %>
-							</a>
-						</li>
-					<% end %>
-				</ol>
-				<% end #cache home_twitter %>
 
 			</section>
 

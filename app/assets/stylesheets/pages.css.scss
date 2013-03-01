@@ -432,7 +432,7 @@ a {
 		border: none;
 	}
 	#featured-stories {
-		border-bottom: 1px solid #cbcbcb;
+		border-bottom: 3px double #cbcbcb;
 		padding-bottom: 5%;
 	}
 	.featured-story {
@@ -443,7 +443,12 @@ a {
 		padding-top: 1em;
 		.featured-story-img-wrap {
 			width: 48%;
+			height: auto;
 			margin-right: 2%;
+			img {
+				width: 100%;
+				height: auto;
+			}
 		}
 	}
 	.group-a, .group-b, .group-c {
@@ -978,18 +983,18 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 }
 
 .sm_btn {
-	width: 49%;
-	margin: 0;
+	width: 48%;
+	float: left;
+	margin: 1%;
 	color: #fff;
 	display: block;
-	float: left;
-	padding: 4px 2px 2px;
+	padding: 10px 1%;
 	font-size: 0.85em;
 	text-align: center;
-	background: #666;
-	margin-bottom: 20px;
+	background: #999;
+	// border: 1px solid #aaa;
 	img {
-		height: 12px;
+		max-height: 20px;
 	}
 	&:hover {
 		text-decoration: none;
@@ -1001,10 +1006,17 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 }
 
 #twitter_btn {
-	margin-right: 2%;
 	&:hover {
 		background: #34b6f3;
 	}
+}
+
+#tumblr_btn:hover {
+	background: #375773;
+}
+
+#storify_btn:hover {
+	background: #0184c8;
 }
 
 .l_quo_border {
