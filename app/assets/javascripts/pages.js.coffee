@@ -14,11 +14,17 @@ jQuery ->
 
 	if $(".balance_height_nophone") && $(window).width() > 640
 		setTimeout ->
-			max = 0
+			maxes = {}
 			$(".balance_height_nophone").each ->
-				max = $(this).height() if ($(this).height() > max)
+				group = $(this).data('height-group')
+				height = $(this).height()
+				if maxes[group]
+					maxes[group] = height if height > maxes[group]
+				else
+					maxes[group] = height
 			$(".balance_height_nophone").each ->
-				$(this).css("height",max)
+				group = $(this).data('height-group')
+				$(this).css("height",maxes[group])
 		, 500
 
 	$("#popular_most_viewed_h").click (e) ->

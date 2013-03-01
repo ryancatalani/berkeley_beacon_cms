@@ -2,7 +2,7 @@
 
 	<section id="top">
 
-		<section id="left" class="balance_height_nophone">
+		<section id="left" class="balance_height_nophone" data-height-group="top">
 
 			<% cache ["home_top_stories", home_layout_or_article_last_updated] do %>
 			<div id="main-story">
@@ -45,7 +45,7 @@
 
 		</section>
 
-		<section id="center" class="balance_height_nophone">
+		<section id="center" class="balance_height_nophone" data-height-group="top">
 			<% @middle_stories.each do |story| %>
 				<div class="story">
 					<%= image_tag story.first_photo.media.thumb_140.url if story.first_photo %>
@@ -59,7 +59,7 @@
 		<% end # cache home_top_stories %>
 
 
-		<section id="right" class="balance_height_nophone">
+		<section id="right" class="balance_height_nophone" data-height-group="top">
 
 				<%= link_to "Send Us a Tip", tips_path, :id => "tip_btn" %>
 
@@ -133,7 +133,7 @@
 	<div class="separator"></div>
 
 	<section id="bottom">
-		<div class="group-a">
+		<div class="group-a balance_height_nophone" data-height-group="bottom">
 			<% cache ["home_news_stories", Section.home_cache_key("news")] do %>
 				<div class="section-box" id="news-section-box">
 					<h4><%= link_to "News", "/news" %></h4>
@@ -149,7 +149,7 @@
 			<% end %>
 		</div>
 
-		<div class="group-b">
+		<div class="group-b balance_height_nophone" data-height-group="bottom">
 			<% cache ["home_opinion_stories", Section.home_cache_key("opinion")] do %>
 				<div class="section-box" id="opinion-section-box">
 					<h4><%= link_to "Opinion", "/opinion" %></h4>
@@ -165,7 +165,7 @@
 			<% end %>
 		</div>
 
-		<div class="group-c">
+		<div class="group-c balance_height_nophone" data-height-group="bottom">
 			<section id="popular" class="home_popular">
 				<%= render 'shared/popular' %>
 			</section>
