@@ -2,7 +2,7 @@ module ApplicationHelper
 	# def editor_logged_in
 	# 	current_user and current_user.editor?
 	# end
-	
+
 	def current_twitter
 		beacon = {
 			:consumer_key => "***REMOVED***",
@@ -22,4 +22,9 @@ module ApplicationHelper
 			return Twitter::Client.new(magicofpi_test)
 		end
 	end
+
+	def print_release_day
+		"Thursday"
+	end
+
 end

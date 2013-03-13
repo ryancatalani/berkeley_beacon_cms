@@ -4,7 +4,7 @@
 		<h3>New Person</h3>
 	</div>
 	<%= form_for Person.new, :remote => true do |f| %>
-	
+
 	<div class="modal-body">
 		<%= render 'people/person_form', :f => f %>
 	</div>
@@ -13,7 +13,7 @@
 		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
 	</div>
 	<% end %>
-	
+
 </div>
 <div id="new_media_person_modal" class="modal hide fade">
 	<div class="modal-header">
@@ -21,7 +21,7 @@
 		<h3>New Person</h3>
 	</div>
 	<%= form_for Person.new, :url => new_media_person_path, :remote => true do |f| %>
-	
+
 	<div class="modal-body">
 		<%= render 'people/person_form', :f => f %>
 	</div>
@@ -30,7 +30,7 @@
 		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
 	</div>
 	<% end %>
-	
+
 </div>
 
 <div id="new_article_wrap">
@@ -47,12 +47,12 @@
 	<div id="subtitles">
 		<a href="#" id="newsubtitlebtn" class="btn"><i class="icon-plus"></i> Add Subtitle</a>
 	</div>
-	
+
 	<div id="series">
 		<%= f.label :series_id %>
 		<%= select_tag :series_id, options_for_select(@series, @article.series_id) %>
 	</div>
-	
+
 	<div id="authors">
 		<div class="field">
 			<%= label_tag :author_1 %>
@@ -65,7 +65,7 @@
 		<a href="#" id="newauthorbtn" class="btn"><i class="icon-plus"></i> Add another author to the story</a>
 		<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_person_modal"><i class="icon-user"></i> Create a new person</a>
 		<script type="text/javascript" charset="utf-8">
-		
+
 			function afield(c) {
 				var ret = '<div class="field">';
 				ret += '<label for="author_' + c + '">' + 'Author ' + c + '</label>';
@@ -74,34 +74,34 @@
 				ret += '</select><a href="#" class="removeauth btn btn-danger"><i class="icon-trash icon-white"></i> Remove Author ' + c + '</a></div>';
 				return ret;
 			}
-			
+
 			function subfield(c) {
 				var ret = '<div class="field">';
-				ret += '<label for="subtitle_' + c + '">' + 'Subtitle ' + c + '</label>';				
+				ret += '<label for="subtitle_' + c + '">' + 'Subtitle ' + c + '</label>';
 				ret += '<input id="subtitle_' + c + '" name="subtitle[' + c + ']" size ="30" type="text">';
 				ret += '</select><a href="#" class="removesub btn btn-danger"><i class="icon-trash icon-white"></i> Remove Subtitle ' + c + '</a></div>';
 				return ret;
 			}
-			
-			function remove_f(which) { 
+
+			function remove_f(which) {
 				$(this).closest('.field').fadeOut().remove();
 				which === "auth" ? acount -= 1 : scount -= 1 ;
 			}
-			
+
 			// --- Authors ---
-			
+
 			acount = 2;
 			$("#newauthorbtn").click(function(){
 				$("#authors").append(afield(acount));
-				acount += 1;	
-			});			
+				acount += 1;
+			});
 			$("#authors").click(function(e){
 				if ($(e.target).is('.removeauth'))
 					remove_f.call(e.target,"auth");
 			});
-			
-			// --- Subtitles --- 
-			
+
+			// --- Subtitles ---
+
 			scount = 1;
 			$("#newsubtitlebtn").click(function(){
 				$("#subtitles").append(subfield(scount));
@@ -111,8 +111,8 @@
 				if ($(e.target).is('.removesub'))
 					remove_f.call(e.target,"sub");
 			});
-			
-				
+
+
 		</script>
 	</div>
 	<div class="field">
@@ -160,19 +160,19 @@
 		<%= label_tag :articletype_3, "Slideshow" %>
 		</div>
 	</div>
-		
+
 	<% if @display_already_uploaded %>
 		<% cookies[:already_uploaded].split(' ').each do |u| %>
 			<%= "<input type='hidden' name='mediafiles[#{u}]' value='#{u}'>".html_safe %>
 		<% end %>
 	<% end %>
-	<br />	
+	<br />
 	<div class="actions form-actions">
 		<%= f.submit "#{@article.draft? ? 'Publish' : 'Update'} article", :class => "btn btn-primary" %>
 		<%= f.submit "Save article as a draft", :class => "btn" %>
 		<% if @article.draft? %>
 			<% if @can_queue_tweet %>
-				<p><%= radio_button_tag :post_when, :post_later, true %> Add to tweet queue (to be posted later in the day)
+				<p><%= radio_button_tag :post_when, :post_later, true %> Tweet on Thursday (recommended)
 				<%= radio_button_tag :post_when, :post_now %> Tweet now</p>
 			<% else %>
 				<p>This article is currently a draft. If you publish this article, a link to it will automatically be tweeted.</p>
@@ -185,7 +185,7 @@
 <hr />
 
 <%= form_for Mediafile.new, :remote => true, :html => { :multipart => true } do |f| %>
-	
+
 	<%= render 'mediafiles/mediafiles_form', :f => f %>
 	<div class="actions">
 		<%= f.submit "Upload", :id => "mediauploadbtn", :class => "btn btn-primary" %>
@@ -194,7 +194,7 @@
 			Uploading...
 		</div>
 	</div>
-	
+
 <% end %>
 
 <div id="uploaded_files"></div>

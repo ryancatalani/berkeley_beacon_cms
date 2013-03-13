@@ -30,7 +30,7 @@ class SocialPost < ActiveRecord::Base
 	end
 
 	def full_post
-		if SocialPost.exists?(article_id)
+		if Article.exists?(article_id)
 
 			if network == 1
 				url = article.to_url_with_tracking('t', id)

@@ -7,41 +7,41 @@ class ArticlesController < ApplicationController
 	def new
 		@article = Article.new
 		@authors = Person.order("firstname ASC").all.map do |person|
-			if person.other_designation.blank?
-				["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}",
-					person.id]
-				else
-					["#{person.firstname} #{person.lastname} #{person.other_designation == "*" ? "" : "/ #{person.other_designation}"}",
-						person.id]
-					end
-				end
-				@authors.unshift(["Choose an author",0])
-				@sections = Section.all.map { |s| [s.name, s.id] }
-				@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
-				@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
-				@can_queue_tweet = (Time.now.strftime("%A") == "Wednesday" && Time.now.hour > 18) || (Time.now.strftime("%A") == "Thursday" && Time.now.hour < 6) || Rails.env.development?
+		if person.other_designation.blank?
+			["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}",
+				person.id]
+		else
+			["#{person.firstname} #{person.lastname} #{person.other_designation == "*" ? "" : "/ #{person.other_designation}"}",
+				person.id]
 			end
+		end
+		@authors.unshift(["Choose an author",0])
+		@sections = Section.all.map { |s| [s.name, s.id] }
+		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
+		@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
+		@can_queue_tweet = can_queue_tweet?
+	end
 
-			def create
-				is_draft = params[:commit].include?("draft")
-				p = params[:article]
-				if params[:mediafiles]
-					cookies[:already_uploaded] ||= ''
-					cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
-				end
-				p[:articletype] = params[:articletype].to_i
-				p[:series_id] = params[:series_id].to_i
-				subs = params[:subtitle].nil? ? [] : params[:subtitle].values
-				p[:subtitles] = subs
-				p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
-				authors = []
-				if params[:author].nil?
-					authors << current_user
-				else
-					params[:author].values.each do |author_id|
-						begin
-							authors << Person.find(author_id.to_i)
-						rescue
+	def create
+		is_draft = params[:commit].include?("draft")
+		p = params[:article]
+		if params[:mediafiles]
+			cookies[:already_uploaded] ||= ''
+			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
+		end
+		p[:articletype] = params[:articletype].to_i
+		p[:series_id] = params[:series_id].to_i
+		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
+		p[:subtitles] = subs
+		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
+		authors = []
+		if params[:author].nil?
+			authors << current_user
+		else
+			params[:author].values.each do |author_id|
+				begin
+					authors << Person.find(author_id.to_i)
+				rescue
 				end # begin
 			end # each
 		end # else
@@ -72,9 +72,7 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			current_twitter.update(@article.tweet) if Rails.env.production? and !is_draft and !queue_tweet
-			@article.social_posts.create!(:status_text => @article.title, :network => 1, :in_queue => true, :posted => false) if !is_draft and queue_tweet
-			# expire_article_touches
+			tweet(is_draft, queue_tweet)
 			redirect_to new_article_url, :notice => "Article #{is_draft ? 'saved!' : 'posted'}!"
 		else
 			logger.debug @article.errors.full_messages.join("\n")
@@ -169,7 +167,7 @@ class ArticlesController < ApplicationController
 		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
 		@authors.unshift(["Choose an author",0])
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
-		@can_queue_tweet = (Time.now.strftime("%A") == "Wednesday" && Time.now.hour > 18) || (Time.now.strftime("%A") == "Thursday" && Time.now.hour < 6) || Rails.env.development?
+		@can_queue_tweet = can_queue_tweet?
 	end
 
 	def update
@@ -221,9 +219,7 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			current_twitter.update(@article.tweet) if Rails.env.production? and !is_draft and was_draft and !queue_tweet
-			@article.social_posts.create!(:status_text => @article.title, :network => 1, :in_queue => true, :posted => false) if !is_draft and was_draft and queue_tweet
-			# expire_article_touches
+			tweet(is_draft, queue_tweet)
 			redirect_to "/articles#a_#{@article.id}"
 		else
 			@sections = Section.all.map { |s| [s.name, s.id] }
@@ -279,7 +275,9 @@ class ArticlesController < ApplicationController
 	end
 
 	def destroy
-		Article.find(params[:id]).destroy
+		article = Article.find(params[:id])
+		article.social_posts.destroy_all
+		article.destroy
 		redirect_to articles_path
 	end
 
@@ -294,6 +292,22 @@ class ArticlesController < ApplicationController
 
 	def expire_article_touches
 		expire_page :controller => 'sections', :action => 'show'
+	end
+
+	def can_queue_tweet?
+		# Return true only if it's a Wednesday or Thursday, or in development
+		Time.now.strftime("%A").in?( %w(Wednesday Thursday) ) || Rails.env.development?
+	end
+
+	def tweet(is_draft, queue_tweet)
+		if !is_draft
+			if queue_tweet
+				@article.social_posts.create!(:status_text => @article.title, :network => 1, :in_queue => true, :posted => false)
+				logger.debug('Queued tweet')
+			else
+				current_twitter.update(@article.tweet)
+			end
+		end
 	end
 
 end
