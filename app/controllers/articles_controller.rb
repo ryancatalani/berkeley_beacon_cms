@@ -219,7 +219,7 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
-			tweet(is_draft, queue_tweet)
+			tweet(is_draft, queue_tweet) if was_draft
 			redirect_to "/articles#a_#{@article.id}"
 		else
 			@sections = Section.all.map { |s| [s.name, s.id] }
