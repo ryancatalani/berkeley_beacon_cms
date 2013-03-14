@@ -305,7 +305,7 @@ class ArticlesController < ApplicationController
 				@article.social_posts.create!(:status_text => @article.title, :network => 1, :in_queue => true, :posted => false)
 				logger.debug('Queued tweet')
 			else
-				current_twitter.update(@article.tweet)
+				current_twitter.update(@article.tweet) rescue return ''
 			end
 		end
 	end
