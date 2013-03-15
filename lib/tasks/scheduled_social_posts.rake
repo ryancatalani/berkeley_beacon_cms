@@ -3,7 +3,7 @@ namespace :db do
 	task :post_scheduled_posts => :environment do
 		include ActionView::Helpers::ApplicationHelper
 
-		if Time.zone.now.hour > 9 and Time.zone.now.hour < 21 || (ENV['force'] && ENV['force'] == 'true')
+		if Time.zone.now.hour >= 9 and Time.zone.now.hour < 21 || (ENV['force'] && ENV['force'] == 'true')
 			to_post = []
 			did_post = []
 
@@ -25,7 +25,10 @@ namespace :db do
 				post.update_attribute(:posted, true)
 			end
 
-			BeaconMailer.just_posted(did_post).deliver
+			if did_post.count > 0
+				BeaconMailer.just_posted(did_post).deliver
+			end
+
 		end
 
 	end
