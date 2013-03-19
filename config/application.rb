@@ -45,5 +45,8 @@ module BeaconApp
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # http://blog.codeship.io/2012/05/06/Unicorn-on-Heroku.html
+    config.logger = Logger.new(STDOUT)
   end
 end

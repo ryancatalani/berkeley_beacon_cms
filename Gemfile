@@ -38,7 +38,7 @@ gem 'dalli'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -63,5 +63,5 @@ end
 
 group :production do
   gem 'pg'
-  gem 'thin'
+  # gem 'thin'
 end
