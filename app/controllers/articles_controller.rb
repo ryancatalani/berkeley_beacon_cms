@@ -272,6 +272,10 @@ class ArticlesController < ApplicationController
 			@og[:image] = nil
 		end
 		@og[:description] = @article.excerpt.blank? ? nil : @article.excerpt
+
+		if @article.section.name == "Feature"
+			render 'show2013', :layout => 'article2013'
+		end
 	end
 
 	def destroy

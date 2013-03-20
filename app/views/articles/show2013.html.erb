@@ -1,0 +1,173 @@
+<div class="content_wrap article_wrap <%= @article_img_class %>">
+	<% if editor_logged_in %>
+		<%= link_to "Edit this story", edit_article_url(@article), :class => "btn" %>
+		<% if @article.draft? %>
+			<strong>This article is currently an unpublished draft, not visible to the public.</strong>
+		<% end %>
+		<br/><br/>
+	<% end %>
+
+
+	<div id="article_top">
+		Feature
+		<div id="pub_date"><%= (@article.created_at).to_s(:pretty_date) %></div>
+	</div>
+
+	<div id="article_middle">
+
+		<div id="article_header">
+			<h1><%= @article.title.html_safe %></h1>
+			<% if @article.subtitles %>
+				<% @article.subtitles.each do |subtitle| %>
+					<h2><%= subtitle %></h2>
+				<% end %>
+			<% end %>
+			<h3>By <%= bylineify_linked(@article).html_safe %></h3>
+		</div>
+
+		<% if @article_mediafiles %>
+			<div id="article_top_mediafiles">
+				<% if @article_mediafiles.count == 1 and @article.videos.empty? %>
+					<div class="<%= @article_mediafiles.first.aspect_ratio_str %> single_image">
+						<div class="slide_cont"><%= image_tag @article_mediafiles.first.media.url %></div>
+						<div class="metadata">
+							<%= @article_mediafiles.first.title %>
+							<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+						</div>
+					</div>
+				<% else %>
+					<ul class="rslides <%= "has_slideshow" if @article_mediafiles.count > 1 %>">
+						<% if !@article.videos.empty? %>
+							<% @article.videos.each do |video| %>
+								<li>
+									<video controls <% if video.media %>poster="<%= video.media %>"<% end %> class="" data-setup="{}">
+										<% if video.mp4 %>
+											<source src="<%= video.mp4 %>" type="video/mp4">
+										<% end %>
+										<% if video.ogg %>
+											<source src="<%= video.ogg %>" type="video/ogg">
+										<% end %>
+										<% if video.webm %>
+											<source src="<%= video.webm %>" type="video/webm">
+										<% end %>
+									</video>
+									<div class="metadata video_meta">
+										<div class="credit"><%= bylineify_linked(video).html_safe %></div>
+									</div>
+								</li>
+							<% end %>
+						<% end #if %>
+						<% if !@article.images.empty? %>
+							<% @article.images.each do |image| %>
+								<li class="<%= image.aspect_ratio_str %>">
+									<div class="slide_cont"><%= image_tag image.media.url %></div>
+									<div class="metadata">
+										<%= image.title %>
+										<div class="credit"><%= bylineify_linked(image).html_safe %></div>
+									</div>
+								</li>
+							<% end %>
+						<% end #if %>
+					</ul>
+					<div id="slide_controls"></div>
+					<div class="clear"></div>
+				<% end %>
+			</div>
+		<% end %>
+
+	</div>
+
+	<div id="article_share">
+		<div class="fb-like" data-send="false" data-layout="box_count" data-width="95" data-show-faces="false" data-action="like" style="vertical-align:top !important"></div>
+		<br/><br/>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="BeaconUpdate" data-related="BeaconUpdate" data-count="vertical">Tweet</a>
+	</div>
+
+	<div id="body">
+		<% if @article.audio_files %>
+			<%= render :partial => 'shared/audio_tag', :collection => @article.audio_files, :as => :audio %>
+		<% end %>
+
+		<%= @article.body.html_safe %>
+
+		<% if @article.archive %>
+			<br />
+			<div id="from_archive">
+				You're reading an article from our archives – if it looks funny, just press the button below and we'll look into it.
+				<a id="funny_business">
+					Something might be wrong with this article.
+				</a>
+				<a href="https://twitter.com/intent/tweet?screen_name=BeaconUPDATE&text=%23archiveproblem" class="twitter-mention-button" data-related="BeaconUPDATE">Tweet to @BeaconUPDATE</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> if there's a serious or urgent problem.
+			</div>
+		<% end %>
+
+		<div id="mid_follow" class="mid_box">
+			<p>Follow the Beacon and be the first to know about new stories:</p>
+			<a href="https://twitter.com/BeaconUpdate" class="twitter-follow-button" data-show-count="true">Follow @BeaconUpdate</a>
+			<br/>
+			<div class="fb-like" data-href="https://www.facebook.com/berkeleybeacon" data-send="false" data-width="230" data-show-faces="false"></div>
+		</div>
+
+		<div id="contact_share">
+			<div id="share">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-via="BeaconUpdate" data-related="BeaconUpdate">Tweet</a>
+				<div class="fb-like" data-send="false" data-width="320" data-show-faces="false" data-action="recommend"></div>
+			</div>
+			<div id="authors_contact">
+				<% @article.people.each do |p| %>
+					<%= render 'contact', :person => p %>
+				<% end %>
+			</div>
+			<div id="beacon_contact">
+				For corrections, email <a href="mailto:contact@berkeleybeacon.com">contact@berkeleybeacon.com</a>.
+			</div>
+		</div>
+	</div>
+
+	<div id="after_article">
+		<section id="reactions" class="balance_height_nophone" data-height-group="after_article">
+			<% if !@article.disable_comments %>
+				<div id="disqus_thread"></div>
+				<script type="text/javascript">
+				    var disqus_shortname = 'berkeleybeacon';
+
+				    /* * * DON'T EDIT BELOW THIS LINE * * */
+				    (function() {
+				        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+				        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				    })();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+				<a href="http://disqus.com" class="dsq-brlink" style="display:none">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+			<% end %>
+		</section>
+		<section id="read_more" class="balance_height_nophone" data-height-group="after_article">
+			<div id="popular" class="article_popular">
+				<%= render 'shared/popular' %>
+			</div>
+		</section>
+	</div>
+
+</div>
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=128499383927655";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<script>
+	$(document).ready(function(){
+		setTimeout(function(){ $.get("/pgvw/<%= @article.id %>"); }, 100);
+	});
+</script>

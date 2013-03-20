@@ -19,7 +19,9 @@
 							<div class="popular_img_wrap">
 								<%= story.first_photo ? image_tag(story.first_photo.media.thumb_40.url) : "&nbsp;".html_safe %>
 							</div>
-							<%= truncate story.title, :length => 60 %>
+							<div class="popular_story_title">
+								<%= truncate story.title, :length => 60 %>
+							</div>
 							<div class="clear"></div>
 						</a>
 					</li>
