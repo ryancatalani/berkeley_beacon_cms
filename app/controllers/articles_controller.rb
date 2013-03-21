@@ -273,7 +273,7 @@ class ArticlesController < ApplicationController
 		end
 		@og[:description] = @article.excerpt.blank? ? nil : @article.excerpt
 
-		if @article.section.name == "Feature"
+		if @article.section and @article.section.name == "Feature"
 			render 'show2013', :layout => 'article2013'
 		end
 	end
