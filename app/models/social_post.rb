@@ -42,4 +42,12 @@ class SocialPost < ActiveRecord::Base
 		end
 	end
 
+	def can_include_twitter_photo?
+		article.first_photo && (status_text.length + 1 + 23 + 1 + 23 < 140) # Length of a 2 t.co links (for the article URL and photo) and spaces
+	end
+
+	def twitter_photo_url
+		article.first_photo.media.url
+	end
+
 end

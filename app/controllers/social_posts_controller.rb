@@ -21,8 +21,8 @@ class SocialPostsController < ApplicationController
     else
       @post = SocialPost.new
     end
-    @char_init = article.nil? ? 0 : article.title.length
-    @char_limit = 119
+    @char_init = article.nil? ? 0 : text.length
+    @char_limit = 116
     @networks = SocialPost.networks
   end
 

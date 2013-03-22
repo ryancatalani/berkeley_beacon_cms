@@ -33,10 +33,22 @@ class Article < ActiveRecord::Base
 	end
 
 	def tweet
-		t = title
-		t = "From #{blog.title}: #{t}" if blog
-		ret = "#{t.truncate(117, :separator => ' ').strip}: #{to_url(:full=>true)}"
-		ret << twitter_people unless title.length + 23 + twitter_people.length > 140
+		length = 23 + 1 # Length of a t.co link + " "
+		ret = title
+		length += ret.length
+
+		if twitter_people and length + twitter_people.length < 140
+			ret << twitter_people
+			length += twitter_people.length
+		end
+
+		ret << " #{to_url(:full=>true)}"
+
+		# Adding photos is now done at the very last stage (in the rake)
+		# if first_photo && length + 23 + 1 < 140
+		# 	ret << " #{first_photo.media.thumb_460.url}"
+		# end
+
 		return ret
 	end
 
@@ -46,8 +58,7 @@ class Article < ActiveRecord::Base
 		elsif visual_mediafiles.count > 0
 			return visual_mediafiles.first
 		end
-		 return nil
-		# return nil
+		return nil
 	end
 
 	def images
@@ -192,7 +203,7 @@ class Article < ActiveRecord::Base
 
 		def twitter_people
 			if twitter_names.blank?
-				return ''
+				return false
 			else
 				return " by #{twitter_names}"
 			end
