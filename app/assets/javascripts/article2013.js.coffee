@@ -10,9 +10,14 @@ jQuery ->
 			$('#mid_follow').insertAfter( $(ps)[6] ).show()
 
 			$(document).ready ->
-				$("#popular").find("img").each (i) ->
-					if i == 0
-						new_src = this.src.replace("thumb_40","thumb_460")
+				$("#popular").find(".popular-story").each (i) ->
+					img = $(this).find("img")[0]
+					if img
+						if i == 0
+							new_src = img.src.replace("thumb_40","thumb_460")
+						else
+							new_src = img.src.replace("thumb_40","thumb_220")
+						$(img).attr("src", new_src)
 					else
-						new_src = this.src.replace("thumb_40","thumb_220")
-					$(this).attr("src", new_src)
+						$(this).css('height': $(this).css('width'))
+						$(this).addClass('no_img')
