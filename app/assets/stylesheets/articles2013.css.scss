@@ -224,13 +224,18 @@ body.fd {
 				padding: 0.5em;
 			}
 			.no_img {
+				background: rgba(0,0,0,0.75);
 				.popular_story_title {
+					background: none;
 					bottom: auto;
 					top: 0;
 					height: 100%;
+					padding: 1em;
 					font-size: 1.3em;
 					font-style: italic;
-					padding: 1em;
+				}
+				.popular_img_wrap {
+					display: none;
 				}
 			}
 
