@@ -10,7 +10,7 @@ jQuery ->
 			$('#mid_follow').insertAfter( $(ps)[6] ).show()
 
 			$(document).ready ->
-				$("#popular").find(".popular-story").each (i) ->
+				$("#popular_most_viewed").find(".popular-story").each (i) ->
 					img = $(this).find("img")[0]
 					if img
 						if i == 0
