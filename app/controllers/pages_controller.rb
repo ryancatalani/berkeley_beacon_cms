@@ -30,7 +30,9 @@ class PagesController < ApplicationController
 		@blogs = Blog.all
 		@latest_multimedia = Mediafile.where(:mediatype => 2).last(3).reverse
 		begin
-			tumblr_latest = Feedzirra::Feed.fetch_and_parse("http://berkeleybeacon.tumblr.com/rss").entries.first
+			tumblr_latest = Timeout::timeout(5) {
+				Feedzirra::Feed.fetch_and_parse("http://berkeleybeacon.tumblr.com/rss").entries.first
+			}
 			@tumblr_latest_title = tumblr_latest.title
 			@tumblr_latest_summary = tumblr_latest.summary
 			@tumblr_latest_url = tumblr_latest.url
