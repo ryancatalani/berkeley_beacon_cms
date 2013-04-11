@@ -77,7 +77,7 @@ class PopularSnapshot < ActiveRecord::Base
 
 		datasequences = []
 		top5.each_with_index do |(k,v),i|
-			title = Article.find(k).title rescue ""
+			title = Article.find(k).title.force_encoding("ASCII-8BIT") rescue ""
 			datasequences << {
 				:title => title,
 				:color => statusboard_colors[i % statusboard_colors.count],
