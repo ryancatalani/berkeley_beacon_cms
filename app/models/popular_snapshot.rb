@@ -58,8 +58,8 @@ class PopularSnapshot < ActiveRecord::Base
 			end
 		end
 
-		@pop_views_final_keys = @pop_views_final.map{|k,v| Article.find(k).title rescue "Article #{k}" }.to_s
-		@pop_shares_final_keys = @pop_shares_final.map{|k,v| Article.find(k).title rescue "Article #{k}" }.to_s
+		@pop_views_final = @pop_views_final.each {|k,v| v.delete(0) }
+		@pop_shares_final = @pop_shares_final.each {|k,v| v.delete(0) }
 
 		# @pop_views_final = @pop_views_final.map{|k,v| v}
 		# @pop_shares_final = @pop_shares_final.map{|k,v| v}
