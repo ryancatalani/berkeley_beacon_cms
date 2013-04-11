@@ -75,9 +75,16 @@ class PopularSnapshot < ActiveRecord::Base
 		top5 = top_5[:views]
 		statusboard_colors = ["yellow", "green", "red", "purple", "blue", "mediumGray", "pink", "aqua", "orange", "lightGray"]
 
+		encoding_options = {
+		    :invalid           => :replace,  # Replace invalid byte sequences
+		    :undef             => :replace,  # Replace anything not defined in ASCII
+		    :replace           => '',        # Use a blank for those replacements
+		    :universal_newline => true       # Always break lines with \n
+		  }
+
 		datasequences = []
 		top5.each_with_index do |(k,v),i|
-			title = Article.find(k).title.force_encoding("ASCII-8BIT") rescue ""
+			title = Article.find(k).title.encode(Encoding.find('ASCII'), encoding_options) rescue ""
 			datasequences << {
 				:title => title,
 				:color => statusboard_colors[i % statusboard_colors.count],
