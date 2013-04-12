@@ -168,7 +168,6 @@ class PagesController < ApplicationController
 		@needs_og = true
 		@og ||= {}
 		@og[:title] = "Join the Beacon"
-		@og[:url] = "http://berkeleybeacon.com/apply"
 		@og[:image] = "http://berkeleybeacon.com/assets/apply_small.jpg"
 		@og[:description] = "What's your beat? Find it with the Beacon. Applications for staff positions are due on Friday, April 19."
 		render :layout => 'new_header'
