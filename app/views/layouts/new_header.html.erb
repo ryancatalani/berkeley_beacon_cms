@@ -21,7 +21,7 @@
 		<meta property="og:image" content="<%= @og[:image] %>" />
 		<meta property="og:site_name" content="The Berkeley Beacon" />
 		<% unless @og[:description] == false %>
-			<meta property="og:description" content="<%= @og[:description] %>">
+			<meta property="og:description" content="<%= @og[:description].html_safe %>">
 		<% end %>
 		<meta property="fb:admins" content="1600232313" />
 		<script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>
