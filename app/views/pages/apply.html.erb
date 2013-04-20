@@ -10,9 +10,13 @@
 			</video>
 
 		</p>
+	<% if @applications_open %>
 		<p class="apply_small">Applications for <a href="/about">any staff position</a> are due on Friday, April 19 at 6 p.m.</p>
 		<p class="apply_small">Print your application and drop it off in our mailbox at the lower level campus center of Piano Row.</p>
 		<p class="apply_small"><a href="http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/BeaconStaffApplicationSpring2013.doc">Click here to download the application.</a></p>
+	<% else %>
+		<p class="apply_small">Applications are now closed. But if you're interested in joining the Beacon, email <a href="mailto:contact@berkeleybeacon.com">contact@berkeleybeacon.com</a>.</p>
+	<% end %>
 	</div>
 </div>
 
