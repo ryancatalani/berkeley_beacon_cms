@@ -11,7 +11,7 @@ class BeaconMailer < ActionMailer::Base
 		@the_body = body
 		@name = name
 		@contact = contact
-		mail(:to => "evansporer@gmail.com", :subject => "[Beacon] New Tip")
+		mail(:to => "contact@berkeleybeacon.com", :subject => "[Beacon] New Tip")
 	end
 
 	def archive_problem(url)
