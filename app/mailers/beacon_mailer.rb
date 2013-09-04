@@ -7,6 +7,12 @@ class BeaconMailer < ActionMailer::Base
   		mail(:to => email, :subject => "[The Berkeley Beacon] Password Reset")
   	end
 
+  	def new_account(name, email, password)
+  		@name, @email, @password = name, email, password
+  		mail(:to => email, :subject => "[The Berkeley Beacon] New Account")
+  	end
+
+
 	def tip(body, name, contact)
 		@the_body = body
 		@name = name
