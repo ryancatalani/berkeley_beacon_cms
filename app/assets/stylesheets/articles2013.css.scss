@@ -138,6 +138,12 @@ body.fd {
 			float: right;
 			margin-left: 2em;
 			margin-right: -11%;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
 		}
 
 		// Images and videos
@@ -163,6 +169,10 @@ body.fd {
 					color: lighten($dark_gray, 20%);
 				}
 			}
+		}
+
+		.vertical.single_image {
+			width: 100%;
 		}
 
 		// After article
