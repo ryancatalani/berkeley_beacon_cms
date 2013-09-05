@@ -23,7 +23,7 @@ class Article < ActiveRecord::Base
 			c = created_at
 			base = blog.nil? ? section.clean_url : blog.cleantitle
 			path = "/#{base}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
-			return "http://berkeleybeacon.com"+path if opts[:full] and opts[:full] = true
+			return "http://www.berkeleybeacon.com"+path if opts[:full] and opts[:full] = true
 			return path
 		end
 	end

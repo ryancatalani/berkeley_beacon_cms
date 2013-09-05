@@ -151,7 +151,7 @@ class PagesController < ApplicationController
 			client = Swiftype::Easy.new
 			results = client.search(engine_slug, params[:q])
 			@articles = results.records['articles'].map{|r| Article.find(r.external_id.to_i) } #.paginate(:page => params[:page], :per_page => 15)
-			@mediafiles = results.records['mediafiles'].map{|r| Mediafile.find(r.external_id.to_i) }
+			@mediafiles = results.records['mediafiles'].map{|r| Mediafile.find(r.external_id.to_i) rescue nil }
 		else
 			@articles = []
 			@mediafiles = []
