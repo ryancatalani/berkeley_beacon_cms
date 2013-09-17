@@ -8,13 +8,13 @@ namespace :db do
 
 
 		to_index_media = []
-		Mediafile.all.each do |mediafile|
+		Mediafile.last(300).each do |mediafile|
 			next if mediafile.articles.empty?
 			to_index_media << mediafile.indexable_info
 		end
 
 		to_index = []
-		Article.all.each do |article|
+		Article.last(700).each do |article|
 			to_index << article.indexable_info
 		end
 

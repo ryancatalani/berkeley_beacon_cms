@@ -6,13 +6,16 @@ namespace :db do
 		article_type = engine.document_type('articles')
 		mediafile_type = engine.document_type('mediafiles')
 
-		should_index_articles = article_type.document_count < Article.count
-		should_index_mediafiles = mediafile_type.document_count < Mediafile.count
+		article_max = [700, Article.count].min
+		mediafile_max = [300, Mediafile.count].min
+
+		should_index_articles = article_type.document_count < article_max
+		should_index_mediafiles = mediafile_type.document_count < mediafile_max
 
 		if should_index_mediafiles
 
 			to_index_media = []
-			number_to_index = Mediafile.count - mediafile_type.document_count
+			number_to_index = mediafile_max - mediafile_type.document_count
 
 			Mediafile.last(number_to_index).each do |mediafile|
 				next if mediafile.articles.empty?
@@ -27,7 +30,7 @@ namespace :db do
 		if should_index_articles
 
 			to_index = []
-			number_to_index = Article.count - article_type.document_count
+			number_to_index = article_max - article_type.document_count
 
 			Article.last(number_to_index).each do |article|
 				to_index << article.indexable_info
@@ -36,7 +39,7 @@ namespace :db do
 			article_type.create_documents(to_index)
 
 		end # should_index_articles
-		
+
 
 
 
