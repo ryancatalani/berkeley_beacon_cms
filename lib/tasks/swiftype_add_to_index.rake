@@ -9,8 +9,11 @@ namespace :db do
 		article_max = [700, Article.count].min
 		mediafile_max = [300, Mediafile.count].min
 
-		should_index_articles = article_type.document_count < article_max
-		should_index_mediafiles = mediafile_type.document_count < mediafile_max
+		# To see if articles/mediafiles need to be added to index, see if last article/mediafile is in index
+		last_article_search = article_type.search(Article.last.id, :search_fields => {:articles => ['external_id']})
+		should_index_articles = last_article_search.records['articles'].count == 0
+		last_mediafile_search = mediafile_type.search(Mediafile.last.id, :search_fields => {:mediafiles => ['external_id']})
+		should_index_mediafiles = last_mediafile_search.records['mediafiles'].count == 0
 
 		if should_index_mediafiles
 
