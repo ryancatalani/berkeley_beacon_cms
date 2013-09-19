@@ -90,10 +90,12 @@
 					</div>
 				</div>
 
+				<% if Issue.any? %>
 				<div class="separator"></div>
 				<h3>This Issue</h3>
 				<%= link_to image_tag(@latest_issue.pdf_thumb_url), @latest_issue.path %>
 				<%= link_to "View this issue", @latest_issue.path %> | <%= link_to "All issues", issues_path %>
+				<% end %>
 
 				<div class="separator"></div>
 
