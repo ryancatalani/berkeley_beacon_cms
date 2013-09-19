@@ -1,0 +1,5 @@
+<h1><%= @issue.release_date_f %></h1>
+<p><%= link_to "Download", "#{@issue.pdf_url}?dl=true", :class => 'btn btn-primary' %> <%= link_to "View other issues", issues_path, :class => 'btn' %></p>
+
+<iframe width="100%" height="500px" src="http://docs.google.com/viewer?url=<%= u @issue.pdf_url %>&embedded=true" frameborder="0"></iframe>
+

@@ -6,4 +6,8 @@ class Issue < ActiveRecord::Base
 	def release_date_f
 		release_date.to_formatted_s(:long)
 	end
+
+	def path
+		"issues/#{release_date}"
+	end
 end

@@ -91,6 +91,11 @@
 				</div>
 
 				<div class="separator"></div>
+				<h3>This Issue</h3>
+				<%= link_to image_tag(@latest_issue.pdf_thumb_url), @latest_issue.path %>
+				<%= link_to "View this issue", @latest_issue.path %> | <%= link_to "All issues", issues_path %>
+
+				<div class="separator"></div>
 
 				<h3>From the blogs</h3>
 				<h4><a href="http://berkeleybeacon.tumblr.com">The Beacon on Tumblr</a></h4>

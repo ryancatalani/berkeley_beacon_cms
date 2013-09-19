@@ -1,0 +1,16 @@
+<% @issues.each_with_index do |issue, i| %>
+	<% if i % 4 == 0 %>
+	<div class="row">
+	<% end %>
+
+	<div class="span2">
+		<%= image_tag issue.pdf_thumb_url %>
+		<strong><%= issue.release_date_f %></strong>
+		<%= link_to "View", issue.path, :class => 'btn' %> <%= link_to "Download", "#{issue.pdf_url}?dl=true", :class => 'btn' %>
+	</div>
+
+	<% if i % 4 == 3 %>
+	</div>
+	<% end %>
+
+<% end %>

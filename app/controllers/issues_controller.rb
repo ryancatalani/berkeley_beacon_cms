@@ -1,8 +1,14 @@
 class IssuesController < ApplicationController
-	before_filter :check_editor, :except => [:index]
+	before_filter :check_editor, :except => [:index, :show]
 
 	def index
 		@issues = Issue.all
+		@include_bootstrap = true
+	end
+
+	def show
+		@issue = Issue.find_by_release_date(params[:date])
+		@include_bootstrap = true
 	end
 
 	def edit

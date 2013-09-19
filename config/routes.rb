@@ -37,6 +37,7 @@ BeaconApp::Application.routes.draw do
   match '/election_guide_2012/map', :to => 'pages#election_map'
 
   match '/api/top5', :to => 'pages#statusboard_top_5_json'
+  match '/issues/:date', :to => 'issues#show'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
