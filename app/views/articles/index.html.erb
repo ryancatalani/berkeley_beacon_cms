@@ -3,8 +3,21 @@
 	<%= submit_tag "Search", :class => "btn btn-primary" %>
 <% end %>
 
-<%= link_to "Edit home page", new_home_layout_path, :class => "btn" %>
-<%= link_to "Upload Editorial Cartoon", new_editorial_cartoon_path, :class => "btn" %>
+<p>
+	<%= link_to "Edit home page", new_home_layout_path, :class => "btn" %>
+	<%= link_to "Upload Editorial Cartoon", new_editorial_cartoon_path, :class => "btn" %>
+</p>
+<p>
+	Upload issue PDF
+	<%= collection_select :issue, :release_date, Issue.all, :id, :release_date_f %>
+	<a href="#" class="btn" id="issue-upload-select">Go</a>
+	<script>
+		$("#issue-upload-select").click(function(){
+			var url = "/issues/" + $("#issue_release_date").val() + "/edit";
+			window.location = url;
+		});
+	</script>
+</p>
 
 <h1>Most viewed articles</h1>
 
