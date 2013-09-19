@@ -49,6 +49,7 @@ BeaconApp::Application.routes.draw do
   resources :social_posts, :only => [:index, :new, :create, :edit, :update, :destroy]
   resources :home_layouts, :only => [:new, :create]
   resources :short_links, :only => [:index, :create, :update, :destroy]
+  resources :issues, :only => [:index, :edit, :update]
 
   match '/new_editorial_cartoon', :to => 'pages#new_editorial_cartoon'
   match '/opinion/editorial_cartoons', :to => 'pages#editorial_cartoons'

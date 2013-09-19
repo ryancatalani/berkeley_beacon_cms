@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130217032421) do
+ActiveRecord::Schema.define(:version => 20130919205132) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -94,6 +94,14 @@ ActiveRecord::Schema.define(:version => 20130217032421) do
     t.text     "custom_top_html"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "issues", :force => true do |t|
+    t.string   "pdf_url"
+    t.date     "release_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "pdf_thumb_url"
   end
 
   create_table "mediafiles", :force => true do |t|

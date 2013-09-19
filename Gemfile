@@ -33,6 +33,7 @@ gem 'newrelic_rpm', '~> 3.5.7.59'
 gem 'swiftype'
 gem 'memcachier'
 gem 'dalli'
+gem 'filepicker-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

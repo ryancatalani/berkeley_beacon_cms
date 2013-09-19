@@ -1,0 +1,8 @@
+<%= filepicker_js_include_tag %>
+
+<h1>Edit <%= @issue.release_date_f %> PDF</h1>
+
+<%= form_for @issue do |f| %>
+	<%= f.filepicker_field :pdf_url %>
+	<%= f.submit %>
+<% end %>

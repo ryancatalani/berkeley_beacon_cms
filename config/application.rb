@@ -48,5 +48,7 @@ module BeaconApp
 
     # http://blog.codeship.io/2012/05/06/Unicorn-on-Heroku.html
     config.logger = Logger.new(STDOUT)
+
+    config.filepicker_rails.api_key = '***REMOVED***'
   end
 end

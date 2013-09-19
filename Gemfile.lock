@@ -73,6 +73,9 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.8)
       sax-machine (~> 0.1.0)
+    filepicker-rails (0.1)
+      multi_json (~> 1.6)
+      railties (>= 3.1.0, < 5.0)
     fog (1.7.0)
       builder
       excon (~> 0.14)
@@ -210,6 +213,7 @@ DEPENDENCIES
   faker
   fb_graph
   feedzirra
+  filepicker-rails
   fog (~> 1.7.0)
   geocoder
   jquery-rails
