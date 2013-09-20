@@ -29,7 +29,7 @@ class PagesController < ApplicationController
 		@tweets = Twitter.user_timeline("beaconupdate").first(number_of_tweets) rescue []
 		@blogs = Blog.all
 		@latest_multimedia = Mediafile.where(:mediatype => 2).last(3).reverse
-		@latest_issue = Issue.last
+		@latest_issue = Issue.latest
 		begin
 			tumblr_latest = Timeout::timeout(5) {
 				Feedzirra::Feed.fetch_and_parse("http://berkeleybeacon.tumblr.com/rss").entries.first

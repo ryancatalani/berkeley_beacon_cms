@@ -90,7 +90,7 @@
 					</div>
 				</div>
 
-				<% if Issue.any? && !Issue.last.pdf_thumb_url.nil? %>
+				<% if Issue.any? && @latest_issue.ok_to_display? %>
 				<div class="separator"></div>
 				<h3>This Issue</h3>
 				<%= link_to image_tag(@latest_issue.pdf_thumb_url), @latest_issue.path %>

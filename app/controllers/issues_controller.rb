@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
 	before_filter :check_editor, :except => [:index, :show]
 
 	def index
-		@issues = Issue.all
+		@issues = Issue.all.keep_if { |i| i.ok_to_display? }
 		@include_bootstrap = true
 	end
 
@@ -31,7 +31,7 @@ class IssuesController < ApplicationController
 			})
 			directory = connection.directories.get("theberkeleybeacon")
 			file = directory.files.create({
-				:key => "#{@issue.release_date_f}-pdfthumb.jpg",
+				:key => "#{@issue.release_date}-pdfthumb.jpg",
 				:body => pdf_thumb.to_blob,
 				:public => true
 			})

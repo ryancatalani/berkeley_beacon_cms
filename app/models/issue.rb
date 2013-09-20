@@ -10,4 +10,21 @@ class Issue < ActiveRecord::Base
 	def path
 		"issues/view/#{release_date}"
 	end
+
+	def released_yet?
+		Date.today >= release_date
+	end
+
+	def ok_to_display?
+		released_yet? && pdf_url? && pdf_thumb_url?
+	end
+
+	def self.latest
+		possible = Issue.last(2)
+		if possible.last.released_yet?
+			return possible.last
+		else
+			return possible.first
+		end
+	end
 end
