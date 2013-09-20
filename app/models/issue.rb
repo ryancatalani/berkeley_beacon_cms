@@ -8,7 +8,7 @@ class Issue < ActiveRecord::Base
 	end
 
 	def path
-		"issues/view/#{release_date}"
+		"/issues/view/#{release_date}"
 	end
 
 	def released_yet?
