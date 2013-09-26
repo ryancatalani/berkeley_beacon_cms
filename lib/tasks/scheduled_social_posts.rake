@@ -5,6 +5,11 @@ namespace :db do
 
 		# Override with rake db:post_scheduled_posts force=true
 		if (Time.zone.now.hour >= 9 && Time.zone.now.hour < 21) || (ENV['force'] && ENV['force'] == 'true')
+			if SocialPost.count > 50
+				# 50 seems like a lot, so we'll check if there are unnecessary old ones.
+				SocialPost.where("created_at < ?",Issue.last.release_date-1.day).destroy_all
+			end
+
 			to_post = []
 			did_post = []
 
