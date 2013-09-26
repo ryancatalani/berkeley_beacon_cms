@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
 	validates_presence_of :title, :body, :articletype
-	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id, :section_id, :archive, :archive_images, :blog_id, :link_only, :link
+	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id, :section_id, :archive, :archive_images, :blog_id, :link_only, :link, :issue_id
 	has_many :authorships
 	has_many :people, :through => :authorships
 	has_many :taggings
@@ -12,6 +12,7 @@ class Article < ActiveRecord::Base
 	belongs_to :section
 	belongs_to :series
 	belongs_to :blog
+	belongs_to :issue
 	serialize :archive_images
 	serialize :subtitles
 	before_save :check_clean_title

@@ -120,6 +120,10 @@
 						<%= f.label :section_id %>
 						<%= f.select :section_id, options_for_select(@sections)  %>
 					</div>
+					<div class="field">
+						<%= f.label :issue_id %>
+						<%= f.select :issue_id, options_for_select(@issues) %>
+					</div>
 					<div id="series" class="field">
 						<%= f.label :series_id %>
 						<%= f.select :series_id, options_for_select(@series) %>

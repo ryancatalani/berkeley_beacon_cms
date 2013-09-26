@@ -34,6 +34,8 @@ gem 'swiftype'
 gem 'memcachier'
 gem 'dalli'
 gem 'filepicker-rails'
+gem 'groupdate'
+gem 'chartkick'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

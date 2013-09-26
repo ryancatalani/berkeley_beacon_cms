@@ -19,6 +19,7 @@ class ArticlesController < ApplicationController
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 		@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
+		@issues = [["None", 0]] + Issue.all.map {|i| [i.release_date_f, i.id]}.reverse
 		@can_queue_tweet = can_queue_tweet?
 	end
 
@@ -81,6 +82,7 @@ class ArticlesController < ApplicationController
 			@sections = Section.all.map { |s| [s.name, s.id] }
 			@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 			@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
+			@issues = [["None", 0]] + Issue.all.map {|i| [i.release_date_f, i.id]}.reverse
 			render "new"
 		end
 	end
@@ -167,6 +169,7 @@ class ArticlesController < ApplicationController
 		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
 		@authors.unshift(["Choose an author",0])
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
+		@issues = [["None", 0]] + Issue.all.map {|i| [i.release_date_f, i.id]}.reverse
 		@can_queue_tweet = can_queue_tweet?
 	end
 
@@ -226,6 +229,7 @@ class ArticlesController < ApplicationController
 			@authors = Person.order("lastname ASC").all.map { |person| [person.official_name, person.id] }
 			@display_already_uploaded = true unless cookies[:already_uploaded].nil? or cookies[:already_uploaded].blank?
 			@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
+			@issues = [["None", 0]] + Issue.all.map {|i| [i.release_date_f, i.id]}.reverse
 			render 'edit'
 		end
 	end

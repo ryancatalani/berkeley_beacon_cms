@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130919205132) do
+ActiveRecord::Schema.define(:version => 20130926214851) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20130919205132) do
     t.boolean  "link_only"
     t.string   "link"
     t.integer  "print_issue_id"
+    t.integer  "issue_id"
   end
 
   create_table "attributions", :force => true do |t|

@@ -48,6 +48,10 @@
 		<a href="#" id="newsubtitlebtn" class="btn"><i class="icon-plus"></i> Add Subtitle</a>
 	</div>
 
+	<div class="field">
+		<%= f.label :issue_id %>
+		<%= f.select :issue_id, options_for_select(@issues, @article.issue_id) %>
+	</div>
 	<div id="series">
 		<%= f.label :series_id %>
 		<%= select_tag :series_id, options_for_select(@series, @article.series_id) %>
