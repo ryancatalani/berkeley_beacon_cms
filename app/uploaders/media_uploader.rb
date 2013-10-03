@@ -10,21 +10,30 @@ class MediaUploader < CarrierWave::Uploader::Base
   # storage :file
   storage :fog
 
+  def filename
+    @name ||= "#{timestamp}-#{super}.jpg" if original_filename.present? and super.present?
+  end
+
+  def timestamp
+    var = :"@#{mounted_as}_timestamp"
+    model.instance_variable_get(var) or model.instance_variable_set(var, Time.now.to_i)
+  end
+
 	# Popular story
 	version :thumb_40, :if => :image? do
 		process :resize_to_fill => [40,40]
 	end
-	
+
 	# Featured stories, section box images
 	version :thumb_220, :if => :image? do
 		process :resize_to_fill => [220,220]
 	end
-	
+
 	# Middle strip story
 	version :thumb_140, :if => :image? do
 		process :resize_to_fill => [140,140]
 	end
-	
+
 	# Main story image
 	version :thumb_460, :if => :image? do
 		process :resize_to_fill => [460,460]
@@ -68,16 +77,14 @@ class MediaUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+
 
 	# version :scaled do
 	# 	process :resize_to_fit => [820, 820]
 	# end
 
 	protected
-		
+
 		# def is_landscape? picture
 		# 	image = MiniMagick::Image.open(picture.path)
 		# 	  	image[:width] > image[:height]
