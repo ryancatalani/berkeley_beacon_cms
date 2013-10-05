@@ -3,7 +3,7 @@ class HomeLayoutsController < ApplicationController
 
   def new
   	@home_layout = HomeLayout.new
-  	as = Issue.last.articles rescue Article.last(30)
+  	as = Issue.last.article.count > 0 ? Issue.last.articles : Issue.first(2).last.articles rescue Article.last(30)
     @articles = as.sort {|x,y| x.section_id <=> y.section_id }
 
     if HomeLayout.last
