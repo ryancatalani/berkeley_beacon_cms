@@ -90,8 +90,16 @@ class ArticlesController < ApplicationController
 	def index
 		@articles = Article.order("created_at DESC").first(30)
 		@user_articles = current_user.articles.order("created_at DESC").first(6)
+	end
+
+	def pop_views_ck_data
 		snapshot_count = 24 * 7
 		latest_pop = PopularSnapshot.last(snapshot_count)
+
+		hours = []
+		snapshot_count.times do |x|
+			hours << snapshot_count.hours.ago - x.hours
+		end
 
 		# latest_* = [ [hour], [hour], etc ]
 		# hour = [ [first most popular], [second most popular], etc ]
@@ -101,6 +109,8 @@ class ArticlesController < ApplicationController
 
 		@pop_views_final = {}
 		@pop_shares_final = {}
+
+		@pop_views_ck = {}
 
 		pop_views.flatten(1).map(&:first).uniq.each do |artcl|
 			@pop_views_final[artcl] = Array.new(snapshot_count, 0)
@@ -124,6 +134,15 @@ class ArticlesController < ApplicationController
 				count = inner.last
 				@pop_shares_final[article_id][i] = count
 			end
+		end
+
+		@pop_views_ck = @pop_views_final.map do |k,v|
+			name = Article.find(k).title rescue "Article #{k}"
+			hours_data = {}
+			hours.reverse.each_with_index do |h,i|
+				hours_data[h] = v[i]
+			end
+			{ :name => name, :data => hours_data }
 		end
 
 		@pop_views_final_keys = @pop_views_final.map{|k,v| Article.find(k).title rescue "Article #{k}" }.to_s
@@ -151,6 +170,7 @@ class ArticlesController < ApplicationController
 		@times = []
 		snapshot_count.times{|n| @times << n+1 }
 
+		render :json => @pop_views_ck
 	end
 
 	def search_edit
