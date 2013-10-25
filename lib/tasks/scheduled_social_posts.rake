@@ -27,10 +27,15 @@ namespace :db do
 
 			to_post.each do |post|
 				if post.can_include_twitter_photo?
-					uri = URI.parse(post.twitter_photo_url)
-					media = uri.open
-					media.instance_eval("def original_filename; '#{File.basename(uri.path)}'; end")
-					t = current_twitter.update_with_media(post.full_post, media)
+					begin
+						uri = URI.parse(post.twitter_photo_url)
+						media = uri.open
+						media.instance_eval("def original_filename; '#{File.basename(uri.path)}'; end")
+						t = current_twitter.update_with_media(post.full_post, media)
+					rescue
+						# In case of timeouts, etc, skip photo
+						t = current_twitter.update(post.full_post)
+					end
 				else
 					t = current_twitter.update(post.full_post)
 				end
