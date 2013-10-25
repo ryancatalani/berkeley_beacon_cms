@@ -24,7 +24,7 @@ gem 'exception_notification'
 gem 'nokogiri'
 gem 'mini_magick'
 # gem 'rmagick'
-gem "twitter", "~> 4.4.4"
+gem "twitter", "~> 4.8.1"
 gem 'will_paginate', '~> 3.0'
 gem 'geocoder'
 gem 'fb_graph'
