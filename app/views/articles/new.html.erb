@@ -47,14 +47,11 @@
 			<div id="authors">
 				<div class="field">
 
-					<%= label_tag :author_1 %>
-					<%= select_tag :author_1, options_for_select(@authors), :name => "author[1]" %>
+					<%= label_tag :author %>
+					<%= select_tag :author, options_for_select(@authors), :name => "author[]", :multiple => true, "data-placeholder" => "Start typing a name..." %>
 				</div>
-				<div class="alert alert-error" id="author_headsup">
-				Make sure you choose the correct author.
-				</div>
+				<br>
 
-				<a href="#" id="newauthorbtn" class="btn"><i class="icon-plus"></i> Add another author to the story</a>
 				<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_person_modal"><i class="icon-user"></i> Create a new person</a>
 				<script type="text/javascript" charset="utf-8">
 

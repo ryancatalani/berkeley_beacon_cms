@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
 			if mediafile.kind_of? Mediafile and !mediafile.source.blank?
 				return mediafile.source
 			end
-			people = mediafile.people
+			people = mediafile.people.sort_by{|p| p.lastname}
 			return "Beacon Staff" if people.count == 0
 			return people.first.official_linked_name if people.count == 1
 			if people.count == 2

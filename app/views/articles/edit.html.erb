@@ -59,11 +59,11 @@
 
 	<div id="authors">
 		<div class="field">
-			<%= label_tag :author_1 %>
+			<%= label_tag :author %>
 			<% begin %>
-				<%= select_tag :author_1, options_for_select(@authors, @article.people.first.id), :name => "author[1]" %>
+				<%= select_tag :author, options_for_select(@authors, @current_authors), :name => "author[]", :multiple => true %>
 			<% rescue %>
-				<%= select_tag :author_1, options_for_select(@authors), :name => "author[1]" %>
+				<%= select_tag :author, options_for_select(@authors), :name => "author[]", :multiple => true %>
 			<% end %>
 		</div>
 		<a href="#" id="newauthorbtn" class="btn"><i class="icon-plus"></i> Add another author to the story</a>

@@ -73,7 +73,7 @@
 		<% end %>
 
 		<%= @article.body.html_safe %>
-		<br /><% @article.people.each do |p| %>
+		<br /><% @article.people.sort_by{|p| p.lastname}.each do |p| %>
 			<p><em>
 			<%= p.contact_info.html_safe if p.other_designation.blank? %>
 			</em></p>

@@ -36,15 +36,14 @@ jQuery ->
 
 	$("div[rel=popover]").popover()
 	$("div[rel=tooltip]").tooltip()
-	$("a[rel=tooltip]").tooltip()	
+	$("a[rel=tooltip]").tooltip()
 	# media_img = $("#media").find("img")
 	# h = ((media_img.height() - 546) / 2) * -1
 	# old_height = media_img.height()
 	# x_mov = "-" + h + "px"
 	# media_img.css("marginTop",parseFloat(h))
-	
-	$("#author_1").change ->
-		$("#author_headsup").slideUp()
+
+	$("#author").chosen()
 
 	$("#sidebar").hover ->
 		$(this).fadeTo('fast',1)
@@ -52,10 +51,10 @@ jQuery ->
 		$(this).fadeTo('fast',0.5)
 	$("#media").hover ->
 		$("#gallery_back_btn").fadeIn()
-		$("#gallery_forward_btn").fadeIn()		
+		$("#gallery_forward_btn").fadeIn()
 	,->
 		$("#gallery_back_btn").fadeOut()
-		$("#gallery_forward_btn").fadeOut()		
+		$("#gallery_forward_btn").fadeOut()
 	containers = $("#media").find(".media_container")
 	i = 0
 	$("#gallery_back_btn").click ->

@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
 		if params[:author].nil?
 			authors << current_user
 		else
-			params[:author].values.each do |author_id|
+			params[:author].map(&:to_i).each do |author_id|
 				begin
 					authors << Person.find(author_id.to_i)
 				rescue
@@ -182,9 +182,8 @@ class ArticlesController < ApplicationController
 	end
 
 	def edit
-		# TODO: Doesn't update authors, etc
 		@article = Article.find(params[:id])
-		@current_authors = @article.people
+		@current_authors = @article.people.map{|p| p.id}
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
 		@authors.unshift(["Choose an author",0])
@@ -204,7 +203,7 @@ class ArticlesController < ApplicationController
 		if params[:author].nil?
 			authors << current_user
 		else
-			params[:author].values.each do |author_id|
+			params[:author].map(&:to_i).each do |author_id|
 				begin
 					authors << Person.find(author_id.to_i)
 				rescue
