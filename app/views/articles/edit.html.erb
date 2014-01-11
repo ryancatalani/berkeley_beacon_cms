@@ -59,7 +59,7 @@
 
 	<div id="authors">
 		<div class="field">
-			<%= label_tag :author %>
+			<%= label_tag :author, "Author(s)" %>
 			<% begin %>
 				<%= select_tag :author, options_for_select(@authors, @current_authors), :name => "author[]", :multiple => true %>
 			<% rescue %>

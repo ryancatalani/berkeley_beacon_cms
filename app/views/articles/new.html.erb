@@ -47,7 +47,7 @@
 			<div id="authors">
 				<div class="field">
 
-					<%= label_tag :author %>
+					<%= label_tag :author, "Author(s)" %>
 					<%= select_tag :author, options_for_select(@authors), :name => "author[]", :multiple => true, "data-placeholder" => "Start typing a name..." %>
 				</div>
 				<br>
