@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926214851) do
+ActiveRecord::Schema.define(:version => 20140111194620) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -270,5 +270,22 @@ ActiveRecord::Schema.define(:version => 20130926214851) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "topicals", :force => true do |t|
+    t.integer  "topic_id"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+  end
+
+  add_index "topics", ["slug"], :name => "index_topics_on_slug"
 
 end
