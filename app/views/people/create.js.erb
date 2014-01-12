@@ -1,6 +1,4 @@
-$("#author_1").append("<option value='<%= @person.id %>'><%= @person.official_name %></option>");
 $("#new_person_modal").modal('hide');
-$("#authors").append(afield(acount));
-acount += 1;
-$("#authors").find("select").last().find("option").last().attr('selected','selected');
+var opt = '<%= options_for_select({@person.official_name => @person.id}, @person.id) %>';
+$("#author").append(opt).trigger('chosen:updated');
 $("form#new_person").clearForm();

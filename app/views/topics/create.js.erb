@@ -1,3 +1,4 @@
 $('#new_topic_modal').modal('hide');
 var opt = '<%= options_for_select({@topic.title => @topic.id}, @topic.id) %>';
 $('#topic').append(opt).trigger('chosen:updated');
+$('#new_topic_modal').find('form').clearForm();

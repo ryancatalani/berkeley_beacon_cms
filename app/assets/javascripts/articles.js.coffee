@@ -49,6 +49,9 @@ jQuery ->
 	$("form#new_topic").submit ->
 		$(this).find('.spinner').fadeIn();
 		$(this).find('.btn-primary').prop('disabled', true)
+	$("form#new_person").submit ->
+		$(this).find('.spinner').fadeIn();
+		$(this).find('.btn-primary').prop('disabled', true)
 
 
 	$("#sidebar").hover ->
