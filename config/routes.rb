@@ -52,6 +52,7 @@ BeaconApp::Application.routes.draw do
   resources :home_layouts, :only => [:new, :create]
   resources :short_links, :only => [:index, :create, :update, :destroy]
   resources :issues, :only => [:index, :edit, :update]
+  resources :topics, :only => [:create, :edit, :update]
 
   match '/new_editorial_cartoon', :to => 'pages#new_editorial_cartoon'
   match '/opinion/editorial_cartoons', :to => 'pages#editorial_cartoons'
@@ -81,6 +82,9 @@ BeaconApp::Application.routes.draw do
 	end
   controller :blogs do
     match "/blogs/:name", :to => :show
+  end
+  controller :topics do
+    match "/topics/:slug", :to => :show
   end
 
   match '/go/:slug', :to => 'short_links#redirect'

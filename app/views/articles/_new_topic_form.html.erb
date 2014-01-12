@@ -1,0 +1,23 @@
+<div id="new_topic_modal" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">&times;</a>
+		<h3>New topic</h3>
+	</div>
+	<%= form_for Topic.new, :remote => true do |f| %>
+	<div class="modal-body">
+		<p>
+			<%= f.label :title %>
+			<%= f.text_field :title %>
+		</p>
+		<p>
+			<%= f.label :description %>
+			<%= f.text_area :description, :rows => 4 %>
+		</p>
+	</div>
+	<div class="modal-footer">
+		<img src="/assets/loading.gif" alt="" class="spinner" style="display:none;float:right">
+		<%= f.submit "Save", :class => "btn btn-primary" %>
+		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+	</div>
+	<% end %>
+</div>

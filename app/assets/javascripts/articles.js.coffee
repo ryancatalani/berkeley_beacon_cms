@@ -44,6 +44,12 @@ jQuery ->
 	# media_img.css("marginTop",parseFloat(h))
 
 	$("#author").chosen()
+	$("#topic").chosen()
+
+	$("form#new_topic").submit ->
+		$(this).find('.spinner').fadeIn();
+		$(this).find('.btn-primary').prop('disabled', true)
+
 
 	$("#sidebar").hover ->
 		$(this).fadeTo('fast',1)
