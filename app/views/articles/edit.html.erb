@@ -32,93 +32,109 @@
 	<% end %>
 
 </div>
+<%= render 'new_topic_form' %>
 
 <div id="new_article_wrap">
 <%= form_for @article, :html => { :multipart => true } do |f| %>
-	<div class="field">
-		<%= label_tag :section %>
-		<%= select_tag :section, options_for_select(@sections, @article.section_id)  %>
-	</div>
 
-	<div class="field">
-		<%= f.label :title %>
-		<%= f.text_field :title %>
-	</div>
-	<div id="subtitles">
-		<a href="#" id="newsubtitlebtn" class="btn"><i class="icon-plus"></i> Add Subtitle</a>
-	</div>
+	<div class="row">
+		<div class="span6">
+			<div class="field">
+				<%= f.label :title %>
+				<%= f.text_field :title %>
+			</div>
+			<div id="subtitles">
+				<a href="#" id="newsubtitlebtn" class="btn"><i class="icon-plus"></i> Add Subtitle</a>
+			</div>
 
-	<div class="field">
-		<%= f.label :issue_id %>
-		<%= f.select :issue_id, options_for_select(@issues, @article.issue_id) %>
-	</div>
-	<div id="series">
-		<%= f.label :series_id %>
-		<%= select_tag :series_id, options_for_select(@series, @article.series_id) %>
-	</div>
+			<div id="authors">
+				<div class="field">
+					<%= label_tag :author, "Author(s)" %>
+					<% begin %>
+						<%= select_tag :author, options_for_select(@authors, @current_authors), :name => "author[]", :multiple => true %>
+					<% rescue %>
+						<%= select_tag :author, options_for_select(@authors), :name => "author[]", :multiple => true %>
+					<% end %>
+				</div>
+				<a href="#" id="newauthorbtn" class="btn"><i class="icon-plus"></i> Add another author to the story</a>
+				<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_person_modal"><i class="icon-user"></i> Create a new person</a>
+				<script type="text/javascript" charset="utf-8">
 
-	<div id="authors">
-		<div class="field">
-			<%= label_tag :author, "Author(s)" %>
-			<% begin %>
-				<%= select_tag :author, options_for_select(@authors, @current_authors), :name => "author[]", :multiple => true %>
-			<% rescue %>
-				<%= select_tag :author, options_for_select(@authors), :name => "author[]", :multiple => true %>
-			<% end %>
+					function afield(c) {
+						var ret = '<div class="field">';
+						ret += '<label for="author_' + c + '">' + 'Author ' + c + '</label>';
+						ret += '<select id="author_' + c + '" name="author[' + c + ']">';
+						ret += $("#author_1").clone().attr("id","#author_" + c).attr("name","author[" + c+ "]").html();
+						ret += '</select><a href="#" class="removeauth btn btn-danger"><i class="icon-trash icon-white"></i> Remove Author ' + c + '</a></div>';
+						return ret;
+					}
+
+					function subfield(c) {
+						var ret = '<div class="field">';
+						ret += '<label for="subtitle_' + c + '">' + 'Subtitle ' + c + '</label>';
+						ret += '<input id="subtitle_' + c + '" name="subtitle[' + c + ']" size ="30" type="text">';
+						ret += '</select><a href="#" class="removesub btn btn-danger"><i class="icon-trash icon-white"></i> Remove Subtitle ' + c + '</a></div>';
+						return ret;
+					}
+
+					function remove_f(which) {
+						$(this).closest('.field').fadeOut().remove();
+						which === "auth" ? acount -= 1 : scount -= 1 ;
+					}
+
+					// --- Authors ---
+
+					acount = 2;
+					$("#newauthorbtn").click(function(){
+						$("#authors").append(afield(acount));
+						acount += 1;
+					});
+					$("#authors").click(function(e){
+						if ($(e.target).is('.removeauth'))
+							remove_f.call(e.target,"auth");
+					});
+
+					// --- Subtitles ---
+
+					scount = 1;
+					$("#newsubtitlebtn").click(function(){
+						$("#subtitles").append(subfield(scount));
+						scount += 1;
+					})
+					$("#subtitles").click(function(e){
+						if ($(e.target).is('.removesub'))
+							remove_f.call(e.target,"sub");
+					});
+
+
+				</script>
+			</div>
+
 		</div>
-		<a href="#" id="newauthorbtn" class="btn"><i class="icon-plus"></i> Add another author to the story</a>
-		<a href="#" id="new_person_btn" class="btn" data-toggle="modal" data-target="#new_person_modal"><i class="icon-user"></i> Create a new person</a>
-		<script type="text/javascript" charset="utf-8">
 
-			function afield(c) {
-				var ret = '<div class="field">';
-				ret += '<label for="author_' + c + '">' + 'Author ' + c + '</label>';
-				ret += '<select id="author_' + c + '" name="author[' + c + ']">';
-				ret += $("#author_1").clone().attr("id","#author_" + c).attr("name","author[" + c+ "]").html();
-				ret += '</select><a href="#" class="removeauth btn btn-danger"><i class="icon-trash icon-white"></i> Remove Author ' + c + '</a></div>';
-				return ret;
-			}
+		<div class="span6">
+			<div class="field">
+				<%= label_tag :section %>
+				<%= select_tag :section, options_for_select(@sections, @article.section_id)  %>
+			</div>
+			<div class="field">
+				<%= f.label :issue_id %>
+				<%= f.select :issue_id, options_for_select(@issues, @article.issue_id) %>
+			</div>
+			<div id="series">
+				<%= f.label :series_id %>
+				<%= select_tag :series_id, options_for_select(@series, @article.series_id) %>
+			</div>
+			<div class="field">
+				<%= render 'topics_form' %>
+			</div>
 
-			function subfield(c) {
-				var ret = '<div class="field">';
-				ret += '<label for="subtitle_' + c + '">' + 'Subtitle ' + c + '</label>';
-				ret += '<input id="subtitle_' + c + '" name="subtitle[' + c + ']" size ="30" type="text">';
-				ret += '</select><a href="#" class="removesub btn btn-danger"><i class="icon-trash icon-white"></i> Remove Subtitle ' + c + '</a></div>';
-				return ret;
-			}
-
-			function remove_f(which) {
-				$(this).closest('.field').fadeOut().remove();
-				which === "auth" ? acount -= 1 : scount -= 1 ;
-			}
-
-			// --- Authors ---
-
-			acount = 2;
-			$("#newauthorbtn").click(function(){
-				$("#authors").append(afield(acount));
-				acount += 1;
-			});
-			$("#authors").click(function(e){
-				if ($(e.target).is('.removeauth'))
-					remove_f.call(e.target,"auth");
-			});
-
-			// --- Subtitles ---
-
-			scount = 1;
-			$("#newsubtitlebtn").click(function(){
-				$("#subtitles").append(subfield(scount));
-				scount += 1;
-			})
-			$("#subtitles").click(function(e){
-				if ($(e.target).is('.removesub'))
-					remove_f.call(e.target,"sub");
-			});
+		</div>
 
 
-		</script>
 	</div>
+
+
 	<div class="field">
 		<%= f.label :body %>
 		<%= f.text_area :body %>
