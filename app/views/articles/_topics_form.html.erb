@@ -1,3 +1,3 @@
 <%= label_tag :topic, "Topic(s)" %>
-<%= select_tag :topic, options_for_select(Topic.all.map{|t| [t.title, t.id]}), :name => "topic[]", :multiple => true, "data-placeholder" => "Start typing a topic..." %>
+<%= select_tag :topic, options_for_select(@topics, @current_topics), :name => "topic[]", :multiple => true, "data-placeholder" => "Start typing a topic..." %>
 <a href="#" class="btn" data-toggle="modal" data-target="#new_topic_modal"><i class="icon-plus"></i> New topic</a>

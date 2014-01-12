@@ -20,6 +20,8 @@ class ArticlesController < ApplicationController
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 		@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
 		@issues = Issue.all.map {|i| [i.release_date_f, i.id]}.reverse.insert(1,["None/Online only", 0])
+		@topics = Topic.all.map{|t| [t.title, t.id]}
+		@current_topics = @article.topics.map{|t| t.id} || []
 		@can_queue_tweet = can_queue_tweet?
 	end
 
@@ -46,6 +48,7 @@ class ArticlesController < ApplicationController
 				end # begin
 			end # each
 		end # else
+
 		if is_draft
 			p[:body] = "[Fill in]" if p[:body].blank?
 			p[:excerpt] = " " if p[:excerpt].blank?
@@ -72,6 +75,11 @@ class ArticlesController < ApplicationController
 					Articlemediacontent.create!(:mediafile_id => m_id, :article_id => @article.id)
 				end
 				cookies[:already_uploaded] = []
+			end
+			if params[:topic]
+				t = params[:topic].map(&:to_i).each do |t_id|
+					Topical.create!(:article_id => @article.id, :topic_id => t_id)
+				end
 			end
 			tweet(is_draft, queue_tweet)
 			redirect_to new_article_url, :notice => "Article #{is_draft ? 'saved!' : 'posted'}!"
@@ -189,6 +197,8 @@ class ArticlesController < ApplicationController
 		@authors.unshift(["Choose an author",0])
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 		@issues = Issue.all.map {|i| [i.release_date_f, i.id]}.reverse.insert(1,["None/Online only", 0])
+		@topics = Topic.all.map{|t| [t.title, t.id]}
+		@current_topics = @article.topics.map{|t| t.id} || []
 		@can_queue_tweet = can_queue_tweet?
 	end
 
@@ -240,6 +250,11 @@ class ArticlesController < ApplicationController
 					Articlemediacontent.create!(:mediafile_id => m_id, :article_id => @article.id)
 				end
 				cookies[:already_uploaded] = []
+			end
+			if params[:topic]
+				t = params[:topic].map(&:to_i).each do |t_id|
+					Topical.create!(:article_id => @article.id, :topic_id => t_id)
+				end
 			end
 			tweet(is_draft, queue_tweet) if was_draft
 			redirect_to "/articles#a_#{@article.id}"

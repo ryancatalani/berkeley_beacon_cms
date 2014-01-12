@@ -243,6 +243,12 @@ class PagesController < ApplicationController
 		render :json => @results
 	end
 
+	def emersonla
+		@body_id = "emersonla"
+		@emersonla_topic_articles = Topic.find_by_title("Emerson LA").articles
+		render :layout => 'bare'
+	end
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}
