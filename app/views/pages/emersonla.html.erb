@@ -6,10 +6,24 @@
 	</div>
 </header>
 
-<div class="main">
+<div class="wrap">
+	<div class="main">
 
-</div>
+		<div class="separator"></div>
+		<h2>Previous Reports</h2>
+		<% @topic_articles.each do |article| %>
+		<article>
+			<h3><%= link_to article.title, article.to_url %></h3>
+			<p><%= article.excerpt %></p>
+			<%= link_to(image_tag(article.thumb), article.to_url) if article.thumb %>
+		</article>
+		<% end %>
 
-<div class="sidebar">
+
+	</div>
+
+	<div class="sidebar">
+
+	</div>
 
 </div>

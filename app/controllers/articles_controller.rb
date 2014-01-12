@@ -251,6 +251,8 @@ class ArticlesController < ApplicationController
 				end
 				cookies[:already_uploaded] = []
 			end
+
+			Topical.where(:article_id => @article.id).destroy_all
 			if params[:topic]
 				t = params[:topic].map(&:to_i).each do |t_id|
 					Topical.create!(:article_id => @article.id, :topic_id => t_id)

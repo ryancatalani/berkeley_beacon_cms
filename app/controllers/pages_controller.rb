@@ -245,7 +245,7 @@ class PagesController < ApplicationController
 
 	def emersonla
 		@body_id = "emersonla"
-		@emersonla_topic_articles = Topic.find_by_title("Emerson LA").articles
+		@topic_articles = Topic.find_by_title("Emerson LA").articles
 		render :layout => 'bare'
 	end
 

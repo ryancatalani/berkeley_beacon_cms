@@ -64,6 +64,11 @@ class Article < ActiveRecord::Base
 		return nil
 	end
 
+	def thumb
+		return nil unless first_photo
+		first_photo.media.thumb_140.url
+	end
+
 	def images
 		mediafiles.where('mediatype <> 2 AND mediatype <> 5')
 	end
