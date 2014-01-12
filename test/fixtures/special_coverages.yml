@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  lead: 1
+  featured: MyText
+  related_topic: 1
+  related_articles: MyText
+  media: MyText
+  updates: MyText
+
+two:
+  lead: 1
+  featured: MyText
+  related_topic: 1
+  related_articles: MyText
+  media: MyText
+  updates: MyText

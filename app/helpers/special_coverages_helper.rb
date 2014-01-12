@@ -1,0 +1,2 @@
+module SpecialCoveragesHelper
+end

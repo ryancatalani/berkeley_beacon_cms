@@ -1,0 +1,2 @@
+class SpecialCoveragesController < ApplicationController
+end

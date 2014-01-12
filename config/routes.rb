@@ -35,7 +35,7 @@ BeaconApp::Application.routes.draw do
   match '/election_guide_2012', :to => 'pages#election_guide_2012'
   match '/election_guide_2012/poll_results', :to => 'pages#political_poll_results'
   match '/election_guide_2012/map', :to => 'pages#election_map'
-  # match '/projects/emersonla', :to => 'pages#emersonla'
+  match '/projects/emersonla', :to => 'pages#emersonla'
 
   match '/api/top5', :to => 'pages#statusboard_top_5_json'
   match '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'
