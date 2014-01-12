@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140112150436) do
+ActiveRecord::Schema.define(:version => 20140112152526) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -260,6 +260,7 @@ ActiveRecord::Schema.define(:version => 20140112150436) do
     t.text     "updates"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "stylebook_entries", :force => true do |t|

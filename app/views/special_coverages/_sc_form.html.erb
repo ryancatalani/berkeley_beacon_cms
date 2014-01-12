@@ -1,0 +1,84 @@
+<div class="row">
+
+	<div class="span6">
+		<%= form_for @sc do |f| %>
+			<div class="field">
+				<%= f.label :title %>
+				<%= f.text_field :title %>
+			</div>
+
+			<div class="separator"></div>
+
+			<div class="field">
+				<%= f.label :lead, "Lead story" %>
+				<%= f.select :lead, options_for_select(@latest_articles, @lead) %>
+			</div>
+
+			<div class="field">
+				<%= label_tag :featured, "Featured stories" %>
+				<%= select_tag :featured, options_for_select(@latest_articles, @featured), :name => "featured[]", :multiple => true, "data-placeholder" => "Start typing an article title..." %>
+			</div>
+
+			<div class="field">
+				<%= f.label :related_topic %>
+				<%= f.select :related_topic, options_for_select(@topics, @related_t), "data-placeholder" => "Choose an article" %>
+			</div>
+
+			<div class="field">
+				<%= label_tag :related_articles, "Related articles" %>
+				<%= select_tag :related_articles, options_for_select(@latest_articles, @related_a), :name => "related_articles[]", :multiple => true, "data-placeholder" => "Start typing an article title..." %>
+			</div>
+
+			<div class="separator"></div>
+
+			<%= f.submit "Save", :class => "btn btn-primary" %>
+		<% end %>
+	</div>
+
+	<div class="span6">
+		<p><strong>Updates</strong></p>
+		<div class="well">
+			<%= form_tag '/api/special_coverage/new_update', :remote => true, :id => 'sc_new_update' do %>
+				<%= hidden_field_tag 'special_coverage_id', @sc.id %>
+
+				<p><em>All fields are optional</em></p>
+				<%= text_field_tag :title, nil, :placeholder => 'Title' %>
+				<%= text_field_tag :tweet, nil, :placeholder => 'Tweet link' %>
+				<%= text_area_tag :body, nil, :rows => 5, :id => 'update_body' %>
+
+				<p>
+					<% if @sc.id %>
+						<%= submit_tag "Post", :class => "btn btn-primary" %>
+						<button class="btn btn-danger" id="clear_post">Clear</button>
+					<% else %>
+						Save the special coverage before posting updates
+					<% end %>
+				</p>
+			<% end %>
+		</div>
+	</div>
+
+</div>
+
+<script>
+	$(function(){
+		$("textarea#update_body").tinymce({
+			plugins : 'paste',
+			theme: 'advanced',
+		    theme_advanced_buttons1 : "mylistbox,mysplitbutton,bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,undo,redo,link,unlink,image,code",
+		    theme_advanced_buttons2 : "",
+		    theme_advanced_buttons3 : "",
+		    theme_advanced_toolbar_align : "left",
+			theme_advanced_toolbar_location : 'top',
+			width: "100%",
+			height: "150",
+			paste_auto_cleanup_on_paste : true,
+            paste_remove_styles: true,
+            paste_remove_styles_if_webkit: true,
+            paste_strip_class_attributes: true,
+            convert_urls : false,
+            relative_urls : false,
+            remove_script_host : false
+		});
+	});
+</script>

@@ -39,6 +39,7 @@ BeaconApp::Application.routes.draw do
 
   match '/api/top5', :to => 'pages#statusboard_top_5_json'
   match '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'
+  match '/api/special_coverage/new_update', :to => 'special_coverages#new_update'
   match '/issues/view/:date', :to => 'issues#show', :via => :get
 
 	resources :stylebook_entries, :except => [:show]
@@ -54,6 +55,7 @@ BeaconApp::Application.routes.draw do
   resources :short_links, :only => [:index, :create, :update, :destroy]
   resources :issues, :only => [:index, :edit, :update]
   resources :topics, :only => [:create, :edit, :update]
+  resources :special_coverages, :only => [:new, :create, :edit, :update]
 
   match '/new_editorial_cartoon', :to => 'pages#new_editorial_cartoon'
   match '/opinion/editorial_cartoons', :to => 'pages#editorial_cartoons'
