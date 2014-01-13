@@ -79,7 +79,7 @@
 
 			<h2>Topic in depth: <%= @related_t.title %></h2>
 			<div class="articles">
-			<% @related_t.articles.each do |article| %>
+			<% @related_t.articles.order("created_at DESC").each do |article| %>
 			<article>
 				<%= link_to(image_tag(article.thumb), article.to_url) if article.thumb %>
 				<h3><%= link_to article.title, article.to_url %></h3>
