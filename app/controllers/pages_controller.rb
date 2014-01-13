@@ -251,7 +251,7 @@ class PagesController < ApplicationController
 		@featured = @sc.featured.map{|id| Article.find(id)} rescue nil
 		@related_t = Topic.find(@sc.related_topic) rescue nil
 		@related_a = @sc.related_articles.map{|id| Article.find(id)} rescue nil
-		@updates = @sc.updates.reverse
+		@updates = @sc.updates.reverse rescue []
 
 		render :layout => 'bare'
 	end

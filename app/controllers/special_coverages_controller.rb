@@ -75,7 +75,8 @@ class SpecialCoveragesController < ApplicationController
 		end
 
 		sc = SpecialCoverage.find(params[:sc_id])
-		sc_updates = sc.updates.push(update)
+		sc_updates = sc.updates || []
+		sc_updates.push(update)
 		sc.update_attribute(:updates, sc_updates)
 
 		@u = update
