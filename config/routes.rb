@@ -39,7 +39,7 @@ BeaconApp::Application.routes.draw do
 
   match '/api/top5', :to => 'pages#statusboard_top_5_json'
   match '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'
-  match '/api/special_coverage/new_update', :to => 'special_coverages#new_update'
+  match '/api/special_coverage/new_update', :to => 'special_coverages#new_update', :via => :post
   match '/issues/view/:date', :to => 'issues#show', :via => :get
 
 	resources :stylebook_entries, :except => [:show]

@@ -39,7 +39,7 @@
 		<p><strong>Updates</strong></p>
 		<div class="well">
 			<%= form_tag '/api/special_coverage/new_update', :remote => true, :id => 'sc_new_update' do %>
-				<%= hidden_field_tag 'special_coverage_id', @sc.id %>
+				<%= hidden_field_tag 'sc_id', @sc.id %>
 
 				<p><em>All fields are optional</em></p>
 				<%= text_field_tag :title, nil, :placeholder => 'Title' %>
@@ -48,8 +48,9 @@
 
 				<p>
 					<% if @sc.id %>
+						<img src="/assets/loading.gif" alt="" class="spinner" style="display:none;float:right">
 						<%= submit_tag "Post", :class => "btn btn-primary" %>
-						<button class="btn btn-danger" id="clear_post">Clear</button>
+						<a href="#" class="btn btn-danger" id="clear_post">Clear</a>
 					<% else %>
 						Save the special coverage before posting updates
 					<% end %>
@@ -57,6 +58,17 @@
 			<% end %>
 		</div>
 	</div>
+
+	<div id="updates">
+		<% @updates.each do |u| %>
+			<p>
+				<% if u[:title] %><em><%= u[:title] %></em><br><% end %>
+				<%= u[:twitter_embed].html_safe if u[:twitter_embed] %>
+				<%= u[:body] if u[:body] %>
+			</p>
+		<% end %>
+	</div>
+
 
 </div>
 

@@ -1,29 +1,94 @@
 <header>
 	<div class="wrap">
-		<a href="/" class="brand">the berkeley beacon</a>
-		<h1>Emerson Los Angeles</h1>
-		<span class="special">Special Coverage</span>
+		<div class="header_title">
+			<a href="/" class="brand">The Berkeley Beacon</a> • Special Coverage
+			<h1>Emerson Los Angeles</h1>
+		</div>
 	</div>
 </header>
 
 <div class="wrap">
 	<div class="main">
 
-		<div class="separator"></div>
-		<h2>Previous Reports</h2>
-		<% @topic_articles.each do |article| %>
-		<article>
-			<h3><%= link_to article.title, article.to_url %></h3>
-			<p><%= article.excerpt %></p>
-			<%= link_to(image_tag(article.thumb), article.to_url) if article.thumb %>
-		</article>
+		<% if @lead %>
+
+			<article class="lead">
+				<h3><%= link_to @lead.title, @lead.to_url %></h3>
+				<%= link_to(image_tag(@lead.first_photo.media.thumb_460.url), @lead.to_url) if @lead.first_photo %>
+				<div class="meta">
+					By <%= bylineify(@lead) %>
+					<br><%= (@lead.created_at).to_s(:pretty_date_and_time) %>
+				</div>
+				<p><%= @lead.excerpt %></p>
+
+			</article>
+
+			<% if @featured %>
+				<div class="articles">
+				<% @featured.each do |article| %>
+					<article class="featured">
+						<%= link_to(image_tag(article.thumb), article.to_url) if article.thumb %>
+						<h3><%= link_to article.title, article.to_url %></h3>
+						<div class="meta"><%= (article.created_at).to_s(:pretty_date_and_time) %> • <%= bylineify(article) %></div>
+						<p><%= article.excerpt %></p>
+					</article>
+				<% end %>
+				</div>
+			<% end %>
+
+			<div class="separator"></div>
+
 		<% end %>
 
+		<% if @related_t %>
+
+			<h2>Topic in depth: <%= @related_t.title %></h2>
+			<div class="articles">
+			<% @related_t.articles.each do |article| %>
+			<article>
+				<%= link_to(image_tag(article.thumb), article.to_url) if article.thumb %>
+				<h3><%= link_to article.title, article.to_url %></h3>
+				<div class="meta"><%= (article.created_at).to_s(:pretty_date_and_time) %> • <%= bylineify(article) %></div>
+				<p><%= article.excerpt %></p>
+
+			</article>
+			<% end %>
+			</div>
+
+			<div class="separator"></div>
+
+		<% end %>
+
+		<% if @related_a %>
+
+			<h2>Related stories</h2>
+			<div class="articles">
+			<% @related_a.each do |article| %>
+			<article>
+				<%= link_to(image_tag(article.thumb), article.to_url) if article.thumb %>
+				<h3><%= link_to article.title, article.to_url %></h3>
+				<div class="meta"><%= (article.created_at).to_s(:pretty_date_and_time) %> • <%= bylineify(article) %></div>
+				<p><%= article.excerpt %></p>
+			</article>
+			<% end %>
+			</div>
+
+		<% end %>
 
 	</div>
 
 	<div class="sidebar">
-
+		<h2>Latest updates</h2>
+		<ul class="updates">
+			<% @updates.each do |update| %>
+				<li>
+					<% if update[:ts] %> <p class="ts"><%= distance_of_time_in_words Time.at(update[:ts]), Time.now %> ago</p><% end %>
+					<% if update[:title] %> <p class="title"><%= update[:title] %></p><% end %>
+					<%= update[:twitter_embed].html_safe if update[:twitter_embed] %>
+					<% if update[:body] %> <p><%= update[:body].html_safe %></p><% end %>
+				</li>
+			<% end %>
+		</ul>
 	</div>
 
 </div>

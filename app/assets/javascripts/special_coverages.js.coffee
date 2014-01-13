@@ -6,3 +6,8 @@ jQuery ->
 	$('select').chosen({ allow_single_deselect: true })
 	$('#clear_post').click ->
 		$('#sc_new_update').clearForm()
+		$('#update_body').html('')
+
+	$('#sc_new_update').submit ->
+		$(this).find('.spinner').fadeIn()
+		$(this).find('.btn-primary').prop('disabled', true)

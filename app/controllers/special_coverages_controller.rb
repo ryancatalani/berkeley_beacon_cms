@@ -8,6 +8,8 @@ class SpecialCoveragesController < ApplicationController
 		@featured = @sc.featured || nil
 		@related_t = @sc.related_topic || nil
 		@related_a = @sc.related_articles || nil
+
+		@updates = @sc.updates
 	end
 
 	def edit
@@ -19,6 +21,8 @@ class SpecialCoveragesController < ApplicationController
 		@featured = @sc.featured || nil
 		@related_t = @sc.related_topic || nil
 		@related_a = @sc.related_articles || nil
+
+		@updates = @sc.updates
 	end
 
 	def create
@@ -48,5 +52,34 @@ class SpecialCoveragesController < ApplicationController
 
 	def new_update
 		update = {}
+		update[:title] = params[:title] unless params[:title].blank?
+		update[:body] = params[:body] unless params[:body].blank?
+		update[:ts] = Time.now.to_i
+
+		if !params[:tweet].blank?
+			begin
+				t_id = params[:tweet].split('/').pop
+				t_api_url = "https://api.twitter.com/1/statuses/oembed.json?id=" + t_id
+				uri = URI.parse(t_api_url)
+				req = Net::HTTP::Get.new(uri.request_uri)
+				http = Net::HTTP.new(uri.host, uri.port)
+				http.use_ssl = true
+				http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+				res = http.request(req)
+				t_res = JSON.parse(res.body)
+				update[:twitter_embed] = t_res["html"]
+			rescue
+			end
+
+			update[:twitter_url] = params[:tweet]
+		end
+
+		sc = SpecialCoverage.find(params[:sc_id])
+		sc_updates = sc.updates.push(update)
+		sc.update_attribute(:updates, sc_updates)
+
+		@u = update
+
+		# render :json => update
 	end
 end

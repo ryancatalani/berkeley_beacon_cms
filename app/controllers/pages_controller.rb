@@ -245,7 +245,14 @@ class PagesController < ApplicationController
 
 	def emersonla
 		@body_id = "emersonla"
-		@topic_articles = Topic.find_by_title("Emerson LA").articles
+
+		@sc = SpecialCoverage.find_by_title("Emerson LA")
+		@lead = Article.find(@sc.lead) rescue nil
+		@featured = @sc.featured.map{|id| Article.find(id)} rescue nil
+		@related_t = Topic.find(@sc.related_topic) rescue nil
+		@related_a = @sc.related_articles.map{|id| Article.find(id)} rescue nil
+		@updates = @sc.updates.reverse
+
 		render :layout => 'bare'
 	end
 

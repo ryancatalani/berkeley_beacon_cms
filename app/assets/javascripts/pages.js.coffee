@@ -86,3 +86,18 @@ jQuery ->
 			marginLeft: pos_offset
 			300
 		return false
+
+	# if $('#emersonla')
+	# 	(poll = ->
+	# 	  $.ajax
+	# 	    url: "/api/emersonla/updates"
+	# 	    success: (data) ->
+
+	# 	      #Update your dashboard gauge
+	# 	      salesGauge.setValue data.value
+
+	# 	    dataType: "json"
+	# 	    complete: poll
+	# 	    timeout: 30000
+
+	# 	)()
