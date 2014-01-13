@@ -27,8 +27,8 @@ class SpecialCoveragesController < ApplicationController
 
 	def create
 		p = params[:special_coverage]
-		p[:featured] = params[:featured].map(&:to_i)
-		p[:related_articles] = params[:related_articles].map(&:to_i)
+		p[:featured] = params[:featured].map(&:to_i) rescue nil
+		p[:related_articles] = params[:related_articles].map(&:to_i) rescue nil
 		@sc = SpecialCoverage.new(p)
 		if @sc.save
 			redirect_to edit_special_coverage_path(@sc)
@@ -39,8 +39,8 @@ class SpecialCoveragesController < ApplicationController
 
 	def update
 		p = params[:special_coverage]
-		p[:featured] = params[:featured].map(&:to_i)
-		p[:related_articles] = params[:related_articles].map(&:to_i)
+		p[:featured] = params[:featured].map(&:to_i) rescue nil
+		p[:related_articles] = params[:related_articles].map(&:to_i) rescue nil
 		@sc = SpecialCoverage.find(params[:id])
 		if @sc.update_attributes(p)
 			redirect_to edit_special_coverage_path(@sc)
