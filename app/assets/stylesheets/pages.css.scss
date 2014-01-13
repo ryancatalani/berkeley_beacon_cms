@@ -1394,6 +1394,15 @@ body#emersonla {
 				margin-bottom: 0;
 			}
 		}
+		ul.rslides {
+			.metadata {
+				line-height: 2em;
+				.credit {
+					float: right;
+					font-style: italic;
+				}
+			}
+		}
 	}
 	.sidebar {
 		@media(min-width: 1000px) {

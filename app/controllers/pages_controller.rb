@@ -252,6 +252,7 @@ class PagesController < ApplicationController
 		@related_t = Topic.find(@sc.related_topic) rescue nil
 		@related_a = @sc.related_articles.map{|id| Article.find(id)} rescue nil
 		@updates = @sc.updates.reverse rescue []
+		@media = @sc.media.map{|id| Mediafile.find(id)} rescue nil
 
 		render :layout => 'bare'
 	end

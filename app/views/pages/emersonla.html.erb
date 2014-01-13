@@ -40,6 +40,25 @@
 
 		<% end %>
 
+		<% if @media %>
+			<h2>Photos and videos</h2>
+			<ul class="rslides">
+			<% @media.each do |m| %>
+				<li>
+					<div class="slide_cont"><%= image_tag m.media.url %></div>
+					<div class="metadata">
+						<%= m.title %>
+						<div class="credit"><%= bylineify_linked(m).html_safe %></div>
+					</div>
+				</li>
+			<% end %>
+			</ul>
+			<div id="slide_controls"></div>
+			<div class="clear"></div>
+
+			<div class="separator"></div>
+		<% end %>
+
 		<% if @related_t %>
 
 			<h2>Topic in depth: <%= @related_t.title %></h2>
