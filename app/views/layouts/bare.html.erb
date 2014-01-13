@@ -6,7 +6,7 @@
 	<%= stylesheet_link_tag "/reset.css" %>
 	<% if @include_custom_bootstrap %>
 		<%= stylesheet_link_tag "/bootstrap-custom.min.css" %>
-	<% elsif editor_logged_in or @include_bootstrap %>
+	<% elsif @include_bootstrap %>
 		<%= stylesheet_link_tag "/bootstrap.min.css" %>
 	<% end %>
 	<%= stylesheet_link_tag    "application" %>
