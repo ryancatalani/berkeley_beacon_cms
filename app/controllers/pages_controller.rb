@@ -245,6 +245,8 @@ class PagesController < ApplicationController
 
 	def emersonla
 		@body_id = "emersonla"
+		@include_responsive = true
+		@title = "Emerson LA: Special Coverage"
 
 		@sc = SpecialCoverage.find_by_title("Emerson LA")
 		@lead = Article.find(@sc.lead) rescue nil
