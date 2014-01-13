@@ -1037,6 +1037,26 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	background: #0184c8;
 }
 
+.teaser {
+	position: relative;
+	&:hover {
+		.teaser_overlay {
+			background: rgba(255,255,255,0.9);
+		}
+	}
+	img {
+		width: 100%;
+		height: auto;
+	}
+	.teaser_overlay {
+		position: absolute;
+		background: rgba(255,255,255,0.8);
+		width: 100%;
+		bottom: 0;
+		padding: 9px 9px 12px 9px;
+	}
+}
+
 .l_quo_border {
 	border-left: 1px dotted #ddd;
 	margin: 5px 0 5px 10px;
