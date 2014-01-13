@@ -8,6 +8,22 @@
 </header>
 
 <div class="wrap">
+	<div class="sidebar">
+		<h2>Latest updates</h2>
+		<ul class="updates">
+			<% @updates.each_with_index do |update, i| %>
+				<li <%= "class=no-mobile" if i > 2 %>>
+					<% if update[:ts] %> <p class="ts"><%= distance_of_time_in_words Time.at(update[:ts]), Time.now %> ago</p><% end %>
+					<% if update[:title] %> <p class="title"><%= update[:title] %></p><% end %>
+					<%= update[:twitter_embed].html_safe if update[:twitter_embed] %>
+					<% if update[:body] %> <p><%= update[:body].html_safe %></p><% end %>
+				</li>
+			<% end %>
+		</ul>
+
+		<div class="separator yes-mobile"></div>
+	</div>
+
 	<div class="main">
 
 		<% if @lead %>
@@ -45,7 +61,7 @@
 			<ul class="rslides">
 			<% @media.each do |m| %>
 				<li class="<%= m.aspect_ratio_str %>">
-					<div class="slide_cont"><%= image_tag m.media.url %></div>
+					<div class="slide_cont" style="background-image:url(<%= m.media.url %>)"></div>
 					<div class="metadata">
 						<%= m.title %>
 						<div class="credit"><%= bylineify_linked(m).html_safe %></div>
@@ -94,20 +110,6 @@
 
 		<% end %>
 
-	</div>
-
-	<div class="sidebar">
-		<h2>Latest updates</h2>
-		<ul class="updates">
-			<% @updates.each do |update| %>
-				<li>
-					<% if update[:ts] %> <p class="ts"><%= distance_of_time_in_words Time.at(update[:ts]), Time.now %> ago</p><% end %>
-					<% if update[:title] %> <p class="title"><%= update[:title] %></p><% end %>
-					<%= update[:twitter_embed].html_safe if update[:twitter_embed] %>
-					<% if update[:body] %> <p><%= update[:body].html_safe %></p><% end %>
-				</li>
-			<% end %>
-		</ul>
 	</div>
 
 </div>
