@@ -12,7 +12,8 @@ jQuery ->
 		$(this).find('.spinner').fadeIn()
 		$(this).find('.btn-primary').prop('disabled', true)
 
-	$(".sc_uploaded_files").sortable update: (event, ui) ->
-		ids = $(this).find('img').map ->
-			return parseInt this.id
-		$("#media_ids").val(ids.get().join())
+	if $(".sc_uploaded_files").length > 0
+		$(".sc_uploaded_files").sortable update: (event, ui) ->
+			ids = $(this).find('img').map ->
+				return parseInt this.id
+			$("#media_ids").val(ids.get().join())

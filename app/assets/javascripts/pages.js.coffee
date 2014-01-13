@@ -87,6 +87,12 @@ jQuery ->
 			300
 		return false
 
+	$('#emersonla').find('.rslides').find('img').each ->
+		max_height = parseInt($('.rslides').width() * 2 / 3)
+		if $(this).height() > max_height
+			$(this).css('height', max_height)
+			$(this).css('marginLeft', ($('.rslides').width() - $(this).width())/2 )
+
 	# if $('#emersonla')
 	# 	(poll = ->
 	# 	  $.ajax

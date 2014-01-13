@@ -44,7 +44,7 @@
 			<h2>Photos and videos</h2>
 			<ul class="rslides">
 			<% @media.each do |m| %>
-				<li>
+				<li class="<%= m.aspect_ratio_str %>">
 					<div class="slide_cont"><%= image_tag m.media.url %></div>
 					<div class="metadata">
 						<%= m.title %>
