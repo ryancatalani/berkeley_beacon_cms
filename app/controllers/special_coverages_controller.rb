@@ -9,7 +9,7 @@ class SpecialCoveragesController < ApplicationController
 		@related_t = @sc.related_topic || nil
 		@related_a = @sc.related_articles || nil
 
-		@updates = @sc.updates
+		@updates = @sc.updates || []
 	end
 
 	def edit
@@ -22,7 +22,7 @@ class SpecialCoveragesController < ApplicationController
 		@related_t = @sc.related_topic || nil
 		@related_a = @sc.related_articles || nil
 
-		@updates = @sc.updates
+		@updates = @sc.updates || []
 	end
 
 	def create
