@@ -1,10 +1,9 @@
-console.log("recieved media file");
 $("#new_mediafile").each(function(){
 	this.reset();
 });
 $("#loading").fadeOut();
 <% if !@mediafile.mediatype.in?([2,5]) %>
-	$("#uploaded_files").append('<div class="span2"><%= image_tag @mediafile.media.thumb_140.url %><br /><a href="#" class="btn show_mediafile_url">Show URL</a><a href="#" class="btn btn-danger delete_mediafile" id="delete_<%= @mediafile.id %>">Delete</a><br/><%= text_field_tag "mediafile_url", @mediafile.media.url, :class => "mediafile_url", :style => "display:none" %></div>');
+	$("#uploaded_files").append('<div class="span2"><%= image_tag @mediafile.media.thumb_140.url, :id => @mediafile.id %><br /><a href="#" class="btn show_mediafile_url">Show URL</a><a href="#" class="btn btn-danger delete_mediafile" id="delete_<%= @mediafile.id %>">Delete</a><br/><%= text_field_tag "mediafile_url", @mediafile.media.url, :class => "mediafile_url", :style => "display:none" %></div>');
 <% else %>
 	$("#uploaded_files").append("<%= @mediafile.title %>");
 <% end %>

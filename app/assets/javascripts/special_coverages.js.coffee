@@ -11,3 +11,8 @@ jQuery ->
 	$('#sc_new_update').submit ->
 		$(this).find('.spinner').fadeIn()
 		$(this).find('.btn-primary').prop('disabled', true)
+
+	$(".sc_uploaded_files").sortable update: (event, ui) ->
+		ids = $(this).find('img').map ->
+			return parseInt this.id
+		$("#media_ids").val(ids.get().join())

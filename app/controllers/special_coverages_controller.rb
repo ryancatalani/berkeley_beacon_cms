@@ -10,6 +10,12 @@ class SpecialCoveragesController < ApplicationController
 		@related_a = @sc.related_articles || nil
 
 		@updates = @sc.updates || []
+
+		@media = @sc.media || nil
+		@media_ids = @sc.media.join(',') rescue nil
+		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
+		@authors.unshift(["Choose an author",0])
+
 	end
 
 	def edit
@@ -23,12 +29,18 @@ class SpecialCoveragesController < ApplicationController
 		@related_a = @sc.related_articles || nil
 
 		@updates = @sc.updates || []
+
+		@media = @sc.media || nil
+		@media_ids = @sc.media.join(',') rescue nil
+		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
+		@authors.unshift(["Choose an author",0])
 	end
 
 	def create
 		p = params[:special_coverage]
 		p[:featured] = params[:featured].map(&:to_i) rescue nil
 		p[:related_articles] = params[:related_articles].map(&:to_i) rescue nil
+		p[:media] = params[:media_ids].split(',').map(&:to_i) rescue nil
 		@sc = SpecialCoverage.new(p)
 		if @sc.save
 			redirect_to edit_special_coverage_path(@sc)
@@ -41,6 +53,7 @@ class SpecialCoveragesController < ApplicationController
 		p = params[:special_coverage]
 		p[:featured] = params[:featured].map(&:to_i) rescue nil
 		p[:related_articles] = params[:related_articles].map(&:to_i) rescue nil
+		p[:media] = params[:media_ids].split(',').map(&:to_i) rescue nil
 		@sc = SpecialCoverage.find(params[:id])
 		if @sc.update_attributes(p)
 			redirect_to edit_special_coverage_path(@sc)

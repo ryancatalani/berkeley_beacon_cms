@@ -1,7 +1,11 @@
-<div class="row">
+<div class="row special_coverage_form">
 
 	<div class="span6">
 		<%= form_for @sc do |f| %>
+			<%= f.submit "Save", :class => "btn btn-primary" %>
+
+			<div class="separator"></div>
+
 			<div class="field">
 				<%= f.label :title %>
 				<%= f.text_field :title %>
@@ -29,10 +33,32 @@
 				<%= select_tag :related_articles, options_for_select(@latest_articles, @related_a), :name => "related_articles[]", :multiple => true, "data-placeholder" => "Start typing an article title..." %>
 			</div>
 
-			<div class="separator"></div>
-
-			<%= f.submit "Save", :class => "btn btn-primary" %>
+			<%= hidden_field_tag :media_ids, @media_ids %>
 		<% end %>
+
+		<div class="separator"></div>
+
+		<%= form_for Mediafile.new, :remote => true, :html => { :multipart => true } do |f| %>
+
+			<%= render 'mediafiles/mediafiles_form', :f => f %>
+			<div class="actions">
+				<%= f.submit "Upload", :id => "mediauploadbtn", :class => "btn btn-primary" %>
+				<div id="loading">
+					<%= image_tag "loading.gif" %>
+					Uploading...
+				</div>
+			</div>
+
+		<% end %>
+
+		<div id="uploaded_files" class="sc_uploaded_files">
+			<% if @media %>
+				<% @media.each do |m_id| %>
+					<% m = Mediafile.find(m_id) %>
+					<div class="span2"><%= image_tag m.media.thumb_140.url, :id => m.id %><br /><a href="#" class="btn show_mediafile_url">Show URL</a><a href="#" class="btn btn-danger delete_mediafile" id="delete_<%= m.id %>">Delete</a><br/><%= text_field_tag "mediafile_url", m.media.url, :class => "mediafile_url", :style => "display:none" %></div>
+				<% end %>
+			<% end %>
+		</div>
 	</div>
 
 	<div class="span6">
@@ -57,17 +83,18 @@
 				</p>
 			<% end %>
 		</div>
+		<div id="updates">
+			<% @updates.each do |u| %>
+				<p>
+					<% if u[:title] %><b><%= u[:title] %></b><br><% end %>
+					<%= u[:twitter_embed].html_safe if u[:twitter_embed] %>
+					<%= u[:body].html_safe if u[:body] %>
+				</p>
+			<% end %>
+		</div>
 	</div>
 
-	<div id="updates">
-		<% @updates.each do |u| %>
-			<p>
-				<% if u[:title] %><em><%= u[:title] %></em><br><% end %>
-				<%= u[:twitter_embed].html_safe if u[:twitter_embed] %>
-				<%= u[:body] if u[:body] %>
-			</p>
-		<% end %>
-	</div>
+
 
 
 </div>
@@ -94,3 +121,4 @@
 		});
 	});
 </script>
+<%= javascript_include_tag "/jquery-ui-1.10.3.custom.min.js" %>
