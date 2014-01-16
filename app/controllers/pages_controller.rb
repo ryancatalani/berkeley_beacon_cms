@@ -247,6 +247,9 @@ class PagesController < ApplicationController
 		@body_id = "emersonla"
 		@include_responsive = true
 		@title = "Emerson LA: Special Coverage"
+		@og ||= {}
+		@og[:description] = "Articles, photos, and videos with an in-depth look at the new Emerson Los Angeles in Hollywood."
+		@og[:image] = "https://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/thumb_460_1389855659-LALeadArt1_Catalani_forweb.jpg.jpg"
 
 		@sc = SpecialCoverage.find_by_title("Emerson LA")
 		@lead = Article.find(@sc.lead) rescue nil
@@ -265,6 +268,9 @@ class PagesController < ApplicationController
 		@use_roboto = true
 		@use_videojs = true
 		@title = "Emerson LA: Stories"
+		@og ||= {}
+		@og[:description] = "Videos about Emerson's new campus and community in Hollywood."
+		@og[:image] = "http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/ela_videos_cover.jpg"
 
 		render :layout => 'bare'
 	end
