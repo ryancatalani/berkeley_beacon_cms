@@ -3,6 +3,9 @@
 <head>
 	<title><%= "#{@title} | " if @title %>The Berkeley Beacon</title>
 	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700|PT+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<% if @use_roboto %>
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,100' rel='stylesheet' type='text/css'>
+	<% end %>
 	<%= stylesheet_link_tag "/reset.css" %>
 	<% if @include_custom_bootstrap %>
 		<%= stylesheet_link_tag "/bootstrap-custom.min.css" %>
@@ -13,7 +16,6 @@
 	<%= javascript_include_tag "application" %>
 	<% if @include_bootstrap_carousel %>
 		<%= stylesheet_link_tag "/bootstrap-justcarousel.min.css" %>
-
 	<% end %>
 	<%= favicon_link_tag "/favicon.ico" %>
 	<meta property="og:title" content="<%= og_title %>" />
@@ -33,6 +35,11 @@
 
 	<% if @include_bootstrap or @include_responsive %>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<% end %>
+
+	<% if @use_videojs %>
+		<link href="//vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
+		<script src="//vjs.zencdn.net/4.2/video.js"></script>
 	<% end %>
 
 	<% if Rails.env.production? %>

@@ -20,6 +20,7 @@ input, .add-on { -moz-box-sizing: content-box; -webkit-box-sizing: content-box; 
 .wrap {
 	margin: 0 auto 30px;
 	width: 960px;
+	position: relative;
 }
 
 #acpsea {

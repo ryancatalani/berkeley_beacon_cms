@@ -259,6 +259,16 @@ class PagesController < ApplicationController
 		render :layout => 'bare'
 	end
 
+	def emersonla_videos
+		@body_id = "emersonla_videos"
+		@include_responsive = true
+		@use_roboto = true
+		@use_videojs = true
+		@title = "Emerson LA: Stories"
+
+		render :layout => 'bare'
+	end
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}

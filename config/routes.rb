@@ -15,12 +15,12 @@ BeaconApp::Application.routes.draw do
   match '/oscars2012', :to => 'pages#oscars'
   match '/oscars', :to => 'pages#oscars2013'
 
-  match '/ecla', :to => 'pages#ecla'
-  match '/emersonla', :to => 'pages#ecla'
-
+  match '/ecla', :to => 'pages#emersonla'
+  match '/emersonla', :to => 'pages#emersonla'
   # match '/emersonla-live', :to => 'pages#emersonla_live'
-  match '/beacon_ecla_tweets', :to => 'pages#beacon_ecla_tweets'
-  match '/all_ecla_tweets', :to => 'pages#all_ecla_tweets'
+  # match '/beacon_ecla_tweets', :to => 'pages#beacon_ecla_tweets'
+  # match '/all_ecla_tweets', :to => 'pages#all_ecla_tweets'
+
   match '/archive_problem/:url', :to => 'pages#archive_problem', :via => :post
 
   match '/ourvoice', :to => 'pages#ourvoice'
@@ -36,6 +36,7 @@ BeaconApp::Application.routes.draw do
   match '/election_guide_2012/poll_results', :to => 'pages#political_poll_results'
   match '/election_guide_2012/map', :to => 'pages#election_map'
   match '/projects/emersonla', :to => 'pages#emersonla'
+  match '/projects/emersonla/stories', :to => 'pages#emersonla_videos'
 
   match '/api/top5', :to => 'pages#statusboard_top_5_json'
   match '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'

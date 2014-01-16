@@ -93,6 +93,36 @@ jQuery ->
 			$(this).css('height', max_height)
 			$(this).css('marginLeft', ($('.rslides').width() - $(this).width())/2 )
 
+	$('#emersonla_videos').find('a.thumb').click (e) ->
+		e.preventDefault()
+		hash = $(this).attr('href')
+		slug = hash.replace('#','')
+		offset = $("a[name=#{slug}]").offset().top
+		time = (offset / ($('body').height() * 4)) * 1000
+		$('html, body').animate
+			scrollTop: offset
+		, time, "swing", ->
+			# window.location.hash = hash
+
+	if $('#emersonla_videos').length > 0
+		ids = ["ela_video","cristina_video","food_video"]
+		for id in ids
+			_V_(id).ready ->
+			  # Store the video object
+			  # Make up an aspect ratio
+			  resizeVideoJS = ->
+			    console.log(myPlayer.id())
+			    # Get the parent element's actual width
+			    width = $(document.getElementById(myPlayer.id())).parent().width()
+
+			    # Set width to fill parent element, Set height
+			    myPlayer.width(width).height width * aspectRatio
+			  myPlayer = this
+			  aspectRatio = 9 / 16
+			  resizeVideoJS() # Initialize the function
+			  window.onresize = resizeVideoJS # Call the function on resize
+
+
 	# if $('#emersonla')
 	# 	(poll = ->
 	# 	  $.ajax

@@ -1495,3 +1495,122 @@ body#emersonla {
 		}
 	}
 }
+
+body#emersonla_videos {
+	font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	color: #fff;
+	.wrap {
+		height: 100%;
+	}
+	h1 {
+		font-weight: 100;
+		font-size: 50px;
+		line-height: 1em;
+		padding-top: 100px;
+	}
+	h2 {
+		font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	}
+	.video_cont {
+		height: 100%;
+		width: 100%;
+		padding: 7%;
+		background-color: #ccc;
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		position: relative;
+	}
+	.video_box {
+		width: 40%;
+		background: rgba(0,0,0,0.8);
+		padding: 30px;
+		@media (max-width: 1000px) {
+			width: 66%;
+		}
+		@media (max-width: 768px) {
+			width: 100%;
+		}
+		video {
+			width: 100%;
+			height: auto;
+			// padding: 20px 0;
+		}
+		h2 {
+			margin-bottom: 20px;
+		}
+		p {
+			margin-top: 20px;
+		}
+
+	}
+	#video_box_food {
+		float: right;
+	}
+	.brand {
+		font-family: "PT Serif", Times, serif;
+		float: right;
+		text-align: right;
+		padding-top: 15px;
+		a {
+			color: rgba(255,255,255,0.7);
+		}
+	}
+	#cover {
+		background-image: url(http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/ela_videos_cover.jpg);
+		padding: 0;
+	}
+	#ela {
+		background-image: url(http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/ela_videos_ela.jpg);
+	}
+	#cristina {
+		background-image: url(http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/ela_videos_cristina.jpg);
+	}
+	#food {
+		background-image: url(http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/ela_videos_food.jpg);
+	}
+	#ela_thumb {
+		background-image: url(http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/ela-campus-thumb.jpg);
+	}
+	#cristina_thumb {
+		background-image: url(http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/ela-cristina-thumb.jpg);
+	}
+	#food_thumb {
+		background-image: url(http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/ela-food-thumb.jpg);
+	}
+
+	#thumbs {
+		position: absolute;
+		bottom: 10%;
+		width: 100%;
+	}
+	a.thumb {
+		color: #fff;
+		width: 25%;
+		height: 140px;
+		background-color: #aaa;
+		float: left;
+		margin: 0 4.166666%;
+		position: relative;
+		display: block;
+		background-size: cover;
+		background-position: center;
+		@media (max-width: 768px) {
+			margin: 0 auto 20px;
+			width: 50%;
+			float: none;
+		}
+		.title {
+			position: absolute;
+			background: rgba(0,0,0,0.5);
+			width: 100%;
+			height: 100%;
+			padding-top: 25.5%;
+			text-align: center;
+			&:hover {
+				opacity: 0.5;
+			}
+		}
+	}
+
+}
