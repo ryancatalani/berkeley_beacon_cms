@@ -56,8 +56,14 @@
 
 		<% end %>
 
+		<h2>Video feature</h2>
+		<a href="stories" id="video_feature">
+			<h3>Stories from Sunset & Gordon</h3>
+		</a>
+		<div class="separator"></div>
+
 		<% if @media %>
-			<h2>Photos and videos</h2>
+			<h2>Photos</h2>
 			<ul class="rslides">
 			<% @media.each do |m| %>
 				<li class="<%= m.aspect_ratio_str %>">

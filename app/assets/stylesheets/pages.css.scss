@@ -1438,6 +1438,24 @@ body#emersonla {
 				margin-bottom: 0;
 			}
 		}
+		#video_feature {
+			background-image: url(http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/ela_videos_cover.jpg);
+			background-size: cover;
+			background-position: center;
+			width: 100%;
+			height: 300px;
+			position: relative;
+			display: block;
+			&:hover {
+				opacity: 0.9;
+			}
+			h3 {
+				color: #fff;
+				position: absolute;
+				bottom: 20px;
+				left: 20px;
+			}
+		}
 		ul.rslides {
 			.slide_cont {
 				width: 100%;
