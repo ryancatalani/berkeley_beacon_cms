@@ -1538,6 +1538,9 @@ body#emersonla_videos {
 		background-position: center;
 		background-attachment: fixed;
 		position: relative;
+		@media (max-width: 768px) {
+			background-attachment: scroll;
+		}
 	}
 	.video_box {
 		width: 40%;
