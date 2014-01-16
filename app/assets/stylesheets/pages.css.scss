@@ -1538,8 +1538,10 @@ body#emersonla_videos {
 		background-position: center;
 		background-attachment: fixed;
 		position: relative;
+		background-repeat: no-repeat;
 		@media (max-width: 768px) {
 			background-attachment: scroll;
+			height: auto;
 		}
 	}
 	.video_box {
@@ -1604,6 +1606,10 @@ body#emersonla_videos {
 		position: absolute;
 		bottom: 10%;
 		width: 100%;
+		@media (max-width: 768px) {
+			position: relative;
+			margin-top: 30px;
+		}
 	}
 	a.thumb {
 		color: #fff;
