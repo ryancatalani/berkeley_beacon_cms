@@ -7,19 +7,23 @@ class HomeLayoutsController < ApplicationController
     @articles = as.sort {|x,y| x.section_id <=> y.section_id }
 
     if HomeLayout.last
-      previous_layout = {}
-      latest = HomeLayout.last.articles
-      previous_layout_lead_title = Article.find(latest[:lead]).title rescue "[Can't find title]"
-      previous_layout[:lead] = { :title => previous_layout_lead_title, :id => latest[:lead] }
-      previous_layout[:featured] = []
-      previous_layout[:middle] = []
-      latest[:featured].each do |id|
-        previous_layout[:featured] << { :title => Article.find(id).title, :id => id }
+      begin
+        previous_layout = {}
+        latest = HomeLayout.last.articles
+        previous_layout_lead_title =
+        previous_layout[:lead] = { :title => Article.find(latest[:lead]).title, :id => latest[:lead] }
+        previous_layout[:featured] = []
+        previous_layout[:middle] = []
+        latest[:featured].each do |id|
+          previous_layout[:featured] << { :title => Article.find(id).title, :id => id }
+        end
+        latest[:middle].each do |id|
+          previous_layout[:middle] << { :title => Article.find(id).title, :id => id }
+        end
+        @previous_layout_js = previous_layout.to_json
+      rescue
+        # Fix?
       end
-      latest[:middle].each do |id|
-        previous_layout[:middle] << { :title => Article.find(id).title, :id => id }
-      end
-      @previous_layout_js = previous_layout.to_json
     end
 
   	render 'new', :layout => 'editor_stripped'
