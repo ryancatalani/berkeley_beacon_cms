@@ -9,7 +9,8 @@ class HomeLayoutsController < ApplicationController
     if HomeLayout.last
       previous_layout = {}
       latest = HomeLayout.last.articles
-      previous_layout[:lead] = { :title => Article.find(latest[:lead]).title, :id => latest[:lead] }
+      previous_layout_lead_title = Article.find(latest[:lead]).title rescue "[Can't find title]"
+      previous_layout[:lead] = { :title => previous_layout_lead_title, :id => latest[:lead] }
       previous_layout[:featured] = []
       previous_layout[:middle] = []
       latest[:featured].each do |id|
