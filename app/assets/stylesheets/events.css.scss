@@ -1,0 +1,70 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin placeholder-color($color) {
+	&::-webkit-input-placeholder {
+	   color: $color;
+	}
+
+	&:-moz-placeholder { /* Firefox 18- */
+	   color: $color;
+	}
+
+	&::-moz-placeholder {  /* Firefox 19+ */
+	   color: $color;
+	}
+
+	&:-ms-input-placeholder {
+	   color: $color;
+	}
+}
+
+#new_event {
+	input, textarea {
+		border: none;
+		border-bottom: 1px solid #ccc;
+		width: 100%;
+		font: 14px/18px "PT Serif", Times, serif;
+		margin-bottom: 2em;
+	}
+	textarea {
+		border-right: 1px solid #ccc;
+	}
+	.field_desc {
+		color: #aaa;
+	}
+	.form_error {
+		border-left: 3px solid #D66555;
+		padding-left: 6px;
+		@include placeholder-color(#D66555);
+	}
+	.form_error_desc {
+		color: #D66555;
+		font-style: italic;
+	}
+	#event_title {
+		font-size: 1.25em;
+	}
+	#time_start, #time_end {
+		width: 35%;
+		float: left;
+	}
+}
+
+#new_event_inline {
+	width: 300px;
+	#new_event_success {
+		display: none;
+		border-left: 5px solid #6FBA46;
+		padding-left: 1em;
+		margin: 1em 0;
+	}
+}
+
+#new_event_errors {
+	margin: 1em 0;
+	font-style: italic;
+	border-left: 5px solid #D66555;
+	padding-left: 1em;
+}

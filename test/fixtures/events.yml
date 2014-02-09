@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  organizer_name: MyString
+  organizer_email: MyString
+  date: 2014-02-04 17:37:08
+  link: MyString
+  approved: false
+
+two:
+  title: MyString
+  description: MyText
+  organizer_name: MyString
+  organizer_email: MyString
+  date: 2014-02-04 17:37:08
+  link: MyString
+  approved: false

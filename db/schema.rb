@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140112152526) do
+ActiveRecord::Schema.define(:version => 20140209181840) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -86,6 +86,23 @@ ActiveRecord::Schema.define(:version => 20140112152526) do
   end
 
   add_index "ecla_beacon_tweet", ["tweet_id"], :name => "index_ecla_beacon_tweets_on_tweet_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "organizer_name"
+    t.string   "organizer_email"
+    t.string   "link"
+    t.boolean  "approved"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "editors_pick"
+    t.string   "edit_hash"
+    t.string   "location"
+    t.string   "image"
+    t.datetime "date_start"
+    t.datetime "date_end"
+  end
 
   create_table "home_layouts", :force => true do |t|
     t.integer  "layout_type"
