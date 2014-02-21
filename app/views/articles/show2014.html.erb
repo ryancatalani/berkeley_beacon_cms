@@ -1,0 +1,41 @@
+<nav class="topnav">
+
+	<div class="topnav_b">
+		B
+	</div>
+
+	<div class="topnav_section lifestyle_a">
+		<div class="main_wrap">
+			<%= @article.section.name %>
+		</div>
+	</div>
+
+</nav>
+
+
+<div class="header_outer_wrap lifestyle_a">
+	<div class="main_wrap">
+		<h1><%= @article.title.html_safe %></h1>
+		<% if @article.subtitles %>
+			<% @article.subtitles.each do |subtitle| %>
+				<h2><%= subtitle %></h2>
+			<% end %>
+		<% end %>
+		<h3>by <%= bylineify_linked(@article).html_safe %> • <%= (@article.created_at).to_s(:pretty_date) %></h3>
+	</div>
+</div>
+
+<% if @article.images.first.horizontal? %>
+<div class="main_photo main_photo_horizontal">
+
+</div>
+<% else %>
+<div class="main_photo main_photo_vertical" style="background-image:url(<%= @article.images.first.media.url %>)">
+</div>
+<% end %>
+
+<div class="body_outer_wrap">
+	<div class="main_wrap">
+		<%= @article.body.html_safe %>
+	</div>
+</div>

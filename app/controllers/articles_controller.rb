@@ -313,6 +313,10 @@ class ArticlesController < ApplicationController
 		end
 		@og[:description] = @article.excerpt.blank? ? nil : @article.excerpt
 
+		if params[:a14]=="true" && editor_logged_in
+			render 'show2014', :layout => 'article2014'
+		end
+
 		if @article.section and @article.section.name == "Feature"
 			render 'show2013', :layout => 'article2013'
 		end
