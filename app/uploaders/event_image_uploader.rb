@@ -4,11 +4,26 @@ class EventImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
   storage :fog
+
+  def filename
+    @name ||= "#{timestamp}-#{super}.jpg" if original_filename.present? and super.present?
+  end
+
+  def timestamp
+    var = :"@#{mounted_as}_timestamp"
+    model.instance_variable_get(var) or model.instance_variable_set(var, Time.now.to_i)
+  end
+
+  protected
+
+      def image?(new_file)
+        new_file.content_type.include? 'image'
+      end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

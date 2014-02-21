@@ -27,7 +27,7 @@ jQuery ->
 		e.preventDefault()
 		$('#new_event_success').slideUp()
 		$(this).find('input, textarea').each ->
-			return if $(this).attr('id') == 'event_image'
+			return if $(this).attr('id') == 'event_image' || $(this).attr('id') == 'event_link'
 			$(this).removeClass('form_error')
 			if $(this).val() == ''
 				$(this).addClass('form_error')

@@ -1,12 +1,69 @@
 <h1>Events Calendar</h1>
 
 <% if editor_logged_in %>
-	Approval space
+	<h2>To approve</h2>
+	<table class="table table-striped">
+		<tr>
+			<th></th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Location</th>
+			<th>Dates</th>
+			<th>Link</th>
+			<th>Organizer name</th>
+			<th>Organizer email</th>
+		</tr>
+		<% @events_to_approve.each do |e| %>
+			<tr id="event-<%= e.id %>">
+				<td>
+					<%= form_for e, :remote => true do |f| %>
+						<%= f.submit "Approve", :class => "btn btn-primary" %>
+						<%= f.submit "Approve & pick", :class => "btn" %>
+					<% end %>
+				</td>
+				<td><%= e.title %></td>
+				<td><%= e.description %></td>
+				<td><%= e.location %></td>
+				<td><%= e.date_start %> - <%= e.date_end %></td>
+				<td><%= link_to 'Link', e.link if e.link? %></td>
+				<td><%= e.organizer_name %></td>
+				<td><%= e.organizer_email %></td>
+			</tr>
+		<% end %>
+	</table>
 <% end %>
 
-List of events
+<h2>This week</h2>
+<% @events_upcoming_week.each_with_index do |e, i| %>
+	<% if i % 2 == 0 %>
+	<div class="row event_row">
+	<% end %>
 
-<div id="new_event_inline">
+	<%= render 'event_box', :e => e %>
+
+	<% if i % 3 == 1 %>
+	</div>
+	<% end  # .row %>
+
+<% end %>
+
+
+<h2>Upcoming</h2>
+<% @events_upcoming.each_with_index do |e, i| %>
+	<% if i % 2 == 0 %>
+	<div class="row event_row">
+	<% end %>
+
+	<%= render 'event_box', :e => e %>
+
+	<% if i % 3 == 1 %>
+	</div>
+	<% end  # .row %>
+
+<% end %>
+
+
+<div id="new_event_inline" style="display:none">
 	<div id="new_event_errors"></div>
 	<div id="new_event_success">
 		Thanks, your event has been submitted. We'll email you when it's approved and shows up on this page.
@@ -23,9 +80,14 @@ List of events
 		</p>
 		<p><%= f.text_field :location, :placeholder => "Where is it?" %></p>
 		<p>
+			<%= f.text_field :link, :placeholder => "Link for more information (optional)" %>
+		</p>
+		<% if false %>
+		<p>
 			<span class="field_desc">Event image (optional)</span>
 			<%= f.file_field :image %>
 		</p>
+		<% end %>
 		<br>
 		<p><%= f.text_field :organizer_name, :placeholder => "Your name" %></p>
 		<p><%= f.text_field :organizer_email, :placeholder => "Your email (must be an Emerson email)" %></p>

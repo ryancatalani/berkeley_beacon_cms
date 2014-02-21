@@ -1,0 +1,14 @@
+<div class="event_box">
+	<div class="event_date">
+		<%= e.date_start.strftime('%b') %>
+		<div class="event_day"><%= e.date_start.strftime('%e') %></div>
+	</div>
+
+	<h3><%= link_to e.title, e.link %></h3>
+	<p>
+		<em><%= e.date_start.strftime('%l:%M %P') %> - <%= e.date_end.strftime('%l:%M %P') %></em>
+		<br>
+		<em><%= e.location %></em>
+	</p>
+	<p><%= e.description %></p>
+</div>

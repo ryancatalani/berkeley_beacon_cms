@@ -68,3 +68,29 @@
 	border-left: 5px solid #D66555;
 	padding-left: 1em;
 }
+
+.event_row {
+	*zoom: 1;
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+.event_box {
+	width: 33%;
+	float: left;
+	.event_date {
+		background: #F0F0F0;
+		float: left;
+		padding: 5px;
+		text-align: center;
+		margin: 0 7px 7px 0;
+		.event_day {
+			font-size: 1.5em;
+		}
+	}
+}
