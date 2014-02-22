@@ -37,10 +37,11 @@ jQuery ->
 				anyErrors = true
 		return false if anyErrors
 
-	$('#date').pickadate({
-		format: 'mmm d, yyyy',
-		formatSubmit: 'yyyy-mm-dd'
-	})
-	$('#time_start, #time_end').pickatime({
-		formatSubmit: 'HH:i'
-	})
+	if $('#date').length > 0
+		$('#date').pickadate({
+			format: 'mmm d, yyyy',
+			formatSubmit: 'yyyy-mm-dd'
+		})
+		$('#time_start, #time_end').pickatime({
+			formatSubmit: 'HH:i'
+		})
