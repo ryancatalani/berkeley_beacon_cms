@@ -78,6 +78,7 @@
 
 <% end %>
 
+<% if @section_issue_articles.count > 0 %>
 <div class="sidebar more_from_section">
 	<div class="sidebar_head <%= @article.section.name.downcase %>">
 		More from <%= @article.section.name %>
@@ -95,6 +96,7 @@
 		</ul>
 	</div>
 </div>
+<% end %>
 
 <div class="article_share">
 	<ul>
