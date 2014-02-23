@@ -86,5 +86,5 @@ jQuery ->
 
 	if window.location.search.indexOf('?a14=true') != -1
 		$('a').each ->
-			return if $(this).prop('href').substr('#') != -1
+			return true if $(this).prop('href').substr('#') == -1
 			$(this).prop('href', $(this).prop('href') + '?a14=true')

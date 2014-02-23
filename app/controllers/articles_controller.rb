@@ -315,7 +315,7 @@ class ArticlesController < ApplicationController
 
 		if params[:a14]=="true" && editor_logged_in
 			@body_class = "a14_article"
-			@section_issue_articles = Article.where(:issue_id => Issue.last.id, :section_id => @article.section.id).all.delete_if {|a| a.id == @article.id }
+			@section_issue_articles = Article.where(:issue_id => Issue.latest.id, :section_id => @article.section.id).all.delete_if {|a| a.id == @article.id }
 			render 'show2014', :layout => 'article2014'
 		end
 
