@@ -39,6 +39,41 @@ jQuery ->
 		on_pop_viewed = !on_pop_viewed
 		return false
 
+	$('.fb_slide').hide()
+	$('#article_fb_share_btn').hover ->
+		$('.fb_slide').show()
+		$(this).find('.fb_slide').animate(
+			width: 110,
+			opacity: 1
+		, 100)
+	, ->
+		$(this).find('.fb_slide').animate(
+			width: 0,
+			opacity: 0
+		, 100)
+
+	$('.article_share').find('a').click (e) ->
+		e.preventDefault()
+		window.open(
+			$(this).prop('href'),
+			'Share',
+			'width=600,height=200,resizable'
+		)
+		return false
+
+	$('.rslides_a14').responsiveSlides(
+		auto: false,
+		nav: true,
+		prevText: '<i class="fa fa-angle-left fa-3x"></i>',
+		nextText: '<i class="fa fa-angle-right fa-3x"></i>'
+	)
+
+	$('body').css(
+		height: '100%',
+		overflow: 'hidden'
+	)
+
 	if window.location.search.indexOf('?a14=true') != -1
 		$('a').each ->
+			return if $(this).prop('href').substr('#') != -1
 			$(this).prop('href', $(this).prop('href') + '?a14=true')

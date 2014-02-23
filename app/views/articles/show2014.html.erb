@@ -1,3 +1,22 @@
+<% if @article.images.count > 1 %>
+<div class="gallery_full">
+	<div class="gallery_inner">
+		<ul class="rslides_a14">
+		<% @article.images.each do |img| %>
+			<li>
+				<div class="gallery_image" style="background-image:url(<%= img.media.url %>)"></div>
+				<div class="gallery_image_caption">
+					<%= @article.images.first.title %>
+					<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+				</div>
+			</li>
+		<% end %>
+		</ul>
+	</div>
+</div>
+<% end %>
+
+
 <nav class="topnav">
 
 	<div class="topnav_b">
@@ -11,7 +30,6 @@
 	</a>
 
 </nav>
-
 
 <div class="header_outer_wrap <%= @article.section.name.downcase %>">
 	<div class="main_wrap">
@@ -62,6 +80,29 @@
 		<% end %>
 		</ul>
 	</div>
+</div>
+
+<div class="article_share">
+	<ul>
+		<li>
+			<a href="https://twitter.com/home?status=<%= @article.show_share_tweet %>" class="<%= @article.section.name.downcase %>" target="_blank">
+				<i class="fa fa-twitter fa-lg"></i>
+			</a>
+		</li>
+		<li id="article_fb_share_btn">
+			<a href="https://www.facebook.com/sharer/sharer.php?u=<%= @article.to_url(:full=>true) %>" class="<%= @article.section.name.downcase %>" target="_blank">
+				<i class="fa fa-facebook fa-lg"></i>
+			</a>
+			<div class="fb_slide">
+				<div class="fb-like" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" data-href="<%= @article.to_url(:full=>true) %>"></div>
+			</div>
+		</li>
+		<li>
+			<a href="#comments" class="<%= @article.section.name.downcase %>">
+				<i class="fa fa-comments fa-lg"></i>
+			</a>
+		</li>
+	</ul>
 </div>
 
 <div class="body_outer_wrap">
@@ -119,6 +160,7 @@
 
 		<% if !@article.disable_comments %>
 		<div class="comments">
+			<a name="comments"></a>
 			<div id="disqus_thread"></div>
 			<script type="text/javascript">
 			    var disqus_shortname = 'berkeleybeacon';
@@ -137,3 +179,21 @@
 		<% end %>
 	</div>
 </div>
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=128499383927655";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+	$(document).ready(function(){
+		setTimeout(function(){ $.get("/pgvw/<%= @article.id %>"); }, 100);
+	});
+</script>

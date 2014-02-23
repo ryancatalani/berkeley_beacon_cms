@@ -55,6 +55,11 @@ class Article < ActiveRecord::Base
 		return ret
 	end
 
+	def show_share_tweet
+		tweet = title + " " + to_url(:full=>true) + " via @BeaconUpdate"
+		return CGI.escape(tweet)
+	end
+
 	def first_photo
 		if images.count > 0 and !images.first.media.nil?
 			return images.first

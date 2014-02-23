@@ -45,9 +45,39 @@ $light_border: #dbdbdb;
 	}
 }
 
+@mixin section_bkgd_hover {
+	&.news:hover {
+		background: lighten($news, 5%);
+	}
+	&.opinion:hover {
+		background: lighten($opinion, 5%);
+	}
+	&.arts:hover {
+		background: lighten($arts, 5%);
+	}
+	&.lifestyle:hover {
+		background: lighten($lifestyle, 5%);
+	}
+	&.sports:hover {
+		background: lighten($sports, 5%);
+	}
+	&.feature:hover {
+		background: lighten($feature, 5%);
+	}
+	&.multimedia:hover {
+		background: lighten($multimedia, 5%);
+	}
+}
+
+@mixin small_caps {
+	font-size: 0.8em;
+	text-transform: uppercase;
+}
+
 body.a14 {
 	font: 17px/1.4em $serif_font_stack;
 	background: #f4f4f4;
+	position: relative;
 
 	p {
 		margin-bottom: 0.75em;
@@ -110,27 +140,7 @@ body.a14 {
 			&:hover {
 				text-decoration: none;
 			}
-			&.news:hover {
-				background: lighten($news, 5%);
-			}
-			&.opinion:hover {
-				background: lighten($opinion, 5%);
-			}
-			&.arts:hover {
-				background: lighten($arts, 5%);
-			}
-			&.lifestyle:hover {
-				background: lighten($lifestyle, 5%);
-			}
-			&.sports:hover {
-				background: lighten($sports, 5%);
-			}
-			&.feature:hover {
-				background: lighten($feature, 5%);
-			}
-			&.multimedia:hover {
-				background: lighten($multimedia, 5%);
-			}
+			@include section_bkgd_hover;
 		}
 	}
 
@@ -148,6 +158,7 @@ body.a14 {
 		h3 {
 			font: 1em $sans_font_stack;
 			font-weight: 300;
+			padding-right: 1em;
 			a {
 				&:link, &:visited {
 					color: #fff;
@@ -179,7 +190,8 @@ body.a14 {
 				margin-left: 150px;
 			}
 			.main_photo_caption {
-				float: right;
+				position: absolute;
+				left: 770px;
 			}
 		}
 		.main_photo_caption {
@@ -190,8 +202,7 @@ body.a14 {
 				color: #666;
 			}
 			.credit {
-				font-size: 0.8em;
-				text-transform: uppercase;
+				@include small_caps;
 			}
 		}
 	}
@@ -203,6 +214,45 @@ body.a14 {
 		border-left: 1px solid $light_border;
 		border-right: 1px solid $light_border;
 		border-bottom: 1px solid $light_border;
+	}
+
+	.gallery_full {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(255,255,255,0.9);
+		z-index: 5;
+		.gallery_inner {
+			width: 80%;
+			height: 80%;
+			background: #0f0;
+			margin: 5% auto;
+		}
+		ul {
+			width: 100%;
+			height: 100%;
+			li {
+				width: 100%;
+				height: 100%;
+				.gallery_image {
+					width: 100%;
+					height: 90%;
+					background-position: center;
+					background-size: contain;
+					background-repeat: no-repeat;
+				}
+				.gallery_image_caption {
+					margin-top: 1em;
+					width: 75%;
+					.credit {
+						@include small_caps;
+						font-family: $sans_font_stack;
+					}
+				}
+			}
+		}
 	}
 
 	.sidebar {
@@ -227,7 +277,40 @@ body.a14 {
 	}
 
 	.more_from_section {
-		margin-top: 200px;
+		margin-top: 250px;
+		position: absolute;
+		left: 800px;
+	}
+
+	.article_share {
+		float: left;
+		margin-left: 150px;
+		margin-top: 30px;
+		li {
+			position: relative;
+			a {
+				display: block;
+				color: #fff;
+				width: 40px;
+				height: 40px;
+				text-align: center;
+				margin-bottom: 5px;
+				line-height: 2.5em;
+				@include section_bkgd_hover;
+			}
+			.fb_slide {
+				position: absolute;
+				top: 0px;
+				background: #fff;
+				height: 100%;
+				padding: 6px 10px 0 10px;
+				border: 1px solid $light_border;
+				border-left: none;
+				z-index: 1;
+				left: 40px;
+				overflow: hidden;
+			}
+		}
 	}
 
 	.popular {
