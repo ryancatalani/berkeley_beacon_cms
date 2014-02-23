@@ -377,8 +377,10 @@ body.a14 {
 		.gallery_inner {
 			width: 80%;
 			height: 80%;
-			// background: #0f0;
 			margin: 5% auto;
+			@media(max-width: $breakpoint_2) {
+				height: 90%;
+			}
 		}
 		.gallery_close {
 			color: rgba(0,0,0,0.4);
@@ -396,7 +398,7 @@ body.a14 {
 				color: rgba(0,0,0,0.35);
 			}
 			&.prev {
-				margin-right: 15px
+				margin-right: 15px;
 			}
 		}
 		.gallery_nav_container {
@@ -417,10 +419,16 @@ body.a14 {
 					background-position: center;
 					background-size: contain;
 					background-repeat: no-repeat;
+					@media(max-width: $breakpoint_2) {
+						height: 70%;
+					}
 				}
 				.gallery_image_caption {
 					margin-top: 1em;
 					width: 75%;
+					@media(max-width: $breakpoint_2) {
+						width: 100%;
+					}
 					.credit {
 						@include small_caps;
 						font-family: $sans_font_stack;
