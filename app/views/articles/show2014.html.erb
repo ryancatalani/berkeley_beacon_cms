@@ -21,7 +21,7 @@
 <% end %>
 
 
-<nav class="topnav">
+<nav class="topnav <%= @article.section.name.downcase %>">
 
 	<div class="topnav_left">
 		<a href="/" class="topnav_b <%= @article.section.name.downcase %>"></a>
@@ -121,6 +121,13 @@
 
 <div class="body_outer_wrap">
 	<div class="main_wrap">
+		<% if @article.images.first %>
+		<div class="main_photo_caption_inline">
+			<%= @article.images.first.title %>
+			<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+		</div>
+		<% end %>
+
 		<%= @article.body.html_safe %>
 
 		<div class="popular">
