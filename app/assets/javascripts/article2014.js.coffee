@@ -73,6 +73,11 @@ jQuery ->
 		$('body').addClass('prevent_scroll')
 		$('body').bind 'touchmove', (e) ->
 			e.preventDefault()
+		scrollPos = $('body').scrollTop()
+		$('.gallery_full').css(
+			top: scrollPos,
+			bottom: -1 * scrollPos
+		)
 		$('.gallery_full').fadeIn()
 	gallery_hide = ->
 		$('body').removeClass('prevent_scroll')
