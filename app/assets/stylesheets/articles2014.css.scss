@@ -347,7 +347,7 @@ body.a14 {
 
 	.main_photo_caption_inline {
 		display: none;
-		@media(min-width: $breakpoint_3) {
+		@media(max-width: $breakpoint_3) {
 			display: block;
 			font: 0.8em/1.2em $sans_font_stack;
 			color: #666;
