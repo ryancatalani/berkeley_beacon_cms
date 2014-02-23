@@ -1,6 +1,20 @@
+// Fonts
+
 $serif_font_stack: "kepler-std", "Times New Roman", Georgia, Times, serif;
 $serif_hed_font_stack: "kepler-std-semicondensed-dis", "Times New Roman", Georgia, Times, serif;
 $sans_font_stack: "franklin-gothic-urw", "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+// Colors
+
+$news: #8e7eb0;
+$opinion: #7e97af;
+$arts: #b07e7e;
+$lifestyle: #67b67b;
+$sports: #b8aa73;
+$feature: #7eb8ba;
+$multimedia: #444;
+
+$light_border: #dbdbdb;
 
 @mixin outer_wrap {
 	width: 560px;
@@ -16,6 +30,21 @@ $sans_font_stack: "franklin-gothic-urw", "Helvetica Neue", Arial, Helvetica, san
 	  visibility: hidden;
 }
 
+@mixin list_li {
+	border-bottom: 1px solid $light_border;
+	padding: 0.5em 0;
+	&:last-child {
+		border-bottom: none;
+	}
+	&:after {
+		@include clearfix;
+	}
+	img {
+		float: left;
+		margin-right: 7px;
+	}
+}
+
 body.a14 {
 	font: 17px/1.4em $serif_font_stack;
 	background: #f4f4f4;
@@ -26,13 +55,42 @@ body.a14 {
 
 	// Colors
 
-	.lifestyle_a {
-		background: #67b67b;
+	.news {
+		background: $news;
+	}
+
+	.opinion {
+		background: $opinion;
+	}
+
+	.arts {
+		background: $arts;
+	}
+
+	.lifestyle {
+		background: $lifestyle;
+	}
+
+	.sports {
+		background: $sports;
+	}
+
+	.feature {
+		background: $feature;
+	}
+
+	.multimedia {
+		background: $multimedia;
 	}
 
 	// Layout
 
 	.topnav {
+		background: #fff;
+		// border-bottom: 1px solid #dbdbdb;
+		-webkit-box-shadow: inset 0px -1px 0px 0px rgba(219,219,219,1);
+		-moz-box-shadow: inset 0px -1px 0px 0px rgba(219,219,219,1);
+		box-shadow: inset 0px -1px 0px 0px rgba(219,219,219,1);
 		&:after {
 			@include clearfix;
 		}
@@ -41,10 +99,38 @@ body.a14 {
 			float: left;
 		}
 		.topnav_section {
+			display: block;
 			font: 1.5em $sans_font_stack;
 			font-weight: 700;
+			color: #fff;
 			float: left;
 			width: 560px;
+			padding: 0.4em 0;
+			border-bottom: 1px solid #fff;
+			&:hover {
+				text-decoration: none;
+			}
+			&.news:hover {
+				background: lighten($news, 5%);
+			}
+			&.opinion:hover {
+				background: lighten($opinion, 5%);
+			}
+			&.arts:hover {
+				background: lighten($arts, 5%);
+			}
+			&.lifestyle:hover {
+				background: lighten($lifestyle, 5%);
+			}
+			&.sports:hover {
+				background: lighten($sports, 5%);
+			}
+			&.feature:hover {
+				background: lighten($feature, 5%);
+			}
+			&.multimedia:hover {
+				background: lighten($multimedia, 5%);
+			}
 		}
 	}
 
@@ -72,19 +158,147 @@ body.a14 {
 	}
 
 	.main_photo {
+		position: relative;
 		&.main_photo_vertical {
 			@include outer_wrap;
 			height: 560px;
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: center;
+			.main_photo_caption {
+				left: 580px;
+				bottom: 0;
+				position: absolute;
+			}
+		}
+		&.main_photo_horizontal {
+			margin-bottom: -10px;
+			img {
+				height: 560px;
+				width: auto;
+				margin-left: 150px;
+			}
+			.main_photo_caption {
+				float: right;
+			}
+		}
+		.main_photo_caption {
+			width: 200px;
+			font: 0.8em/1.2em $sans_font_stack;
+			color: #666;
+			a {
+				color: #666;
+			}
+			.credit {
+				font-size: 0.8em;
+				text-transform: uppercase;
+			}
 		}
 	}
 
 	.body_outer_wrap {
 		@include outer_wrap;
+		padding-top: 1.5em;
 		background: #fff;
-		border-left: 1px solid #dbdbdb;
-		border-right: 1px solid #dbdbdb;
+		border-left: 1px solid $light_border;
+		border-right: 1px solid $light_border;
+		border-bottom: 1px solid $light_border;
+	}
+
+	.sidebar {
+		float: right;
+		width: 250px;
+		.sidebar_head {
+			color: #fff;
+			padding: 0.5em;
+			font: 1em $sans_font_stack;
+			font-weight: 300;
+		}
+		.sidebar_body {
+			background: #fff;
+			padding: 0.5em;
+			border-left: 1px solid $light_border;
+			border-right: 1px solid $light_border;
+			border-bottom: 1px solid $light_border;
+		}
+		li {
+			@include list_li;
+		}
+	}
+
+	.more_from_section {
+		margin-top: 200px;
+	}
+
+	.popular {
+		margin-top: 50px;
+		border-top: 3px double $light_border;
+		padding-top: 25px;
+		.popular_switch {
+			font: 1em $sans_font_stack;
+			margin-bottom: 1em;
+			font-weight: 500;
+			a {
+				font-weight: 300;
+				color: #000;
+				&:hover {
+					text-decoration: none;
+				}
+				&:first-child {
+					margin: 0 0.3em;
+				}
+			}
+			a.active {
+				font-weight: 500;
+				border-bottom: 2px solid #000;
+			}
+		}
+		#popular_inner:after {
+			@include clearfix;
+		}
+		.popular_type {
+			&:after {
+				@include clearfix;
+			}
+			.popular_first {
+				display: block;
+				float: left;
+				width: 48%;
+				margin-right: 4%;
+				img {
+					width: 100%;
+				}
+			}
+			ol {
+				float: left;
+				width: 48%;
+				list-style-type: decimal;
+				list-style-position: inside;
+			}
+			li {
+				@include list_li;
+				img {
+					float: right;
+					margin: 0 0 0 7px;
+				}
+			}
+
+			.share_count {
+				font: 1em/2.5em $sans_font_stack;
+				display: block;
+				float: right;
+				background: #efefef;
+				width: 40px;
+				height: 40px;
+				text-align: center;
+				margin: 0 0 0 7px;
+			}
+		}
+	}
+
+	.comments {
+		margin-top: 50px;
+		border-top: 3px double $light_border;
+		padding-top: 25px;
 	}
 }

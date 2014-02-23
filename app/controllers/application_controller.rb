@@ -102,6 +102,10 @@ class ApplicationController < ActionController::Base
 			# return ret.first(num).sort_by{|a| a.views}.reverse
 		end
 
+		def popular_articles_shared
+			PopularSnapshot.latest_most_shared
+		end
+
 		def video_tag mediafile, height=500, width=820
 			othertypes = Mediafile.where(:title => mediafile.title)
 			return nil if othertypes.nil?
@@ -169,7 +173,7 @@ class ApplicationController < ActionController::Base
 
 		helper_method :current_user, :check_editor,
 			:bylineify, :bylineify_linked, :bylineify_short,
-			:popular_articles,
+			:popular_articles, :popular_articles_shared,
 			:video_tag, :og_title, :editor_logged_in, :bb_video_tag,
 			:latest_ed_cartoon, :current_twitter, :home_layout_or_article_last_updated
 

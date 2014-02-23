@@ -4,16 +4,16 @@
 		B
 	</div>
 
-	<div class="topnav_section lifestyle_a">
+	<a href="/<%= @article.section.name.downcase %>" class="topnav_section <%= @article.section.name.downcase %>">
 		<div class="main_wrap">
 			<%= @article.section.name %>
 		</div>
-	</div>
+	</a>
 
 </nav>
 
 
-<div class="header_outer_wrap lifestyle_a">
+<div class="header_outer_wrap <%= @article.section.name.downcase %>">
 	<div class="main_wrap">
 		<h1><%= @article.title.html_safe %></h1>
 		<% if @article.subtitles %>
@@ -25,17 +25,115 @@
 	</div>
 </div>
 
-<% if @article.images.first.horizontal? %>
-<div class="main_photo main_photo_horizontal">
+<% if @article.images.first %>
 
-</div>
-<% else %>
-<div class="main_photo main_photo_vertical" style="background-image:url(<%= @article.images.first.media.url %>)">
-</div>
+	<% if @article.images.first.horizontal? %>
+	<div class="main_photo main_photo_horizontal">
+		<%= image_tag @article.images.first.media.url %>
+		<div class="main_photo_caption">
+			<%= @article.images.first.title %>
+			<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+		</div>
+	</div>
+	<% else %>
+	<div class="main_photo main_photo_vertical" style="background-image:url(<%= @article.images.first.media.url %>)">
+		<div class="main_photo_caption">
+			<%= @article.images.first.title %>
+			<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+		</div>
+	</div>
+	<% end %>
+
 <% end %>
+
+<div class="sidebar more_from_section">
+	<div class="sidebar_head <%= @article.section.name.downcase %>">
+		More from <%= @article.section.name %>
+	</div>
+	<div class="sidebar_body">
+		<ul>
+		<% @section_issue_articles.each do |a| %>
+			<li>
+				<a href="<%= a.to_url %>">
+					<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
+					<%= a.title %>
+				</a>
+			</li>
+		<% end %>
+		</ul>
+	</div>
+</div>
 
 <div class="body_outer_wrap">
 	<div class="main_wrap">
 		<%= @article.body.html_safe %>
+
+		<div class="popular">
+			<div class="popular_switch">
+				Most <a href="#" class="active" data-idref="popular_viewed">Viewed</a> <a href="#" data-idref="popular_shared">Shared</a>
+			</div>
+
+			<div id="popular_inner">
+				<div class="popular_type" id="popular_viewed">
+					<a href="<%= popular_articles.first.to_url %>" class="popular_first">
+						<%= image_tag popular_articles.first.first_photo.media.thumb_220.url if popular_articles.first.first_photo %>
+						1. <%= popular_articles.first.title %>
+					</a>
+					<ol start="2">
+						<% popular_articles.last(4).each do |a| %>
+						<li>
+							<a href="<%= a.to_url %>">
+								<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
+								<%= a.title %>
+							</a>
+						</li>
+						<% end %>
+					</ol>
+				</div>
+				<div class="popular_type" id="popular_shared">
+					<a href="<%= popular_articles_shared.first[0].to_url %>" class="popular_first">
+						<%= image_tag popular_articles_shared.first[0].first_photo.media.thumb_220.url if popular_articles_shared.first[0].first_photo %>
+						<div>
+							<span class="share_count">
+								<%= popular_articles_shared.first[1] %>
+							</span>
+							1. <%= popular_articles_shared.first[0].title %>
+						</div>
+					</a>
+					<ol start="2">
+						<% popular_articles_shared.last(4).each do |pop| %>
+						<% a = pop[0] %>
+						<li>
+							<a href="<%= a.to_url %>">
+								<span class="share_count">
+									<%= pop[1] %>
+								</span>
+								<%= a.title %>
+							</a>
+						</li>
+						<% end %>
+					</ol>
+				</div>
+			</div>
+		</div>
+
+		<% if !@article.disable_comments %>
+		<div class="comments">
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+			    var disqus_shortname = 'berkeleybeacon';
+			    var disqus_url = '<%= @article.to_url(:full => true) %>';
+
+			    /* * * DON'T EDIT BELOW THIS LINE * * */
+			    (function() {
+			        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			    })();
+			</script>
+			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			<a href="http://disqus.com" class="dsq-brlink" style="display:none">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div>
+		<% end %>
 	</div>
 </div>

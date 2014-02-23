@@ -49,7 +49,7 @@
 	<script type="text/javascript" src="//use.typekit.net/mdh3wrb.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
-<body <% if @body_id %><%= "id=#{@body_id}" %><% end %> class="a14">
+<body <% if @body_id %><%= "id=#{@body_id}" %><% end %> class="a14 <%= @body_class if @body_class %>">
 
 <%= yield %>
 
