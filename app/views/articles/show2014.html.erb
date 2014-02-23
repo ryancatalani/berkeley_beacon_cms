@@ -6,12 +6,16 @@
 			<li>
 				<div class="gallery_image" style="background-image:url(<%= img.media.url %>)"></div>
 				<div class="gallery_image_caption">
-					<%= @article.images.first.title %>
-					<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+					<%= img.title %>
+					<div class="credit"><%= bylineify_linked(img).html_safe %></div>
 				</div>
 			</li>
 		<% end %>
 		</ul>
+		<div class="gallery_close">
+			<i class="fa fa-times-circle fa-3x"></i>
+		</div>
+		<div class="gallery_nav_container"></div>
 	</div>
 </div>
 <% end %>
@@ -55,6 +59,11 @@
 	</div>
 	<% else %>
 	<div class="main_photo main_photo_vertical" style="background-image:url(<%= @article.images.first.media.url %>)">
+		<% if @article.images.count > 1 %>
+			<div class="gallery_open">
+				<i class="fa fa-play-circle"></i> Open Slideshow
+			</div>
+		<% end %>
 		<div class="main_photo_caption">
 			<%= @article.images.first.title %>
 			<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>

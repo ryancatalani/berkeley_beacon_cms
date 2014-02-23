@@ -64,14 +64,25 @@ jQuery ->
 	$('.rslides_a14').responsiveSlides(
 		auto: false,
 		nav: true,
-		prevText: '<i class="fa fa-angle-left fa-3x"></i>',
-		nextText: '<i class="fa fa-angle-right fa-3x"></i>'
+		prevText: '<i class="fa fa-chevron-circle-left fa-3x"></i>',
+		nextText: '<i class="fa fa-chevron-circle-right fa-3x"></i>',
+		controls: '.gallery_nav_container',
 	)
 
-	$('body').css(
-		height: '100%',
-		overflow: 'hidden'
-	)
+	gallery_show = ->
+		$('body').addClass('prevent_scroll')
+		$('body').bind 'touchmove', (e) ->
+			e.preventDefault()
+		$('.gallery_full').fadeIn()
+	gallery_hide = ->
+		$('body').removeClass('prevent_scroll')
+		$('body').unbind 'touchmove'
+		$('.gallery_full').fadeOut()
+	$('.gallery_open').click ->
+		gallery_show()
+	$('.gallery_close').click ->
+		gallery_hide()
+
 
 	if window.location.search.indexOf('?a14=true') != -1
 		$('a').each ->
