@@ -23,8 +23,8 @@
 
 <nav class="topnav">
 
-	<div class="topnav_b">
-		B
+	<div class="topnav_left">
+		<a href="/" class="topnav_b <%= @article.section.name.downcase %>"></a>
 	</div>
 
 	<a href="/<%= @article.section.name.downcase %>" class="topnav_section <%= @article.section.name.downcase %>">
@@ -51,6 +51,11 @@
 
 	<% if @article.images.first.horizontal? %>
 	<div class="main_photo main_photo_horizontal">
+		<% if @article.images.count > 1 %>
+			<div class="gallery_open">
+				<i class="fa fa-play-circle"></i> Open Slideshow
+			</div>
+		<% end %>
 		<%= image_tag @article.images.first.media.url %>
 		<div class="main_photo_caption">
 			<%= @article.images.first.title %>

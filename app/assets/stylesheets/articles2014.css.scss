@@ -47,25 +47,25 @@ $light_border: #dbdbdb;
 
 @mixin section_bkgd_hover {
 	&.news:hover {
-		background: lighten($news, 5%);
+		background-color: lighten($news, 5%);
 	}
 	&.opinion:hover {
-		background: lighten($opinion, 5%);
+		background-color: lighten($opinion, 5%);
 	}
 	&.arts:hover {
-		background: lighten($arts, 5%);
+		background-color: lighten($arts, 5%);
 	}
 	&.lifestyle:hover {
-		background: lighten($lifestyle, 5%);
+		background-color: lighten($lifestyle, 5%);
 	}
 	&.sports:hover {
-		background: lighten($sports, 5%);
+		background-color: lighten($sports, 5%);
 	}
 	&.feature:hover {
-		background: lighten($feature, 5%);
+		background-color: lighten($feature, 5%);
 	}
 	&.multimedia:hover {
-		background: lighten($multimedia, 5%);
+		background-color: lighten($multimedia, 5%);
 	}
 }
 
@@ -86,47 +86,58 @@ body.a14 {
 	// Colors
 
 	.news {
-		background: $news;
+		background-color: $news;
 	}
 
 	.opinion {
-		background: $opinion;
+		background-color: $opinion;
 	}
 
 	.arts {
-		background: $arts;
+		background-color: $arts;
 	}
 
 	.lifestyle {
-		background: $lifestyle;
+		background-color: $lifestyle;
 	}
 
 	.sports {
-		background: $sports;
+		background-color: $sports;
 	}
 
 	.feature {
-		background: $feature;
+		background-color: $feature;
 	}
 
 	.multimedia {
-		background: $multimedia;
+		background-color: $multimedia;
 	}
 
 	// Layout
 
 	.topnav {
 		background: #fff;
-		// border-bottom: 1px solid #dbdbdb;
+		height: 54px;
 		-webkit-box-shadow: inset 0px -1px 0px 0px rgba(219,219,219,1);
 		-moz-box-shadow: inset 0px -1px 0px 0px rgba(219,219,219,1);
 		box-shadow: inset 0px -1px 0px 0px rgba(219,219,219,1);
 		&:after {
 			@include clearfix;
 		}
-		.topnav_b {
+		.topnav_left {
 			width: 200px;
 			float: left;
+		}
+		.topnav_b {
+			display: block;
+			width: 36px;
+			height: 36px;
+			margin-top: 9px;
+			margin-left: 9px;
+			background-image: url("/assets/b_square.png");
+			background-size: cover;
+			background-repeat: no-repeat;
+			@include section_bkgd_hover;
 		}
 		.topnav_section {
 			display: block;
@@ -181,6 +192,10 @@ body.a14 {
 				bottom: 0;
 				position: absolute;
 			}
+			.gallery_open {
+				left: 10px;
+				bottom: 10px;
+			}
 		}
 		&.main_photo_horizontal {
 			margin-bottom: -10px;
@@ -192,6 +207,10 @@ body.a14 {
 			.main_photo_caption {
 				position: absolute;
 				left: 770px;
+			}
+			.gallery_open {
+				left: 160px;
+				bottom: 20px;
 			}
 		}
 		.main_photo_caption {
@@ -213,8 +232,6 @@ body.a14 {
 			font-weight: 300;
 			padding: 0.4em;
 			position: absolute;
-			right: 10px;
-			bottom: 10px;
 			cursor: pointer;
 			&:hover {
 				background: rgba(0,0,0,0.5);
