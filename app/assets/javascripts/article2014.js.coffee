@@ -53,6 +53,7 @@ jQuery ->
 		, 100)
 
 	$('.article_share').find('a').click (e) ->
+		return true if $(this).prop('href').indexOf('#') != -1
 		e.preventDefault()
 		window.open(
 			$(this).prop('href'),
@@ -91,5 +92,5 @@ jQuery ->
 
 	if window.location.search.indexOf('?a14=true') != -1
 		$('a').each ->
-			return true if $(this).prop('href').substr('#') == -1
+			return true if $(this).prop('href').indexOf('#') != -1
 			$(this).prop('href', $(this).prop('href') + '?a14=true')
