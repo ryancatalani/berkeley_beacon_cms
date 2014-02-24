@@ -89,6 +89,11 @@ jQuery ->
 	$('.gallery_close').click ->
 		gallery_hide()
 
+	$('.topnav_section').hover ->
+		$('.section_select').slideDown()
+	, ->
+		$('.section_select').slideUp()
+
 
 	if window.location.search.indexOf('?a14=true') != -1
 		$('a').each ->

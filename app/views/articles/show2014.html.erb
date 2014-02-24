@@ -27,11 +27,24 @@
 		<a href="/" class="topnav_b <%= @article.section.name.downcase %>"></a>
 	</div>
 
-	<a href="/<%= @article.section.name.downcase %>" class="topnav_section <%= @article.section.name.downcase %>">
-		<div class="main_wrap">
+	<div class="topnav_section">
+		<a href="/<%= @article.section.name.downcase %>" class="<%= @article.section.name.downcase %>">
+			<div class="main_wrap">
 			<%= @article.section.name %>
-		</div>
-	</a>
+			</div>
+		</a>
+		<ul class="section_select">
+			<% @other_sections.each do |section| %>
+			<li>
+				<a href="/<%= section.name.downcase %>" class="<%= section.name.downcase %>">
+					<div class="main_wrap">
+						<%= section.name %>
+					</div>
+				</a>
+			</li>
+			<% end %>
+		</ul>
+	</div>
 
 </nav>
 

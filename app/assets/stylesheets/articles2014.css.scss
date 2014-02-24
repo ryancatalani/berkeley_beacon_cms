@@ -206,15 +206,10 @@ body.a14 {
 			}
 		}
 		.topnav_section {
-			@include section_bkgd_hover;
 			@include main_width;
 			display: block;
-			font: 1.5em $sans_font_stack;
-			font-weight: 700;
-			color: #fff;
 			float: left;
-			padding: 0.4em 0;
-			border-bottom: 1px solid #fff;
+			position: relative;
 			@media(max-width: $breakpoint_3) {
 				width: auto;
 				border-bottom: none;
@@ -222,10 +217,25 @@ body.a14 {
 				border-left: 1px solid $light_border;
 				padding-left: 9px;
 			}
-			&:hover {
-				text-decoration: none;
+			a {
+				font: 1.5em $sans_font_stack;
+				font-weight: 700;
+				color: #fff;
+				display: block;
+				width: 100%;
+				padding: 0.4em 0;
+				border-bottom: 1px solid #fff;
+				@include section_bkgd_hover;
+				&:hover {
+					text-decoration: none;
+				}
 			}
-
+		}
+		.section_select {
+			@include main_width;
+			position: absolute;
+			z-index: 2;
+			display: none;
 		}
 	}
 
