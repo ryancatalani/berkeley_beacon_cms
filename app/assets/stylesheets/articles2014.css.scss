@@ -91,7 +91,7 @@ $breakpoint_3: 320px;
 	}
 }
 @mixin sm_left_margin($attribute) {
-	#{$attribute}: 150px;
+	#{$attribute}: 125px;
 	@media(max-width: $breakpoint_1) {
 		#{$attribute}: 50px;
 	}
@@ -111,7 +111,7 @@ $breakpoint_3: 320px;
 
 body.a14 {
 	font: 17px/1.4em $serif_font_stack;
-	background: #f4f4f4;
+	// background: #f4f4f4;
 	position: relative;
 
 	p {
@@ -294,7 +294,7 @@ body.a14 {
 			}
 			.main_photo_caption {
 				position: absolute;
-				left: 770px;
+				left: 800px;
 				@media(max-width: $breakpoint_1) {
 					left: 670px;
 				}
@@ -303,7 +303,7 @@ body.a14 {
 				}
 			}
 			.gallery_open {
-				left: 160px;
+				left: 135px;
 				bottom: 20px;
 				@media(max-width: $breakpoint_1) {
 					left: 60px;
@@ -317,6 +317,7 @@ body.a14 {
 			width: 200px;
 			font: 0.8em/1.2em $sans_font_stack;
 			color: #666;
+			padding-top: 24px;
 			@media(max-width: $breakpoint_2) {
 				width: 120px;
 			}
@@ -358,11 +359,18 @@ body.a14 {
 
 	.body_outer_wrap {
 		@include outer_wrap;
-		padding-top: 1.5em;
-		background: #fff;
-		border-left: 1px solid $light_border;
-		border-right: 1px solid $light_border;
-		border-bottom: 1px solid $light_border;
+		padding-top: 30px;
+		// background: #fff;
+		// border-left: 1px solid $light_border;
+		// border-right: 1px solid $light_border;
+		// border-bottom: 1px solid $light_border;
+		.body_inner_wrap {
+			width: 100%;
+			@media(max-width: $breakpoint_3) {
+				width: 90%;
+				margin: 0 auto;
+			}
+		}
 	}
 
 	.gallery_full {
@@ -507,6 +515,7 @@ body.a14 {
 	}
 
 	.popular {
+		width: 100%;
 		margin-top: 50px;
 		border-top: 3px double $light_border;
 		padding-top: 25px;
