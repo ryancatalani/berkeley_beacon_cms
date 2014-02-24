@@ -102,7 +102,7 @@
 			<li>
 				<a href="<%= a.to_url %>">
 					<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
-					<%= a.title %>
+					<%= a.extra_title %>
 				</a>
 			</li>
 		<% end %>
@@ -154,14 +154,14 @@
 				<div class="popular_type" id="popular_viewed">
 					<a href="<%= popular_articles.first.to_url %>" class="popular_first">
 						<%= image_tag popular_articles.first.first_photo.media.thumb_220.url if popular_articles.first.first_photo %>
-						1. <%= popular_articles.first.title %>
+						1. <%= popular_articles.first.extra_title %>
 					</a>
 					<ol start="2">
 						<% popular_articles.last(4).each do |a| %>
 						<li>
 							<a href="<%= a.to_url %>">
 								<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
-								<%= a.title %>
+								<%= a.extra_title %>
 							</a>
 						</li>
 						<% end %>
@@ -174,7 +174,7 @@
 							<span class="share_count">
 								<%= popular_articles_shared.first[1] %>
 							</span>
-							1. <%= popular_articles_shared.first[0].title %>
+							1. <%= popular_articles_shared.first[0].extra_title %>
 						</div>
 					</a>
 					<ol start="2">
@@ -185,7 +185,7 @@
 								<span class="share_count">
 									<%= pop[1] %>
 								</span>
-								<%= a.title %>
+								<%= a.extra_title %>
 							</a>
 						</li>
 						<% end %>

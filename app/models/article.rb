@@ -69,6 +69,18 @@ class Article < ActiveRecord::Base
 		return nil
 	end
 
+	def extra_title
+		if section.name == "Opinion" && !title.downcase.include?("letter to")
+			if people.first.full_name == "Editorial Board"
+				return "Editorial: #{title}"
+			else
+				return "Op-Ed: #{title}"
+			end
+		end
+
+		return title
+	end
+
 	def thumb
 		return nil unless first_photo
 		first_photo.media.thumb_140.url
