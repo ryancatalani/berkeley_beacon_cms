@@ -366,7 +366,7 @@ body.a14 {
 		// border-bottom: 1px solid $light_border;
 		.body_inner_wrap {
 			width: 100%;
-			@media(max-width: $breakpoint_3) {
+			@media(max-width: $breakpoint_2) {
 				width: 90%;
 				margin: 0 auto;
 			}
