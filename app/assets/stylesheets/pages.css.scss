@@ -675,6 +675,10 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	margin: 0 auto;
 	font-size: 1.1em;
 	line-height: 1.4em;
+	@media screen and (max-width: 760px) {
+		width: 90%;
+		margin: 0 auto;
+	}
 	h2 {
 		font-size: 2em;
 		margin-bottom: 0.5em;
@@ -716,12 +720,23 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 		background-position: center;
 		background-repeat: no-repeat;
 		margin-bottom: 1em;
+		@media screen and (max-width: 550px) {
+			width: 50%;
+			float: right;
+		}
 	}
 	.nominee_box_half {
 		width: 48%;
 		float: left;
 		&:first-child {
 			margin-right: 2%;
+		}
+		@media screen and (max-width: 550px) {
+			width: 100%;
+			margin-bottom: 1em;
+			&:first-child {
+				margin-right: 0;
+			}
 		}
 	}
 	.nominee_box_full {
