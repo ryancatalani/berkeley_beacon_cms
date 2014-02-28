@@ -5,6 +5,8 @@
 $link_blue: #4c6d92;
 $link_hover_blue: #8aadd3;
 
+$oscars_gold: #F5CA6E;
+
 @mixin upcase {
 	text-transform: uppercase;
 	font-size: 0.8em;
@@ -617,7 +619,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	margin-left: 2px;
 }
 
-.best_picture {
+.oscars2013 .best_picture {
 	h3 {
 		margin: 0;
 		margin-bottom: 15px;
@@ -666,6 +668,93 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	margin-top: 10px;
 	font-size: 18px;
 	line-height: 22px;
+}
+
+.oscars2014 {
+	width: 750px;
+	margin: 0 auto;
+	font-size: 1.1em;
+	line-height: 1.4em;
+	h2 {
+		font-size: 2em;
+		margin-bottom: 0.5em;
+	}
+	h3 {
+		font-weight: normal;
+		font-size: 0.9em;
+		&.award {
+			margin: 0 -20px 10px;
+			padding: 0 20px 10px;
+		}
+	}
+	.nominee h3 {
+		font-weight: bold;
+		font-size: 1.25em;
+	}
+	p:last-child {
+		margin-top: 1em;
+		text-align: right;
+	}
+	.best_picture {
+		background: #53789B;
+		color: #fff;
+		border: 1px solid #466483;
+	}
+	.nominee_box {
+		padding: 20px;
+	}
+	.nominee_box_gold {
+		background-color: $oscars_gold;
+		border: 1px solid #D7AB53;
+		h3.award {
+			border-bottom: 1px solid #D7AB53;
+		}
+	}
+	.portrait {
+		padding: 10px;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		margin-bottom: 1em;
+	}
+	.nominee_box_half {
+		width: 48%;
+		float: left;
+		&:first-child {
+			margin-right: 2%;
+		}
+	}
+	.nominee_box_full {
+		width: 100%;
+		.portrait {
+			width: 50%;
+			float: right;
+		}
+	}
+	.row {
+		padding-bottom: 40px;
+		margin-bottom: 40px;
+		&:after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
+	.award_double {
+		.award_double_item {
+			width: 50%;
+			float: left;
+		}
+		&:after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
 }
 
 #ecla_header {

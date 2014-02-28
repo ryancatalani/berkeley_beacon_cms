@@ -13,7 +13,8 @@ BeaconApp::Application.routes.draw do
 	match '/new_media_person', :to => 'people#new_media_person', :via => :post
 	match '/new_tag/:tag_id/article/:article_id', :to => 'taggings#new_tagging', :via => :post
   match '/oscars2012', :to => 'pages#oscars'
-  match '/oscars', :to => 'pages#oscars2013'
+  match '/oscars2013', :to => 'pages#oscars2013'
+  match '/oscars2014', :to => 'pages#oscars2014'
 
   match '/ecla', :to => 'pages#emersonla'
   match '/emersonla', :to => 'pages#emersonla'

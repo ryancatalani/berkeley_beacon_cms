@@ -27,6 +27,43 @@ jQuery ->
 				$(this).css("height",maxes[group])
 		, 500
 
+	$('.oscars2014').find('.portrait').each ->
+		h = $(this).height()
+		w = $(this).width()
+		if h > w
+			$(this).css('width', h)
+		else
+			$(this).css('height', w)
+
+	if ('.nominee_box_half').length > 0
+		setTimeout ->
+			$('.oscars2014').find('.row').each ->
+				half_boxes = $(this).find('.nominee_box_half')
+				return unless half_boxes.length > 0
+				max = 0
+				half_boxes.each ->
+					max = $(this).height() if ($(this).height() > max)
+				max += 40
+				half_boxes.each ->
+					$(this).css("height",max)
+		, 500
+
+	# $('.oscars2014').find('.row').each ->
+	# 	half_boxes = $(this).find('.nominee_box_half')
+	# 	return unless half_boxes.length > 0
+	# 	console.log half_boxes
+	# 	setTimeout ->
+	# 		console.log '2'
+	# 		console.log half_boxes
+	# 		max = 0
+	# 		$(this).find('.nominee_box_half').each ->
+	# 			console.log this
+	# 			max = $(this).height() if ($(this).height() > max)
+	# 		console.log max
+	# 		# $('.nominee_box_half').each ->
+	# 			# $(this).css("height",max)
+	# 	, 500
+
 	$("#popular_most_viewed_h").click (e) ->
 		$("#popular_most_shared").hide()
 		$("#popular_most_viewed").show()
