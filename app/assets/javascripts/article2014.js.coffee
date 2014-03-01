@@ -101,10 +101,15 @@ jQuery ->
 		e.preventDefault()
 		id = $(this).attr('id')
 		switch id
-			when 'a14_hide_banner' then $.cookie('a14_hide_banner', 'true')
+			when 'a14_hide_banner'
+				$.cookie 'a14_hide_banner', 'true',
+				  expires: 365
+				  path: "/"
 			when 'a14_hide_once' then window.location.search = '?proto=false'
 			when 'a14_hide_always'
-				$.cookie('a14_hide_always', 'true')
+				$.cookie 'a14_hide_always', 'true',
+				  expires: 365
+				  path: "/"
 				location.reload(true)
 
 		proto_banner.slideUp()
