@@ -83,7 +83,6 @@ class PagesController < ApplicationController
 	def oscars2014
 		@title = "The Beacon's 2014 Oscar Picks"
 		@needs_og = true
-		@include_responsive = true
 		@og = {}
 		@og[:title] = "The Beacon's Oscar picks"
 		@og[:url] = "http://berkeleybeacon.com/oscars"
