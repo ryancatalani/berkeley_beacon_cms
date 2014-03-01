@@ -94,6 +94,21 @@ jQuery ->
 	, ->
 		$('.section_select').slideUp()
 
+	proto_banner = $('.a14_prototype_banner')
+	proto_banner.hide()
+	proto_banner.slideDown()
+	proto_banner.find('a').click (e) ->
+		e.preventDefault()
+		id = $(this).attr('id')
+		switch id
+			when 'a14_hide_banner' then $.cookie('a14_hide_banner', 'true')
+			when 'a14_hide_once' then window.location.search = '?proto=false'
+			when 'a14_hide_always'
+				$.cookie('a14_hide_always', 'true')
+				location.reload(true)
+
+		proto_banner.slideUp()
+		return false
 
 	if window.location.search.indexOf('?a14=true') != -1
 		$('a').each ->

@@ -16,15 +16,12 @@
 	<% if @og and @og[:description] %>
 		<meta property="og:description" content="<%= @og[:description] %>">
 	<% end %>
-	<meta property="fb:admins" content="1600232313" />
+
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-
 	<%= csrf_meta_tags %>
-
-	<% if @include_bootstrap or @include_responsive %>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<% end %>
+	<meta property="fb:admins" content="1600232313" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<% if Rails.env.production? %>
 		<script type="text/javascript">
@@ -52,7 +49,23 @@
 </head>
 <body <% if @body_id %><%= "id=#{@body_id}" %><% end %> class="a14 <%= @body_class if @body_class %>">
 
+<% if @show_prototype_banner %>
+<div class="a14_prototype_banner">
+	<a href="#" id="a14_hide_banner"><i class="fa fa-times-circle fa-2x"></i></a>
+	You're viewing a prototype of the new Beacon website. You can opt-out <a href="#" id="a14_hide_once">for this one page</a> or <a href="#" id="a14_hide_always">permanently</a>.
+</div>
+<% end %>
+
 <%= yield %>
 
+
+<% if Rails.env.production? %>
+<script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0019/6015.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+<% end %>
 </body>
 </html>

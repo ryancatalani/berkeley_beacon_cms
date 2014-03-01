@@ -610,6 +610,32 @@ body.a14 {
 		border-top: 3px double $light_border;
 		padding-top: 25px;
 	}
+
+	.a14_prototype_banner {
+		background: #F3F2F4;
+		width: 100%;
+		padding: 1em 1em 0.7em 1em;
+		&:after {
+			@include clearfix;
+		}
+		i {
+			float: left;
+			margin-top: -6px;
+			margin-right: 10px;
+		}
+		a {
+			&:first-child {
+				text-decoration: none;
+			}
+			&:link, &:visited {
+				color: #59595A;
+				text-decoration: underline;
+			}
+			&:hover {
+				color: #777;
+			}
+		}
+	}
 }
 
 .prevent_scroll {
