@@ -24,7 +24,7 @@ class Article < ActiveRecord::Base
 			return link
 		else
 			c = created_at
-			base = blog.nil? ? section.clean_url : blog.cleantitle
+			base = blog.nil? ? section.clean_url : blog.cleantitle rescue 'web'
 			path = "/#{base}/#{c.year}/#{c.month}/#{c.day}/#{cleantitle}"
 			return "http://www.berkeleybeacon.com"+path if opts[:full] and opts[:full] = true
 			return path
