@@ -168,7 +168,7 @@
 					</ol>
 				</div>
 				<div class="popular_type" id="popular_shared">
-					<a href="<%= popular_articles_shared.first[0].to_url %>" class="popular_first">
+					<a href="<%= popular_articles_shared.first[0].to_url rescue '' %>" class="popular_first">
 						<%= image_tag popular_articles_shared.first[0].first_photo.media.thumb_220.url if popular_articles_shared.first[0].first_photo %>
 						<div>
 							<span class="share_count">
