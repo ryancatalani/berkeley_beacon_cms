@@ -169,12 +169,12 @@
 				</div>
 				<div class="popular_type" id="popular_shared">
 					<a href="<%= popular_articles_shared.first[0].to_url rescue '' %>" class="popular_first">
-						<%= image_tag popular_articles_shared.first[0].first_photo.media.thumb_220.url if popular_articles_shared.first[0].first_photo %>
+						<%= image_tag popular_articles_shared.first[0].first_photo.media.thumb_220.url if popular_articles_shared.first[0].first_photo rescue '' %>
 						<div>
 							<span class="share_count">
-								<%= popular_articles_shared.first[1] %>
+								<%= popular_articles_shared.first[1] rescue '0' %>
 							</span>
-							1. <%= popular_articles_shared.first[0].extra_title %>
+							1. <%= popular_articles_shared.first[0].extra_title rescue '' %>
 						</div>
 					</a>
 					<ol start="2">
