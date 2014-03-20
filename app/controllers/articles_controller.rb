@@ -314,7 +314,7 @@ class ArticlesController < ApplicationController
 		@og[:description] = @article.excerpt.blank? ? nil : @article.excerpt
 
 		# if params[:a14]=="true" && editor_logged_in
-		if cookies[:a14_hide_always].nil? && params[:proto] != "false"
+		if cookies[:a14_hide_always].nil? && params[:proto] != "false" && false
 			@body_class = "a14_article"
 			@show_prototype_banner = cookies[:a14_hide_banner] != "true"
 			@article_section = @article.section.nil? ? Section.find_by_name('News') : @article.section
