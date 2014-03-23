@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
 		@sections = Section.all.map { |s| [s.name, s.id] }
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 		@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
-		@issues = Issue.all.map {|i| [i.release_date_f, i.id]}.reverse.insert(1,["None/Online only", 0])
+		@issues = Issue.all.sort_by{|i| i.release_date }.reverse.map {|i| [i.release_date_f, i.id]}.insert(1,["None/Online only", 0])
 		@topics = Topic.all.map{|t| [t.title, t.id]}
 		@current_topics = @article.topics.map{|t| t.id} || []
 		@can_queue_tweet = can_queue_tweet?
@@ -196,7 +196,7 @@ class ArticlesController < ApplicationController
 		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
 		@authors.unshift(["Choose an author",0])
 		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
-		@issues = Issue.all.map {|i| [i.release_date_f, i.id]}.reverse.insert(1,["None/Online only", 0])
+		@issues = Issue.all.sort_by{|i| i.release_date }.reverse.map {|i| [i.release_date_f, i.id]}.insert(1,["None/Online only", 0])
 		@topics = Topic.all.map{|t| [t.title, t.id]}
 		@current_topics = @article.topics.map{|t| t.id} || []
 		@can_queue_tweet = can_queue_tweet?
