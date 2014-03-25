@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   respond_to :html, :js
+  before_filter :check_editor
 
   def index
     @new_event = Event.new
