@@ -211,6 +211,7 @@ class ArticlesController < ApplicationController
 		@topics = Topic.all.map{|t| [t.title, t.id]}
 		@current_topics = @article.topics.map{|t| t.id} || []
 		@can_queue_tweet = can_queue_tweet?
+		@event_url = @article.events.count > 0 ? @article.events.last.url(true) : nil
 	end
 
 	def update
@@ -268,6 +269,20 @@ class ArticlesController < ApplicationController
 				t = params[:topic].map(&:to_i).each do |t_id|
 					Topical.create!(:article_id => @article.id, :topic_id => t_id)
 				end
+			end
+			if params[:beacon_event_url]
+				# begin
+					events_url_regex = /events\/(.+)\//
+					uid = events_url_regex.match(params[:beacon_event_url])[1]
+					event = Event.find_by_uid(uid)
+					aeb = ArticleEventBinder.where(:article_id => @article.id)
+					if aeb.count > 0
+						aeb.first.update_attribute(:event_id, event.id)
+					else
+						ArticleEventBinder.create!(:article_id => @article.id, :event_id => event.id)
+					end
+				# rescue
+				# end
 			end
 			tweet(is_draft, queue_tweet) if was_draft
 			redirect_to "/articles#a_#{@article.id}"

@@ -104,6 +104,34 @@
 				<%= f.label :issue_id %>
 				<%= f.select :issue_id, options_for_select(@issues, @article.issue_id) %>
 			</div>
+			<div class="field radio_inputs events_section_only" <% if @article.section.name != "Events" %>style="display:none"<% end %>>
+				Which day is this event?
+
+				<div class="radio">
+				<%= radio_button_tag :event_highlight_location, 'thursday' %>
+				<%= label_tag :event_highlight_location_thursday, "Thursday" %>
+				</div>
+
+				<div class="radio">
+				<%= radio_button_tag :event_highlight_location, 'friday' %>
+				<%= label_tag :event_highlight_location_friday, "Friday" %>
+				</div>
+
+				<div class="radio">
+				<%= radio_button_tag :event_highlight_location, 'saturday' %>
+				<%= label_tag :event_highlight_location_saturday, "Saturday" %>
+				</div>
+
+				<div class="radio">
+				<%= radio_button_tag :event_highlight_location, 'rest' %>
+				<%= label_tag :event_highlight_location_rest, "Rest of week" %>
+				</div>
+			</div>
+
+			<div class="field events_section_only" <% if @article.section.name != "Events" %>style="display:none"<% end %>>
+				<%= label_tag :beacon_event_url %>
+				<%= text_field_tag :beacon_event_url, @event_url %>
+			</div>
 			<div id="series">
 				<%= f.label :series_id %>
 				<%= select_tag :series_id, options_for_select(@series, @article.series_id) %>

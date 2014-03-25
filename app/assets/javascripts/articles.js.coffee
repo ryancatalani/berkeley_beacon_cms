@@ -34,10 +34,11 @@ jQuery ->
 			$("#article_body_field").slideDown()
 			$("#article_link_field").slideUp()
 
-	$("#article_section_id").on('change', (e, params) ->
+	$("#article_section_id, #section").on('change', (e, params) ->
 		sel = params.selected
 		section = $("#article_section_id").find("option[value=#{sel}]").eq(0).text()
-		console.log section
+		if section == ''
+			section = $("#section").find("option[value=#{sel}]").eq(0).text()
 		if section.indexOf("Events") == 0
 			$('.events_section_only').slideDown()
 		if section.indexOf("Events") != 0
