@@ -1,14 +1,13 @@
 <div class="event_box">
-	<div class="event_date">
-		<%= e.date_start.strftime('%b') %>
-		<div class="event_day"><%= e.date_start.strftime('%e') %></div>
-	</div>
-
 	<h3><%= link_to e.title, e.url %></h3>
 	<p>
-		<em><%= e.date_start.strftime('%l:%M %P') %> - <%= e.date_end.strftime('%l:%M %P') %></em>
+		<em><i class="fa fa-clock-o fa-fw"></i> <%= e.date_start.strftime('%l:%M %P') %> - <%= e.date_end.strftime('%l:%M %P') %></em>
 		<br>
-		<em><%= e.location %></em>
+		<em><i class="fa fa-map-marker fa-fw"></i> <%= e.location %></em>
+		<% if e.link? %>
+		<br>
+		<em><i class="fa fa-external-link fa-fw"></i> <%= link_to "Link (#{URI.parse(e.link).host})", e.link %></em>
+		<% end %>
 	</p>
-	<p><%= e.description %></p>
+	<p class="event_description"><%= e.description %></p>
 </div>

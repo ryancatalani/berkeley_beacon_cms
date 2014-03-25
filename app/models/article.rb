@@ -227,6 +227,10 @@ class Article < ActiveRecord::Base
 		return days[event_day]
 	end
 
+	def first_event
+		events.first
+	end
+
 	private
 		def check_clean_title
 			c = created_at

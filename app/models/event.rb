@@ -43,6 +43,10 @@ class Event < ActiveRecord::Base
 		where('approved = ? AND date_start >= ?', true, 1.week.from_now).order(:date_start)
 	end
 
+	def self.all_upcoming
+		where('approved = ? AND date_start >= ?', true, Time.now).order(:date_start)
+	end
+
 	def organizer_email_is_emerson
 		unless !organizer_email.blank? && organizer_email.include?("@emerson.edu")
 			errors.add(:organizer_email, "must include @emerson.edu.")

@@ -3,8 +3,9 @@ class EventsController < ApplicationController
 
   def index
     @new_event = Event.new
-    @events_upcoming_week = Event.upcoming_week.all
-    @events_upcoming = Event.upcoming.all
+    # @events_upcoming_week = Event.upcoming_week.all
+    # @events_upcoming = Event.upcoming.all
+    @events_all_upcoming = Event.all_upcoming.all.group_by{|e| e.date_start.to_s(:pretty_date)}
     @events_to_approve = Event.to_approve.all
 
     issue_event_articles = Article.where(:issue_id => Issue.latest.id, :section_id => Section.find_by_name("Events").id)
@@ -14,7 +15,10 @@ class EventsController < ApplicationController
     picks_ROW = issue_event_articles.where(:event_day => 10).all
     @beacon_picks = picks_thursday + picks_friday + picks_saturday + picks_ROW
 
+
+    @other_sections = %w(News Opinion Arts Lifestyle Sports Feature Multimedia).map{|s| Section.find_by_name s}.compact
     @body_id = 'events_calendar'
+    @body_class = 'a14'
     render 'index', :layout => 'bare'
   end
 

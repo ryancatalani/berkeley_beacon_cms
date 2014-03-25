@@ -13,6 +13,7 @@ $lifestyle: #67b67b;
 $sports: #b8aa73;
 $feature: #7eb8ba;
 $multimedia: #444;
+$events: #E4B041;
 
 $light_border: #dbdbdb;
 
@@ -66,6 +67,9 @@ $light_border: #dbdbdb;
 	}
 	&.multimedia:hover {
 		background-color: lighten($multimedia, 5%);
+	}
+	&.events:hover {
+		background-color: lighten($events, 5%);
 	}
 }
 
@@ -148,6 +152,10 @@ body.a14 {
 		background-color: $multimedia;
 	}
 
+	.events {
+		background-color: $events;
+	}
+
 	// Layout
 
 	.topnav {
@@ -177,6 +185,9 @@ body.a14 {
 			}
 			&.multimedia {
 				background: $multimedia;
+			}
+			&.events {
+				background: $events;
 			}
 		}
 		&:after {
@@ -635,6 +646,11 @@ body.a14 {
 				color: #777;
 			}
 		}
+	}
+
+	.wide_wrap {
+		@include main_left_margin('padding-left');
+		@include main_left_margin('padding-right');
 	}
 }
 

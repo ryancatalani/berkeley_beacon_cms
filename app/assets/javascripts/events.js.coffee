@@ -45,3 +45,19 @@ jQuery ->
 		$('#time_start, #time_end').pickatime({
 			formatSubmit: 'HH:i'
 		})
+
+	$('.event_description').each ->
+		if $(this).height() > 300
+			$(this).css('height', 300)
+			$(this).parent().append('<p><a href="#" class="event_read_more"><em>Read more...</em></a><p>')
+
+	$('.event_read_more').click (e) ->
+		e.preventDefault()
+		$(this).parents('.event_box').find('.event_description').css('height', 'auto')
+		$(this).hide()
+		return false
+
+	$('#events_submit').click (e) ->
+		e.preventDefault()
+		$('#new_event_inline').slideDown()
+		return false
