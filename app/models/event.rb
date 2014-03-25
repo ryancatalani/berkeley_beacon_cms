@@ -13,6 +13,17 @@ class Event < ActiveRecord::Base
 	has_many :article_event_binders
 	has_many :articles, :through => :article_event_binders
 
+	# Event days
+	# 0	Sun
+	# 1 Mon
+	# 2 Tues
+	# 3 Wed
+	# 4 Thurs
+	# 5 Fri
+	# 6 Sat
+	# 10 "Rest of Week"
+
+
 	def url(full = false)
 		if :full
 			return "http://www.berkeleybeacon.com/events/#{uid}/#{slug}"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140325194742) do
+ActiveRecord::Schema.define(:version => 20140325201909) do
 
   create_table "article_event_binders", :force => true do |t|
     t.integer  "article_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20140325194742) do
     t.string   "link"
     t.integer  "print_issue_id"
     t.integer  "issue_id"
+    t.integer  "event_day"
   end
 
   create_table "attributions", :force => true do |t|

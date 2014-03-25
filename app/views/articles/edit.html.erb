@@ -108,23 +108,23 @@
 				Which day is this event?
 
 				<div class="radio">
-				<%= radio_button_tag :event_highlight_location, 'thursday' %>
-				<%= label_tag :event_highlight_location_thursday, "Thursday" %>
+					<%= f.radio_button :event_day, 4 %>
+					<%= f.label :event_day_4, 'Thursday' %>
 				</div>
 
 				<div class="radio">
-				<%= radio_button_tag :event_highlight_location, 'friday' %>
-				<%= label_tag :event_highlight_location_friday, "Friday" %>
+					<%= f.radio_button :event_day, 5 %>
+					<%= f.label :event_day_5, 'Friday' %>
 				</div>
 
 				<div class="radio">
-				<%= radio_button_tag :event_highlight_location, 'saturday' %>
-				<%= label_tag :event_highlight_location_saturday, "Saturday" %>
+					<%= f.radio_button :event_day, 6 %>
+					<%= f.label :event_day_6, 'Saturday' %>
 				</div>
 
 				<div class="radio">
-				<%= radio_button_tag :event_highlight_location, 'rest' %>
-				<%= label_tag :event_highlight_location_rest, "Rest of week" %>
+					<%= f.radio_button :event_day, 10 %>
+					<%= f.label :event_day_10, 'Rest of week' %>
 				</div>
 			</div>
 

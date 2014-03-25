@@ -1,0 +1,14 @@
+<article class="event_article">
+	<div class="event_article_image" style="background-image:url(<%= article.first_photo.media.thumb_460.url rescue '' %>)">
+		<div class="event_article_content event_article_header">
+			<div class="event_day">
+				<%= article.event_day_str %>
+			</div>
+			<h3><%= article.title %></h3>
+		</div>
+	</div>
+	<div class="event_article_content">
+		<%= article.body.html_safe %>
+		<p>&mdash; <%= bylineify_linked(article).html_safe %></p>
+	</div>
+</article>

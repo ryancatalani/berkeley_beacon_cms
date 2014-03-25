@@ -33,6 +33,14 @@
 	</table>
 <% end %>
 
+<h2>The Beacon's picks for this week</h2>
+
+<div class="events_beacon_picks">
+	<%= render :partial => 'event_article_box', :collection => @beacon_picks, :as => :article %>
+</div>
+
+
+
 <h2>This week</h2>
 <% @events_upcoming_week.each_with_index do |e, i| %>
 	<% if i % 2 == 0 %>

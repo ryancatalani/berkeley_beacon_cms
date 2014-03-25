@@ -6,6 +6,16 @@ class EventsController < ApplicationController
     @events_upcoming_week = Event.upcoming_week.all
     @events_upcoming = Event.upcoming.all
     @events_to_approve = Event.to_approve.all
+
+    issue_event_articles = Article.where(:issue_id => Issue.latest.id, :section_id => Section.find_by_name("Events").id)
+    picks_thursday = issue_event_articles.where(:event_day => 4).all
+    picks_friday = issue_event_articles.where(:event_day => 5).all
+    picks_saturday = issue_event_articles.where(:event_day => 6).all
+    picks_ROW = issue_event_articles.where(:event_day => 10).all
+    @beacon_picks = picks_thursday + picks_friday + picks_saturday + picks_ROW
+
+    @body_id = 'events_calendar'
+    render 'index', :layout => 'bare'
   end
 
   def create
