@@ -4,7 +4,7 @@
 		<div class="event_day"><%= e.date_start.strftime('%e') %></div>
 	</div>
 
-	<h3><%= link_to e.title, e.link %></h3>
+	<h3><%= link_to e.title, e.url %></h3>
 	<p>
 		<em><%= e.date_start.strftime('%l:%M %P') %> - <%= e.date_end.strftime('%l:%M %P') %></em>
 		<br>

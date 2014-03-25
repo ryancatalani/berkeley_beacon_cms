@@ -12,7 +12,8 @@ class EventsController < ApplicationController
     p = params[:event]
     p[:date_start] = "#{params[:date_submit]} #{params[:time_start_submit]}"
     p[:date_end] = "#{params[:date_submit]} #{params[:time_end_submit]}"
-    @new_event = Event.create(p)
+    logger.debug "logged in?  #{editor_logged_in}"
+    @new_event = Event.create(p, :editor_logged_in => editor_logged_in)
     if @new_event.save
       respond_with @new_event
     else

@@ -63,7 +63,7 @@
 <% end %>
 
 
-<div id="new_event_inline" style="display:none">
+<div id="new_event_inline">
 	<div id="new_event_errors"></div>
 	<div id="new_event_success">
 		Thanks, your event has been submitted. We'll email you when it's approved and shows up on this page.
@@ -89,10 +89,14 @@
 		</p>
 		<% end %>
 		<br>
+		<% if editor_logged_in %>
+
+		<% else %>
 		<p><%= f.text_field :organizer_name, :placeholder => "Your name" %></p>
 		<p><%= f.text_field :organizer_email, :placeholder => "Your email (must be an Emerson email)" %></p>
 		<br>
 		<p><em>Events won't show up until they're approved by an editor.</em></p>
+		<% end %>
 
 		<%= f.submit "Save" %>
 	<% end %>

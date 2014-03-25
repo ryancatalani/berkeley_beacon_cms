@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140209181840) do
+ActiveRecord::Schema.define(:version => 20140325191440) do
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"
@@ -102,7 +102,11 @@ ActiveRecord::Schema.define(:version => 20140209181840) do
     t.string   "image"
     t.datetime "date_start"
     t.datetime "date_end"
+    t.string   "uid"
+    t.string   "slug"
   end
+
+  add_index "events", ["uid"], :name => "index_events_on_uid"
 
   create_table "home_layouts", :force => true do |t|
     t.integer  "layout_type"
@@ -120,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20140209181840) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "pdf_thumb_url"
+    t.text     "event_picks"
   end
 
   create_table "mediafiles", :force => true do |t|

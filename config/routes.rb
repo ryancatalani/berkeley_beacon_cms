@@ -43,6 +43,7 @@ BeaconApp::Application.routes.draw do
   match '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'
   match '/api/special_coverage/new_update', :to => 'special_coverages#new_update', :via => :post
   match '/issues/view/:date', :to => 'issues#show', :via => :get
+  match '/events/:uid/:slug', :to => 'events#show'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
@@ -58,7 +59,7 @@ BeaconApp::Application.routes.draw do
   resources :issues, :only => [:index, :edit, :update]
   resources :topics, :only => [:create, :edit, :update]
   resources :special_coverages, :only => [:new, :create, :edit, :update]
-  # resources :events, :except => [:new]
+  resources :events, :except => [:new, :show]
 
   match '/new_editorial_cartoon', :to => 'pages#new_editorial_cartoon'
   match '/opinion/editorial_cartoons', :to => 'pages#editorial_cartoons'
