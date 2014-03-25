@@ -81,6 +81,17 @@ class ArticlesController < ApplicationController
 					Topical.create!(:article_id => @article.id, :topic_id => t_id)
 				end
 			end
+			if params[:beacon_event_url]
+				begin
+					events_url_regex = /events\/(.+)\//
+					uid = events_url_regex.match(params[:beacon_event_url])[1]
+					logger.debug "uid = #{uid}"
+					event = Event.find_by_uid(uid)
+					logger.debug "event = #{event.inspect}"
+					ArticleEventBinder.create!(:article_id => @article.id, :event_id => event.id)
+				rescue
+				end
+			end
 			tweet(is_draft, queue_tweet)
 			redirect_to new_article_url, :notice => "Article #{is_draft ? 'saved!' : 'posted'}!"
 		else

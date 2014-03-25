@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140325191440) do
+ActiveRecord::Schema.define(:version => 20140325194742) do
+
+  create_table "article_event_binders", :force => true do |t|
+    t.integer  "article_id"
+    t.integer  "event_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "articlemediacontents", :force => true do |t|
     t.integer  "article_id"

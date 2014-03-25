@@ -10,6 +10,9 @@ class Event < ActiveRecord::Base
 	validates :location, :presence => true
 	before_save :create_slug_and_uid
 
+	has_many :article_event_binders
+	has_many :articles, :through => :article_event_binders
+
 	def url
 		"/events/#{uid}/#{slug}"
 	end

@@ -11,6 +11,8 @@ class Article < ActiveRecord::Base
 	has_many :mediafiles, :through => :articlemediacontents
 	has_many :social_posts
 	has_many :pageviews, :as => :obj_pageviews
+	has_many :article_event_binders
+	has_many :events, :through => :article_event_binders
 	belongs_to :section
 	belongs_to :series
 	belongs_to :blog
