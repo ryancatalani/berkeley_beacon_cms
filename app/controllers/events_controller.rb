@@ -5,7 +5,7 @@ class EventsController < ApplicationController
     @new_event = Event.new
     # @events_upcoming_week = Event.upcoming_week.all
     # @events_upcoming = Event.upcoming.all
-    @events_all_upcoming = Event.all_upcoming.all.group_by{|e| e.date_start.to_s(:pretty_date)}
+    @events_all_upcoming = Event.all_upcoming.all.group_by{|e| e.date_start.to_s(:pretty_date_with_day)}
     @events_to_approve = Event.to_approve.all
 
     issue_event_articles = Article.where(:issue_id => Issue.latest.id, :section_id => Section.find_by_name("Events").id)
