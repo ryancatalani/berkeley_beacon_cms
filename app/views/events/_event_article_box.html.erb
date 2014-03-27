@@ -9,7 +9,7 @@
 	</div>
 	<div class="event_article_content">
 		<p class="event_article_info">
-			<%= link_to article.first_event.title, article.first_event.url %> <br>
+			<%= article.first_event.title %> <br>
 			<i class="fa fa-calendar fa-fw"></i> <%= article.first_event.date_start.to_s(:pretty_date_and_time) %> <br>
 			<i class="fa fa-map-marker fa-fw"></i> <%= article.first_event.location %>
 		</p>
