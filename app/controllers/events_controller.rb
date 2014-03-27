@@ -20,6 +20,7 @@ class EventsController < ApplicationController
     @other_sections = %w(News Opinion Arts Lifestyle Sports Feature Multimedia).map{|s| Section.find_by_name s}.compact
     @body_id = 'events_calendar'
     @body_class = 'a14'
+    @include_responsive = true
     render 'index', :layout => 'bare'
   end
 
