@@ -81,7 +81,7 @@ class ArticlesController < ApplicationController
 					Topical.create!(:article_id => @article.id, :topic_id => t_id)
 				end
 			end
-			if params[:beacon_event_url]
+			if !params[:beacon_event_url].blank?
 				begin
 					events_url_regex = /events\/(.+)\//
 					uid = events_url_regex.match(params[:beacon_event_url])[1]
@@ -270,7 +270,7 @@ class ArticlesController < ApplicationController
 					Topical.create!(:article_id => @article.id, :topic_id => t_id)
 				end
 			end
-			if params[:beacon_event_url]
+			if !params[:beacon_event_url].blank?
 				# begin
 					events_url_regex = /events\/(.+)\//
 					uid = events_url_regex.match(params[:beacon_event_url])[1]
