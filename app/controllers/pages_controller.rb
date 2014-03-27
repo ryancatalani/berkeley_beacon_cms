@@ -34,6 +34,8 @@ class PagesController < ApplicationController
 		@blogs = Blog.all
 		@latest_multimedia = Mediafile.where(:mediatype => 2).last(3).reverse
 		@latest_issue = Issue.latest
+
+		@latest_issue_events = Article.where(:issue_id => Issue.latest, :section_id => Section.find_by_name('Events').id) rescue []
 		begin
 			tumblr_latest = Timeout::timeout(5) {
 				Feedzirra::Feed.fetch_and_parse("http://berkeleybeacon.tumblr.com/rss").entries.first

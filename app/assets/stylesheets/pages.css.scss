@@ -1458,6 +1458,32 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 	}
 }
 
+ul.home_events {
+	li {
+		padding-bottom: 0.5em;
+		border-bottom: 1px solid #ddd;
+		margin-bottom: 0.5em;
+		&:after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+		img {
+			float: right;
+			margin-left: 7px;
+			margin-bottom: 7px;
+		}
+		.home_event_article_title {
+			font-weight: bold;
+		}
+		.home_event_title {
+			color: #666;
+		}
+	}
+}
+
 body#emersonla {
 	.wrap {
 		@media(max-width: 1000px) {

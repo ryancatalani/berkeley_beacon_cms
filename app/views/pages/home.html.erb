@@ -90,14 +90,21 @@
 					</div>
 				</div>
 
+
+				<% if !@latest_issue_events.empty? %>
 				<div class="separator"></div>
-				<a href="/projects/emersonla" class="teaser">
-					<span class="teaser_overlay">
-						Special Coverage
-						<br><strong>Emerson Los Angeles</strong>
-					</span>
-					<img src="https://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/thumb_220_1389594501-rc-20140112-16787-2.jpg.jpg" alt="">
-				</a>
+				<h3><a href="/events">This weekend</a></h3>
+				<ul class="home_events">
+				<% @latest_issue_events.each do |event_article| %>
+					<li>
+						<%= link_to(image_tag(event_article.first_photo.media.thumb_40), event_article.to_url) if event_article.first_photo %>
+						<p class="home_event_article_title"><%= link_to "#{event_article.event_day_str}: #{event_article.title}", event_article.to_url %></p>
+						<p class="home_event_title"><%= event_article.first_event.title if event_article.first_event %></p>
+					</li>
+				<% end %>
+				</ul>
+				<a href="/events"><em>See more events, and post your own</em></a>
+				<% end %>
 
 				<% if Issue.any? && @latest_issue.ok_to_display? %>
 				<div class="separator"></div>

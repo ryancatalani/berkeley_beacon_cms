@@ -222,6 +222,7 @@ class Article < ActiveRecord::Base
 	end
 
 	def event_day_str
+		return 'This week' if event_day.nil?
 		days = %w(Sunday Monday Tuesday Wednesday Thursday Friday Saturday)
 		days[10] = "Rest of the week"
 		return days[event_day]
