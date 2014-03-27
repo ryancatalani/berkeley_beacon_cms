@@ -3,7 +3,7 @@ class HomeLayoutsController < ApplicationController
 
   def new
   	@home_layout = HomeLayout.new
-  	as = Issue.last.article.count > 0 ? Issue.last.articles : Issue.first(2).last.articles rescue Article.last(30)
+  	as = Issue.last.articles.count > 0 ? Issue.last.articles : Issue.first(2).last.articles rescue Article.last(30)
     @articles = as.sort {|x,y| x.section_id <=> y.section_id }
 
     if HomeLayout.last
@@ -36,10 +36,29 @@ class HomeLayoutsController < ApplicationController
   	featured = [ params[:featured_0], params[:featured_1], params[:featured_2] ].map(&:to_i)
   	middle = [ params[:middle_0], params[:middle_1], params[:middle_2], params[:middle_3], params[:middle_4] ].map(&:to_i)
 
+    should_use_photo = {}
+    lead_photo = params[:lead_should_use_photo]
+    featured_photo = [
+      params[:featured_0_should_use_photo],
+      params[:featured_1_should_use_photo],
+      params[:featured_2_should_use_photo]
+    ]
+    middle_photo = [
+      params[:middle_0_should_use_photo],
+      params[:middle_1_should_use_photo],
+      params[:middle_2_should_use_photo],
+      params[:middle_3_should_use_photo],
+      params[:middle_4_should_use_photo]
+    ]
+    should_use_photo[:lead] = lead_photo
+    should_use_photo[:featured] = featured_photo
+    should_use_photo[:middle] = middle_photo
+
   	articles = {}
   	articles[:lead] = lead
   	articles[:featured] = featured
   	articles[:middle] = middle
+    articles[:should_use_photo] = should_use_photo
 
   	@home_layout = HomeLayout.new(:layout_type => layout_type, :articles => articles)
   	if @home_layout.save

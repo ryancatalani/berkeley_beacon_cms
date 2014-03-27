@@ -6,7 +6,7 @@
 
 			<% cache ["home_top_stories", home_layout_or_article_last_updated] do %>
 			<div id="main-story">
-				<% if @main_story.first_photo.nil? %>
+				<% if @main_story.first_photo.nil? || @main_story_photo == 'false' %>
 					<div class="story-text">
 						<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
 						<div class="byline">By <%= bylineify_short @main_story.people %></div>
@@ -29,7 +29,7 @@
 				<% @featured_stories.each_with_index do |story,i| %>
 					<div class="featured-story num-<%= i+1 %>">
 						<!-- media -->
-						<% unless story.visual_mediafiles.empty? %>
+						<% if !story.visual_mediafiles.empty? && @featured_stories_photos[i] == "true" %>
 							<div class="featured-story-img-wrap">
 							<%= link_to image_tag(story.first_photo.media.thumb_220.url), story.to_url %>
 							</div>
@@ -46,9 +46,9 @@
 		</section>
 
 		<section id="center" class="balance_height_nophone" data-height-group="top">
-			<% @middle_stories.each do |story| %>
+			<% @middle_stories.each_with_index do |story, i| %>
 				<div class="story">
-					<%= image_tag story.first_photo.media.thumb_140.url if story.first_photo %>
+					<%= image_tag story.first_photo.media.thumb_140.url if (story.first_photo && @middle_stories_photos[i] == 'true') %>
 					<div class="section_title"><%= story.section.name %></div>
 					<h3><%= link_to story.title, story.to_url %></h3>
 					<div class="excerpt"><%= story.excerpt %></div>

@@ -21,7 +21,7 @@ jQuery ->
 		title = element.find('.article_title').text()
 		id = element.attr('data-article-id')
 		$('input#lead').val(id)
-		$('#home_layout_lead').text(title)
+		$('#home_layout_lead').find('.article_head').text(title)
 
 	featured_id = 0
 	set_featured = (element, position) ->
@@ -30,7 +30,7 @@ jQuery ->
 		pos = featured_id
 		pos = position if position?
 		$('input#featured_' + pos).val(id)
-		$('#home_layout_featured_' + pos).text(title)
+		$('#home_layout_featured_' + pos).find('.article_head').text(title)
 		if featured_id == 2 or position?
 			featured_id = 0
 		else
@@ -43,7 +43,7 @@ jQuery ->
 		pos = middle_id
 		pos = position if position?
 		$('input#middle_' + pos).val(id)
-		$('#home_layout_middle_' + pos).text(title)
+		$('#home_layout_middle_' + pos).find('.article_head').text(title)
 		if middle_id == 4 or position?
 			middle_id = 0
 		else
@@ -60,6 +60,11 @@ jQuery ->
 	$('.set_middle').click ->
 		article = $(this).parent()
 		set_middle(article)
+
+	$('.should_use_photo').change ->
+		val = $(this).prop('checked')
+		id = $(this).parent().attr('id').replace('home_layout_','').concat('_should_use_photo')
+		$("input##{id}").val(val)
 
 	try
 		$('.home_layout_article').draggable({

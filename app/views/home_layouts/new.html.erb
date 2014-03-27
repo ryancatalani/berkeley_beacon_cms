@@ -1,13 +1,23 @@
 <h2>Homepage layout editor</h2>
+<em>The checkbox indicates whether the photo associated with the story—if available—should be displayed.</em>
 <br/>
+<br>
+
 
 <%= form_tag home_layouts_path do %>
 	<%= hidden_field_tag :lead %>
 	<%= hidden_field_tag :featured_0 %>
 	<%= hidden_field_tag :featured_1 %>
 	<%= hidden_field_tag :featured_2 %>
+
+	<%= hidden_field_tag :lead_should_use_photo, 'true' %>
+	<%= hidden_field_tag :featured_0_should_use_photo, 'true' %>
+	<%= hidden_field_tag :featured_1_should_use_photo, 'true' %>
+	<%= hidden_field_tag :featured_2_should_use_photo, 'true' %>
+
 	<% 5.times do |n| %>
 		<%= hidden_field_tag "middle_#{n}" %>
+		<%= hidden_field_tag "middle_#{n}_should_use_photo", 'true' %>
 	<% end %>
 	<div id="home_layout_actions">
 		<%= submit_tag "Save", :class => "btn btn-primary" %>
@@ -34,24 +44,42 @@
 <div id="home_layout_panel_right">
 	<div id="col_1">
 		<div class="article_placer lead" id="home_layout_lead">
+			<input class="should_use_photo" type="checkbox" checked>
+			<div class="article_head"></div>
 		</div>
 		<div class="article_placer featured" id="home_layout_featured_0" data-position="0">
+			<input class="should_use_photo" type="checkbox" checked>
+			<div class="article_head"></div>
 		</div>
 		<div class="article_placer featured" id="home_layout_featured_1" data-position="1">
+			<input class="should_use_photo" type="checkbox" checked>
+			<div class="article_head"></div>
 		</div>
 		<div class="article_placer featured" id="home_layout_featured_2" data-position="2">
+			<input class="should_use_photo" type="checkbox" checked>
+			<div class="article_head"></div>
 		</div>
 	</div>
 	<div id="col_2">
 		<div class="article_placer middle" id="home_layout_middle_0" data-position="0">
+			<input class="should_use_photo" type="checkbox" checked>
+			<div class="article_head"></div>
 		</div>
 		<div class="article_placer middle" id="home_layout_middle_1" data-position="1">
+			<input class="should_use_photo" type="checkbox" checked>
+			<div class="article_head"></div>
 		</div>
 		<div class="article_placer middle" id="home_layout_middle_2" data-position="2">
+			<input class="should_use_photo" type="checkbox" checked>
+			<div class="article_head"></div>
 		</div>
 		<div class="article_placer middle" id="home_layout_middle_3" data-position="3">
+			<input class="should_use_photo" type="checkbox" checked>
+			<div class="article_head"></div>
 		</div>
 		<div class="article_placer middle" id="home_layout_middle_4" data-position="4">
+			<input class="should_use_photo" type="checkbox" checked>
+			<div class="article_head"></div>
 		</div>
 	</div>
 	<div id="col_3">
@@ -66,19 +94,19 @@
 			var previous_layout = <%= @previous_layout_js.html_safe %>;
 			$('#restore_previous_layout_btn').click(function(){
 				lead = previous_layout.lead;
-				$('#home_layout_lead').text(lead.title);
+				$('#home_layout_lead').find('.article_head').text(lead.title);
 				$('input#lead').val(lead.id);
 				featured = previous_layout.featured;
 				for (var i = 0; i < featured.length; i++) {
 					ar = featured[i];
 					$('input#featured_' + i).val(ar.id);
-					$('#home_layout_featured_' + i).text(ar.title);
+					$('#home_layout_featured_' + i).find('.article_head').text(ar.title);
 				};
 				middle = previous_layout.middle;
 				for (var i = 0; i < middle.length; i++) {
 					ar = middle[i];
 					$('input#middle_' + i).val(ar.id);
-					$('#home_layout_middle_' + i).text(ar.title);
+					$('#home_layout_middle_' + i).find('.article_head').text(ar.title);
 				};
 			});
 		});
