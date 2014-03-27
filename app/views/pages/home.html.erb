@@ -106,24 +106,7 @@
 				<a href="/events"><em>See more events, and post your own</em></a>
 				<% end %>
 
-				<% if Issue.any? && @latest_issue.ok_to_display? %>
-				<div class="separator"></div>
-				<h3>This Issue</h3>
-				<%= link_to image_tag(@latest_issue.pdf_thumb_url), @latest_issue.path %>
-				<%= link_to "View this issue", @latest_issue.path %> | <%= link_to "All issues", issues_path %>
-				<% end %>
 
-				<div class="separator"></div>
-
-				<h3>From the blogs</h3>
-				<h4><a href="http://berkeleybeacon.tumblr.com">The Beacon on Tumblr</a></h4>
-				<div class="l_quo_border">Latest Entry: <%= link_to @tumblr_latest_title.html_safe, @tumblr_latest_url %></div>
-				<% @blogs.each do |blog| %>
-					<% unless blog.articles.empty? %>
-						<h4><%= link_to blog.title, blog.to_url %></h4>
-						<div class="l_quo_border">Latest Entry: <%= link_to blog.articles.last.title, blog.articles.last.to_url %></div>
-					<% end %>
-				<% end %>
 				<div class="separator"></div>
 				<div class="fb-like" data-href="http://facebook.com/berkeleybeacon" data-send="false" data-width="218" data-show-faces="true"></div>
 				<br><br>
@@ -186,19 +169,38 @@
 					<%= render 'section_box', :section_articles => @lifestyle %>
 				</div>
 			<% end %>
+			<div class="separator"></div>
+			<% cache ["home_sports_stories", Section.home_cache_key("sports")] do %>
+				<div class="section-box" id="sports-section-box">
+					<h4><%= link_to "Sports", "/sports" %></h4>
+					<%= render 'section_box', :section_articles => @sports %>
+				</div>
+			<% end %>
 		</div>
 
 		<div class="group-c balance_height_nophone" data-height-group="bottom">
 			<section id="popular" class="home_popular">
 				<%= render 'shared/popular' %>
 			</section>
+			<% if Issue.any? && @latest_issue.ok_to_display? %>
 			<div class="separator"></div>
-				<% cache ["home_sports_stories", Section.home_cache_key("sports")] do %>
-					<div class="section-box" id="sports-section-box">
-						<h4><%= link_to "Sports", "/sports" %></h4>
-						<%= render 'section_box', :section_articles => @sports %>
-					</div>
+			<h3>This Issue</h3>
+			<%= link_to image_tag(@latest_issue.pdf_thumb_url), @latest_issue.path %>
+			<%= link_to "View this issue", @latest_issue.path %> | <%= link_to "All issues", issues_path %>
+			<% end %>
+
+			<div class="separator"></div>
+
+			<h3>From the blogs</h3>
+			<h4><a href="http://berkeleybeacon.tumblr.com">The Beacon on Tumblr</a></h4>
+			<div class="l_quo_border">Latest Entry: <%= link_to @tumblr_latest_title.html_safe, @tumblr_latest_url %></div>
+			<% @blogs.each do |blog| %>
+				<% unless blog.articles.empty? %>
+					<h4><%= link_to blog.title, blog.to_url %></h4>
+					<div class="l_quo_border">Latest Entry: <%= link_to blog.articles.last.title, blog.articles.last.to_url %></div>
 				<% end %>
+			<% end %>
+
 		</div>
 
 
