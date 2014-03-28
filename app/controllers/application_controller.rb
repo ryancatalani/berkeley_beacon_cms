@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
 	# before_filter :intercept
 	# before_filter :acpsea
+	# before_filter :check_individual_tracking_param
 
 	private
 
@@ -169,13 +170,27 @@ class ApplicationController < ActionController::Base
 			end
 		end
 
+		def individual_tracking_param
+			['eid', current_user.id]
+		end
+
+		def check_individual_tracking_param
+			url = request.original_url
+			if editor_logged_in && !url.include?(individual_tracking_param.join('='))
+				uri = URI.parse(url)
+				params = URI.decode_www_form(uri.query || '') << individual_tracking_param
+				uri.query = URI.encode_www_form(params)
+				redirect_to uri.to_s
+			end
+		end
+
 
 
 		helper_method :current_user, :check_editor,
 			:bylineify, :bylineify_linked, :bylineify_short,
 			:popular_articles, :popular_articles_shared,
 			:video_tag, :og_title, :editor_logged_in, :bb_video_tag,
-			:latest_ed_cartoon, :current_twitter, :home_layout_or_article_last_updated
+			:latest_ed_cartoon, :current_twitter, :home_layout_or_article_last_updated, :individual_tracking_param
 
 
 end

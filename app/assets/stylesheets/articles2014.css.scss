@@ -652,6 +652,12 @@ body.a14 {
 		@include main_left_margin('padding-left');
 		@include main_left_margin('padding-right');
 	}
+
+	.btn {
+		border: 1px solid #000;
+		padding: 5px 7px;
+		border-radius: 7px;
+	}
 }
 
 .prevent_scroll {
