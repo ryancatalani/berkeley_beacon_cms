@@ -7,7 +7,7 @@ namespace :db do
 		if (Time.zone.now.hour >= 9 && Time.zone.now.hour < 21) || (ENV['force'] && ENV['force'] == 'true')
 			if SocialPost.count > 50
 				# 50 seems like a lot, so we'll check if there are unnecessary old ones.
-				SocialPost.where("created_at < ?",Issue.last.release_date-1.day).destroy_all
+				SocialPost.where("created_at < ?",Issue.latest.release_date-1.day).destroy_all
 			end
 
 			to_post = []
