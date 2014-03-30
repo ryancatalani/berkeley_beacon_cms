@@ -36,7 +36,11 @@ class ArticlesController < ApplicationController
 		p[:series_id] = params[:series_id].to_i
 		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
 		p[:subtitles] = subs
-		p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
+		cleantitle = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
+		if !Article.find_by_cleantitle(cleantitle).nil?
+			cleantitle = cleantitle + '-' + (Article.last.id+1).to_s.last(2)
+		end
+		p[:cleantitle] = cleantitle
 		authors = []
 		if params[:author].nil?
 			authors << current_user
@@ -246,6 +250,13 @@ class ArticlesController < ApplicationController
 			p[:excerpt] = " " if p[:excerpt].blank?
 		end
 		p[:body] = p[:excerpt] if p[:link_only] == "1"
+		if was_draft
+			cleantitle = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
+			if !Article.find_by_cleantitle(cleantitle).nil?
+				cleantitle = cleantitle + '-' + (Article.last.id+1).to_s.last(2)
+			end
+			p[:cleantitle] = cleantitle
+		end
 
 		queue_tweet = !params[:post_when].nil? and params[:post_when] == "post_later"
 
