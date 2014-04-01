@@ -89,7 +89,7 @@ class Article < ActiveRecord::Base
 	end
 
 	def images
-		mediafiles.where('mediatype <> 2 AND mediatype <> 5')
+		mediafiles.where('mediatype <> 2 AND mediatype <> 5').order(:id)
 	end
 
 	def videos
@@ -101,7 +101,7 @@ class Article < ActiveRecord::Base
 	end
 
 	def visual_mediafiles
-		mediafiles.where('mediatype <> 5')
+		mediafiles.where('mediatype <> 5').order(:id)
 	end
 
 	def first_video_poster
