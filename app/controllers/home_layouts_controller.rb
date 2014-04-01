@@ -6,8 +6,8 @@ class HomeLayoutsController < ApplicationController
   	as = Issue.last.articles.count > 0 ? Issue.last.articles : Issue.first(2).last.articles rescue Article.last(30)
     @articles = as.sort {|x,y| x.section_id <=> y.section_id }
     begin
-      recent_web_articles = Article.where(:issue_id => 0, :created_at => (Time.now.midnight-7.days)..Time.now.midnight)
-      @articles.prepend(recent_web_articles).flatten
+      recent_web_articles = Article.where(:issue_id => 0, :created_at => (Time.now.midnight-7.days)..(Time.now.midnight+1.day)).all
+      @articles.prepend(recent_web_articles).flatten!
     rescue
     end
 
