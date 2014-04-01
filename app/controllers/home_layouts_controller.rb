@@ -3,7 +3,7 @@ class HomeLayoutsController < ApplicationController
 
   def new
   	@home_layout = HomeLayout.new
-  	as = Issue.last.articles.count > 0 ? Issue.last.articles : Issue.first(2).last.articles rescue Article.last(30)
+  	as = Issue.latest.articles.count > 0 ? Issue.latest.articles : Article.last(30) rescue Article.last(30)
     @articles = as.sort {|x,y| x.section_id <=> y.section_id }
     begin
       recent_web_articles = Article.where(:issue_id => 0, :created_at => (Time.now.midnight-7.days)..(Time.now.midnight+1.day)).all
