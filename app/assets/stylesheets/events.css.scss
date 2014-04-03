@@ -190,12 +190,16 @@ body#events_calendar {
 				border-bottom: 1px solid #fff;
 				margin-bottom: 1em;
 			}
-			.event_article_info {
-				font-size: 0.8em;
-				color: #666;
-				line-height: 1.3em;
-			}
 		}
 	}
 
+}
+
+.event_article_info {
+	font-size: 0.8em;
+	color: #666;
+	line-height: 1.3em;
+	a {
+		color: #666;
+	}
 }
