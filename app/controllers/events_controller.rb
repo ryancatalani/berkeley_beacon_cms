@@ -28,8 +28,11 @@ class EventsController < ApplicationController
     p = params[:event]
     p[:date_start] = "#{params[:date_submit]} #{params[:time_start_submit]}"
     p[:date_end] = "#{params[:date_submit]} #{params[:time_end_submit]}"
+    if editor_logged_in
+      p[:approved] = true
+    end
     logger.debug "logged in?  #{editor_logged_in}"
-    @new_event = Event.create(p, :editor_logged_in => editor_logged_in)
+    @new_event = Event.create(p)
     if @new_event.save
       respond_with @new_event
     else
@@ -39,7 +42,8 @@ class EventsController < ApplicationController
   end
 
   def show
-    redirect_to root_path
+    redirect_to root_path if !editor_logged_in
+    @url = Event.find_by_uid(params[:uid]).url(true)
   end
 
   def edit

@@ -25,7 +25,7 @@ class Event < ActiveRecord::Base
 
 
 	def url(full = false)
-		if :full
+		if full
 			return "http://www.berkeleybeacon.com/events/#{uid}/#{slug}"
 		end
 		"/events/#{uid}/#{slug}"
