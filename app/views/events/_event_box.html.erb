@@ -1,9 +1,20 @@
 <div class="event_box">
 	<h3><%= editor_logged_in ? link_to(e.title, e.url) : e.title %></h3>
 	<p>
-		<em><i class="fa fa-clock-o fa-fw"></i> <%= e.date_start.strftime('%l:%M %P') %> - <%= e.date_end.strftime('%l:%M %P') %></em>
+		<em>
+			<i class="fa fa-clock-o fa-fw"></i>
+			<%= e.date_start.strftime('%l:%M %P') %>
+			<% if e.date_end? %>
+			-
+			<%= e.date_end.strftime('%l:%M %P') %>
+			<% end %>
+		</em>
 		<br>
 		<em><i class="fa fa-map-marker fa-fw"></i> <%= e.location %></em>
+		<% if e.tickets? %>
+		<br>
+		<em><i class="fa fa-ticket fa-fw"></i> <%= e.tickets %></em>
+		<% end%>
 		<% if e.link? %>
 		<br>
 		<em><i class="fa fa-external-link fa-fw"></i> <%= link_to "Link (#{URI.parse(e.link).host})", e.link %></em>

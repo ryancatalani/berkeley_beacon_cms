@@ -85,12 +85,13 @@
 		<%= form_for @new_event, :remote => true do |f| %>
 			<p><%= f.text_field :title, :placeholder => "Event title" %></p>
 			<p><%= f.text_area :description, :rows => 3, :placeholder => "Tell us about the event." %></p>
-			<p><%= text_field_tag :date, '', :placeholder => "When is it?" %></p>
-			<p>
-				<%= text_field_tag :time_start, '', :placeholder => "Start time" %>
+			<a href="#" id="add_event_date">+ Add another date</a>
+			<div class="event_date_fields">
+				<%= text_field_tag 'date[]', '', :placeholder => "When is it?", :id => nil, :class => 'date' %> <br>
+				<%= text_field_tag 'time_start[]', '', :placeholder => "Start time", :id => nil, :class => 'time_start' %>
 				<div style="float:left;margin:0 5%">to</div>
-				<%= text_field_tag :time_end, '', :placeholder => "End time (optional)" %>
-			</p>
+				<%= text_field_tag 'time_end[]', '', :placeholder => "End time (optional)", :id => nil, :class => 'time_end' %>
+			</div>
 			<p><%= f.text_field :location, :placeholder => "Where is it?" %></p>
 			<p><%= f.text_field :tickets, :placeholder => "Ticket prices (optional)" %></p>
 			<p>

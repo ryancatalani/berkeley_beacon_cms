@@ -26,13 +26,38 @@ class EventsController < ApplicationController
 
   def create
     p = params[:event]
-    p[:date_start] = "#{params[:date_submit]} #{params[:time_start_submit]}"
-    p[:date_end] = "#{params[:date_submit]} #{params[:time_end_submit]}"
+
+    days = params[:date].select{|e| e.is_a? String}
+    times_start = params[:time_start].select{|e| e.is_a? String}
+    times_end = params[:time_end].select{|e| e.is_a? String}
+
+    dates = []
+    days.each_with_index do |day, index|
+      date = {}
+      date[:start] = Time.parse("#{day} #{times_start[index]} #{Time.zone.name}")
+      date[:end] = times_end[index].blank? ? nil : Time.parse("#{day} #{times_end[index]} #{Time.zone.name}")
+      dates << date
+    end
+
+    p[:date_start] = dates.first[:start]
+    p[:date_end] = dates.first[:end]
+
     if editor_logged_in
       p[:approved] = true
     end
+
     @new_event = Event.create(p)
     if @new_event.save
+      dates.shift
+      dates.each do |date|
+        e = params[:event]
+        e[:date_start] = date[:start]
+        e[:date_end] = date[:end]
+        e[:approved] = true if editor_logged_in
+        e[:parent_id] = @new_event.id
+        Event.create!(e)
+      end
+
       respond_with @new_event
     else
       render :json => { :error => @new_event.errors.full_messages.to_sentence },

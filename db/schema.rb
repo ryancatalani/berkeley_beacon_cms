@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140403210220) do
+ActiveRecord::Schema.define(:version => 20140404033411) do
 
   create_table "article_event_binders", :force => true do |t|
     t.integer  "article_id"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20140403210220) do
     t.string   "uid"
     t.string   "slug"
     t.string   "tickets"
+    t.integer  "parent_id"
   end
 
   add_index "events", ["uid"], :name => "index_events_on_uid"

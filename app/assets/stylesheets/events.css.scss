@@ -46,9 +46,13 @@
 	#event_title {
 		font-size: 1.25em;
 	}
-	#time_start, #time_end {
-		width: 35%;
+	.time_start, .time_end {
+		width: 40%;
 		float: left;
+	}
+	#add_event_date {
+		text-decoration: underline;
+		font-size: 0.8em;
 	}
 }
 

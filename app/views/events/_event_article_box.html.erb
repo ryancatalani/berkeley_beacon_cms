@@ -12,6 +12,10 @@
 			<%= article.first_event.title %> <br>
 			<i class="fa fa-calendar fa-fw"></i> <%= article.first_event.date_start.to_s(:pretty_date_and_time) %> <br>
 			<i class="fa fa-map-marker fa-fw"></i> <%= article.first_event.location %>
+			<% if article.first_event.tickets? %>
+			<br>
+			<em><i class="fa fa-ticket fa-fw"></i> <%= article.first_event.tickets %></em>
+			<% end%>
 			<% if article.first_event.link? %>
 			<br>
 			<em><i class="fa fa-external-link fa-fw"></i> <%= link_to "Link (#{URI.parse(article.first_event.link).host})", article.first_event.link %></em>
