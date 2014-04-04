@@ -89,9 +89,10 @@
 			<p>
 				<%= text_field_tag :time_start, '', :placeholder => "Start time" %>
 				<div style="float:left;margin:0 5%">to</div>
-				<%= text_field_tag :time_end, '', :placeholder => "End time" %>
+				<%= text_field_tag :time_end, '', :placeholder => "End time (optional)" %>
 			</p>
 			<p><%= f.text_field :location, :placeholder => "Where is it?" %></p>
+			<p><%= f.text_field :tickets, :placeholder => "Ticket prices (optional)" %></p>
 			<p>
 				<%= f.text_field :link, :placeholder => "Link for more information (optional)" %>
 			</p>

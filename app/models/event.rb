@@ -6,7 +6,6 @@ class Event < ActiveRecord::Base
 	validates :title, :presence => true
 	validates :description, :presence => true
 	validates :date_start, :presence => true
-	validates :date_end, :presence => true
 	validates :location, :presence => true
 	before_save :create_slug_and_uid
 

@@ -31,7 +31,6 @@ class EventsController < ApplicationController
     if editor_logged_in
       p[:approved] = true
     end
-    logger.debug "logged in?  #{editor_logged_in}"
     @new_event = Event.create(p)
     if @new_event.save
       respond_with @new_event

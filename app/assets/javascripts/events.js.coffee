@@ -27,14 +27,16 @@ jQuery ->
 		e.preventDefault()
 		$('#new_event_success').slideUp()
 		$(this).find('input, textarea').each ->
-			return if $(this).attr('id') == 'event_image' || $(this).attr('id') == 'event_link'
+			return if $(this).attr('id') in ['event_image', 'event_link', 'time_end', 'event_tickets']
 			$(this).removeClass('form_error')
 			if $(this).val() == ''
 				$(this).addClass('form_error')
 				anyErrors = true
+				console.log $(this).attr('id')
 			if $(this).attr('id') == 'event_organizer_email' && $(this).val().length > 0 && $(this).val().indexOf("@emerson.edu") == -1
 				$(this).parent().append('<span class="form_error_desc">Please use an Emerson email address.</span>')
 				anyErrors = true
+				console.log $(this).attr('id')
 		return false if anyErrors
 
 	if $('#date').length > 0

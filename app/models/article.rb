@@ -224,12 +224,28 @@ class Article < ActiveRecord::Base
 	def event_day_str
 		return 'This week' if event_day.nil?
 		days = %w(Sunday Monday Tuesday Wednesday Thursday Friday Saturday)
-		days[10] = "Rest of the week"
+		days[10] = "Rest of the week: #{first_event.date_start.strftime('%A')}"
 		return days[event_day]
 	end
 
 	def first_event
 		events.first
+	end
+
+	def self.events_thursday
+		where(:event_day => 4)
+	end
+
+	def self.events_friday
+		where(:event_day => 5)
+	end
+
+	def self.events_saturday
+		where(:event_day => 6)
+	end
+
+	def self.events_row
+		where(:event_day => 10)
 	end
 
 	private
