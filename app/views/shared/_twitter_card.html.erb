@@ -5,4 +5,4 @@
 <% if @og and @og[:description] %>
 	<meta property="twitter:description" content="<%= @og[:description] %>">
 <% end %>
-<meta property="og:image" content="<%= @twitter_img.nil? ? "http://#{request.env['SERVER_NAME']}#{path_to_image('b_icon.png')}" : @twitter_img %>" />
+<meta property="twitter:image:src" content="<%= @twitter_img.nil? ? "http://#{request.env['SERVER_NAME']}#{path_to_image('b_icon.png')}" : @twitter_img %>" />
