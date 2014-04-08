@@ -1,0 +1,8 @@
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@beaconupdate">
+<meta name="twitter:title" content="<%= og_title %>">
+<meta name="twitter:creator" content="<%= @twitter_creator %>">
+<% if @og and @og[:description] %>
+	<meta property="twitter:description" content="<%= @og[:description] %>">
+<% end %>
+<meta property="og:image" content="<%= @twitter_img.nil? ? "http://#{request.env['SERVER_NAME']}#{path_to_image('b_icon.png')}" : @twitter_img %>" />

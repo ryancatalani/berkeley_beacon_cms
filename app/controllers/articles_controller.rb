@@ -345,10 +345,16 @@ class ArticlesController < ApplicationController
 		@og[:url] = @article.to_url(:full => true)
 		if @article.visual_mediafiles.any?
 			@og[:image] = @article.visual_mediafiles.first.media.url.html_safe rescue nil
+			@twitter_img = @article.visual_mediafiles.first.media.thumb_460.url.html_safe rescue nil
 		else
 			@og[:image] = nil
 		end
 		@og[:description] = @article.excerpt.blank? ? nil : @article.excerpt
+		if @article.people.count == 1 && !@article.people.first.twitter.blank?
+			@twitter_creator = "@#{@article.people.first.twitter}"
+		else
+			@twitter_creator = "@beaconupdate"
+		end
 
 		# if params[:a14]=="true" && editor_logged_in
 		if cookies[:a14_hide_always].nil? && params[:proto] != "false" && !@article.videos.any?
