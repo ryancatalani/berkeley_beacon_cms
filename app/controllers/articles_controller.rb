@@ -342,9 +342,9 @@ class ArticlesController < ApplicationController
 		@needs_og = true
 		@og = {}
 		@og[:title] = @article.title
-		@og[:url] = @article.to_url
+		@og[:url] = @article.to_url(:full => true)
 		if @article.visual_mediafiles.any?
-			@og[:image] = @article.visual_mediafiles.first.media.thumb_220.url.html_safe rescue nil
+			@og[:image] = @article.visual_mediafiles.first.media.url.html_safe rescue nil
 		else
 			@og[:image] = nil
 		end

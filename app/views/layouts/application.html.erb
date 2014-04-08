@@ -17,16 +17,9 @@
 		<%= stylesheet_link_tag "/bootstrap-justcarousel.min.css" %>
 	<% end %>
 	<%= favicon_link_tag "/favicon.ico" %>
-	<meta property="og:title" content="<%= og_title %>" />
-	<meta property="og:type" content="article" />
-	<% if @og and @og[:url] %>
-		<meta property="og:url" content="<%= "http://#{request.env['SERVER_NAME']}#{@og[:url]}" %>" />
-	<% end %>
-	<meta property="og:image" content="<%= (@og.nil? or @og[:image].nil?) ? "http://#{request.env['SERVER_NAME']}#{path_to_image('b_icon.png')}" : @og[:image] %>" />
-	<meta property="og:site_name" content="The Berkeley Beacon" />
-	<% if @og and @og[:description] %>
-		<meta property="og:description" content="<%= @og[:description] %>">
-	<% end %>
+
+	<%= render 'shared/og' %>
+
 	<meta property="fb:admins" content="1600232313" />
 	<script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>
 
