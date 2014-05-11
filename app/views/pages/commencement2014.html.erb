@@ -1,0 +1,28 @@
+<header>
+	<div class="wrap">
+		<div class="header_title">
+			<a href="/" class="brand">The Berkeley Beacon</a> • Special Coverage
+			<h1>Commencement 2014</h1>
+		</div>
+	</div>
+</header>
+
+<div class="wrap">
+	<div class="main">
+		<h2>Latest updates</h2>
+		<ul class="updates">
+			<% @updates.each_with_index do |update, i| %>
+				<li <%= "class=no-mobile" if i > 2 %>>
+					<% if update[:ts] %> <p class="ts"><%= distance_of_time_in_words Time.at(update[:ts]), Time.now %> ago</p><% end %>
+					<% if update[:title] %> <p class="title"><%= update[:title] %></p><% end %>
+					<%= update[:twitter_embed].html_safe if update[:twitter_embed] %>
+					<% if update[:body] %> <p><%= update[:body].html_safe %></p><% end %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+
+	<div class="sidebar">
+		<p>Follow Emerson's 134th undergraduate commencement exercises, featuring speaker Jay Leno, a 1973 graduate, and honorary degree recipients Scott Simon, Don Lemon, and Catherine D'Amato.</p>
+	</div>
+</div>

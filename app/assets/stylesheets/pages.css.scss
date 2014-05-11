@@ -1771,3 +1771,83 @@ body#emersonla_videos {
 	}
 
 }
+
+body#commencement2014 {
+	.wrap {
+		@media(max-width: 1000px) {
+			width: 92%;
+			margin: 0 auto;
+		}
+	}
+	header {
+		height: 320px;
+		background-image: url(http://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/20140511--4.jpg);
+		background-position: center 40%;
+		background-size: cover;
+		background-color: #666;
+		margin-bottom: 30px;
+		.header_title {
+			background: rgba(255, 255, 255, 0.8);
+			display: inline-block;
+			padding: 18px;
+			margin-top: 30px;
+			h1 {
+				font-size: 43px;
+				line-height: 1em;
+				font-weight: bold;
+				margin-bottom: 0;
+				margin-top: 5px;
+			}
+		}
+	}
+	.main {
+		@media(min-width: 1000px) {
+			width: 63%;
+			float: left;
+		}
+		h2 {
+			font-weight: bold;
+			margin-bottom: 0.75em;
+			color: #333
+		}
+	}
+	.sidebar {
+		border: 4px solid #eee;
+		padding: 3%;
+		margin-bottom: 20px;
+		@media(min-width: 1000px) {
+			width: 32%;
+			float: right;
+			margin-left: 5%;
+		}
+		h2 {
+			margin-bottom: 1em;
+			text-transform: uppercase;
+			font-size: 1.4em;
+			font-weight: bold;
+			color: #444;
+		}
+	}
+	ul.updates {
+		li {
+			padding-bottom: 1em;
+			border-bottom: 1px solid #ccc;
+			margin-bottom: 1em;
+			&:last-child {
+				border-bottom: none;
+			}
+			.ts {
+				text-transform: uppercase;
+				font-size: 0.8em;
+				float: right;
+			}
+			.title {
+				font-weight: bold;
+			}
+			img {
+				width: 100%;
+			}
+		}
+	}
+
+}

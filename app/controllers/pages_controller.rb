@@ -293,6 +293,24 @@ class PagesController < ApplicationController
 		render :layout => 'bare'
 	end
 
+	def commencement2014
+		@body_id = "commencement2014"
+		@include_responsive = true
+		@title = "Commencement 2014: Special Coverage"
+		@og ||= {}
+		@og[:description] = "Liveblog, articles, and photos, with an in-depth look at Emerson's 134th commencement."
+
+		@sc = SpecialCoverage.find_by_title("Commencement 2014")
+		@lead = Article.find(@sc.lead) rescue nil
+		@featured = @sc.featured.map{|id| Article.find(id)} rescue nil
+		@related_t = Topic.find(@sc.related_topic) rescue nil
+		@related_a = @sc.related_articles.map{|id| Article.find(id)} rescue nil
+		@updates = @sc.updates.reverse rescue []
+		@media = @sc.media.map{|id| Mediafile.find(id)} rescue nil
+
+		render :layout => 'bare'
+	end
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}
