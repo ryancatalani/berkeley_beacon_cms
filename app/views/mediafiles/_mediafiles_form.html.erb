@@ -20,14 +20,14 @@
 				<% i = index+1 %>
 				<div class="field">
 					<%= label_tag "creator_#{i}" if i != 1 %>
-					<%= select_tag "creator_#{i}", options_for_select(@authors, person.id), :name => "creator[#{i}]" %>
+					<%= select_tag "creator_#{i}", options_for_select(@authors, person.id), :name => "creator[#{i}]", :class => 'chosen' %>
 					<% if i != 1 %>
 						<a href="#" class="removeauth btn btn-danger"><i class="icon-trash icon-white"></i> Remove Creator <%= i %></a>
 					<% end %>
 				</div>
 			<% end %>
 		<% else %>
-			<%= select_tag :creator_1, options_for_select(@authors), :name => "creator[1]" %>
+			<%= select_tag :creator_1, options_for_select(@authors), :name => "creator[1]", :class => 'chosen' %>
 			<br/>
 		<% end %>
 		<a href="#" id="newcreatorbtn" class="btn"><i class="icon-plus"></i> Add another creator</a>

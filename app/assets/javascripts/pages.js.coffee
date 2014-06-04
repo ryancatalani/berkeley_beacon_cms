@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+	$('select.chosen').chosen({ allow_single_deselect: true })
+
 	if $(".balance_height")
 		setTimeout ->
 			max = 0

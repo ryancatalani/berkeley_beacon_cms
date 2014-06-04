@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-	$('select').chosen({ allow_single_deselect: true })
 	$('#clear_post').click ->
 		$('#sc_new_update').clearForm()
 		$('#update_body').html('')
