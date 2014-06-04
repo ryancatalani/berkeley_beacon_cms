@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   before_filter :check_editor, :except => [:index, :create]
 
   def index
+    @can_submit_events = editor_logged_in
     @new_event = Event.new
     # @events_upcoming_week = Event.upcoming_week.all
     # @events_upcoming = Event.upcoming.all

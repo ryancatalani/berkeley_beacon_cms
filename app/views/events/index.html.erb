@@ -71,11 +71,14 @@
 
 	<h2 class="events event_cal_header">
 		Events Calendar
-		<a href="#" id="events_submit">
-			<i class="fa fa-plus-circle"></i> Submit an event
-		</a>
+		<% if @can_submit_events %>
+			<a href="#" id="events_submit">
+				<i class="fa fa-plus-circle"></i> Submit an event
+			</a>
+		<% end %>
 	</h2>
 
+	<% if @can_submit_events %>
 	<div id="new_event_inline" style="display:none">
 		<div id="new_event_errors"></div>
 		<div id="new_event_success">
@@ -116,6 +119,7 @@
 			<%= f.submit "Save" %>
 		<% end %>
 	</div>
+	<% end %>
 
 	<% @events_all_upcoming.each do |date, events| %>
 		<div class="row event_row">
