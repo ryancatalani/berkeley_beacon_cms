@@ -2,9 +2,13 @@ namespace :db do
 	desc "Find most popular recent articles"
 	task :find_section_shares => :environment do
 
-		latest_issue = Issue.latest
+		searching_issue = Issue.latest
+		if !ENV['issue'].blank?
+			searching_issue = Issue.find_by_release_date(Date.parse(ENV['issue']))
+			raise 'Cannot find that issue.' if searching_issue.nil?
+		end
 
-		latest_issue_articles = latest_issue.articles.map {|a| {article: a, url: a.to_url(full: true)} }
+		searching_issue_articles = searching_issue.articles.map {|a| {article: a, url: a.to_url(full: true)} }
 
 		section_shares = {
 			'news' => {twitter: 0, facebook: 0, total: 0},
@@ -16,7 +20,7 @@ namespace :db do
 			'events' => {twitter: 0, facebook: 0, total: 0}
 		}
 
-		latest_issue_articles.each do |article_hash|
+		searching_issue_articles.each do |article_hash|
 			# -- based on find_popular_articles.rake -- 
 			url = article_hash[:url]
 			section = article_hash[:article].section.name.downcase
@@ -45,7 +49,7 @@ namespace :db do
 			
 		end
 
-		latest_issue.update_attribute(:section_shares, section_shares)
+		searching_issue.update_attribute(:section_shares, section_shares)
 
 	end
 end
