@@ -1,6 +1,7 @@
 class Issue < ActiveRecord::Base
 	validates_presence_of :release_date
 	attr_accessible :release_date, :pdf_url, :pdf_thumb_url
+	serialize :section_shares
 	has_many :articles
 
 	def release_date_f
