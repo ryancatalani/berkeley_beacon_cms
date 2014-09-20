@@ -17,10 +17,10 @@ xml.rss :version => '2.0', 'xmlns:media' => 'http://search.yahoo.com/mrss/' do
         xml.description article.excerpt
         xml.author bylineify(article)
         xml.tag!('media:content', 
-          url: article.first_photo.media.thumb_460,
+          url: article.first_photo.media.thumb_140,
           medium: 'image',
-          height: 460,
-          width: 460) if article.first_photo
+          height: 140,
+          width: 140) if article.first_photo
       end
     end
 
