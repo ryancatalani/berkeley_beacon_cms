@@ -15,6 +15,12 @@ xml.rss :version => '2.0', 'xmlns:atom' => 'http://www.w3.org/2005/Atom' do
         xml.pubDate(@issue.release_date.rfc2822)
         xml.guid article.cleantitle
         xml.description article.excerpt
+        xml.author bylineify(article)
+        xml.tag!('media:content', 
+          url: article.first_photo.media.thumb_460,
+          medium: 'image',
+          height: 460,
+          width: 460) if article.first_photo
       end
     end
 
