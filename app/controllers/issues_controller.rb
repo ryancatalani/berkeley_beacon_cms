@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-	before_filter :check_editor, :except => [:index, :show]
+	before_filter :check_editor, :except => [:index, :show, :latest_issue_rss]
 
 	def index
 		@issues = Issue.all.keep_if { |i| i.ok_to_display? }
@@ -47,6 +47,23 @@ class IssuesController < ApplicationController
 		else
 			render 'edit'
 		end
+	end
+
+	def latest_issue_rss
+		articles_unsorted = Issue.latest.articles
+		@issue = Issue.latest
+		@home = HomeLayout.last
+		@articles = []
+
+		@articles << articles_unsorted.where(section_id: Section.find_by_name('News').id)
+		@articles << articles_unsorted.where(section_id: Section.find_by_name('Feature').id)
+		@articles << articles_unsorted.where(section_id: Section.find_by_name('Opinion').id)
+		@articles << articles_unsorted.where(section_id: Section.find_by_name('Arts').id)
+		@articles << articles_unsorted.where(section_id: Section.find_by_name('Lifestyle').id)
+		@articles << articles_unsorted.where(section_id: Section.find_by_name('Sports').id)
+		
+		@articles.flatten!
+		render :layout => false
 	end
 
 end
