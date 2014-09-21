@@ -19,8 +19,8 @@ xml.rss :version => '2.0', 'xmlns:media' => 'http://search.yahoo.com/mrss/' do
         xml.tag!('media:content', 
           url: article.first_photo.media.thumb_140,
           medium: 'image',
-          height: 140,
-          width: 140) if article.first_photo
+          height: 100,
+          width: 100) if article.first_photo
       end
     end
 
