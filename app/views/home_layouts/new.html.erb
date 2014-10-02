@@ -11,6 +11,7 @@
 	<%= hidden_field_tag :featured_2 %>
 
 	<%= hidden_field_tag :lead_should_use_photo, 'true' %>
+	<%= hidden_field_tag :lead_is_standalone_photo, 'false' %>
 	<%= hidden_field_tag :featured_0_should_use_photo, 'true' %>
 	<%= hidden_field_tag :featured_1_should_use_photo, 'true' %>
 	<%= hidden_field_tag :featured_2_should_use_photo, 'true' %>
@@ -44,7 +45,8 @@
 <div id="home_layout_panel_right">
 	<div id="col_1">
 		<div class="article_placer lead" id="home_layout_lead">
-			<input class="should_use_photo" type="checkbox" checked>
+			<input class="should_use_photo" type="checkbox" checked> <em>Use photo</em>
+			<br> <input class="is_standalone_photo" type="checkbox"> <em>Standalone</em>
 			<div class="article_head"></div>
 		</div>
 		<div class="article_placer featured" id="home_layout_featured_0" data-position="0">

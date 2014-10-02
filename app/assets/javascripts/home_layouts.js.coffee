@@ -66,6 +66,11 @@ jQuery ->
 		id = $(this).parent().attr('id').replace('home_layout_','').concat('_should_use_photo')
 		$("input##{id}").val(val)
 
+	$('.is_standalone_photo').change ->
+		val = $(this).prop('checked')
+		id = $(this).parent().attr('id').replace('home_layout_','').concat('_is_standalone_photo')
+		$("input##{id}").val(val)
+
 	try
 		$('.home_layout_article').draggable({
 			helper: 'clone'

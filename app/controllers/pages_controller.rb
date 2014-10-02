@@ -13,6 +13,7 @@ class PagesController < ApplicationController
 			@middle_stories = layout.articles[:middle].map{|id| Article.find(id) }
 
 			@main_story_photo = layout.articles[:should_use_photo][:lead]
+			@main_story_is_standalone_photo = layout.articles[:lead_is_standalone_photo]
 			@featured_stories_photos = layout.articles[:should_use_photo][:featured]
 			@middle_stories_photos = layout.articles[:should_use_photo][:middle]
 		rescue

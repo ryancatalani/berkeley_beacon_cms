@@ -168,6 +168,12 @@ $oscars_gold: #F5CA6E;
 	border-top: 1px solid #ccc;
 	margin-top: 1em;
 	padding-top: 1em;
+	&.new-main {
+		border-top: 3px double #ccc;
+		h2 {
+			margin-bottom: 10px;
+		}
+	}
 }
 
 .byline {

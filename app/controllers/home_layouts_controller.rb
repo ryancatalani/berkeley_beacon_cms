@@ -59,11 +59,14 @@ class HomeLayoutsController < ApplicationController
     should_use_photo[:featured] = featured_photo
     should_use_photo[:middle] = middle_photo
 
+    lead_is_standalone_photo = params[:lead_is_standalone_photo]
+
   	articles = {}
   	articles[:lead] = lead
   	articles[:featured] = featured
   	articles[:middle] = middle
     articles[:should_use_photo] = should_use_photo
+    articles[:lead_is_standalone_photo] = lead_is_standalone_photo
 
   	@home_layout = HomeLayout.new(:layout_type => layout_type, :articles => articles)
   	if @home_layout.save
