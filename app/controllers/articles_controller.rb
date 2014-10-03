@@ -362,7 +362,7 @@ class ArticlesController < ApplicationController
 			@show_prototype_banner = cookies[:a14_hide_banner] != "true"
 			@article_section = @article.section.nil? ? Section.find_by_name('News') : @article.section
 			@section_issue_articles = Article.where(:issue_id => Issue.latest.id, :section_id => @article_section.id, :draft => false).all.delete_if {|a| a.id == @article.id } rescue []
-			@other_sections = %w(News Opinion Arts Lifestyle Sports Feature Multimedia Events).delete_if {|n| n == @article_section.name rescue false}.map{|s| Section.find_by_name s}.compact
+			@other_sections = %w(News Opinion Arts Lifestyle Sports Feature Multimedia Events Beyond).delete_if {|n| n == @article_section.name rescue false}.map{|s| Section.find_by_name s}.compact
 			render('show2014', :layout => 'article2014') && return
 		end
 
