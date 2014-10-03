@@ -14,6 +14,7 @@ $sports: #b8aa73;
 $feature: #7eb8ba;
 $multimedia: #444;
 $events: #E4B041;
+$beyond: #CF743B;
 
 $light_border: #dbdbdb;
 
@@ -70,6 +71,9 @@ $light_border: #dbdbdb;
 	}
 	&.events:hover {
 		background-color: lighten($events, 5%);
+	}
+	&.beyond:hover {
+		background-color: lighten($beyond, 5%); 
 	}
 }
 
@@ -154,6 +158,10 @@ body.a14 {
 
 	.events {
 		background-color: $events;
+	}
+
+	.beyond {
+		background-color: $beyond;
 	}
 
 	// Layout
