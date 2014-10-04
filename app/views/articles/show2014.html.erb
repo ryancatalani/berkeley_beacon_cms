@@ -163,7 +163,9 @@
 		</p>
 		<% end %>
 
-		<%= @article.body.html_safe %>
+		<div class="body_text">
+			<%= @article.body.html_safe %>
+		</div>
 
 		<div class="popular">
 			<div class="popular_switch">

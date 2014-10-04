@@ -119,3 +119,10 @@ jQuery ->
 		$('a').each ->
 			return true if $(this).prop('href').indexOf('#') != -1
 			$(this).prop('href', $(this).prop('href') + '?a14=true')
+
+	$('.body_text').find('img').each ->
+		if $(this).attr('alt').length > 0
+			alt = $(this).attr('alt')
+			console.log alt
+			$(this).wrap('<div class="inline_img_wrap"></div>')
+			$(this).parent().append("<div class='inline_img_caption'>#{ alt }</div>")
