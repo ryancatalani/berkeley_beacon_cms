@@ -37,7 +37,7 @@
 
 			<section id="featured-stories">
 				<% @featured_stories.each_with_index do |story,i| %>
-					<% if i == 0 && @main_story_is_standalone_photo %>
+					<% if i == 0 && @main_story_is_standalone_photo == 'true' %>
 						<div class="featured-story num-<%= i+1 %> new-main">
 							<h2><%= link_to story.title, story.to_url %></h2>
 							<% if !story.visual_mediafiles.empty? && @featured_stories_photos[i] == "true" %>
