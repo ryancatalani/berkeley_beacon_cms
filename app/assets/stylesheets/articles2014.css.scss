@@ -409,16 +409,10 @@ body.a14 {
 	}
 
 	.inline_img_wrap {
-		position: relative;
 		.inline_img_caption {
-			position: absolute;
-			bottom: 0.5em;
-			right: 0;
-			font: 0.8em $sans_font_stack;
-			color: #fff;
+			font: 0.75em $sans_font_stack;
+			color: #666;
 			text-align: right;
-			background: rgba(0,0,0,0.5);
-			padding: 0.25em 0.5em;
 		}
 	}
 
