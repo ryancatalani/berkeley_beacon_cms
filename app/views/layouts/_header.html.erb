@@ -39,7 +39,7 @@
 					<li><%= link_to 'Beyond', '/beyond' %></li>
 					<li><%= link_to 'Blogs', blogs_path %></li>
 					<li><%= link_to 'Videos', videos_path %></li>
-					<li id="nav_date"><%= Date.today.strftime("%A, %B %e, %Y") %></li>
+					<li id="nav_date"><%= Time.zone.today.strftime("%A, %B %e, %Y") %></li>
 				</ol>
 
 			</div>
@@ -52,7 +52,7 @@
 		<div id="masthead">
 			<h1>The Berkeley Beacon</h1>
 			<% unless @home_header %>
-				<h2><%= Date.today.strftime("%A, %B %e, %Y") %></h2>
+				<h2><%= Time.zone.today.strftime("%A, %B %e, %Y") %></h2>
 			<% end %>
 		</div>
 
@@ -85,7 +85,7 @@
 			</ol>
 
 			<% if @home_header %>
-				<h2><%= Date.today.strftime("%A, %B %e, %Y") %></h2>
+				<h2><%= Time.zone.today.strftime("%A, %B %e, %Y") %></h2>
 				<div class="clear"></div>
 			<% end %>
 		</div>
