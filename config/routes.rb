@@ -44,8 +44,10 @@ BeaconApp::Application.routes.draw do
   match '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'
   match '/api/special_coverage/new_update', :to => 'special_coverages#new_update', :via => :post
   match '/issues/view/:date', :to => 'issues#show', :via => :get
-  match '/issues/latest_rss', :to => 'issues#latest_issue_rss', :format => :rss
   match '/events/:uid/:slug', :to => 'events#show'
+
+  match '/issues/latest_rss', :to => 'issues#latest_issue_rss', :format => :rss
+  match '/issues/latest_issue_lead_image_rss', :to => 'issues#latest_issue_lead_image_rss', :format => :rss
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]

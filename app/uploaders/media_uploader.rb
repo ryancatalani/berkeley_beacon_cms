@@ -39,6 +39,10 @@ class MediaUploader < CarrierWave::Uploader::Base
 		process :resize_to_fill => [460,460]
 	end
 
+  version :long_480, :if => :image? do
+    process :resize_to_fit => [480, 480]
+  end
+
   protected
 
       def image?(new_file)
