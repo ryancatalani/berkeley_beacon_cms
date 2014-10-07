@@ -9,14 +9,14 @@ xml.rss :version => '2.0', 'xmlns:media' => 'http://search.yahoo.com/mrss/' do
     xml.tag! 'atom:link', :rel => 'self', :type => 'application/rss+xml', :href => issues_latest_issue_lead_image_rss_url
 
     xml.item do
-      xml.title @lead_image.title
-      xml.link @lead_image_link
+      xml.title @image.title
+      xml.link @image_article_link
       xml.pubDate(@issue.release_date.rfc2822)
-      xml.guid @lead_image.id
-      xml.description "#{@lead_image.title} • #{bylineify(@lead_image)}"
-      xml.author bylineify(@lead_image)
+      xml.guid @image.id
+      xml.description "#{@image.title} • #{bylineify(@image)}"
+      xml.author bylineify(@image)
       xml.tag!('media:content', 
-        url: @lead_image.media.long_480,
+        url: @image.media.long_480,
         medium: 'image',
         width: 480)
     end

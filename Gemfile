@@ -16,7 +16,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'carrierwave'
+gem 'carrierwave-aws'
 gem "remotipart", "~> 1.0"
 gem 'tinymce-rails'
 gem "fog", "~> 1.7.0"

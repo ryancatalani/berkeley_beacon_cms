@@ -48,6 +48,7 @@ BeaconApp::Application.routes.draw do
 
   match '/issues/latest_rss', :to => 'issues#latest_issue_rss', :format => :rss
   match '/issues/latest_issue_lead_image_rss', :to => 'issues#latest_issue_lead_image_rss', :format => :rss
+  match '/issues/latest_issue_second_image_rss', :to => 'issues#latest_issue_second_image_rss', :format => :rss
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]

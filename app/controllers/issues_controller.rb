@@ -74,24 +74,45 @@ class IssuesController < ApplicationController
 	def latest_issue_lead_image_rss
 		@issue = Issue.latest
 		home = HomeLayout.last.articles
-		@lead_image = ''
-		@lead_image_link = ''
+		@image = ''
+		@image_article_link = ''
 		lead_article = Article.find(home[:lead])
 
 		if home[:lead_is_standalone_photo] == 'true' || home[:should_use_photo][:lead] == 'true'
-			@lead_image = lead_article.first_photo
-			@lead_image_link = lead_article.to_url
+			@image = lead_article.first_photo
+			@image_article_link = lead_article.to_url
 		elsif home[:should_use_photo][:featured][0] == 'true' && !Article.find(home[:featured][0]).first_photo.nil? && Article.find(home[:featured][0]).first_photo.horizontal?
-			@lead_image = Article.find(home[:featured][0]).first_photo
-			@lead_image_link = Article.find(home[:featured][0]).to_url
+			@image = Article.find(home[:featured][0]).first_photo
+			@image_article_link = Article.find(home[:featured][0]).to_url
 		elsif home[:should_use_photo][:featured][1] == 'true' && !Article.find(home[:featured][1]).first_photo.nil? && Article.find(home[:featured][1]).first_photo.horizontal?
-			@lead_image = Article.find(home[:featured][1]).first_photo
-			@lead_image_link = Article.find(home[:featured][1]).to_url
+			@image = Article.find(home[:featured][1]).first_photo
+			@image_article_link = Article.find(home[:featured][1]).to_url
 		else
-			@lead_image = Article.find(home[:featured][2]).first_photo
-			@lead_image_link = Article.find(home[:featured][2]).to_url
+			@image = Article.find(home[:featured][2]).first_photo
+			@image_article_link = Article.find(home[:featured][2]).to_url
 		end
 
+		render 'latest_issue_image_rss'
+	end
+
+	def latest_issue_second_image_rss
+		@issue = Issue.latest
+		home = HomeLayout.last.articles
+		@image = ''
+		@image_article_link = ''
+		i = 0
+
+		middle_articles = home[:middle].map{|id| Article.find(id)}
+		while @image.blank? && i < middle_articles.count
+			img = middle_articles[i].first_photo
+			if !img.nil? && home[:should_use_photo][:middle][i] && img.horizontal? 
+				@image = img
+				@image_article_link = middle_articles[i].to_url
+			end
+			i += 1
+		end 
+
+		render 'latest_issue_image_rss'
 	end
 
 end

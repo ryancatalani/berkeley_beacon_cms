@@ -8,7 +8,7 @@ class MediaUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  storage :fog
+  # storage :fog
 
   def filename
     @name ||= "#{timestamp}-#{super}.jpg" if original_filename.present? and super.present?
@@ -42,6 +42,9 @@ class MediaUploader < CarrierWave::Uploader::Base
   version :long_480, :if => :image? do
     process :resize_to_fit => [480, 480]
   end
+
+  # To recreate, where m is a Mediafile
+  # m.media.cache_stored_file!; m.media.retrieve_from_cache!(m.media.cache_name); m.media.recreate_versions!; m.save!
 
   protected
 
