@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-	before_filter :check_editor, :except => [:index, :show, :latest_issue_rss]
+	before_filter :check_editor, :except => [:index, :show, :latest_issue_rss, :latest_issue_lead_image_rss, :latest_issue_second_image_rss]
 
 	def index
 		@issues = Issue.all.keep_if { |i| i.ok_to_display? }
