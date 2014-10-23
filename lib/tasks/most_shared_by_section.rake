@@ -17,7 +17,8 @@ namespace :db do
 			'lifestyle' => {twitter: 0, facebook: 0, total: 0},
 			'sports' => {twitter: 0, facebook: 0, total: 0},
 			'feature' => {twitter: 0, facebook: 0, total: 0},
-			'events' => {twitter: 0, facebook: 0, total: 0}
+			'events' => {twitter: 0, facebook: 0, total: 0},
+			'beyond' => => {twitter: 0, facebook: 0, total: 0}
 		}
 
 		searching_issue_articles.each do |article_hash|
