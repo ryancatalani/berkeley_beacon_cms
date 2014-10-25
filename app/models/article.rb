@@ -20,6 +20,7 @@ class Article < ActiveRecord::Base
 	serialize :archive_images
 	serialize :subtitles
 	before_save :check_clean_title
+	after_save :update_queued_tweets
 
 	def to_url(opts={})
 		if link_only
@@ -42,12 +43,12 @@ class Article < ActiveRecord::Base
 		ret = title
 		length += ret.length
 
+		ret << " #{to_url_with_tracking('t','BB')}"
+
 		if twitter_people and length + twitter_people.length < 140
 			ret << twitter_people
 			length += twitter_people.length
 		end
-
-		ret << " #{to_url(:full=>true)}"
 
 		# Adding photos is now done at the very last stage (in the rake)
 		# if first_photo && length + 23 + 1 < 140
@@ -260,6 +261,15 @@ class Article < ActiveRecord::Base
 				return false
 			else
 				return " by #{twitter_names}"
+			end
+		end
+
+		def update_queued_tweets
+			tweets = SocialPost.where(article_id:id, in_queue:true)
+			if tweets
+				tweets.each do |t|
+					t.update_attribute(:status_text, tweet)
+				end
 			end
 		end
 

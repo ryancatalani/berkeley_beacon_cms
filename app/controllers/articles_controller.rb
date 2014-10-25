@@ -396,10 +396,10 @@ class ArticlesController < ApplicationController
 		Time.now.strftime("%A").in?( %w(Wednesday Thursday) ) || Rails.env.development?
 	end
 
-	def tweet(is_draft, queue_tweet)
+	def tweet(is_draft, queue_tweet, was_draft=false)
 		if !is_draft
 			if queue_tweet
-				@article.social_posts.create!(:status_text => @article.title, :network => 1, :in_queue => true, :posted => false)
+				@article.social_posts.create!(:status_text => @article.tweet, :network => 1, :in_queue => true, :posted => false)
 				logger.debug('Queued tweet')
 			else
 				current_twitter.update(@article.tweet) rescue return ''

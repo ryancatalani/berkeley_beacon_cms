@@ -33,8 +33,7 @@ class SocialPost < ActiveRecord::Base
 		if Article.exists?(article_id)
 
 			if network == 1
-				url = article.to_url_with_tracking('t', id)
-				return "#{status_text} #{url}"
+				return status_text.gsub('?n=t&sp=BB',"?n=t&sp=#{id}")
 			end
 
 		else
@@ -43,7 +42,7 @@ class SocialPost < ActiveRecord::Base
 	end
 
 	def can_include_twitter_photo?
-		article.first_photo && (status_text.length + 1 + 23 + 1 + 23 < 140) # Length of a 2 t.co links (for the article URL and photo) and spaces
+		article.first_photo && (status_text.length + 1 + 23 < 140) # Length of a 1 t.co link (for photo) and spaces
 	end
 
 	def twitter_photo_url
