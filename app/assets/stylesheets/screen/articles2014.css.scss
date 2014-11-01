@@ -197,6 +197,9 @@ body.a14 {
 			&.events {
 				background: $events;
 			}
+			&.beyond {
+				background: $beyond;
+			}
 		}
 		&:after {
 			@include clearfix;
@@ -404,6 +407,18 @@ body.a14 {
 			@media(max-width: $breakpoint_2) {
 				width: 90%;
 				margin: 0 auto;
+			}
+		}
+	}
+
+	.body_text {
+		a {
+			&:link, &:visited {
+				color: #667EA9;
+				text-decoration: underline;
+			}
+			&:hover, &:active {
+				color: #7E9BD0;
 			}
 		}
 	}
