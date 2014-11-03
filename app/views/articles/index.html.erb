@@ -56,3 +56,43 @@
 		<%= render :partial => 'editor_article_listing', :collection => @articles, :as => :article %>
 	</tbody>
 </table>
+
+<h1>Shares by section, last 4 issues</h1>
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Issue</th>
+			<th>News</th>
+			<th>Opinion</th>
+			<th>Arts</th>
+			<th>Lifestyle</th>
+			<th>Sports</th>
+			<th>Feature</th>
+			<th>Beyond</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @section_shares.each_with_index do |s,i| %>
+		<tr>
+			<td><%= @last_issue_dates[i] %></td>
+			<td><%= s['news'][:total] %></td>
+			<td><%= s['opinion'][:total] %></td>
+			<td><%= s['arts'][:total] %></td>
+			<td><%= s['lifestyle'][:total] %></td>
+			<td><%= s['sports'][:total] %></td>
+			<td><%= s['feature'][:total] %></td>
+			<td><%= s['beyond'][:total] %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<td><strong>Total</strong></td>
+			<td><%= @section_total['news'] %></td>
+			<td><%= @section_total['opinion'] %></td>
+			<td><%= @section_total['arts'] %></td>
+			<td><%= @section_total['lifestyle'] %></td>
+			<td><%= @section_total['sports'] %></td>
+			<td><%= @section_total['feature'] %></td>
+			<td><%= @section_total['beyond'] %></td>
+		</tr>
+	</tbody>
+</table>

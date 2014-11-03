@@ -20,12 +20,21 @@ class Issue < ActiveRecord::Base
 		released_yet? && pdf_url? && pdf_thumb_url?
 	end
 
-	def self.latest
-		possible = Issue.last(2)
-		if possible.last.released_yet?
-			return possible.last
-		else
-			return possible.first
+	def self.latest(n=1)
+		if n == 1
+			possible = Issue.last(2)
+			if possible.last.released_yet?
+				return possible.last
+			else
+				return possible.first
+			end
+		else # n > 1
+			possible = Issue.last(n+1)
+			if possible.last.released_yet?
+				return possible.last(n)
+			else
+				return possible.first(n)
+			end
 		end
 	end
 end
