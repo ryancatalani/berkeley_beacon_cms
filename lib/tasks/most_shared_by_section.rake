@@ -36,7 +36,7 @@ namespace :db do
 
 			section_shares[section][:facebook] += sc_share_data["Facebook"]["total_count"] unless sc_share_data["Facebook"]["total_count"].nil?
 			section_shares[section][:twitter] += sc_share_data["Twitter"] unless sc_share_data["Twitter"].nil?
-			section_shares[section][:total] += sc_share_data.map{|k,v| if v.is_a?(Hash) then v.map{|y,z| z} else v end}.flatten.delete_if{|e| e.nil?}.sum
+			section_shares[section][:total] += sc_share_data.map{|k,v| if v.is_a?(Hash) then v["total_count"] else v end}.flatten.delete_if{|e| e.nil?}.sum
 
 
 			# == Subsumed by SharedCount ==
