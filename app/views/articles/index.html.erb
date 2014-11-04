@@ -72,16 +72,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @section_shares.each_with_index do |s,i| %>
+		<% @latest_issues.each do |issue| %>
 		<tr>
-			<td><%= @last_issue_dates[i] %></td>
-			<td><%= s['news'][:total] %></td>
-			<td><%= s['opinion'][:total] %></td>
-			<td><%= s['arts'][:total] %></td>
-			<td><%= s['lifestyle'][:total] %></td>
-			<td><%= s['sports'][:total] %></td>
-			<td><%= s['feature'][:total] %></td>
-			<td><%= s['beyond'][:total] %></td>
+			<td><%= issue.release_date.to_time.to_s(:pretty_date) %></td>
+			<td><%= issue.social_shares_by_section('News') %></td>
+			<td><%= issue.social_shares_by_section('Opinion') %></td>
+			<td><%= issue.social_shares_by_section('Arts') %></td>
+			<td><%= issue.social_shares_by_section('Lifestyle') %></td>
+			<td><%= issue.social_shares_by_section('Sports') %></td>
+			<td><%= issue.social_shares_by_section('Feature') %></td>
+			<td><%= issue.social_shares_by_section('Beyond') %></td>
 		</tr>
 		<% end %>
 		<tr>

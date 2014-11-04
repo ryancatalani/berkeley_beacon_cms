@@ -114,15 +114,10 @@ class ArticlesController < ApplicationController
 		@articles = Article.order("created_at DESC").first(30)
 		@user_articles = current_user.articles.order("created_at DESC").first(6)
 		
-		@last_issue_dates = Issue.latest(4).map{|i| i.release_date.to_time.to_s(:pretty_date)}
-		@section_shares = Issue.latest(4).map{|i| i.section_shares}
+		@latest_issues = Issue.latest(4)
 		@section_total = {}
 		%w(news opinion arts lifestyle sports feature events beyond).each do |s|
-			total = 0
-			@section_shares.each do |issue_s|
-				total += issue_s[s][:total]
-			end
-			@section_total[s] = total
+			@section_total[s] = @latest_issues.map{|i| i.social_shares_by_section(s)}.sum
 		end
 	end
 
