@@ -4,7 +4,9 @@ namespace :articles do
 
 		results = []
 
-		Article.where(draft: false, created_at: Date.parse("2014-09-03").midnight..Time.now).each do |article|
+		date_start = ENV['issue'].blank? ? "2014-09-03" : ENV['issue']
+
+		Article.where(draft: false, created_at: Date.parse(date_start).midnight..Time.now).each do |article|
 			url = article.to_url(full: true)
 
 			sc_share_uri = URI.parse('http://free.sharedcount.com/url?apikey=***REMOVED***&url=' + url)
