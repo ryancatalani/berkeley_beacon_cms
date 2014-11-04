@@ -19,6 +19,7 @@ class Article < ActiveRecord::Base
 	belongs_to :issue
 	serialize :archive_images
 	serialize :subtitles
+	serialize :social_shares
 	before_save :check_clean_title
 	after_save :update_queued_tweets
 
@@ -247,6 +248,33 @@ class Article < ActiveRecord::Base
 
 	def self.events_row
 		where(:event_day => 10)
+	end
+
+	def twitter_shares
+		social_shares.nil? ? 0 : (social_shares[:twitter].max || 0)
+	end
+
+	def fb_shares
+		social_shares.nil? ? 0 : (social_shares[:fb].max || 0)
+	end
+
+	def total_social_shares
+		if social_shares.blank?
+			return 0
+		else 
+			return social_shares.map{|k,v| v.max}.sum
+		end
+	end
+
+	def update_social_shares(network, share_count)
+		net = network.to_sym
+		ss = social_shares.nil? ? {} : social_shares
+		if ss[net].nil?
+			ss[net] = [share_count]
+		else
+			ss[net] << share_count
+		end
+		update_attribute(:social_shares, ss)
 	end
 
 	private

@@ -20,6 +20,14 @@ class Issue < ActiveRecord::Base
 		released_yet? && pdf_url? && pdf_thumb_url?
 	end
 
+	def social_shares_by_section(name)
+		section = Section.find_by_name(name.capitalize)
+		if section
+			section_articles = articles.where(section_id: section.id)
+			return section_articles.map(&:twitter_shares).sum + section_articles.map(&:fb_shares).sum
+		end
+	end
+
 	def self.latest(n=1)
 		if n == 1
 			possible = Issue.last(2)
