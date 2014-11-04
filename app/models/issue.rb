@@ -24,7 +24,7 @@ class Issue < ActiveRecord::Base
 		section = Section.find_by_name(name.capitalize)
 		if section
 			section_articles = articles.where(section_id: section.id)
-			return section_articles.map(&:twitter_shares).sum + section_articles.map(&:fb_shares).sum
+			return section_articles.map(&:total_social_shares).sum
 		end
 	end
 
