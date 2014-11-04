@@ -2,6 +2,8 @@ namespace :articles do
 	desc "Export pageview and social media information"
 	task :export_view_share_data => :environment do
 
+		results = []
+
 		Article.where(created_at: Date.parse("2014-09-03").midnight..Time.now).each do |article|
 			url = article.to_url(full: true)
 
@@ -14,11 +16,15 @@ namespace :articles do
 
 			title = article.title
 			section = article.section.name
-			date = article.updated_at.strftime('%B %e, %Y')
+			date = article.updated_at.strftime('%B %e %Y')
 			pageviews = article.pageview_count
 
-			results = [title, url, section, date, pageviews, fb, twitter]
-			puts results.join(',')
+			results << [title, url, section, date, pageviews, fb, twitter]
+		end
+
+		puts '--'
+		results.each do |result|
+			puts result.join(',')
 		end
 
 	end
