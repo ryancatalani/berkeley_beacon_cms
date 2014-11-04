@@ -4,7 +4,7 @@ namespace :articles do
 
 		results = []
 
-		Article.where(created_at: Date.parse("2014-09-03").midnight..Time.now).each do |article|
+		Article.where(draft: false, created_at: Date.parse("2014-09-03").midnight..Time.now).each do |article|
 			url = article.to_url(full: true)
 
 			sc_share_uri = URI.parse('http://free.sharedcount.com/url?apikey=***REMOVED***&url=' + url)
@@ -14,7 +14,7 @@ namespace :articles do
 			fb = sc_share_data["Facebook"]["total_count"] || 0
 			twitter = sc_share_data["Twitter"] || 0
 
-			title = article.title
+			title = '"' + article.title.gsub('"',"'") + '"'
 			section = article.section.name
 			date = article.updated_at.strftime('%B %e %Y')
 			pageviews = article.pageview_count
