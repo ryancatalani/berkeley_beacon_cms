@@ -321,8 +321,11 @@ body.a14 {
 		&.main_photo_horizontal {
 			margin-bottom: -10px;
 			img {
-				height: 560px;
-				width: auto;
+				// height: 560px;
+				// width: auto;
+				min-width: 560px;
+				max-width: 850px;
+				height: auto;
 				@include sm_left_margin('margin-left');
 				@media(max-width: $breakpoint_2) {
 					width: 100%;
