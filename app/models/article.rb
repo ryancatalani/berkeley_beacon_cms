@@ -21,7 +21,8 @@ class Article < ActiveRecord::Base
 	serialize :subtitles
 	serialize :social_shares
 	before_save :check_clean_title
-	after_save :update_queued_tweets
+	after_update :update_queued_tweets
+	after_destroy :remove_associated_tweets
 
 	def to_url(opts={})
 		if link_only
@@ -40,15 +41,11 @@ class Article < ActiveRecord::Base
 	end
 
 	def tweet
-		length = 23 + 1 # Length of a t.co link + " "
-		ret = title
-		length += ret.length
+		ret = "#{title} #{to_url_with_tracking('t','BB')}"
+		length = 23 + 1 + title.length # Length of a t.co link + " " + title
 
-		ret << " #{to_url_with_tracking('t','BB')}"
-
-		if twitter_people and length + twitter_people.length < 140
+		if twitter_people && (length + twitter_people.length < 140)
 			ret << twitter_people
-			length += twitter_people.length
 		end
 
 		# Adding photos is now done at the very last stage (in the rake)
@@ -119,7 +116,7 @@ class Article < ActiveRecord::Base
 	end
 
 	def twitter_names
-		if people.map{ |p| !p.twitter.blank? }.all?
+		if people.any? && people.map{ |p| !p.twitter.blank? }.all?
 			t = []
 			ret = ''
 			people.each do |p|
@@ -293,12 +290,11 @@ class Article < ActiveRecord::Base
 		end
 
 		def update_queued_tweets
-			tweets = SocialPost.where(article_id:id, in_queue:true)
-			if tweets
-				tweets.each do |t|
-					t.update_attribute(:status_text, tweet)
-				end
-			end
+			SocialPost.where(article_id:id, in_queue:true).update_all(status_text: tweet)
+		end
+
+		def remove_associated_tweets
+			SocialPost.where(article_id:id).destroy_all
 		end
 
 end
