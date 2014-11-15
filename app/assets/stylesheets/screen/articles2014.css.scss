@@ -85,7 +85,7 @@ $light_border: #dbdbdb;
 // Responsive
 $breakpoint_1: 1024px;
 $breakpoint_2: 768px;
-$breakpoint_3: 320px;
+$breakpoint_3: 630px;
 @mixin main_left_margin($attribute) {
 	#{$attribute}: 200px;
 	@media(max-width: $breakpoint_1) {
@@ -331,6 +331,8 @@ body.a14 {
 					width: 100%;
 					height: auto;
 					margin-left: 0;
+					max-width: 100%;
+					min-width: 0;
 				}
 			}
 			.main_photo_caption {
