@@ -48,6 +48,10 @@ namespace :db do
 				BeaconMailer.just_posted(did_post).deliver
 			end
 
+		elsif Time.zone.now.strftime("%A") == 'Saturday'
+			if SocialPost.twitter_queue.any?
+				SocialPost.twitter_queue.destroy_all
+			end
 		end
 
 	end
