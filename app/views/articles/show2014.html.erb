@@ -21,16 +21,21 @@
 <% end %>
 
 
-<nav class="topnav <%= @article_section.name.downcase %>">
+<nav class="topnav <%= @article_section_name.downcase %>">
 
 	<div class="topnav_left">
-		<a href="/" class="topnav_b <%= @article_section.name.downcase %>"></a>
+		<a href="/" class="topnav_b <%= @article_section_name.downcase %>"></a>
 	</div>
 
 	<div class="topnav_section">
-		<a href="/<%= @article_section.name.downcase %>" class="<%= @article_section.name.downcase %>">
+		<a href="/<%= @article_section_name.downcase %>" class="<%= @article_section_name.downcase %>">
 			<div class="main_wrap">
-			<%= @article_section.name %>
+				<% if @article_from_blog %>
+					<%= @article.blog.title %>
+					<span class="un_em"><%= @article_section_name %></span>
+				<% else %>
+					<%= @article_section_name %>
+				<% end %>
 			</div>
 		</a>
 		<ul class="section_select">
@@ -48,7 +53,7 @@
 
 </nav>
 
-<div class="header_outer_wrap <%= @article_section.name.downcase %>">
+<div class="header_outer_wrap <%= @article_section_name.downcase %>">
 	<div class="main_wrap">
 		<% if editor_logged_in %>
 			<%= link_to "Edit this story", edit_article_url(@article), :class => "btn" %>
@@ -101,8 +106,8 @@
 
 <% if @section_issue_articles.count > 0 %>
 <div class="sidebar more_from_section">
-	<div class="sidebar_head <%= @article_section.name.downcase %>">
-		More from <%= @article_section.name %>
+	<div class="sidebar_head <%= @article_section_name.downcase %>">
+		More from <%= @article_section_name %>
 	</div>
 	<div class="sidebar_body">
 		<ul>
@@ -122,12 +127,12 @@
 <div class="article_share">
 	<ul>
 		<li>
-			<a href="https://twitter.com/home?status=<%= @article.show_share_tweet %>" class="<%= @article_section.name.downcase %>" target="_blank">
+			<a href="https://twitter.com/home?status=<%= @article.show_share_tweet %>" class="<%= @article_section_name.downcase %>" target="_blank">
 				<i class="fa fa-twitter fa-lg"></i>
 			</a>
 		</li>
 		<li id="article_fb_share_btn">
-			<a href="https://www.facebook.com/sharer/sharer.php?u=<%= @article.to_url(:full=>true) %>" class="<%= @article_section.name.downcase %>" target="_blank">
+			<a href="https://www.facebook.com/sharer/sharer.php?u=<%= @article.to_url(:full=>true) %>" class="<%= @article_section_name.downcase %>" target="_blank">
 				<i class="fa fa-facebook fa-lg"></i>
 			</a>
 			<div class="fb_slide">
@@ -135,7 +140,7 @@
 			</div>
 		</li>
 		<li>
-			<a href="#comments" class="<%= @article_section.name.downcase %>">
+			<a href="#comments" class="<%= @article_section_name.downcase %>">
 				<i class="fa fa-comments fa-lg"></i>
 			</a>
 		</li>

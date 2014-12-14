@@ -15,6 +15,7 @@ $feature: #7eb8ba;
 $multimedia: #444;
 $events: #E4B041;
 $beyond: #CF743B;
+$blog: #727580;
 
 $light_border: #dbdbdb;
 
@@ -74,6 +75,9 @@ $light_border: #dbdbdb;
 	}
 	&.beyond:hover {
 		background-color: lighten($beyond, 5%); 
+	}
+	&.blog:hover {
+		background-color: lighten($blog, 5%);
 	}
 }
 
@@ -164,6 +168,10 @@ body.a14 {
 		background-color: $beyond;
 	}
 
+	.blog {
+		background-color: $blog;
+	}
+
 	// Layout
 
 	.topnav {
@@ -199,6 +207,9 @@ body.a14 {
 			}
 			&.beyond {
 				background: $beyond;
+			}
+			&.blog {
+				background: $blog;
 			}
 		}
 		&:after {
@@ -250,6 +261,9 @@ body.a14 {
 				@include section_bkgd_hover;
 				&:hover {
 					text-decoration: none;
+				}
+				.un_em {
+					font-weight: 300;
 				}
 			}
 		}
