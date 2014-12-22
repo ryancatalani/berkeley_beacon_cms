@@ -1,0 +1,35 @@
+<h1>Articles in date range: <%= @date_range %></h1>
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Section</th>
+			<th>Date</th>
+			<th>Title</th>
+			<th>Views</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @articles.each do |article| %>
+		<tr>
+			<td><%= article.section.name rescue '' %></td>
+			<td><%= article.created_at.to_time.to_s(:pretty_date) %></td>
+			<td><%= link_to article.title, article.to_url %></td>
+			<td><%= article.pageview_count %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h1>Media</h1>
+<table class="table table-bordered">
+	<tbody>
+		<% @mediafiles.each_with_index do |mediafile, i| %>
+			<% if i % 5 == 0 %><tr><% end %>
+				<td width="20%">
+					<%= link_to (image_tag mediafile.media.thumb_140.url), mediafile.articles.last.to_url %>
+					<br><%= link_to mediafile.articles.last.title, mediafile.articles.last.to_url %>
+				</td>
+			<% if ((i-4) % 5 == 0) || (i == @mediafiles.count-1) %></tr><% end %>
+		<% end %>
+	</tbody>
+</table>

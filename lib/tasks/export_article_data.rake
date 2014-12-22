@@ -18,7 +18,7 @@ namespace :articles do
 
 			title = '"' + article.title.gsub('"',"'") + '"'
 			section = article.section.name
-			date = article.updated_at.strftime('%B %e %Y')
+			date = article.created_at.strftime('%B %e %Y')
 			pageviews = article.pageview_count
 
 			results << [title, url, section, date, pageviews, fb, twitter]

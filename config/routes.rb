@@ -32,17 +32,21 @@ BeaconApp::Application.routes.draw do
 
   match '/settings', :to => 'people#settings'
   match '/videos', :to => 'pages#videos'
-  match '/admin/poll_results', :to => 'admin#poll_results'
   match '/election_guide_2012', :to => 'pages#election_guide_2012'
   match '/election_guide_2012/poll_results', :to => 'pages#political_poll_results'
   match '/election_guide_2012/map', :to => 'pages#election_map'
   match '/projects/emersonla', :to => 'pages#emersonla'
   match '/projects/emersonla/stories', :to => 'pages#emersonla_videos'
   match '/projects/commencement2014', :to => 'pages#commencement2014'
+  match '/projects/campusdata', to: 'pages#campus_data'
 
   match '/api/top5', :to => 'pages#statusboard_top_5_json'
   match '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'
   match '/api/special_coverage/new_update', :to => 'special_coverages#new_update', :via => :post
+
+  match '/admin/poll_results', :to => 'admin#poll_results'
+  match '/admin/published_in_date_range/:dates', to: 'admin#published_in_date_range'
+
   match '/issues/view/:date', :to => 'issues#show', :via => :get
   match '/events/:uid/:slug', :to => 'events#show'
 
