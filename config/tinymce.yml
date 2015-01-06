@@ -5,3 +5,4 @@ plugins:
   - code
 theme: modern
 toolbar1: bold italic | removeformat link image code | blockquote alignleft aligncenter alignright | undo redo
+relative_urls: false

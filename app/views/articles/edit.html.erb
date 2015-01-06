@@ -104,7 +104,7 @@
 				<%= f.label :issue_id %>
 				<%= f.select :issue_id, options_for_select(@issues, @article.issue_id) %>
 			</div>
-			<div class="field radio_inputs events_section_only" <% if @article.section.name != "Events" %>style="display:none"<% end %>>
+			<div class="field radio_inputs events_section_only" <% if !@article.section || @article.section.name != "Events" %>style="display:none"<% end %>>
 				Which day is this event?
 
 				<div class="radio">
@@ -128,7 +128,7 @@
 				</div>
 			</div>
 
-			<div class="field events_section_only" <% if @article.section.name != "Events" %>style="display:none"<% end %>>
+			<div class="field events_section_only" <% if !@article.section || @article.section.name != "Events" %>style="display:none"<% end %>>
 				<%= label_tag :beacon_event_url %>
 				<%= text_field_tag :beacon_event_url, @event_url %>
 			</div>
