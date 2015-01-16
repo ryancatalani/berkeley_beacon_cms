@@ -38,6 +38,7 @@ gem 'filepicker-rails'
 gem 'groupdate'
 gem 'chartkick'
 gem 'jquery-cookie-rails'
+gem 'htmlentities'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

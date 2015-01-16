@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 
 class PagesController < ApplicationController
-	before_filter :check_editor, :only => [:new_editorial_cartoon]
+	before_filter :check_editor, :only => [:new_editorial_cartoon, :campus_data, :year_in_review_2014]
 
 	def home
 		@current_user = current_user
@@ -308,6 +308,19 @@ class PagesController < ApplicationController
 		@related_a = @sc.related_articles.map{|id| Article.find(id)} rescue nil
 		@updates = @sc.updates.reverse rescue []
 		@media = @sc.media.map{|id| Mediafile.find(id)} rescue nil
+
+		render :layout => 'bare'
+	end
+
+	def campus_data
+	end
+
+	def year_in_review_2014
+		@body_id = "review2014"
+		@include_responsive = true
+		@title = "Year in Review 2014"
+		@og ||= {}
+		@og[:description] = "An in-depth look at the stories that shaped the year at Emerson."
 
 		render :layout => 'bare'
 	end

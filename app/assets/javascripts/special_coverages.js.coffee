@@ -16,3 +16,5 @@ jQuery ->
 			ids = $(this).find('img').map ->
 				return parseInt this.id
 			$("#media_ids").val(ids.get().join())
+
+	$('.special_coverage_form').find('select').chosen()

@@ -39,6 +39,7 @@ BeaconApp::Application.routes.draw do
   match '/projects/emersonla/stories', :to => 'pages#emersonla_videos'
   match '/projects/commencement2014', :to => 'pages#commencement2014'
   match '/projects/campusdata', to: 'pages#campus_data'
+  match '/projects/year_in_review_2014', to: 'pages#year_in_review_2014'
 
   match '/api/top5', :to => 'pages#statusboard_top_5_json'
   match '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'
