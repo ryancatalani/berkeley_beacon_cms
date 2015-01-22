@@ -328,9 +328,10 @@ class PagesController < ApplicationController
 	def race_at_emerson
 		@body_id = "raceseries"
 		@include_responsive = true
-		@title = "Race relations at Emerson"
+		@title = "A half-century of race relations at Emerson"
 		@og ||= {}
-		@og[:description] = "An in-depth look at the last half-century of race relations at Emerson."
+		@og[:description] = "An in-depth look at the protests, tenure controversies, administrators, and admissions policies that continue to shape race relations."
+		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/race_intro.jpg"
 
 		render :layout => 'bare'
 	end
