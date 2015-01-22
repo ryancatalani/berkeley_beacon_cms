@@ -104,24 +104,52 @@
 
 <% end %>
 
-<% if @section_issue_articles.count > 0 %>
-<div class="sidebar more_from_section">
-	<div class="sidebar_head <%= @article_section_name.downcase %>">
-		More from <%= @article_section_name %>
+<% if !@article.series.nil? || @section_issue_articles.count > 0 %>
+<div class="more_container">
+<% end %>
+
+	<% if !@article.series.nil? %>
+	<div class="sidebar">
+		<div class="sidebar_head sidebar_head_series">
+			<strong><%= @article.series.title %></strong> Series
+		</div>
+		<div class="sidebar_body">
+			<ul>
+			<% @article.series.articles.each do |a| %>
+				<li>
+					<a href="<%= a.to_url %>">
+						<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
+						<%= a.extra_title %>
+					</a>
+				</li>
+			<% end %>
+			</ul>
+		</div>
 	</div>
-	<div class="sidebar_body">
-		<ul>
-		<% @section_issue_articles.each do |a| %>
-			<li>
-				<a href="<%= a.to_url %>">
-					<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
-					<%= a.extra_title %>
-				</a>
-			</li>
-		<% end %>
-		</ul>
+	<% end %>
+
+	<% if @section_issue_articles.count > 0 %>
+	<div class="sidebar">
+		<div class="sidebar_head <%= @article_section_name.downcase %>">
+			More from <%= @article_section_name %>
+		</div>
+		<div class="sidebar_body">
+			<ul>
+			<% @section_issue_articles.each do |a| %>
+				<li>
+					<a href="<%= a.to_url %>">
+						<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
+						<%= a.extra_title %>
+					</a>
+				</li>
+			<% end %>
+			</ul>
+		</div>
 	</div>
-</div>
+	<% end %>
+
+<% if !@article.series.nil? || @section_issue_articles.count > 0 %>
+	</div>
 <% end %>
 
 <div class="article_share">

@@ -526,11 +526,15 @@ body.a14 {
 	.sidebar {
 		float: right;
 		width: 250px;
+		margin-bottom: 30px;
 		.sidebar_head {
 			color: #fff;
 			padding: 0.5em;
 			font: 1em $sans_font_stack;
 			font-weight: 300;
+		}
+		.sidebar_head_series {
+			background-color: #666;
 		}
 		.sidebar_body {
 			background: #fff;
@@ -544,8 +548,9 @@ body.a14 {
 		}
 	}
 
-	.more_from_section {
+	.more_container {
 		margin-top: 250px;
+		width: 250px;
 		position: absolute;
 		left: 800px;
 		@media(max-width: $breakpoint_1) {
