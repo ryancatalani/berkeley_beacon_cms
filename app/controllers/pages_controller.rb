@@ -325,6 +325,16 @@ class PagesController < ApplicationController
 		render :layout => 'bare'
 	end
 
+	def race_at_emerson
+		@body_id = "raceseries"
+		@include_responsive = true
+		@title = "Race relations at Emerson"
+		@og ||= {}
+		@og[:description] = "An in-depth look at the last half-century of race relations at Emerson."
+
+		render :layout => 'bare'
+	end
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}
