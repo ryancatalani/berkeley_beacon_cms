@@ -1985,10 +1985,13 @@ body#raceseries {
 	header {
 		background-repeat: no-repeat;
 		background-position: top center;
-		background-attachment: fixed;
 		background-size: cover;
-		height: 600px;
+		height: 300px;
 		margin-bottom: 30px;
+		@media(min-width: 1025px) {
+			height: 600px;
+			background-attachment: fixed;
+		}
 	}
 	.header_text {
 		// color: #fff;
