@@ -72,7 +72,7 @@ class Article < ActiveRecord::Base
 
 	def extra_title
 		if section.name == "Opinion" && !title.downcase.include?("letter to")
-			if people.first.full_name == "Editorial Board"
+			if people.any? && !people.first.nil? && people.first.full_name == "Editorial Board"
 				return "Editorial: #{title}"
 			else
 				return "Op-Ed: #{title}"
