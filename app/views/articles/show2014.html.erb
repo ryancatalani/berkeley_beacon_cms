@@ -104,7 +104,7 @@
 
 <% end %>
 
-<% if !@article.series.nil? || @section_issue_articles.count > 0 %>
+<% if @should_show_sidebar %>
 <div class="more_container">
 <% end %>
 
@@ -128,6 +128,29 @@
 	</div>
 	<% end %>
 
+	<% if !@article.topics.blank? %>
+	<% @article.topics.each do |topic| %>
+	<div class="sidebar">
+		<div class="sidebar_head sidebar_head_topic">
+			<strong><%= topic.title %></strong>
+			<br>Continuing coverage
+		</div>
+		<div class="sidebar_body">
+			<ul>
+			<% topic.articles.order('created_at DESC').each do |a| %>
+				<li>
+					<a href="<%= a.to_url %>">
+						<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
+						<span class="sidebar_topic_article_date"><%= a.created_at.year == Time.zone.now.year ? a.created_at.strftime('%b. %d') : a.created_at.strftime('%b. %d, %Y') %></span> <%= a.extra_title %>
+					</a>
+				</li>
+			<% end %>
+			</ul>
+		</div>
+	</div>
+	<% end %>
+	<% end %>
+
 	<% if @section_issue_articles.count > 0 %>
 	<div class="sidebar">
 		<div class="sidebar_head <%= @article_section_name.downcase %>">
@@ -148,7 +171,7 @@
 	</div>
 	<% end %>
 
-<% if !@article.series.nil? || @section_issue_articles.count > 0 %>
+<% if @should_show_sidebar %>
 	</div>
 <% end %>
 

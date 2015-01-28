@@ -536,6 +536,13 @@ body.a14 {
 		.sidebar_head_series {
 			background-color: #666;
 		}
+		.sidebar_head_topic {
+			background-color: #ccc;
+			color: #444;
+		}
+		.sidebar_topic_article_date {
+			@include small_caps;
+		}
 		.sidebar_body {
 			background: #fff;
 			padding: 0.5em;
@@ -545,6 +552,10 @@ body.a14 {
 		}
 		li {
 			@include list_li;
+			img {
+				float: right;
+				margin-left: 7px;
+			}
 		}
 	}
 
