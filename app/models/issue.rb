@@ -33,7 +33,7 @@ class Issue < ActiveRecord::Base
 		if section
 			section_articles = articles.where(section_id: section.id)
 			return 0 if section_articles.count == 0
-			return (section_articles.map(&:total_social_shares).sum / section_articles.count.to_d).truncate(2).to_s if str == true
+			return (section_articles.map(&:total_social_shares).sum / section_articles.count.to_d).truncate(1).to_s if str == true
 			return (section_articles.map(&:total_social_shares).sum / section_articles.count.to_d)
 		end
 	end
