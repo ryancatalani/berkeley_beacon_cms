@@ -75,13 +75,13 @@
 		<% @latest_issues.each do |issue| %>
 		<tr>
 			<td><%= issue.release_date.to_time.to_s(:pretty_date) %></td>
-			<td><%= issue.social_quotient_by_section('News', true) %></td>
-			<td><%= issue.social_quotient_by_section('Opinion', true) %></td>
-			<td><%= issue.social_quotient_by_section('Arts', true) %></td>
-			<td><%= issue.social_quotient_by_section('Lifestyle', true) %></td>
-			<td><%= issue.social_quotient_by_section('Sports', true) %></td>
-			<td><%= issue.social_quotient_by_section('Feature', true) %></td>
-			<td><%= issue.social_quotient_by_section('Beyond', true) %></td>
+			<td><%= issue.social_quotient_by_section('News') %></td>
+			<td><%= issue.social_quotient_by_section('Opinion') %></td>
+			<td><%= issue.social_quotient_by_section('Arts') %></td>
+			<td><%= issue.social_quotient_by_section('Lifestyle') %></td>
+			<td><%= issue.social_quotient_by_section('Sports') %></td>
+			<td><%= issue.social_quotient_by_section('Feature') %></td>
+			<td><%= issue.social_quotient_by_section('Beyond') %></td>
 		</tr>
 		<% end %>
 		<tr>
