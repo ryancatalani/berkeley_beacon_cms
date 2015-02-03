@@ -28,6 +28,15 @@ class Issue < ActiveRecord::Base
 		end
 	end
 
+	def social_quotient_by_section(name)
+		section = Section.find_by_name(name.capitalize)
+		if section
+			section_articles = articles.where(section_id: section.id)
+			return 0 if section_articles.count == 0
+			return (section_articles.map(&:total_social_shares).sum / section_articles.count.to_d).truncate(2).to_s
+		end
+	end
+
 	def self.latest(n=1)
 		if n == 1
 			possible = Issue.last(2)
