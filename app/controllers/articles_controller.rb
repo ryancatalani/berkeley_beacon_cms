@@ -118,6 +118,9 @@ class ArticlesController < ApplicationController
 		@section_total = {}
 		%w(news opinion arts lifestyle sports feature events beyond).each do |s|
 			@section_total[s] = @latest_issues.map{|i| i.social_quotient_by_section(s)}.sum
+			if @section_total[s].class == BigDecimal
+				@section_total[s] = @section_total[s].truncate(2).to_s
+			end
 		end
 	end
 
