@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 
 class PagesController < ApplicationController
-	before_filter :check_editor, :only => [:new_editorial_cartoon, :campus_data, :year_in_review_2014]
+	before_filter :check_editor, :only => [:new_editorial_cartoon, :campus_data, :year_in_review_2014, :snow_calculator]
 
 	def home
 		@current_user = current_user
@@ -334,6 +334,15 @@ class PagesController < ApplicationController
 		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/race_intro.jpg"
 
 		render :layout => 'bare'
+	end
+
+	def snow_calculator
+		@body_id = "snow_calculator"
+		@include_responsive = true
+		@title = "How much are your missed classes worth?"
+		@og ||= {}
+		@og[:description] = "Emerson has canceled several days of classes because of the snow. See how much your missed classes are worth."
+		@og[:image] = "https://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/1423126348-Snowstorm_Bushell_01272015_0021.jpg.jpg"
 	end
 
 	private

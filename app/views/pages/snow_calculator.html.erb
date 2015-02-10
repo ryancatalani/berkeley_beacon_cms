@@ -1,0 +1,111 @@
+<div id="calculator">
+	<h3>Interactive Feature</h3>
+
+	<h1>How much are your missed classes worth?</h1>
+
+	<p class="focus conditions">Emerson has canceled class on <span class="updatable_mondays"></span> Mondays and <span class="updatable_tuesdays"></span> Tuesdays.</p>
+	<p class="focus input">Hours of class you have each Monday: <input type="text" id="monday" placeholder="0"></p>
+	<p class="focus input">Hours of class you have each Tuesday: <input type="text" id="tuesday" placeholder="0"></p>
+	<p class="focus results">Your missed classes are worth: <strong>$<span class="updatable_cost">0</span></strong></p>
+	<p class="share">
+		<a href="https://twitter.com/intent/tweet?&text=Calculate%20how%20much%20your%20missed%20classes%20at%20%40EmersonCollege%20are%20worth.%20http%3A%2F%2Fwww.berkeleybeacon.com%2Fprojects%2Fsnow_calculator%20via%20%40BeaconUpdate" id="twitter_link" target="_blank">Tweet</a> your results or <a href="https://www.facebook.com/dialog/feed?app_id=128499383927655&display=popup&name=How%20much%20are%20your%20missed%20classes%20worth%3F&caption=See%20how%20much%20your%20missed%20classes%20at%20Emerson%20are%20worth.&description=An%20interactive%20feature%20by%20The%20Berkeley%20Beacon.&link=http%3A%2F%2Fwww.berkeleybeacon.com%2Fprojects%2Fsnow_calculator&picture=https%3A%2F%2Fs3.amazonaws.com%2FBerkeleyBeacon%2Fbeacon_uploads%2Fuploads%2F1423126348-Snowstorm_Bushell_01272015_0021.jpg.jpg&redirect_uri=http://www.berkeleybeacon.com/projects/snow_calculator" target="_blank">share them on Facebook</a>.
+	</p>
+
+	<p class="explanation">
+		At Emerson, one credit <a href="http://www.emerson.edu/admission/graduate-admission/tuition-expenses/tuition-cost" target="_blank">costs</a> $1,145, and one credit is <a href="http://www.emerson.edu/policy/credit-hour-definition" target="_blank">worth</a> approximately 15 hours of classroom instruction per semester (or one hour of classroom instruction for 15 weeks). This means each hour of classroom instruction is worth approximately $76.33. To calculate the total value of Emerson's snow days, the number of class hours per day entered is multiplied by the number of days missed (currently <span class="updatable_mondays"></span> Mondays and <span class="updatable_tuesdays"></span> Tuesdays). Photo by Jack Bushell / Beacon Correspondent.
+	</p>
+</div>
+
+
+
+<script>
+	$(function(){
+		var monday_snow_days = 3;
+		var tuesday_snow_days = 2;
+
+		var mon, tues = 0;
+		var mon_el = $('#monday');
+		var tues_el = $('#tuesday');
+
+		var credit_cost = 1145.0; // http://www.emerson.edu/admission/graduate-admission/tuition-expenses/tuition-cost
+		var credit_hours = 15.0; // 1 credit hour per semester is 15 weeks of classroom instruction; http://www.emerson.edu/policy/credit-hour-definition
+		var credit_cost_per_hour = credit_cost / credit_hours;
+
+		var total_cost = 0;
+
+		var total_hours = function() {
+			if (mon_el.val().length == 0) {
+				mon = 0;
+			} else {
+				mon = parseFloat(mon_el.val()) * monday_snow_days;
+			}
+			if (tues_el.val().length == 0) {
+				tues = 0;	
+			} else {
+				tues = parseFloat(tues_el.val()) * tuesday_snow_days;	
+			}
+			var total = mon + tues;
+			return total;
+		};
+
+		var calculate_cost = function(hours) {
+			var unrounded = hours * credit_cost_per_hour;
+			var rounded = (Math.round((unrounded + 0.00001) * 100) / 100).toFixed(2);
+			
+			update_total_text(rounded);
+			total_cost = rounded;
+			update_share_links();
+
+			return rounded;
+		};
+
+		var update_total_text = function(total) {
+			$('.updatable_cost').each(function(){
+				$(this).text(total);
+			});
+		};
+
+		var update_day_count = function() {
+			var numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+			$('.updatable_mondays').each(function() {
+				if (monday_snow_days < 10) {
+					$(this).text(numbers[monday_snow_days]);	
+				} else {
+					$(this).text(monday_snow_days);
+				}
+			});
+			$('.updatable_tuesdays').each(function() {
+				if (tuesday_snow_days < 10) {
+					$(this).text(numbers[tuesday_snow_days]);
+				} else {
+					$(this).text(tuesday_snow_days);
+				}
+			});
+		}
+
+		var update_share_links = function() {
+			var twt_text = "My missed classes at @EmersonCollege are worth $" + Math.ceil(total_cost) + ". " + window.location.toString() + " via @BeaconUpdate";
+			var encoded_twt_text = encodeURIComponent(twt_text);
+			var twt_link = "https://twitter.com/intent/tweet?&text=" + encoded_twt_text;
+			$("#twitter_link").attr('href', twt_link);
+		}
+
+		mon_el.on('keyup', function(){
+			if (this.value.length > 0) {
+				calculate_cost(total_hours());
+			}
+		});
+
+		tues_el.on('keyup', function(){
+			if (this.value.length > 0) {
+				calculate_cost(total_hours());
+			}
+		});
+
+		update_day_count();
+
+	});
+</script>
+
+<script type="text/javascript" src="//use.typekit.net/mdh3wrb.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
