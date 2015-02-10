@@ -6,13 +6,13 @@
 	<p class="focus conditions">Emerson has canceled class on <span class="updatable_mondays"></span> Mondays and <span class="updatable_tuesdays"></span> Tuesdays.</p>
 	<p class="focus input">Hours of class you have each Monday: <input type="text" id="monday" placeholder="0"></p>
 	<p class="focus input">Hours of class you have each Tuesday: <input type="text" id="tuesday" placeholder="0"></p>
-	<p class="focus results">Your missed classes are worth: <strong>$<span class="updatable_cost">0</span></strong></p>
+	<p class="focus results">Your canceled classes are worth: <strong>$<span class="updatable_cost">0</span></strong></p>
 	<p class="share">
-		<a href="https://twitter.com/intent/tweet?&text=Calculate%20how%20much%20your%20missed%20classes%20at%20%40EmersonCollege%20are%20worth.%20http%3A%2F%2Fwww.berkeleybeacon.com%2Fprojects%2Fsnow_calculator%20via%20%40BeaconUpdate" id="twitter_link" target="_blank">Tweet</a> your results or <a href="https://www.facebook.com/dialog/feed?app_id=128499383927655&display=popup&name=How%20much%20are%20your%20missed%20classes%20worth%3F&caption=See%20how%20much%20your%20missed%20classes%20at%20Emerson%20are%20worth.&description=An%20interactive%20feature%20by%20The%20Berkeley%20Beacon.&link=http%3A%2F%2Fwww.berkeleybeacon.com%2Fprojects%2Fsnow_calculator&picture=https%3A%2F%2Fs3.amazonaws.com%2FBerkeleyBeacon%2Fbeacon_uploads%2Fuploads%2F1423126348-Snowstorm_Bushell_01272015_0021.jpg.jpg&redirect_uri=http://www.berkeleybeacon.com/projects/snow_calculator" target="_blank">share them on Facebook</a>.
+		<a href="https://twitter.com/intent/tweet?&text=Calculate%20how%20much%20your%20canceled%20classes%20at%20%40EmersonCollege%20are%20worth.%20http%3A%2F%2Fwww.berkeleybeacon.com%2Fprojects%2Fsnow_calculator%20via%20%40BeaconUpdate" id="twitter_link" target="_blank">Tweet</a> your results or <a href="https://www.facebook.com/dialog/feed?app_id=128499383927655&display=popup&name=How%20much%20are%20your%20canceled%20classes%20worth%3F&caption=See%20how%20much%20your%20canceled%20classes%20at%20Emerson%20are%20worth.&description=An%20interactive%20feature%20by%20The%20Berkeley%20Beacon.&link=http%3A%2F%2Fwww.berkeleybeacon.com%2Fprojects%2Fsnow_calculator&picture=https%3A%2F%2Fs3.amazonaws.com%2FBerkeleyBeacon%2Fbeacon_uploads%2Fuploads%2F1423126348-Snowstorm_Bushell_01272015_0021.jpg.jpg&redirect_uri=http://www.berkeleybeacon.com/projects/snow_calculator" target="_blank">share them on Facebook</a>.
 	</p>
 
 	<p class="explanation">
-		At Emerson, one credit <a href="http://www.emerson.edu/admission/graduate-admission/tuition-expenses/tuition-cost" target="_blank">costs</a> $1,145, and one credit is <a href="http://www.emerson.edu/policy/credit-hour-definition" target="_blank">worth</a> approximately 15 hours of classroom instruction per semester (or one hour of classroom instruction for 15 weeks). This means each hour of classroom instruction is worth approximately $76.33. To calculate the total value of Emerson's snow days, the number of class hours per day entered is multiplied by the number of days missed (currently <span class="updatable_mondays"></span> Mondays and <span class="updatable_tuesdays"></span> Tuesdays). Photo by Jack Bushell / Beacon Correspondent.
+		At Emerson, one credit <a href="http://www.emerson.edu/admission/graduate-admission/tuition-expenses/tuition-cost" target="_blank">costs</a> $1,145, and one credit is <a href="http://www.emerson.edu/policy/credit-hour-definition" target="_blank">worth</a> approximately 15 hours of classroom instruction per semester (or one hour of classroom instruction for 15 weeks). This means each hour of classroom instruction is worth approximately $76.33. To calculate the total value of Emerson's snow days, the number of class hours per day entered is multiplied by the number of days canceled (currently <span class="updatable_mondays"></span> Mondays and <span class="updatable_tuesdays"></span> Tuesdays). This calculation does not account for potential makeup days. Photo by Jack Bushell / Beacon Correspondent.
 	</p>
 </div>
 
@@ -98,7 +98,7 @@
 		}
 
 		var update_share_links = function() {
-			var twt_text = "My missed classes at @EmersonCollege are worth $" + Math.ceil(total_cost) + ". " + window.location.toString() + " via @BeaconUpdate";
+			var twt_text = "My canceled classes at @EmersonCollege are worth $" + Math.ceil(total_cost) + ". " + window.location.toString() + " via @BeaconUpdate";
 			var encoded_twt_text = encodeURIComponent(twt_text);
 			var twt_link = "https://twitter.com/intent/tweet?&text=" + encoded_twt_text;
 			$("#twitter_link").attr('href', twt_link);
