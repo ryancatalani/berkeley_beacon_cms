@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 
 class PagesController < ApplicationController
-	before_filter :check_editor, :only => [:new_editorial_cartoon, :campus_data, :year_in_review_2014, :snow_calculator]
+	before_filter :check_editor, :only => [:new_editorial_cartoon, :campus_data, :year_in_review_2014]
 
 	def home
 		@current_user = current_user
