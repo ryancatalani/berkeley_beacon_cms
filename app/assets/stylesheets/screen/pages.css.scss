@@ -2151,11 +2151,52 @@ body#snow_calculator {
 			}
 		}
 
+		.row {
+			// margin-bottom: 20px;
+			margin-left: auto;
+			&:after {
+				visibility: hidden;
+				display: block;
+				font-size: 0;
+				content: " ";
+				clear: both;
+				height: 0;
+			}
+		}
+
+		.col_50_snow {
+			@media(min-width: 650px) {
+				@include col(50%);
+			}	
+		}
+
+		.snow_small_display {
+			display: block;
+			@media(min-width: 650px) {
+				display: none;
+			}
+		}
+
+		.snow_large_display {
+			display: none;
+			@media(min-width: 650px) {
+				display: block;
+			}
+		}
+
+
 		.results {
 			// font-weight: 500;
 			strong {
 				font-weight: 700;
 			}
+		}
+
+		.results_large {
+			font-size: 55px;
+			line-height: 1em;
+			font-weight: 300;
+			margin-bottom: 0;
 		}
 
 		.explanation {
