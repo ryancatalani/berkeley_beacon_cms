@@ -64,7 +64,7 @@
 
 		var calculate_cost = function(hours) {			
 			var hours_big = new Big(hours);
-			var rounded = hours_big.times(credit_cost_per_hour_big).round(1, 2).toFixed(2);
+			var rounded = hours_big.times(credit_cost_per_hour_big).round(2, 1).toFixed(2);
 
 			update_total_text(rounded);
 			total_cost = rounded;
