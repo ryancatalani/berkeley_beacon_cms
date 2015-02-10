@@ -2074,7 +2074,8 @@ body#snow_calculator {
 	$serif_hed_font_stack: "kepler-std-semicondensed-dis", "Times New Roman", Georgia, Times, serif;
 	$sans_font_stack: "franklin-gothic-urw", "Helvetica Neue", Arial, Helvetica, sans-serif;
 
-	background: url(http://theberkeleybeacon.s3.amazonaws.com/snow_calculator_bkgd.jpg) no-repeat center center;
+	background: #999 url(http://theberkeleybeacon.s3.amazonaws.com/snow_calculator_bkgd.jpg) no-repeat center center;
+	background-size: cover;
 	@media(min-width: 1024px) {
 		background-attachment: fixed;
 	}
