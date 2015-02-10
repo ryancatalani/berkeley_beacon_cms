@@ -2114,7 +2114,7 @@ body#snow_calculator {
 			font: 40px/1em $serif_hed_font_stack;
 			padding-bottom: 3px;
 			border-bottom: 2px solid #fff;
-			margin-bottom: 30px;
+			margin-bottom: 15px;
 		}
 
 		h3 {
@@ -2134,10 +2134,12 @@ body#snow_calculator {
 		}
 
 		.conditions {
-			// font-style: italic;
+			font: 20px/1.4em $serif_font_stack;
+			margin-bottom: 25px;
 		}
 
 		.input {
+			padding-left: 20px;
 			input {
 				background: none;
 				border: none;

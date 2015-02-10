@@ -1,18 +1,24 @@
 <div id="calculator">
-	<h3>Interactive Feature</h3>
+	<h3>Interactive Feature • Feb. 10, 2015</h3>
 
 	<h1>How much are your canceled classes worth?</h1>
 
-	<p class="focus conditions">Emerson has canceled class on <span class="updatable_mondays"></span> Mondays and <span class="updatable_tuesdays"></span> Tuesdays.</p>
-	<p class="focus input">Hours of class you have each Monday: <input type="text" id="monday" placeholder="0"></p>
-	<p class="focus input">Hours of class you have each Tuesday: <input type="text" id="tuesday" placeholder="0"></p>
+	<p class="conditions">Storms have dropped historic levels of snow on Boston, forcing Emerson to cancel five full days of class. See how much those days are worth for you.</p>
+	<p class="focus">
+		Hours of class you have each...
+	</p>
+	<p class="focus input">Monday before 4 p.m.: <input type="text" id="monday" placeholder="0"></p>
+	<p class="focus input">Monday after 4 p.m.: <input type="text" id="monday_after" placeholder="0"></p>
+	<p class="focus input">Tuesday: <input type="text" id="tuesday" placeholder="0"></p>
+	<p class="focus input">Wednesday: <input type="text" id="wednesday" placeholder="0"></p>
+	<p>(Note: Be sure to enter the number of <em>hours</em> you have class, not the number of classes.)</p>
 	<p class="focus results">Your canceled classes are worth: <strong>$<span class="updatable_cost">0</span></strong></p>
-	<p class="share">
+	<p class="focus share">
 		<a href="https://twitter.com/intent/tweet?&text=Calculate%20how%20much%20your%20canceled%20classes%20at%20%40EmersonCollege%20are%20worth.%20http%3A%2F%2Fwww.berkeleybeacon.com%2Fprojects%2Fsnow_calculator%20via%20%40BeaconUpdate" id="twitter_link" target="_blank">Tweet</a> your results or <a href="https://www.facebook.com/dialog/feed?app_id=128499383927655&display=popup&name=How%20much%20are%20your%20canceled%20classes%20worth%3F&caption=See%20how%20much%20your%20canceled%20classes%20at%20Emerson%20are%20worth.&description=An%20interactive%20feature%20by%20The%20Berkeley%20Beacon.&link=http%3A%2F%2Fwww.berkeleybeacon.com%2Fprojects%2Fsnow_calculator&picture=https%3A%2F%2Fs3.amazonaws.com%2FBerkeleyBeacon%2Fbeacon_uploads%2Fuploads%2F1423126348-Snowstorm_Bushell_01272015_0021.jpg.jpg&redirect_uri=http://www.berkeleybeacon.com/projects/snow_calculator" target="_blank">share them on Facebook</a>.
 	</p>
 
 	<p class="explanation">
-		At Emerson, one credit <a href="http://www.emerson.edu/admission/graduate-admission/tuition-expenses/tuition-cost" target="_blank">costs</a> $1,145, and one credit is <a href="http://www.emerson.edu/policy/credit-hour-definition" target="_blank">worth</a> approximately 15 hours of classroom instruction per semester (or one hour of classroom instruction for 15 weeks). This means each hour of classroom instruction is worth approximately $76.33. To calculate the total value of Emerson's snow days, the number of class hours per day entered is multiplied by the number of days canceled (currently <span class="updatable_mondays"></span> Mondays and <span class="updatable_tuesdays"></span> Tuesdays). This calculation does not account for potential makeup days. Photo by Jack Bushell / Beacon Correspondent.
+		At Emerson, one credit <a href="http://www.emerson.edu/admission/graduate-admission/tuition-expenses/tuition-cost" target="_blank">costs</a> $1,145, and one credit is <a href="http://www.emerson.edu/policy/credit-hour-definition" target="_blank">worth</a> approximately 15 hours of classroom instruction per semester (or one hour of classroom instruction for 15 weeks). This means each hour of classroom instruction is worth approximately $76.33. To calculate the total value of Emerson's snow days, the number of class hours per day entered is multiplied by the number of days canceled (currently <span class="updatable_mondays"></span> Mondays, <span class="updatable_mondays_after"></span> Monday after 4 p.m., <span class="updatable_tuesdays"></span> Tuesdays, and <span class="updatable_wednesdays"></span> Wednesday). This calculation does not account for potential makeup days. Photo by Jack Bushell / Beacon Correspondent.
 	</p>
 </div>
 
@@ -20,12 +26,10 @@
 <script src="/big.min.js"></script>
 <script>
 	$(function(){
-		var monday_snow_days = 3;
+		var monday_snow_days = 2;
+		var monday_after_snow_days = 1;
 		var tuesday_snow_days = 2;
-
-		var mon, tues = 0;
-		var mon_el = $('#monday');
-		var tues_el = $('#tuesday');
+		var wednesday_snow_days = 1;
 
 		var credit_cost = 1145.0; // http://www.emerson.edu/admission/graduate-admission/tuition-expenses/tuition-cost
 		var credit_hours = 15.0; // 1 credit hour per semester is 15 weeks of classroom instruction; http://www.emerson.edu/policy/credit-hour-definition
@@ -35,31 +39,37 @@
 		var total_cost = 0;
 
 		var total_hours = function() {
-			if (mon_el.val().length == 0) {
-				mon = 0;
-			} else if (mon_el.val().indexOf(":") != -1) {
-				var arr = mon_el.val().split(":");
-				var hh = parseInt(arr[0]);
-				var mm = parseInt(arr[1]);
-				var mm_dec = mm / 60.0;
-				mon = (hh + mm_dec) * monday_snow_days;
-			} else {
-				mon = parseFloat(mon_el.val()) * monday_snow_days;
-			}
 
-			if (tues_el.val().length == 0) {
-				tues = 0;	
-			} else if (tues_el.val().indexOf(":") != -1) {
-				var arr = tues_el.val().split(":");
-				var hh = parseInt(arr[0]);
-				var mm = parseInt(arr[1]);
-				var mm_dec = mm / 60.0;
-				tues = (hh + mm_dec) * tuesday_snow_days;
-			} else {
-				tues = parseFloat(tues_el.val()) * tuesday_snow_days;	
-			}
+			var hour_inputs = [
+				$('#monday'),
+				$('#monday_after'),
+				$('#tuesday'),
+				$('#wednesday')
+			];
+			var hour_inputs_counts = [
+				monday_snow_days,
+				monday_after_snow_days,
+				tuesday_snow_days,
+				wednesday_snow_days
+			];
+			var sum = 0;
 
-			return mon + tues;
+			$.each(hour_inputs, function(index, el) {
+				console.log( el.val() );
+				if (el.val().length == 0) {
+					sum += 0;
+				} else if (el.val().indexOf(":") != -1) {
+					var arr = el.val().split(":");
+					var hh = parseInt(arr[0]);
+					var mm = parseInt(arr[1]);
+					var mm_dec = mm / 60.0;
+					sum += (hh + mm_dec) * hour_inputs_counts[index];
+				} else {
+					sum += parseFloat(el.val()) * hour_inputs_counts[index];
+				}
+			});
+
+			return sum;
 		};
 
 		var calculate_cost = function(hours) {			
@@ -88,11 +98,25 @@
 					$(this).text(monday_snow_days);
 				}
 			});
+			$('.updatable_mondays_after').each(function() {
+				if (monday_after_snow_days < 10) {
+					$(this).text(numbers[monday_after_snow_days]);	
+				} else {
+					$(this).text(monday_after_snow_days);
+				}
+			});
 			$('.updatable_tuesdays').each(function() {
 				if (tuesday_snow_days < 10) {
 					$(this).text(numbers[tuesday_snow_days]);
 				} else {
 					$(this).text(tuesday_snow_days);
+				}
+			});
+			$('.updatable_wednesdays').each(function() {
+				if (wednesday_snow_days < 10) {
+					$(this).text(numbers[wednesday_snow_days]);
+				} else {
+					$(this).text(wednesday_snow_days);
 				}
 			});
 		}
@@ -104,13 +128,7 @@
 			$("#twitter_link").attr('href', twt_link);
 		}
 
-		mon_el.on('keyup', function(){
-			if (this.value.length > 0) {
-				calculate_cost(total_hours());
-			}
-		});
-
-		tues_el.on('keyup', function(){
+		$('input').on('keyup', function(){
 			if (this.value.length > 0) {
 				calculate_cost(total_hours());
 			}
