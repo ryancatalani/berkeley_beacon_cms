@@ -37,16 +37,29 @@
 		var total_hours = function() {
 			if (mon_el.val().length == 0) {
 				mon = 0;
+			} else if (mon_el.val().indexOf(":") != -1) {
+				var arr = mon_el.val().split(":");
+				var hh = parseInt(arr[0]);
+				var mm = parseInt(arr[1]);
+				var mm_dec = mm / 60.0;
+				mon = (hh + mm_dec) * monday_snow_days;
 			} else {
 				mon = parseFloat(mon_el.val()) * monday_snow_days;
 			}
+
 			if (tues_el.val().length == 0) {
 				tues = 0;	
+			} else if (tues_el.val().indexOf(":") != -1) {
+				var arr = tues_el.val().split(":");
+				var hh = parseInt(arr[0]);
+				var mm = parseInt(arr[1]);
+				var mm_dec = mm / 60.0;
+				tues = (hh + mm_dec) * tuesday_snow_days;
 			} else {
 				tues = parseFloat(tues_el.val()) * tuesday_snow_days;	
 			}
-			var total = mon + tues;
-			return total;
+
+			return mon + tues;
 		};
 
 		var calculate_cost = function(hours) {			
