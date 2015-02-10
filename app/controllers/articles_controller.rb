@@ -117,7 +117,11 @@ class ArticlesController < ApplicationController
 		@latest_issues = Issue.latest(4)
 		@section_total = {}
 		%w(news opinion arts lifestyle sports feature events beyond).each do |s|
-			@section_total[s] = @latest_issues.map{|i| i.social_quotient_by_section(s)}.sum.round(1).to_s
+			begin
+				@section_total[s] = @latest_issues.map{|i| i.social_quotient_by_section(s)}.sum.round(1).to_s
+			rescue
+				@section_total[s] = 0
+			end
 		end
 	end
 
