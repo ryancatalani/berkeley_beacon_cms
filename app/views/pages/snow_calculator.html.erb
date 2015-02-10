@@ -17,7 +17,7 @@
 </div>
 
 
-
+<script src="/big.min.js"></script>
 <script>
 	$(function(){
 		var monday_snow_days = 3;
@@ -30,6 +30,7 @@
 		var credit_cost = 1145.0; // http://www.emerson.edu/admission/graduate-admission/tuition-expenses/tuition-cost
 		var credit_hours = 15.0; // 1 credit hour per semester is 15 weeks of classroom instruction; http://www.emerson.edu/policy/credit-hour-definition
 		var credit_cost_per_hour = credit_cost / credit_hours;
+		var credit_cost_per_hour_big = new Big(credit_cost_per_hour);
 
 		var total_cost = 0;
 
@@ -48,10 +49,10 @@
 			return total;
 		};
 
-		var calculate_cost = function(hours) {
-			var unrounded = hours * credit_cost_per_hour;
-			var rounded = (Math.round((unrounded + 0.00001) * 100) / 100).toFixed(2);
-			
+		var calculate_cost = function(hours) {			
+			var hours_big = new Big(hours);
+			var rounded = hours_big.times(credit_cost_per_hour_big).round(1, 2).toFixed(2);
+
 			update_total_text(rounded);
 			total_cost = rounded;
 			update_share_links();
