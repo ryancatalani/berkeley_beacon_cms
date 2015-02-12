@@ -36,22 +36,21 @@ class Article < ActiveRecord::Base
 		end
 	end
 
-	def to_url_with_tracking(name,id)
-		"#{to_url(:full=>true)}?n=#{name}&sp=#{id}"
+	def to_url_with_tracking(source="twt",medium="social",campaign="sp_th")
+		"#{to_url(:full=>true)}?utm_source=#{source}&utm_medium=#{medium}&utm_campaign=#{campaign}"
 	end
 
 	def tweet
-		ret = "#{title} #{to_url_with_tracking('t','BB')}"
-		length = 23 + 1 + title.length # Length of a t.co link + " " + title
+		tco_length = 23
+		tweet_max = 140
 
-		if twitter_people && (length + twitter_people.length < 140)
+		ret = "#{title} #{to_url_with_tracking}"
+		length = tco_length + 1 + title.length # Length of a t.co link + " " + title
+
+		if twitter_people && (length + twitter_people.length < tweet_max)
 			ret << twitter_people
+			length += twitter_people.length
 		end
-
-		# Adding photos is now done at the very last stage (in the rake)
-		# if first_photo && length + 23 + 1 < 140
-		# 	ret << " #{first_photo.media.thumb_460.url}"
-		# end
 
 		return ret
 	end

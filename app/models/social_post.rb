@@ -42,7 +42,9 @@ class SocialPost < ActiveRecord::Base
 	end
 
 	def can_include_twitter_photo?
-		article.first_photo && (status_text.length + 1 + 23 < 140) # Length of a 1 t.co link (for photo) and spaces
+		# Recalculate with the correct length of the link
+		real_length = status_text.split(' ').delete_if{ |w| w =~ /https?:\/\// }.length + 1 + 23
+		article.first_photo && (real_length + 1 + 23 < 140) # Length of a 1 t.co link (for photo) and spaces
 	end
 
 	def twitter_photo_url
