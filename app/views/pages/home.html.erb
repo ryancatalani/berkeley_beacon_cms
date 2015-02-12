@@ -71,7 +71,12 @@
 			<% @middle_stories.each_with_index do |story, i| %>
 				<div class="story">
 					<%= image_tag story.first_photo.media.thumb_140.url if (story.first_photo && @middle_stories_photos[i] == 'true') %>
-					<div class="section_title"><%= story.section.name %></div>
+					<div class="section_title">
+						<%= story.section.name %>
+						<% if story.topics.any? %>
+						<span class="topic_title"><%= story.topics.last.title %></span>
+						<% end %>
+					</div>
 					<h3><%= link_to story.title, story.to_url %></h3>
 					<div class="excerpt"><%= story.excerpt %></div>
 					<div class="clear"></div>
