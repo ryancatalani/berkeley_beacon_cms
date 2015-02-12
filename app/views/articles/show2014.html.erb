@@ -115,11 +115,11 @@
 		</div>
 		<div class="sidebar_body">
 			<ul>
-			<% @article.series.articles.each do |a| %>
+			<% @article.series.articles.order('created_at DESC').each do |a| %>
 				<li>
 					<a href="<%= a.to_url %>">
 						<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
-						<%= a.extra_title %>
+						<span class="sidebar_topic_article_date"><%= a.created_at.year == Time.zone.now.year ? a.created_at.strftime('%b. %d') : a.created_at.strftime('%b. %d, %Y') %></span> <%= a.extra_title %>
 					</a>
 				</li>
 			<% end %>
