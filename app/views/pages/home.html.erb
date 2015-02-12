@@ -70,7 +70,6 @@
 		<section id="center" class="balance_height_nophone" data-height-group="top">
 			<% @middle_stories.each_with_index do |story, i| %>
 				<div class="story">
-					<%= image_tag story.first_photo.media.thumb_140.url if (story.first_photo && @middle_stories_photos[i] == 'true') %>
 					<div class="section_title">
 						<%= story.section.name %>
 						<% if story.topics.any? %>
@@ -78,6 +77,7 @@
 						<% end %>
 					</div>
 					<h3><%= link_to story.title, story.to_url %></h3>
+					<%= image_tag story.first_photo.media.thumb_140.url if (story.first_photo && @middle_stories_photos[i] == 'true') %>
 					<div class="excerpt"><%= story.excerpt %></div>
 					<div class="clear"></div>
 				</div>
