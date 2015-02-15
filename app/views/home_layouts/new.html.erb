@@ -35,10 +35,12 @@
 		<div class="home_layout_article" data-article-id="<%= article.id %>">
 			<span class="label"><%= article.section.name %></span>
 			<span class="article_title"><%= article.title %></span>
-			<br/>
+			<em>(WC <%= article.body.count(' ').round(-1) %><%= ", has photo" if !article.first_photo.nil? %>)</em>
+			<br>
 			<button class="btn btn-small set_lead">Lead</button>
-			<button class="btn btn-small set_featured">Featured</button>
-			<button class="btn btn-small set_middle">Middle</button>
+			<button class="btn btn-small set_featured">Feat</button>
+			<button class="btn btn-small set_middle">Mid</button>
+			<%= link_to "Edit", [:edit, article], target: '_blank', :class => 'btn btn-small btn-warning'  %>
 		</div>
 	<% end %>
 </div>
