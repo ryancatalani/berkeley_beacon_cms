@@ -33,7 +33,7 @@ class PagesController < ApplicationController
 		number_of_tweets = @main_story.first_photo.nil? ? 1 : 3
 		@tweets = Twitter.user_timeline("beaconupdate").first(number_of_tweets) rescue []
 		@blogs = Blog.all
-		@latest_multimedia = Article.where(draft: false).joins(:mediafiles).where(mediafiles: {mediatype: 2}).order("created_at DESC").last(3).reverse
+		@latest_multimedia = Mediafile.where(mediatype: 2).joins(:articles).where(articles: {draft: false}).order("created_at DESC").first(3)
 		@latest_issue = Issue.latest
 
 		@latest_issue_events = Article.where(:issue_id => Issue.latest, :section_id => Section.find_by_name('Events').id) rescue []
