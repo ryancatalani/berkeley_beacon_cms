@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
   def create
   	p = params[:topic]
   	@topic = Topic.new(p)
-    @topic.slug = @topic.title.downcase.gsub(' ','-').gsub(/-\W/,'')
+    @topic.slug = @topic.title.downcase.gsub(' ','_').gsub(/\W/,'')
   	if @topic.save
   		respond_to do |f|
   			f.html { redirect_to articles_path, :notice => "Saved topic" }
