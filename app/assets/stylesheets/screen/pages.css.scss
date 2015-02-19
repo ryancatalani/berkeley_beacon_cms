@@ -2233,10 +2233,11 @@ body#oscars2015 {
 
 	p {
 		font: 14px/1.2em $serif_font_stack;	
+		margin-bottom: 10px;
 	}
 
 	.award {
-		font: 12px/1em $sans_font_stack;
+		font: 14px/1em $sans_font_stack;
 		padding-bottom: 5px;
 		border-bottom: 1px solid #000;
 		margin-bottom: 5px;
@@ -2303,7 +2304,7 @@ body#oscars2015 {
 	.boyhood, .whiplash {
 		background: #000;
 		color: #fff;
-		padding: 10px;
+		padding: 15px 15px;
 
 		.boyhood_photo {
 			width: 45%;
