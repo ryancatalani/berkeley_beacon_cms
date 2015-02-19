@@ -345,6 +345,15 @@ class PagesController < ApplicationController
 		@og[:image] = "https://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/1423126348-Snowstorm_Bushell_01272015_0021.jpg.jpg"
 	end
 
+	def oscars2015
+		@body_id = "oscars2015"
+		@include_responsive = true
+		@title = "The Beacon's 2015 Oscar Picks"
+		@og ||= {}
+		@og[:description] = "See the films that Beacon staff members think should win Academy Awards."
+		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/oscars2015/oscars_preview.jpg"
+	end
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}

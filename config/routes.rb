@@ -12,9 +12,6 @@ BeaconApp::Application.routes.draw do
 	match '/send_tip', :to => 'pages#send_tip', :via => :post
 	match '/new_media_person', :to => 'people#new_media_person', :via => :post
 	match '/new_tag/:tag_id/article/:article_id', :to => 'taggings#new_tagging', :via => :post
-  match '/oscars2012', :to => 'pages#oscars'
-  match '/oscars2013', :to => 'pages#oscars2013'
-  match '/oscars2014', :to => 'pages#oscars2014'
 
   match '/ecla', :to => 'pages#emersonla'
   match '/emersonla', :to => 'pages#emersonla'
@@ -42,6 +39,11 @@ BeaconApp::Application.routes.draw do
   match '/projects/year_in_review_2014', to: 'pages#year_in_review_2014'
   match '/projects/race_at_emerson', to: 'pages#race_at_emerson'
   match '/projects/snow_calculator', to: 'pages#snow_calculator'
+  
+  match '/projects/oscars2012', :to => 'pages#oscars'
+  match '/projects/oscars2013', :to => 'pages#oscars2013'
+  match '/projects/oscars2014', :to => 'pages#oscars2014'
+  match '/projects/oscars2015', to: 'pages#oscars2015'
 
   match '/api/top5', :to => 'pages#statusboard_top_5_json'
   match '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'
