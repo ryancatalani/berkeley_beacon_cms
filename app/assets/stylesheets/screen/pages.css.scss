@@ -2264,11 +2264,23 @@ body#oscars2015 {
 			clear: both;
 			visibility: hidden;
 		}
+		@media(max-width: 768px) {
+			margin-left: 0;
+		}
 	}
 
 	.credit {
 		font-style: italic;
 	}
+
+	.col_25, .col_50, .col_75, .col_33, .col_66 {
+		@media(max-width: 768px) {
+			width: 100%;
+			margin: 0;
+			padding: 2%;
+		}
+	}
+
 
 	.intro_row {
 		.title_col {
@@ -2279,6 +2291,14 @@ body#oscars2015 {
 				color: #999;
 				width: 85%;
 				float: right;
+				@media(max-width: 768px) {
+					float: left;
+				}
+			}
+			@media(max-width: 768px) {
+				width: 78%;
+				float: right;
+				text-align: left;
 			}
 		}
 		h1 {
@@ -2291,6 +2311,10 @@ body#oscars2015 {
 			float: left;
 			width: 15%;
 			margin: 0 1%;
+			@media(max-width: 768px) {
+				float: right;
+				width: 20%;
+			}
 		}
 		.text {
 			float: left;
@@ -2298,6 +2322,15 @@ body#oscars2015 {
 			column-count: 2;
 			-moz-column-count: 2;
 			-webkit-column-count: 2;
+			@media(max-width: 768px) {
+				float: none;
+				clear: both;
+				width: 100%;
+				padding: 2%;
+				column-count: 1;
+				-moz-column-count: 1;
+				-webkit-column-count: 1;
+			}
 		}
 	}
 
@@ -2331,4 +2364,16 @@ body#oscars2015 {
 		width: 100%;
 		height: auto;
 	}
+
+	.small_divisble {
+		@media(max-width: 768px) {
+			.col_50, .col_66 {
+				width: 75%;
+			}
+			.stat_cont {
+				width: 25%;
+			}
+		}
+	}
+
 }
