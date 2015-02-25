@@ -115,7 +115,7 @@
 		</div>
 		<div class="sidebar_body">
 			<ul>
-			<% @article.series.articles.order('created_at DESC').each do |a| %>
+			<% @article.series.articles.order('created_at DESC').first(5).each do |a| %>
 				<li>
 					<a href="<%= a.to_url %>">
 						<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
@@ -132,12 +132,12 @@
 	<% @article.topics.each do |topic| %>
 	<div class="sidebar">
 		<div class="sidebar_head sidebar_head_topic">
-			<strong><%= topic.title %></strong>
-			<br>Continuing coverage
+			<strong><%= link_to topic.title, "/topics/#{topic.slug}" %></strong>
+			<br><%= link_to "Continuing coverage", "/topics/#{topic.slug}" %>
 		</div>
 		<div class="sidebar_body">
 			<ul>
-			<% topic.articles.order('created_at DESC').each do |a| %>
+			<% topic.articles.order('created_at DESC').first(5).each do |a| %>
 				<li>
 					<a href="<%= a.to_url %>">
 						<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
