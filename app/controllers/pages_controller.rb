@@ -358,7 +358,7 @@ class PagesController < ApplicationController
 		@body_id = "website1997"
 		@title = "The Beacon's website in 1997"
 		@og ||= {}
-		@og[:description] = ""
+		@og[:description] = "This was the Beacon's website in 1997, a time when “online” was still hyphenated and zany Photoshop effects were prized."
 		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/beacon_website_1997.gif"
 	end
 
