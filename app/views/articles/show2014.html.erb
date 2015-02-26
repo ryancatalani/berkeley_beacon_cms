@@ -108,6 +108,26 @@
 <div class="more_container">
 <% end %>
 
+	<% if @ed_board_explainer %>
+	<div class="sidebar">
+		<div class="sidebar_head opinion">The Beacon's policy on editorials</div>
+		<div class="sidebar_body">
+			Editorials are solely written by the editor-in-chief, managing editors, and opinion editors, without consultation from other staff members. They do not influence any other stories.
+		</div>
+	</div>
+	<% end %>
+
+	<% if @letter_editor_explainer %>
+	<div class="sidebar">
+		<div class="sidebar_head opinion">Letters to the editor</div>
+		<div class="sidebar_body">
+			<p>If you want to respond to, or share an opinion about, an article in the Beacon, you can write a short letter to the editor. Email it to <a href="mailto:letters@berkeleybeacon.com">letters@berkeleybeacon.com</a>.</p>
+			<p>Please note that letters may be edited for grammar and clarity. Submissions for print must be shorter than 250 words.</p>
+		</div>
+	</div>
+	<% end %>
+
+
 	<% if !@article.series.nil? %>
 	<div class="sidebar">
 		<div class="sidebar_head sidebar_head_series">

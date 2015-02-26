@@ -385,7 +385,15 @@ class ArticlesController < ApplicationController
 
 			@section_issue_articles = Article.where(:issue_id => Issue.latest.id, :section_id => @article_section.id, :draft => false).all.delete_if {|a| a.id == @article.id } rescue []
 
-			@should_show_sidebar = !@article.series.nil? || !@article.topics.blank? || @section_issue_articles.count > 0
+			if @article.people.first.full_name == "Editorial Board"
+				@ed_board_explainer = true
+			end
+
+			if @article.title.downcase.include? "letter to the editor"
+				@letter_editor_explainer = true
+			end
+
+			@should_show_sidebar = !@article.series.nil? || !@article.topics.blank? || @section_issue_articles.count > 0 || @ed_board_explainer || @letter_editor_explainer
 
 			@other_sections = %w(News Opinion Arts Lifestyle Sports Feature Multimedia Events Beyond).delete_if {|n| n == @article_section.name rescue false}.map{|s| Section.find_by_name s}.compact
 			render('show2014', :layout => 'article2014') && return
