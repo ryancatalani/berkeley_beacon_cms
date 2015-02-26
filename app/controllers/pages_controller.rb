@@ -354,6 +354,14 @@ class PagesController < ApplicationController
 		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/oscars2015/oscars_preview.jpg"
 	end
 
+	def website1997
+		@body_id = "website1997"
+		@title = "The Beacon's website in 1997"
+		@og ||= {}
+		@og[:description] = ""
+		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/beacon_website_1997.gif"
+	end
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}

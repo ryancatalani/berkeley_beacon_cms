@@ -2377,3 +2377,28 @@ body#oscars2015 {
 	}
 
 }
+
+body#website1997 {
+	$serif_font_stack: "kepler-std", "Times New Roman", Georgia, Times, serif;
+	$serif_hed_font_stack: "kepler-std-semicondensed-dis", "Times New Roman", Georgia, Times, serif;
+	$sans_font_stack: "franklin-gothic-urw", "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+	background: #C5C5C5;
+
+	.text {
+		@include normal_text_styles;
+		font: 1em/1.4em $sans_font_stack;
+		margin-bottom: 30px;
+		h1 {
+			font: 50px/1em $serif_hed_font_stack;
+			font-weight: bold;
+			border-bottom: 2px solid #000;
+			margin-bottom: 20px;
+		}
+		h3 {
+			font: 1em/1em $sans_font_stack;
+			text-transform: uppercase;
+			// margin-bottom: 10px;
+		}
+	}
+}
