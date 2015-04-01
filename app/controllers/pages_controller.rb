@@ -373,7 +373,7 @@ class PagesController < ApplicationController
 		@title = "Housing in Boston"
 		@include_responsive = true
 		@og ||= {}
-		@og[:description] = "Special series: Learn  different Boston-area neighborhood each week."
+		@og[:description] = "Special series: Learn about different Boston-area neighborhoods each week."
 		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/housing_thumb.jpg"
 	end
 
