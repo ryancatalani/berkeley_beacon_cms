@@ -372,6 +372,9 @@ class PagesController < ApplicationController
 		@body_id = "neighborhoods2015"
 		@title = "Housing in Boston"
 		@include_responsive = true
+		@og ||= {}
+		@og[:description] = "Special series: Learn  different Boston-area neighborhood each week."
+		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/housing_thumb.jpg"
 	end
 
 	private
