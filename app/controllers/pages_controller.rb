@@ -368,6 +368,12 @@ class PagesController < ApplicationController
 		@include_responsive = true
 	end
 
+	def neighborhoods2015
+		@body_id = "neighborhoods2015"
+		@title = "Housing in Boston"
+		@include_responsive = true
+	end
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}

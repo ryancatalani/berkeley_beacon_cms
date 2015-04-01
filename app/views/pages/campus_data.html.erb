@@ -8,73 +8,72 @@ hi
 <script type="text/javascript">
 
      $(document).ready(function() {
-     	var mapOptions = {
-     	  center: { lat: 42.354, lng: -71.066},
-     	  zoom: 16,
-     	  disableDefaultUI: true
-     	};
-     	var map = new google.maps.Map(document.getElementById('map-canvas'),
-     	    mapOptions);
+          var mapOptions = {
+            center: { lat: 42.354, lng: -71.066},
+            zoom: 16,
+            disableDefaultUI: true
+          };
+          var map = new google.maps.Map(document.getElementById('map-canvas'),
+              mapOptions);
 
 
-     	$.getJSON('/projects/campus_data.json', function(res) {
-     		addAllBuildings(res, map);
-     		// addBuildingCircles(res, map);
-     	});
+          $.getJSON('/projects/campus_data.json', function(res) {
+               addAllBuildings(res, map);
+               // addBuildingCircles(res, map);
+          });
 
 
-     	var addAllBuildings = function(data, map){
-     		data.forEach(function(entry) {
-     			var gmaps_decoded_path = getDecodedPath(entry.polyline);
-     			var region = new google.maps.Polygon({
-     				path: gmaps_decoded_path,
-     				geodesic: true,
-     				strokeColor: '#FF0000',
-     				strokeOpacity: 1.0,
-     				strokeWeight: 1
-     			});
-     			region.setMap(map);
-     		});
-     	};
+          var addAllBuildings = function(data, map){
+               data.forEach(function(entry) {
+                    var gmaps_decoded_path = getDecodedPath(entry.polyline);
+                    var region = new google.maps.Polygon({
+                         path: gmaps_decoded_path,
+                         geodesic: true,
+                         strokeColor: '#FF0000',
+                         strokeOpacity: 1.0,
+                         strokeWeight: 1
+                    });
+                    region.setMap(map);
+               });
+          };
 
-     	var addBuildingCircles = function(data, map) {
-     		var values_arr = [];
-     		data.forEach(function(entry) {
-     			values_arr.push(entry.value);
-     		});
-     		values_arr = values_arr.sort();
-     		var value_low = values_arr[0];
-     		var value_high = values_arr[values_arr.length-1];
+          var addBuildingCircles = function(data, map) {
+               var values_arr = [];
+               data.forEach(function(entry) {
+                    values_arr.push(entry.value);
+               });
+               values_arr = values_arr.sort();
+               var value_low = values_arr[0];
+               var value_high = values_arr[values_arr.length-1];
 
-     		data.forEach(function(entry) {
-     			var decoded_path = getDecodedPath(entry.polyline);
-     			var bounds = new google.maps.LatLngBounds();
-     			decoded_path.forEach(function(ll) {
-     				bounds.extend(ll);
-     			});
-     			var center = bounds.getCenter()
-     			var circle = new google.maps.Circle({
-     				center: center,
-     				radius: (entry.value / value_high) * 15,
-     				strokeColor: '#FF0000',
-     				strokeOpacity: 0.8,
-     				strokeWeight: 1,
-     				fillColor: '#FF0000',
-     				fillOpacity: 0.2
-     			});
-     			circle.setMap(map);
-     		});
-     	}
+               data.forEach(function(entry) {
+                    var decoded_path = getDecodedPath(entry.polyline);
+                    var bounds = new google.maps.LatLngBounds();
+                    decoded_path.forEach(function(ll) {
+                         bounds.extend(ll);
+                    });
+                    var center = bounds.getCenter()
+                    var circle = new google.maps.Circle({
+                         center: center,
+                         radius: (entry.value / value_high) * 15,
+                         strokeColor: '#FF0000',
+                         strokeOpacity: 0.8,
+                         strokeWeight: 1,
+                         fillColor: '#FF0000',
+                         fillOpacity: 0.2
+                    });
+                    circle.setMap(map);
+               });
+          }
 
-     	var getDecodedPath = function(data) {
-     		var encoded_polyline = data;
-     		var decoded_polyline = decodeURIComponent(encoded_polyline);
-     		var gmaps_decoded_path = google.maps.geometry.encoding.decodePath(decoded_polyline);
-     		return gmaps_decoded_path;
-     	}
+          var getDecodedPath = function(data) {
+               var encoded_polyline = data;
+               var decoded_polyline = decodeURIComponent(encoded_polyline);
+               var gmaps_decoded_path = google.maps.geometry.encoding.decodePath(decoded_polyline);
+               return gmaps_decoded_path;
+          }
 
      });
-
      
 
    </script>

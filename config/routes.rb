@@ -41,6 +41,7 @@ BeaconApp::Application.routes.draw do
   match '/projects/snow_calculator', to: 'pages#snow_calculator'
   match '/projects/website-in-1997', to: 'pages#website1997'
   match '/projects/title_ix', to: 'pages#title_ix'
+  match '/projects/housing_in_boston', to: 'pages#neighborhoods2015'
   
   match '/projects/oscars2012', :to => 'pages#oscars'
   match '/projects/oscars2013', :to => 'pages#oscars2013'

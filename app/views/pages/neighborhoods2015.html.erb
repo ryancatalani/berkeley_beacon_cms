@@ -1,0 +1,143 @@
+<script type="text/javascript"
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChAXWy7hWRpqrC_Plc3qzDVi32mkSqAjQ&libraries=geometry">
+   </script>
+<script type="text/javascript">
+
+     $(document).ready(function() {
+          if ($(window).height() < 800) {
+               $("#map-canvas").height(300);
+          }
+
+          var styles = [
+            {
+              "featureType": "administrative",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },{
+              "featureType": "road",
+              "elementType": "labels",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },{
+              "featureType": "poi",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },{
+              "featureType": "transit",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },{
+              "featureType": "road",
+              "elementType": "geometry",
+              "stylers": [
+                { "visibility": "simplified" },
+                { "color": "#F0EBD7" }
+              ]
+            },{
+              "featureType": "landscape",
+              "stylers": [
+                { "color": "#EDDBA6" }
+              ]
+            },{
+              "featureType": "water",
+              "stylers": [
+                { "color": "#A1C1D0" }
+              ]
+            }
+          ]
+
+          var mapOptions = {
+            center: { lat: 42.354, lng: -71.066},
+            zoom: 16,
+            disableDefaultUI: true,
+            styles: styles
+          };
+          var map = new google.maps.Map(document.getElementById('map-canvas'),
+              mapOptions);
+
+          var bounds = new google.maps.LatLngBounds();
+
+          var neighborhoods = {};
+          neighborhoods['allston'] = {
+               name: "Allston",
+               center: new google.maps.LatLng(42.35372, -71.13373),
+               radius: 500,
+               popup: new google.maps.InfoWindow({ content: '<div class="map_content"><h2>Allston</h2><img src="https://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/thumb_140_1427340861-Smith_AllstonPhotoEssay_2.jpg.jpg" style="float:right;margin-left:10px"><strong><a href="http://www.berkeleybeacon.com/lifestyle/2015/3/25/boston-housing-series-parties-bars-and-rats-abound-69" target="_blank">Parties, bars, and rats abound in Allston</a></strong><p>Although Emerson students who live in the neighborhood had some complaints, they said the area is still a good choice—and has the right price. <em><a href="http://www.berkeleybeacon.com/lifestyle/2015/3/25/boston-housing-series-parties-bars-and-rats-abound-69" target="_blank">Read more</a></em></p></div>', maxWidth: 300 })
+          };
+          neighborhoods['beaconhill'] = {
+               name: "Beacon Hill",
+               center: new google.maps.LatLng(42.35753, -71.07004),
+               radius: 200,
+               popup: new google.maps.InfoWindow({ content: '<div class="map_content"><h2>Beacon Hill</h2>Coming April 2</div>', maxWidth: 300 })
+          };
+          neighborhoods['fenway'] = {
+               center: new google.maps.LatLng(42.34408, -71.10008),
+               radius: 300,
+               popup: new google.maps.InfoWindow({ content: '<div class="map_content"><h2>Fenway / Kenmore</h2>Coming April 9</div>', maxWidth: 300 })
+          }
+
+          var neighborhoodCircle;
+          var infowindow;
+
+          var baseColor = '#9A5A00';
+          for (var neighborhood in neighborhoods) {
+               var neighborhoodOptions = {
+                    strokeColor: baseColor,
+                    strokeOpacity: 0.8,
+                    strokeWeight: 1,
+                    fillColor: baseColor,
+                    fillOpacity: 0.35,
+                    map: map,
+                    center: neighborhoods[neighborhood].center,
+                    radius: neighborhoods[neighborhood].radius
+               }
+               neighborhoodCircle = new google.maps.Circle(neighborhoodOptions);
+
+               if ($(window).width() > 1000) {
+                    infowindow = neighborhoods[neighborhood].popup;
+                    infowindow.setPosition(neighborhoods[neighborhood].center);
+                    infowindow.open(map);
+               }
+
+               bounds.extend(neighborhoods[neighborhood].center);
+               google.maps.event.addListener(neighborhoodCircle, 'click', (function(neighborhoodCircle, neighborhood){
+                         return function(){
+                              infowindow = neighborhoods[neighborhood].popup;
+                              infowindow.setPosition(neighborhoods[neighborhood].center);
+                              infowindow.open(map);
+                         }
+                    })(neighborhoodCircle, neighborhood)
+               );
+          }
+
+          map.fitBounds(bounds);
+     });
+     
+
+   </script>
+
+
+<div class="content">
+     <h3>Special Series • March–April 2015</h3>
+     <h1>Housing in Boston</h1>
+
+     <p class="desc">
+          As students begin the annual housing search, the Beacon will feature a different Boston-area neighborhood each week—complete with pros and cons, nightlife prospects, and advice from current residents.
+     </p>
+</div>
+
+</div> <!-- .wrap -->
+
+<div class="content">
+<div id="map-canvas" style="height:500px"></div>
+</div>
+
+<div class="wrap">
+
+
+<script type="text/javascript" src="//use.typekit.net/mdh3wrb.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
