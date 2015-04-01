@@ -111,29 +111,29 @@ $sans_font_stack: "franklin-gothic-urw", "Helvetica Neue", Arial, Helvetica, san
 	}
 }
 
-#main {
-	font: 15px/1.2em $serif_font_stack;
+// #main {
+// 	font: 15px/1.2em $serif_font_stack;
 
-	h2, h3, h4 {
-		font-family: $serif_hed_font_stack;
-	}
+// 	h2, h3, h4 {
+// 		font-family: $serif_hed_font_stack;
+// 	}
 
-	h2 {
-		font-size: 32px;
-	}
+// 	h2 {
+// 		font-size: 32px;
+// 	}
 
-	h3 {
-		font-size: 24px;
-	}
+// 	h3 {
+// 		font-size: 24px;
+// 	}
 
-	h4 {
-		font-size: 20px;
-	}
+// 	h4 {
+// 		font-size: 20px;
+// 	}
 
-	#center .story .section_title {
-		font-size: 15px;
-	}
-}
+// 	#center .story .section_title {
+// 		font-size: 15px;
+// 	}
+// }
 
 #left, #center, #right {
 	float: left;
