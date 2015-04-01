@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141104132429) do
+ActiveRecord::Schema.define(:version => 20150401031445) do
 
   create_table "article_event_binders", :force => true do |t|
     t.integer  "article_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20141104132429) do
     t.integer  "article_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "designation"
   end
 
   create_table "blogs", :force => true do |t|
@@ -95,6 +96,13 @@ ActiveRecord::Schema.define(:version => 20141104132429) do
   end
 
   add_index "ecla_beacon_tweet", ["tweet_id"], :name => "index_ecla_beacon_tweets_on_tweet_id"
+
+  create_table "editorships", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "section_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -195,6 +203,8 @@ ActiveRecord::Schema.define(:version => 20141104132429) do
     t.string   "profile_video_mp4_url"
     t.string   "profile_video_ogg_url"
     t.string   "profile_video_webm_url"
+    t.integer  "role"
+    t.boolean  "on_masthead"
   end
 
   create_table "political_poll_entries", :force => true do |t|
@@ -260,7 +270,10 @@ ActiveRecord::Schema.define(:version => 20141104132429) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+    t.string   "slug"
   end
+
+  add_index "series", ["slug"], :name => "index_series_on_slug"
 
   create_table "short_links", :force => true do |t|
     t.string   "prefix"

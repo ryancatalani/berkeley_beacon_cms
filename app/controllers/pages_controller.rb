@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 
 class PagesController < ApplicationController
-	before_filter :check_editor, :only => [:new_editorial_cartoon, :campus_data, :year_in_review_2014]
+	before_filter :check_editor, :only => [:new_editorial_cartoon, :campus_data, :year_in_review_2014, :title_ix]
 
 	def home
 		@current_user = current_user
@@ -360,6 +360,12 @@ class PagesController < ApplicationController
 		@og ||= {}
 		@og[:description] = "This was the Beacon's website in 1997, a time when “online” was still hyphenated and zany Photoshop effects were prized."
 		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/beacon_website_1997.gif"
+	end
+
+	def title_ix
+		@body_id = "title_ix"
+		@title = "Title IX disputes at Emerson"
+		@include_responsive = true
 	end
 
 	private
