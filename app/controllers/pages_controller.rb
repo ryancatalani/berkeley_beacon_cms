@@ -166,7 +166,7 @@ class PagesController < ApplicationController
 		@title = "Search results: #{params[:q]}"
 		if params[:q]
 			article_response = Article.search(params[:q])
-			@articles = article_response.records
+			@articles = article_response.records.where(draft: false)
 			mediafile_response = Mediafile.search(params[:q])
 			@mediafiles = mediafile_response.records
 		else
