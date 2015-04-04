@@ -277,7 +277,7 @@ class Article < ActiveRecord::Base
 		update_attribute(:social_shares, ss)
 	end
 
-	def self.search_public(query, order)
+	def self.search_public(query, order="relevance")
 		q = {
 			query: {
 				filtered: {

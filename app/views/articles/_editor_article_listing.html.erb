@@ -16,6 +16,12 @@
 		<% rescue %>
 			<%= article.title %>
 		<% end %>
+		<br>
+		<% if ((Time.zone.now - article.created_at) / 3600) < 48 %>
+			<em class="upcase"><%= time_ago_in_words(article.created_at) %> ago</em>
+		<% else %>
+			<em class="upcase"><%= article.created_at.to_s(:pretty_date_and_time) %></em>
+		<% end %>
 	</td>
 	<td>
 		<ul>

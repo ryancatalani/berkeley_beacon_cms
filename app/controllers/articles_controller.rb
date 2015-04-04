@@ -207,10 +207,8 @@ class ArticlesController < ApplicationController
 	end
 
 	def search_edit
-		engine_slug = Rails.env.production? ? "berkeleybeacon" : "berkeleybeaconsandbox"
-		client = Swiftype::Easy.new
-		results = client.search(engine_slug, params[:q])
-		@articles = results.records['articles'].map{|r| Article.find(r.external_id.to_i) } #.paginate(:page => params[:page], :per_page => 15)
+		article_response = Article.search(params[:q]).page(params[:page])
+		@articles = article_response.records
 		@q = params[:q]
 	end
 
