@@ -166,14 +166,15 @@ class PagesController < ApplicationController
 		@title = "Search results: #{params[:q]}"
 		if params[:q]
 			order = params[:order] || 'relevance'
-			article_response = Article.search_public(params[:q], order).page(params[:page])
-			@articles = article_response.records
+			article_response = Article.search_public(params[:q], order)
+			@articles = article_response.page(params[:page]).records
+			@articles_total = article_response.results.total
 			mediafile_response = Mediafile.search(params[:q])
 			@mediafiles = mediafile_response.records
 			people_response = Person.search(params[:q])
 			@people = people_response.records
 
-			@articles_time_series = search_time_series(@articles) if @articles.any?
+			@articles_time_series = search_time_series(article_response.records) if @articles.any?
 
 			@no_results = !@articles.any? && !@mediafiles.any? && !@people.any?
 		else
