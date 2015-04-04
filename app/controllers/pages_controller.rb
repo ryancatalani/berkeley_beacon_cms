@@ -174,7 +174,7 @@ class PagesController < ApplicationController
 			people_response = Person.search(params[:q])
 			@people = people_response.records
 
-			@articles_time_series = search_time_series(article_response.records) if @articles.any?
+			# @articles_time_series = search_time_series(article_response.records) if @articles.any?
 
 			@no_results = !@articles.any? && !@mediafiles.any? && !@people.any?
 		else
