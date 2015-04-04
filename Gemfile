@@ -42,7 +42,6 @@ gem 'htmlentities'
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
-gem 'bonsai-elasticsearch-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -55,6 +54,8 @@ gem 'unicorn'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+gem 'httpclient', '>= 2.4.0'
 
 group :test do
   # Pretty printed test output
@@ -73,5 +74,6 @@ end
 
 group :production do
   gem 'pg'
+  gem 'bonsai-elasticsearch-rails'
   # gem 'thin'
 end
