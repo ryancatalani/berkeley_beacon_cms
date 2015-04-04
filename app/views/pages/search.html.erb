@@ -2,7 +2,7 @@
 
 	<div id="section-articles" class="balance_height">
 		<div id="search_page_search">
-			<%= form_tag search_path do %>
+			<%= form_tag search_path, method: :get do %>
 				<%= text_field_tag :q, params[:q] %>
 				<%= submit_tag "Search", :id => "search_page_commit" %>
 			<% end %>
@@ -12,10 +12,14 @@
 
 		<div id="search_mediafiles">
 			<% @mediafiles.each do |mediafile| %>
-				<a class="search_mediafile" href="<%= mediafile.latest_article.to_url %>">
-					<div class="search_mediafile_caption"><%= mediafile.title %></div>
+				<% if mediafile.latest_article %>
+					<a class="search_mediafile" href="<%= mediafile.latest_article.to_url %>">
+						<div class="search_mediafile_caption"><%= mediafile.title %></div>
+						<%= image_tag mediafile.media.thumb_220.url %>
+					</a>
+				<% else %>
 					<%= image_tag mediafile.media.thumb_220.url %>
-				</a>
+				<% end %>
 			<% end %>
 			<div class="clear"></div>
 		</div>
@@ -37,7 +41,7 @@
 			</div>
 
 		<% end %>
-		<%= will_paginate @articles if false %>
+		<%= will_paginate @articles if @articles.any? %>
 	</div>
 
 	<div id="section-sidebar" class="balance_height">

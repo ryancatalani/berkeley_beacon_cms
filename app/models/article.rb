@@ -277,6 +277,26 @@ class Article < ActiveRecord::Base
 		update_attribute(:social_shares, ss)
 	end
 
+	def self.search_public(query)
+		self.__elasticsearch__.search({
+			query: {
+				filtered: {
+					query: {
+						multi_match: {
+							query: query,
+							fields: ["title^2", "body"]
+						}
+					},
+					filter: {
+						term: {
+							draft: [false, nil]
+						}
+					}
+				}
+			}
+		})
+	end
+
 	private
 		def check_clean_title
 			c = created_at
