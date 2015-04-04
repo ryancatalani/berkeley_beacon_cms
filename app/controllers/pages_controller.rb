@@ -165,7 +165,8 @@ class PagesController < ApplicationController
 	def search
 		@title = "Search results: #{params[:q]}"
 		if params[:q]
-			article_response = Article.search_public(params[:q]).page(params[:page])
+			order = params[:order] || 'relevance'
+			article_response = Article.search_public(params[:q], order).page(params[:page])
 			@articles = article_response.records
 			mediafile_response = Mediafile.search(params[:q])
 			@mediafiles = mediafile_response.records

@@ -2629,7 +2629,7 @@ body#neighborhoods2015 {
 	}
 
 	#search_page_search {
-		input {
+		input[type=text], input[type=submit] {
 			height: 25px;
 			padding: 3px 10px;
 			margin: 0;
@@ -2652,6 +2652,12 @@ body#neighborhoods2015 {
 			&:hover {
 				background: $link_hover_blue;
 				border: 1px solid darken($link_hover_blue, 10%);
+			}
+		}
+		.order {
+			margin-top: 5px;
+			label {
+				margin-right: 10px;
 			}
 		}
 	}

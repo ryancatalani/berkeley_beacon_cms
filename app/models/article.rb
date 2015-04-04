@@ -277,8 +277,8 @@ class Article < ActiveRecord::Base
 		update_attribute(:social_shares, ss)
 	end
 
-	def self.search_public(query)
-		self.__elasticsearch__.search({
+	def self.search_public(query, order)
+		q = {
 			query: {
 				filtered: {
 					query: {
@@ -294,7 +294,19 @@ class Article < ActiveRecord::Base
 					}
 				}
 			}
-		})
+		}
+
+		if order == "date_asc"
+			q[:sort] = {
+				created_at: { order: "asc" }
+			}
+		elsif order == "date_desc"
+			q[:sort] = {
+				created_at: { order: "desc" }
+			}
+		end
+
+		self.__elasticsearch__.search(q)
 	end
 
 	private

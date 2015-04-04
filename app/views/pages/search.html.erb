@@ -3,6 +3,15 @@
 		<%= form_tag search_path, method: :get do %>
 			<%= text_field_tag :q, params[:q] %>
 			<%= submit_tag "Search", :id => "search_page_commit" %>
+			<div class="order">
+				Order:
+				<%= radio_button_tag(:order, "relevance", (params[:order].eql?("relevance")) || params[:order].nil? ) %>
+				<%= label_tag(:order_relevance, "Relevance") %>
+				<%= radio_button_tag(:order, "date_asc", params[:order].eql?("date_asc")) %>
+				<%= label_tag(:order_date_asc, "Date, oldest to newest") %>
+				<%= radio_button_tag(:order, "date_desc", params[:order].eql?("date_desc")) %>
+				<%= label_tag(:order_date_desc, "Date, newest to oldest") %>
+			</div>
 		<% end %>
 	</div>
 
