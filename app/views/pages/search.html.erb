@@ -1,53 +1,61 @@
-<div id="section-wrap">
+<div class="search_page">
+	<div id="search_page_search">
+		<%= form_tag search_path, method: :get do %>
+			<%= text_field_tag :q, params[:q] %>
+			<%= submit_tag "Search", :id => "search_page_commit" %>
+		<% end %>
+	</div>
 
-	<div id="section-articles" class="balance_height">
-		<div id="search_page_search">
-			<%= form_tag search_path, method: :get do %>
-				<%= text_field_tag :q, params[:q] %>
-				<%= submit_tag "Search", :id => "search_page_commit" %>
+	<div id="search_separator">&nbsp;</div>
+
+	<% if @no_results %>
+		<p class="no_results">Looks like we couldn't find anything. Try a different search or email <a href="mailto:contact@berkeleybeacon.com">contact@berkeleybeacon.com</a>.</p>
+	<% end %>
+
+	<div id="section-wrap">
+
+		<div id="search_articles">
+
+			<% @articles.each do |article| %>
+
+
+				<div class="article">
+					<% unless article.visual_mediafiles.empty? or article.visual_mediafiles.first.media.url.nil? or article.visual_mediafiles.first.mediatype == 2 %>
+						<div class="media">
+							<%= link_to image_tag(article.visual_mediafiles.first.media.thumb_140.url), article.to_url %>
+						</div>
+					<% else %>
+					<% end %>
+					<h3><%= link_to article.title, article.to_url %></h3>
+					<div class="meta"><%= article.created_at.to_s(:pretty_date) %> • <%= bylineify article %></div>
+					<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
+					<div class="clear"></div>
+				</div>
+
 			<% end %>
+			<%= will_paginate @articles if @articles.any? %>
 		</div>
 
-		<div id="search_separator">&nbsp;</div>
-
-		<div id="search_mediafiles">
-			<% @mediafiles.each do |mediafile| %>
-				<% if mediafile.latest_article %>
-					<a class="search_mediafile" href="<%= mediafile.latest_article.to_url %>">
-						<div class="search_mediafile_caption"><%= mediafile.title %></div>
-						<%= image_tag mediafile.media.thumb_220.url %>
-					</a>
-				<% else %>
-					<%= image_tag mediafile.media.thumb_220.url %>
+		<div id="search_mediafiles_wrap">
+			<div id="search_mediafiles">
+				<% @mediafiles.each do |mediafile| %>
+					<% if mediafile.latest_article %>
+						<a class="search_mediafile" href="<%= mediafile.latest_article.to_url %>">
+							<div class="search_mediafile_caption"><%= mediafile.title %></div>
+							<%= image_tag mediafile.media.thumb_220.url %>
+						</a>
+					<% else %>
+						<div class="search_mediafile">
+							<%= image_tag mediafile.media.thumb_220.url %>	
+						</div>
+					<% end %>
 				<% end %>
-			<% end %>
-			<div class="clear"></div>
-		</div>
-
-		<% @articles.each do |article| %>
-
-
-			<div class="article">
-				<% unless article.visual_mediafiles.empty? or article.visual_mediafiles.first.media.url.nil? or article.visual_mediafiles.first.mediatype == 2 %>
-					<div class="media">
-						<%= link_to image_tag(article.visual_mediafiles.first.media.thumb_140.url), article.to_url %>
-					</div>
-				<% else %>
-				<% end %>
-				<h3><%= link_to article.title, article.to_url %></h3>
-				<div class="byline"><%= bylineify article %></div>
-				<p><%= article.excerpt.blank? ? article.body.first(50) : article.excerpt %></p>
 				<div class="clear"></div>
 			</div>
+		</div>
 
-		<% end %>
-		<%= will_paginate @articles if @articles.any? %>
 	</div>
-
-	<div id="section-sidebar" class="balance_height">
-		<section id="popular">
-			<%= render 'shared/popular' %>
-		</section>
-	</div>
-
 </div>
+
+<script type="text/javascript" src="//use.typekit.net/mdh3wrb.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>

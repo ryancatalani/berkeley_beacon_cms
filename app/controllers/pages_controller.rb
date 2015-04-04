@@ -169,6 +169,8 @@ class PagesController < ApplicationController
 			@articles = article_response.records
 			mediafile_response = Mediafile.search(params[:q])
 			@mediafiles = mediafile_response.records
+
+			@no_results = !@articles.any? && !@mediafiles.any?
 		else
 			@articles = []
 			@mediafiles = []
