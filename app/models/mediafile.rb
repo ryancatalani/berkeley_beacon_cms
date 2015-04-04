@@ -1,4 +1,7 @@
 class Mediafile < ActiveRecord::Base
+	include Elasticsearch::Model
+	include Elasticsearch::Model::Callbacks
+
 	attr_accessible :title, :description, :mediatype, :media, :source,
 		:video_webm, :video_mp4, :video_ogg,
 		:remote_video_mp4_url, :remote_video_ogg_url, :remote_video_webm_url,

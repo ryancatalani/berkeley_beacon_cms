@@ -1,4 +1,7 @@
 class Article < ActiveRecord::Base
+	include Elasticsearch::Model
+	include Elasticsearch::Model::Callbacks
+
 	validates_presence_of :title, :body, :articletype
 	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id, :section_id, :archive, :archive_images, :blog_id, :link_only, :link, :issue_id, :event_day
 	has_many :authorships
@@ -23,6 +26,7 @@ class Article < ActiveRecord::Base
 	before_save :check_clean_title
 	after_update :update_queued_tweets
 	after_destroy :remove_associated_tweets
+	scope :published, -> { where(draft: false) }
 
 	def to_url(opts={})
 		if link_only

@@ -164,14 +164,11 @@ class PagesController < ApplicationController
 
 	def search
 		@title = "Search results: #{params[:q]}"
-		# engine_slug = Rails.env.production? ? "berkeleybeacon" : "berkeleybeaconsandbox"
-		engine_slug = "berkeleybeacon"
-		# engine = Swiftype::Engine.find(engine_slug)
 		if params[:q]
-			client = Swiftype::Easy.new
-			results = client.search(engine_slug, params[:q])
-			@articles = results.records['articles'].map{|r| Article.find(r["external_id"].to_i) rescue nil }.delete_if{ |a| a.nil? } #.paginate(:page => params[:page], :per_page => 15)
-			@mediafiles = results.records['mediafiles'].map{|r| Mediafile.find(r["external_id"].to_i) rescue nil }.delete_if{ |m| m.nil? }
+			article_response = Article.search(params[:q])
+			@articles = article_response.records
+			mediafile_response = Mediafile.search(params[:q])
+			@mediafiles = mediafile_response.records
 		else
 			@articles = []
 			@mediafiles = []

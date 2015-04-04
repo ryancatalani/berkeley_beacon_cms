@@ -40,6 +40,10 @@ gem 'chartkick'
 gem 'jquery-cookie-rails'
 gem 'htmlentities'
 
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+gem 'bonsai-elasticsearch-rails'
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
