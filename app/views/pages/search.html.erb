@@ -42,6 +42,10 @@
 
 			<% if @articles.any? %>
 				<h2>Articles</h2>
+				<p>
+					<%= @articles.count %> results <span id="article_sparkline"></span>
+				</p>
+				<br>
 			<% end %>
 		
 			<% @articles.each do |article| %>
@@ -94,3 +98,27 @@
 
 <script type="text/javascript" src="//use.typekit.net/mdh3wrb.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+<% if @articles_time_series %>
+<script src="jquery.sparkline.min.js"></script>
+<script>
+	$(function(){
+		var months = <%= raw @articles_time_series[1].to_s %>;
+		$("#article_sparkline").sparkline(<%= @articles_time_series[0] %>,
+			{
+				type: 'line',
+				width: '100px',
+				lineColor: '#3A5782',
+				fillColor: '#567AAE',
+				spotColor: false,
+				minSpotColor: false,
+				maxSpotColor: false,
+				tooltipFormatter: function(sp, options, fields) {
+					var res_str = fields.y == 1 ? 'result' : 'results';
+	                return '<div class="jqsfield"><span style="color:'+fields.color+'">&#9679;</span> '+months[fields.x]+': '+fields.y+' '+res_str+'</div>';
+                }
+				// tooltipFormat: $.spformat('{{value}} results', 'sparkline_tooltip')
+			});
+	});
+</script>
+<% end %>

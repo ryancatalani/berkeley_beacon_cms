@@ -173,6 +173,8 @@ class PagesController < ApplicationController
 			people_response = Person.search(params[:q])
 			@people = people_response.records
 
+			@articles_time_series = search_time_series(@articles) if @articles.any?
+
 			@no_results = !@articles.any? && !@mediafiles.any? && !@people.any?
 		else
 			@articles = []
@@ -396,6 +398,34 @@ class PagesController < ApplicationController
 				a = Section.find_by_name(section_name).non_blog_articles.order('created_at desc')
 			end
 			return a.first(number_of_articles).partition{|a| !a.visual_mediafiles.empty? }.flatten
+		end
+
+		def search_time_series(articles)
+			search_start_year = 2005
+			current_year = Time.zone.now.year
+			current_month = Time.zone.now.month
+
+			time_slots = {}
+			labels = []
+
+			(search_start_year..current_year-1).each do |year|
+				(1..12).each do |month|
+					str = "#{year}-#{'%02d' % month.to_s}"
+					time_slots[str] = 0
+					labels << "#{Date::MONTHNAMES[month]} #{year}"
+				end
+			end
+			(1..current_month).each do |month|
+				str = "#{current_year}-#{'%02d' % month.to_s}"
+				time_slots[str] = 0
+				labels << "#{Date::MONTHNAMES[month]} #{current_year}"
+			end
+
+			articles.map{|a| a.created_at.strftime("%Y-%m")}.each do |d|
+				time_slots[d] += 1
+			end
+
+			return [time_slots.values, labels]
 		end
 
 end
