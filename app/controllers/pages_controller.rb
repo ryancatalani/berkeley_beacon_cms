@@ -170,11 +170,14 @@ class PagesController < ApplicationController
 			@articles = article_response.records
 			mediafile_response = Mediafile.search(params[:q])
 			@mediafiles = mediafile_response.records
+			people_response = Person.search(params[:q])
+			@people = people_response.records
 
-			@no_results = !@articles.any? && !@mediafiles.any?
+			@no_results = !@articles.any? && !@mediafiles.any? && !@people.any?
 		else
 			@articles = []
 			@mediafiles = []
+			@people = []
 		end
 	end
 

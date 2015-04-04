@@ -2581,27 +2581,56 @@ body#neighborhoods2015 {
 		}
 	}
 
+	h2 {
+		font: 20px/1.2em $sans_font_stack;
+		font-weight: 500;
+		margin-bottom: 0.5em;
+	}
+
+	h3 {
+		font: 16px/1.2em $serif_font_stack;
+		margin-bottom: 0;
+	}
+
+	.meta {
+		font-size: 0.8em;
+		text-transform: uppercase;
+		margin-bottom: 5px;
+	}
+
 	.article {
 		padding-bottom: 1em;
 		border-bottom: 1px solid #ddd;
 		margin-bottom: 1em;
-
-		h3 {
-			font: 16px/1.2em $serif_font_stack;
-			margin-bottom: 0;
-		}
-
-		.meta {
-			font-size: 0.8em;
-			text-transform: uppercase;
-			margin-bottom: 5px;
-		}
 
 		.media {
 			float: right;
 			margin-right: 0;
 			margin-left: 15px;
 		}
+	}
+
+	.people_results {
+		margin-bottom: 2.5em;
+		li {
+			margin-bottom: 1em;
+			&:after {
+				content: ".";
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden;
+			}
+		}
+	}
+
+	.profile_img {
+		height: 40px;
+		width: 40px;
+		float: left;
+		background-size: cover;
+		background-repeat: no-repeat;
+		margin-right: 10px;
 	}
 
 	.search_mediafile {

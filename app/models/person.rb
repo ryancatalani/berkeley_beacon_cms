@@ -1,4 +1,7 @@
 class Person < ActiveRecord::Base
+	include Elasticsearch::Model
+	include Elasticsearch::Model::Callbacks
+
 	has_secure_password
 	has_many :authorships
 	has_many :articles, :through => :authorships
@@ -85,6 +88,14 @@ class Person < ActiveRecord::Base
 
 		video = OpenStruct.new(video_hash)
 		return video
+	end
+
+	def as_indexed_json(options={})
+		as_json(methods: :full_name, only: :full_name)
+	end
+
+	def to_url
+		"/staff/#{clean_full_name}"
 	end
 
 end

@@ -24,7 +24,26 @@
 	<div id="section-wrap">
 
 		<div id="search_articles">
+			<% if @people.any? %>
+				<h2>Editors, staff, correspondents, and contributors</h2>
+			
+				<ul class="people_results">
+				<% @people.each do |person| %>
+					<li>
+						<% if !person.profile.blank? %>
+							<div class="profile_img" style="background-image:url(<%= person.profile.url %>)"></div>
+						<% end %>
+						<h3><%= link_to person.full_name, person.to_url %></h3>
+						<%= person.pos %>
+					</li>
+				<% end %>
+				</ul>
+			<% end %>
 
+			<% if @articles.any? %>
+				<h2>Articles</h2>
+			<% end %>
+		
 			<% @articles.each do |article| %>
 
 
@@ -47,6 +66,10 @@
 
 		<div id="search_mediafiles_wrap">
 			<div id="search_mediafiles">
+				<% if @mediafiles.any? %>
+					<h2>Photos and videos</h2>
+				<% end %>
+
 				<% @mediafiles.each do |mediafile| %>
 					<% if mediafile.latest_article %>
 						<a class="search_mediafile" href="<%= mediafile.latest_article.to_url %>">
