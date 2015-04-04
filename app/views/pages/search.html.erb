@@ -71,15 +71,18 @@
 				<% end %>
 
 				<% @mediafiles.each do |mediafile| %>
-					<% if mediafile.latest_article %>
-						<a class="search_mediafile" href="<%= mediafile.latest_article.to_url %>">
-							<div class="search_mediafile_caption"><%= mediafile.title %></div>
-							<%= image_tag mediafile.media.thumb_220.url %>
-						</a>
-					<% else %>
-						<div class="search_mediafile">
-							<%= image_tag mediafile.media.thumb_220.url %>	
-						</div>
+					<% begin %>
+						<% if mediafile.latest_article %>
+							<a class="search_mediafile" href="<%= mediafile.latest_article.to_url %>">
+								<div class="search_mediafile_caption"><%= mediafile.title %></div>
+								<%= image_tag mediafile.media.thumb_220.url %>
+							</a>
+						<% else %>
+							<div class="search_mediafile">
+								<%= image_tag mediafile.media.thumb_220.url %>	
+							</div>
+						<% end %>
+					<% rescue %>
 					<% end %>
 				<% end %>
 				<div class="clear"></div>
