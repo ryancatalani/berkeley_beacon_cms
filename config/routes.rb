@@ -66,6 +66,7 @@ BeaconApp::Application.routes.draw do
   match '/issues/latest_issue_lead_image_rss', :to => 'issues#latest_issue_lead_image_rss', :format => :rss
   match '/issues/latest_issue_second_image_rss', :to => 'issues#latest_issue_second_image_rss', :format => :rss
 
+  match '/newsletter/signup', to: 'pages#weekly_newsletter'
   match '/outbox/latest_weekly', to: 'outbox#weekly_newsletter'
 
 	resources :stylebook_entries, :except => [:show]

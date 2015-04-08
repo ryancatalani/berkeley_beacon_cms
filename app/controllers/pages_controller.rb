@@ -383,6 +383,15 @@ class PagesController < ApplicationController
 		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/housing_thumb.jpg"
 	end
 
+	def weekly_newsletter
+		@body_id = "weekly_newsletter"
+		@title = "Beacon Weekly Newsletter"
+		@include_responsive = true
+		@og ||= {}
+		@og[:description] = "Sign up for the Beacon's weekly newsletter that recaps each issue's top stories."
+		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/newsletter_preview_fb.jpg"
+	end
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}

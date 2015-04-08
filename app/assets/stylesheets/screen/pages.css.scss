@@ -2714,3 +2714,128 @@ body#neighborhoods2015 {
 	width: auto !important;
 	height: auto !important;
 }
+
+#weekly_newsletter {
+	$serif_font_stack: "kepler-std", "Times New Roman", Georgia, Times, serif;
+	$serif_hed_font_stack: "kepler-std-semicondensed-dis", "Times New Roman", Georgia, Times, serif;
+	$sans_font_stack: "franklin-gothic-urw", "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+	background: #111 url(http://theberkeleybeacon.s3.amazonaws.com/newsletter_bkgd.jpg) no-repeat center center;
+	background-size: cover;
+	@media(min-width: 1024px) {
+		background-attachment: fixed;
+	}
+
+	.header {
+		color: #fff;
+		border-bottom: 1px solid rgba(255,255,255,0.3);
+		a {
+			color: #fff;
+		}
+	}
+
+	#footer {
+		color: #fff;
+		border-top: 1px solid rgba(255,255,255,0.3);
+		a {
+			color: #fff;
+		}
+	}
+
+	.content {
+		color: #fff;
+		font: 15px/1.3em $sans_font_stack;
+		@media (min-width: 1024px) {
+			width: 70%;
+			margin: 0 auto;
+		}
+
+		h1 {
+			font: 40px/1em $serif_hed_font_stack;
+		}
+		h2 {
+			font: 25px/1em $sans_font_stack;
+			font-weight: 300;
+		}
+
+		h1, h2 {
+			text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+			@media (min-width: 768px) {
+				text-align: right;
+			}
+		}
+	}
+
+	#newsletter_preview {
+		background: url(http://theberkeleybeacon.s3.amazonaws.com/beacon_newsletter_preview.png) no-repeat top center;
+		background-size: cover;
+		height: 400px;
+		width: 100%;
+		margin-bottom: 20px;
+		@media (min-width: 768px) {
+			height: auto;
+			width: 33%;
+			background: none;
+			float: right;
+			margin-left: 20px;
+			margin-bottom: 0;
+		}
+		img {
+			display: none;
+			@media (min-width: 768px) {
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+
+	#mc_embed_signup {
+		background: rgba(0,0,0,0.7);
+		padding: 1em;
+		margin-top: 1em;
+		display: inline-block;
+		width: 100%;
+
+		@media (min-width: 768px) {
+			float: right;
+			width: 60%;
+		}
+
+		.indicates-required {
+			display: none;
+		}
+		.mc-field-group {
+			margin-bottom: 0.5em;
+			label {
+				width: 35%;
+				display: inline-block;
+			}
+			input {
+				color: #fff;
+				font: 15px $sans_font_stack;
+				width: 60%;
+				padding: 0.3em;
+				background: rgba(255,255,255,0.2);
+				border: 1px solid rgba(255,255,255,0.3);
+			}
+		}
+		input[type=submit] {
+			color: #fff;
+			font: 15px $sans_font_stack;
+			padding: 0.5em;
+			background: rgba(255,255,255,0.3);
+			border: 1px solid rgba(255,255,255,0.4);
+			font-weight: 500;
+			width: 70%;
+			margin: 1em auto 0;
+			display: block;
+			&:hover {
+				cursor: pointer;
+				background: rgba(255,255,255,0.4);
+				border: 1px solid rgba(255,255,255,0.5);
+			}
+		}
+
+	}
+
+}
