@@ -63,7 +63,6 @@ class IssuesController < ApplicationController
 		# @articles << articles_unsorted.where(section_id: Section.find_by_name('Lifestyle').id)
 		# @articles << articles_unsorted.where(section_id: Section.find_by_name('Sports').id)
 		
-		@articles << Article.find(home[:lead])
 		@articles << home[:middle].map{|id| Article.find(id)}
 
 		@articles.flatten!
