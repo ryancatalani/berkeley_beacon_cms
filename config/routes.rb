@@ -1,5 +1,7 @@
 BeaconApp::Application.routes.draw do
 
+  get "outbox/weekly_newsletter"
+
 	controller :people do
 		match "/staff/:name", :to => :show
 	end
@@ -59,8 +61,12 @@ BeaconApp::Application.routes.draw do
   match '/events/:uid/:slug', :to => 'events#show'
 
   match '/issues/latest_rss', :to => 'issues#latest_issue_rss', :format => :rss
+  match '/issues/latest_issue_top_story_rss', :to => 'issues#latest_issue_top_story_rss', :format => :rss
+  match '/issues/latest_issue_featured_stories_rss', :to => 'issues#latest_issue_featured_stories_rss', :format => :rss
   match '/issues/latest_issue_lead_image_rss', :to => 'issues#latest_issue_lead_image_rss', :format => :rss
   match '/issues/latest_issue_second_image_rss', :to => 'issues#latest_issue_second_image_rss', :format => :rss
+
+  match '/outbox/latest_weekly', to: 'outbox#weekly_newsletter'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]

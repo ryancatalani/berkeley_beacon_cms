@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-	before_filter :check_editor, :except => [:index, :show, :latest_issue_rss, :latest_issue_lead_image_rss, :latest_issue_second_image_rss]
+	before_filter :check_editor, :except => [:index, :show, :latest_issue_rss, :latest_issue_top_story_rss, :latest_issue_featured_stories_rss, :latest_issue_lead_image_rss, :latest_issue_second_image_rss]
 
 	def index
 		@issues = Issue.all.keep_if { |i| i.ok_to_display? }
@@ -64,11 +64,31 @@ class IssuesController < ApplicationController
 		# @articles << articles_unsorted.where(section_id: Section.find_by_name('Sports').id)
 		
 		@articles << Article.find(home[:lead])
-		@articles << home[:featured].map{|id| Article.find(id)}
 		@articles << home[:middle].map{|id| Article.find(id)}
 
 		@articles.flatten!
 		render :layout => false
+	end
+
+	def latest_issue_top_story_rss
+		home = HomeLayout.last.articles
+		@issue = Issue.latest
+
+		@articles = []
+		
+		@articles << Article.find(home[:lead])
+		render 'latest_issue_rss'
+	end
+
+	def latest_issue_featured_stories_rss
+		home = HomeLayout.last.articles
+		@issue = Issue.latest
+
+		@articles = []
+		
+		@articles << Article.find(home[:featured])
+		@articles.flatten!
+		render 'latest_issue_rss'
 	end
 
 	def latest_issue_lead_image_rss

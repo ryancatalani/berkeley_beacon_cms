@@ -11,7 +11,7 @@ xml.rss :version => '2.0', 'xmlns:media' => 'http://search.yahoo.com/mrss/' do
     for article in @articles
       xml.item do
         xml.title article.extra_title
-        xml.link article.to_url
+        xml.link article.to_url(full: true)
         xml.pubDate(@issue.release_date.rfc2822)
         xml.guid article.cleantitle
         xml.description article.excerpt
