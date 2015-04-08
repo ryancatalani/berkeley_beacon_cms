@@ -85,7 +85,7 @@ class IssuesController < ApplicationController
 
 		@articles = []
 		
-		@articles << Article.find(home[:featured])
+		@articles << home[:featured].map{|id| Article.find(id)}
 		@articles.flatten!
 		render 'latest_issue_rss'
 	end
