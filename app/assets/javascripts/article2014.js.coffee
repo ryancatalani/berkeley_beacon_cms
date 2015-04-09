@@ -134,18 +134,13 @@ jQuery ->
 			path: '/'
 	switch news_sub_ck
 		when '0', '1', '2'
-			console.log 'nothing'
 			val = parseInt(news_sub_ck) + 1
 			set_news_sub_ck(val)
 		when '3'
-			console.log 'show'
 			set_news_sub_ck('0')
 			$('.news_sub_banner').fadeIn('fast')
-		when 'true'
-			console.log 'nope'
 		else
 			set_news_sub_ck('0')
-			console.log 'default'
 	$('a.news_sub_banner_dismiss').click (e) ->
 		e.preventDefault()
 		$('.news_sub_banner').fadeOut('fast')
