@@ -248,6 +248,11 @@ $sans_font_stack: "franklin-gothic-urw", "Helvetica Neue", Arial, Helvetica, san
 			float: right;
 			width: 31%;
 			margin-left: 4%;
+			&.emoji {
+				float: none;
+				width: inherit;
+				margin-left: 0;
+			}
 		}
 	}
 	.story:last-child {
