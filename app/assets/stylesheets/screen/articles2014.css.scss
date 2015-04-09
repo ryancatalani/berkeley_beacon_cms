@@ -294,6 +294,10 @@ body.a14 {
 		color: #fff;
 		h1 {
 			font: 2.5em/1.2em $serif_hed_font_stack;
+			img.emoji {
+				width: 1.2em;
+				height: 1.2em;
+			}
 		}
 		h3 {
 			font: 1em $sans_font_stack;
