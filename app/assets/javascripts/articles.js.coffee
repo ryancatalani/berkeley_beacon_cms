@@ -64,6 +64,13 @@ jQuery ->
 		$(this).find('.spinner').fadeIn();
 		$(this).find('.btn-primary').prop('disabled', true)
 
+	emojify.setConfig
+	  img_dir: 'http://theberkeleybeacon.s3.amazonaws.com/emoji'
+	  ignored_tags:
+	    'SCRIPT': 1
+	    'PRE': 1
+	    'CODE': 1
+	emojify.run()
 
 	$("#sidebar").hover ->
 		$(this).fadeTo('fast',1)

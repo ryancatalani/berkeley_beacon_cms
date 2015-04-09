@@ -34,8 +34,9 @@ class ArticlesController < ApplicationController
 		end
 		p[:articletype] = params[:articletype].to_i
 		p[:series_id] = params[:series_id].to_i
-		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
+		subs = params[:subtitle].nil? ? [] : params[:subtitle].values.map{|s| Rumoji.encode(s)}
 		p[:subtitles] = subs
+		p[:title] = Rumoji.encode(p[:title])
 		cleantitle = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
 		if !Article.find_by_cleantitle(cleantitle).nil?
 			cleantitle = cleantitle + '-' + (Article.last.id+1).to_s.last(2)
@@ -67,6 +68,9 @@ class ArticlesController < ApplicationController
 		end
 
 		queue_tweet = !params[:post_when].nil? and params[:post_when] == "post_later"
+
+		p[:body] = Rumoji.encode(p[:body])
+		p[:excerpt] = Rumoji.encode(p[:excerpt])
 
 		if @article.save
 			@article.update_attribute(:views,0)
@@ -248,8 +252,9 @@ class ArticlesController < ApplicationController
 		@article = Article.find(params[:id])
 		was_draft = @article.draft?
 		p = params[:article]
-		subs = params[:subtitle].nil? ? [] : params[:subtitle].values
+		subs = params[:subtitle].nil? ? [] : params[:subtitle].values.map{|s| Rumoji.encode(s)}
 		p[:subtitles] = subs
+		p[:title] = Rumoji.encode(p[:title])
 		# p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
 		p[:section_id] = params[:section].to_i
 		p[:series_id] = params[:series_id].to_i
@@ -267,6 +272,9 @@ class ArticlesController < ApplicationController
 		end
 
 		queue_tweet = !params[:post_when].nil? and params[:post_when] == "post_later"
+
+		p[:body] = Rumoji.encode(p[:body])
+		p[:excerpt] = Rumoji.encode(p[:excerpt])
 
 		if @article.update_attributes(p)
 			@article.update_attribute(:draft,is_draft)

@@ -39,6 +39,7 @@ gem 'groupdate'
 gem 'chartkick'
 gem 'jquery-cookie-rails'
 gem 'htmlentities'
+gem 'rumoji'
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'

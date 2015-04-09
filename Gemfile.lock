@@ -177,6 +177,7 @@ GEM
     remotipart (1.2.1)
     ruby-hmac (0.4.0)
     ruby-prof (0.14.2)
+    rumoji (0.4.0)
     sass (3.2.14)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -250,6 +251,7 @@ DEPENDENCIES
   rails (= 3.2.17)
   remotipart (~> 1.0)
   ruby-prof
+  rumoji
   sass-rails (~> 3.2.3)
   sqlite3
   swiftype
