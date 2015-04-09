@@ -77,8 +77,13 @@
           neighborhoods['fenway'] = {
                center: new google.maps.LatLng(42.34408, -71.10008),
                radius: 300,
-               popup: new google.maps.InfoWindow({ content: '<div class="map_content"><h2>Fenway / Kenmore</h2>Coming April 9</div>', maxWidth: 300 })
-          }
+               popup: new google.maps.InfoWindow({ content: '<div class="map_content"><h2>Fenway-Kenmore</h2><img src="https://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/thumb_140_1428542528-Fenway_Kenmore_Adams_20150408._0002.jpg.jpg" style="float:right;margin-left:10px"><strong><a href="http://www.berkeleybeacon.com/lifestyle/2015/4/8/the-convenience-and-bustle-of-fenwaykenmore" target="_blank">The convenience and bustle of Fenway-Kenmore</a></strong><p>Though apartments can be pricy in this neighborhood centered around the home of the Red Sox, it’s lush with cultural activities.<em> <a href="http://www.berkeleybeacon.com/lifestyle/2015/4/8/the-convenience-and-bustle-of-fenwaykenmore" target="_blank">Read more</a></em></p></div>', maxWidth: 300 })
+          };
+          neighborhoods['downtown'] = {
+               center: new google.maps.LatLng(42.35157, -71.07227),
+               radius: 300,
+               popup: new google.maps.InfoWindow({ content: '<div class="map_content"><h2>Back Bay & Chinatown</h2>Coming April 16</div>', maxWidth: 300 })
+          };
 
           var neighborhoodCircle;
           var infowindow;
