@@ -45,6 +45,10 @@ $light_border: #dbdbdb;
 	img {
 		float: left;
 		margin-right: 7px;
+		&.emoji {
+			float: none;
+			margin-right: 0;
+		}
 	}
 }
 
@@ -559,6 +563,10 @@ body.a14 {
 			img {
 				float: right;
 				margin-left: 7px;
+				&.emoji {
+					float: none;
+					margin-left: 0;
+				}
 			}
 		}
 	}
@@ -655,6 +663,9 @@ body.a14 {
 				}
 				img {
 					width: 100%;
+					&.emoji {
+						width: 1.5em;
+					}
 				}
 			}
 			ol {
@@ -671,6 +682,9 @@ body.a14 {
 				img {
 					float: right;
 					margin: 0 0 0 7px;
+					&.emoji {
+						margin: 0 0 -0.25em 0;
+					}
 				}
 			}
 			.share_count {
