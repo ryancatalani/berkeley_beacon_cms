@@ -1,5 +1,5 @@
 class SeriesController < ApplicationController
-	before_filter :check_editor
+	before_filter :check_editor, except: [:show]
 	
 	def index
 		@series = Series.all
