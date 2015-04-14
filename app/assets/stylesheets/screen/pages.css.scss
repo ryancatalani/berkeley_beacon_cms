@@ -2851,3 +2851,112 @@ body#neighborhoods2015 {
     display: inline-block;
     margin-bottom: -0.25em;
 }
+
+#adjunct_calculator {
+	$serif_font_stack: "kepler-std", "Times New Roman", Georgia, Times, serif;
+	$serif_hed_font_stack: "kepler-std-semicondensed-dis", "Times New Roman", Georgia, Times, serif;
+	$sans_font_stack: "franklin-gothic-urw", "Helvetica Neue", Arial, Helvetica, sans-serif;	
+
+	.content {
+		* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+		font: 16px/1.2em $sans_font_stack;
+
+		h1 {
+			font: 40px/1em $serif_hed_font_stack;
+			padding-bottom: 3px;
+			border-bottom: 2px solid #000;
+			margin-bottom: 30px;
+		}
+
+		h3 {
+			font: 1em/1em $sans_font_stack;
+			text-transform: uppercase;
+			margin-bottom: 10px;
+		}
+
+		p {
+			font-family: $sans_font_stack;
+		}
+
+		.label {
+			display: block;
+			font-weight: 500;
+		}
+
+		.col_33, .col_66 {
+			@media(max-width: 700px) {
+				width: 100%;
+				float: none;
+			}
+		}
+
+		#course_num {
+			font: 16px/1.2em $sans_font_stack;
+			padding: 0.5em;
+			width: 100%;
+		}
+
+		select {
+			width: 100%;
+		}
+
+		.row {
+			margin-bottom: 20px;
+			&:after {
+				visibility: hidden;
+				display: block;
+				font-size: 0;
+				content: " ";
+				clear: both;
+				height: 0;
+			}
+		}
+
+		.results {
+			font-size: 18px;
+			line-height: 1.4em;
+
+			.num_result {
+				background: #FFE618;
+			}
+		}
+
+		.explanation {
+			font-style: italic;
+			font-size: 0.75em;
+			line-height: 1.2em;
+			a {
+				&:link, &:visited {
+					border-bottom: 1px solid #5383A6;
+					font-weight: 500;
+					color: #5383A6;
+				}
+				&:hover, &:active {
+					border-bottom: 1px solid #70AAD5;	
+					color: #70AAD5;
+					text-decoration: none;
+				}
+			}
+		}
+
+		.share {
+			font-size: 0.8em;
+			background: #F2F2F2;
+			padding: 0.7em 1em;
+		}
+
+		p > a {
+			&:link, &:visited {
+				border-bottom: 2px solid #5383A6;
+				font-weight: 500;
+				color: #5383A6;
+			}
+			&:hover, &:active {
+				border-bottom: 2px solid #70AAD5;	
+				color: #70AAD5;
+				text-decoration: none;
+			}
+		}
+	}	
+}

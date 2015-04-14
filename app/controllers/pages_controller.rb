@@ -346,6 +346,7 @@ class PagesController < ApplicationController
 		@body_id = "snow_calculator"
 		@include_responsive = true
 		@title = "How much are your missed classes worth?"
+		@no_bootstrap = true
 		@og ||= {}
 		@og[:description] = "Emerson has canceled several days of classes because of the snow. See how much your missed classes are worth."
 		@og[:image] = "https://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/1423126348-Snowstorm_Bushell_01272015_0021.jpg.jpg"
@@ -387,9 +388,20 @@ class PagesController < ApplicationController
 		@body_id = "weekly_newsletter"
 		@title = "Beacon Weekly Newsletter"
 		@include_responsive = true
+		@no_bootstrap = true
 		@og ||= {}
 		@og[:description] = "Sign up for the Beacon's weekly newsletter that recaps each issue's top stories."
 		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/newsletter_preview_fb.jpg"
+	end
+
+	def adjunct_calculator
+		@body_id = "adjunct_calculator"
+		@title = "Calculate how much your adjunct professors earn."
+		@no_bootstrap = true
+		@include_responsive = true
+		@og ||= {}
+		@og[:description] = "Enter your classes and see how much your professors are paid."
+		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/beacon_1000x1000.jpg"
 	end
 
 	private
