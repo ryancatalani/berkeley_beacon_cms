@@ -622,10 +622,10 @@
 
 				if (course.indexOf('+') != -1 || course.indexOf('-') != -1) {
 					if (course.indexOf(course_prefix) != -1) {
-						console.log(course);
-						console.log(course_arr[3]);
-						console.log(course_arr[4]);
-						console.log(parseInt(course_level));
+						
+						
+						
+						
 						if ((course_arr[3] <= parseInt(course_level)) && (course_arr[4] >= parseInt(course_level))) {
 							min = course_arr[1];
 							max = course_arr[2];
@@ -634,7 +634,7 @@
 					}
 				} else {
 					if (course.indexOf(course_prefix) != -1) {
-						console.log(course);
+						
 						min = course_arr[1];
 						max = course_arr[2];
 						break;
@@ -652,7 +652,7 @@
 				var prof_arr = profs[i];
 				var prof_name = prof_arr[7];
 				if (prof_name == prof_input) {
-					console.log(prof_name, prof_input);
+					
 
 					var status = parseInt(prof_arr[12].substring(0,1));
 					if (status == 1) {
@@ -660,10 +660,10 @@
 					} else { 
 						is_adjunct =  false;
 					}
-					console.log(is_adjunct);
+					
 					return is_adjunct;
 
-					// console.log(prof_arr);
+					// 
 				}
 			};		
 
@@ -674,7 +674,7 @@
 				var prof_input_lastname = prof_input.split(' ').slice(-1)[0];
 
 				if (prof_name.indexOf(prof_input_lastname) != -1) {
-					console.log(prof_name, prof_input_lastname);
+					
 
 					var status = parseInt(prof_arr[12].substring(0,1));
 					if (status == 1) {
@@ -682,7 +682,7 @@
 					} else { 
 						is_adjunct =  false;
 					}
-					console.log(is_adjunct);
+					
 					return is_adjunct;
 				}
 			};
@@ -726,7 +726,7 @@
 		}
 
 		var update_share_links = function() {
-			console.log('f_is_adjunct = ' + f_is_adjunct);
+			
 			var my_an = f_is_adjunct ? "my" : "an";
 			var twt_text = "For my class, "
 				+ my_an
