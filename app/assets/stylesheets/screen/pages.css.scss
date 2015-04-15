@@ -2958,5 +2958,20 @@ body#neighborhoods2015 {
 				text-decoration: none;
 			}
 		}
+
+		.text { 
+			line-height: 1.4em;
+			column-count: 2;
+			-moz-column-count: 2;
+			-webkit-column-count: 2;
+			@media(max-width: 700px) {
+				column-count: 1;
+				-moz-column-count: 1;
+				-webkit-column-count: 1;
+			}
+			p {
+				margin-bottom: 0.8em;
+			}
+		}
 	}	
 }

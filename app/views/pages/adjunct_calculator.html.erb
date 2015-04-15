@@ -2,12 +2,24 @@
 
 	<h3>Interactive Feature • April 15, 2015</h3>
 	<h1>Calculate how much your adjunct professors earn</h1>
+
+	<div class="row">
+		<div class="text">
+			<p>Adjunct professors are <a href="http://www.berkeleybeacon.com/news/2015/3/5/adjunct-professors-write-to-pelton-for-fair-pay" target="_blank">asking the college for higher pay</a> as their union negotiates a new contract. &#8220;We essentially work full-time, even if we’re not considered full-time employees,&#8221; adjunct professor Andre Puca, who led a letter-writing campaign earlier this year, told the Beacon in March. Some adjuncts have said Emerson doesn&#8217;t pay enough to justify working at the college.</p>
+
+			<p>Part-time professors made up to 57 percent of Emerson&#8217;s faculty in 2014, according to the college’s latest public data. Their latest contract expired in July 2014.</p>
+
+			<p>A landmark <a href="http://www.academicworkforce.org/CAW_portrait_2012.pdf" target="_blank">2010 survey</a> found that the median pay for a 3-credit course at a master&#8217;s level, private, nonprofit college was $2,904, or about $3,872 for a 4-credit course, for adjunct professors. Among master&#8217;s level, private, nonprofit colleges in New England, the median pay for a 3-credit course was $3,750, or $5,000 for 4 credits, according to an <a href="http://www.aaup.org/sites/default/files/files/2013%20Salary%20Survey%20Tables%20and%20Figures/Table%20B.pdf" target="_blank">analysis</a> of that survey by the American Association of University Professors.</p>
+
+			<p>Enter your classes below to see how much your adjunct professors get paid.</p>
+		</div>
+	</div>
 	
 	<div class="row">
 		<div class="col_33 inputs">
 			<p>
 				<label for="course_name" class="label">Course name</label>
-				<select name="course_name" id="course_name" data-placeholder="Choose a course...">
+				<select name="course_name" id="course_name" data-placeholder="Type in or choose a course...">
 					<option value=""></option>
 					<option value="Principles of Business (MB 200)">Principles of Business - MB 200</option>
 					<option value="Managing Business Operations (MB 300)">Managing Business Operations - MB 300</option>
@@ -468,7 +480,7 @@
 
 			<p>
 				<label for="prof_name" class="label">Professor's name</label>
-				<select name="prof_name" id="prof_name" data-placeholder="Choose a professor...">
+				<select name="prof_name" id="prof_name" data-placeholder="Type in or choose a professor...">
 					<option value=""></option>
 					
 				</select>
@@ -477,11 +489,11 @@
 
 		<div class="col_66 results" style="display:none">
 			<p>
-				<span id="adjunct_result" style="display:none">
+				<span class="adjunct_result" style="display:none">
 					For <span class="class_name_result"></span>, <span class="prof_name_result"></span> earns between
 				</span>
 				<span class="not_adjunct_result" style="display:none">
-					<span class="prof_name_result"></span> is not an adjunct (part-time) professor, but an adjunct professor teaching <span class="class_name_result"></span> would make between
+					<span class="prof_name_result"></span> is not an adjunct professor, but an adjunct professor teaching <span class="class_name_result"></span> would make between
 				</span>
 				<span id="course_min" class="num_result"></span> and <span id="course_max" class="num_result"></span> per semester.
 			</p>
@@ -489,10 +501,10 @@
 				<a href="https://twitter.com/intent/tweet?&text=Calculate%20how%20much%20your%20adjunct%20professors%20at%20%40EmersonCollege%20earn.%20http%3A%2F%2Fwww.berkeleybeacon.com%2Fprojects%2Fadjunct_calculator%20via%20%40BeaconUpdate" class="twitter_link" target="_blank">Tweet</a> your results or <a href="https://www.facebook.com/dialog/feed?app_id=128499383927655&display=popup&name=How%20much%20are%20your%20canceled%20classes%20worth%3F&caption=See%20how%20much%20your%20canceled%20classes%20at%20Emerson%20are%20worth.&description=An%20interactive%20feature%20by%20The%20Berkeley%20Beacon.&link=http%3A%2F%2Fwww.berkeleybeacon.com%2Fprojects%2Fsnow_calculator&picture=https%3A%2F%2Fs3.amazonaws.com%2FBerkeleyBeacon%2Fbeacon_uploads%2Fuploads%2F1423126348-Snowstorm_Bushell_01272015_0021.jpg.jpg&redirect_uri=http://www.berkeleybeacon.com/projects/snow_calculator" class="facebook_link" target="_blank">share them on Facebook</a>.
 			</p>
 			<p>
-				If <span class="prof_lastname_result"></span><span class="not_adjunct_result" style="display:none"> were an adjunct and</span> taught as many sections of <span class="class_name_result"></span> as the adjunct contract allows—usually <span id="max_sections_result">four or five</span>, depending on seniority—<span class="prof_lastname_result"></span> could make between <span id="yearmax_min" class="num_result"></span> and <span id="yearmax_max" class="num_result"></span> annually. (The median household income in Boston is $53,601.)
+				If <span class="adjunct_result"><span class="prof_lastname_result"></span></span><span class="not_adjunct_result">a part-time professor</span> taught as many sections of <span class="class_name_result"></span> as the adjunct contract allows—usually <span id="max_sections_result">four or five</span>, depending on seniority—<span class="adjunct_result"><span class="prof_lastname_result"></span></span><span class="not_adjunct_result">the professor</span> could make between <span id="yearmax_min" class="num_result"></span> and <span id="yearmax_max" class="num_result"></span> annually. (The median household income in Boston is $53,601.)
 			</p>
 			<p>
-				If <span class="prof_lastname_result"></span> then works 40 hours per week—spending, each week, an average of <span id="avg_hours_result">eight to 10</span> hours per section—<span class="prof_lastname_result"></span> would earn about the equivalent of <span id="hour_min" class="num_result"></span> to <span id="hour_max" class="num_result"></span> per hour.
+				If <span class="adjunct_result"><span class="prof_lastname_result"></span></span><span class="not_adjunct_result">the adjunct professor</span> then works 40 hours per week—spending, each week, an average of <span id="avg_hours_result">eight to 10</span> hours per section—<span class="adjunct_result"><span class="prof_lastname_result"></span></span><span class="not_adjunct_result">the adjunct</span> would earn about the equivalent of <span id="hour_min" class="num_result"></span> to <span id="hour_max" class="num_result"></span> per hour.
 			</p>
 		</div>
 	</div>
@@ -583,11 +595,11 @@
 			$(".prof_name_result").text(prof_entered);
 			$(".prof_lastname_result").text(prof_entered.split(' ').slice(-1)[0]);
 			if (f_is_adjunct) {
-				$("#adjunct_result").show();
+				$(".adjunct_result").show();
 				$(".not_adjunct_result").hide();
 			} else {
 				$(".not_adjunct_result").show();
-				$("#adjunct_result").hide();
+				$(".adjunct_result").hide();
 			}
 			update_share_links();
 
@@ -643,7 +655,7 @@
 					console.log(prof_name, prof_input);
 
 					var status = parseInt(prof_arr[12].substring(0,1));
-					if (status < 4) {
+					if (status == 1) {
 						is_adjunct = true;
 					} else { 
 						is_adjunct =  false;
@@ -665,7 +677,7 @@
 					console.log(prof_name, prof_input_lastname);
 
 					var status = parseInt(prof_arr[12].substring(0,1));
-					if (status < 4) {
+					if (status == 1) {
 						is_adjunct = true;
 					} else { 
 						is_adjunct =  false;
