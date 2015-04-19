@@ -139,6 +139,8 @@ jQuery ->
 		when '3'
 			set_news_sub_ck('0')
 			$('.news_sub_banner').fadeIn('fast')
+		when 'true'
+			return
 		else
 			set_news_sub_ck('0')
 	$('a.news_sub_banner_dismiss').click (e) ->
