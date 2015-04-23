@@ -2975,3 +2975,103 @@ body#neighborhoods2015 {
 		}
 	}	
 }
+
+body#climate_survey {
+	$serif_font_stack: "kepler-std", "Times New Roman", Georgia, Times, serif;
+	$serif_hed_font_stack: "kepler-std-semicondensed-dis", "Times New Roman", Georgia, Times, serif;
+	$sans_font_stack: "franklin-gothic-urw", "Helvetica Neue", Arial, Helvetica, sans-serif;	
+
+	nav {
+		background: #000;
+		padding: 0.5em 1em;
+		a {
+			&:link, &:visited {
+				color: #fff;
+				font-family: $sans_font_stack;
+				text-transform: uppercase;
+			}
+		}
+	}
+	
+
+	.climate_survey_content {
+		font: 15px/1.3em $sans_font_stack;
+
+		h2 {
+			font: 22px/1em $sans_font_stack;
+			font-weight: 500;
+			margin-top: 25px;
+			padding-bottom: 3px;
+			border-bottom: 2px solid #000;
+			margin-bottom: 10px;
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+
+
+		header {
+			background-image: url(http://theberkeleybeacon.s3.amazonaws.com/climate-survey/climatesurveyhead_web.jpg);
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: top center;
+			min-height: 500px;
+			padding: 2em;
+			margin-bottom: 40px;
+			@media(max-width: 768px) {
+				min-height: 250px;
+			}
+			h4 {
+				color: #fff;
+				font-weight: 300;
+				text-transform: uppercase;
+				a {
+					color: #fff;
+				}
+			}
+			h1 {
+				color: #fff;
+				font-size: 60px;
+				line-height: 1em;
+				font-weight: 300;
+				@media(max-width: 768px) {
+					font-size: 40px;
+				}
+			}
+		}
+		
+		.col_25, .col_50, .col_75, .col_33, .col_66 {
+			@media(max-width: 768px) {
+				width: 100%;
+				margin: 0;
+				padding: 2%;
+			}
+		}
+		
+		.survey_articles {
+			font: 14px/1.3em $serif_font_stack;
+			h3 {
+				font: 22px/1.1em $serif_hed_font_stack;
+				a {
+					&:link, &:visited {
+						color: #000;
+						border-bottom: none;
+					}
+					&:hover, &:active {
+						text-decoration: underline;
+					}
+				}
+			}
+			p {
+				margin-bottom: 1em;
+			}
+		}
+
+		.survey_results {
+			img {
+				width: 100%;
+			}
+		}
+	}
+	
+}

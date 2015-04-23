@@ -404,6 +404,17 @@ class PagesController < ApplicationController
 		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/beacon_1000x1000.jpg"
 	end
 
+	def climate_survey
+		@body_id = "climate_survey"
+		@title = "Surveying Emerson's Climate"
+		@no_bootstrap = true
+		@include_responsive = true
+		@og ||= {}
+		@og[:description] = "Explore the results from Emerson's first comprehensive climate survey."
+		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/climate-survey/climatesurveyhead_web.jpg"
+		render :layout => 'bare'
+	end
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}
