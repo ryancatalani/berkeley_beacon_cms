@@ -46,6 +46,7 @@ BeaconApp::Application.routes.draw do
   match '/projects/housing_in_boston', to: 'pages#neighborhoods2015'
   match '/projects/adjunct_calculator', to: 'pages#adjunct_calculator'
   match '/projects/climate_survey', to: 'pages#climate_survey'
+  match '/projects/review_2014_2015', to: 'pages#review_2014_2015'
   
   match '/projects/oscars2012', :to => 'pages#oscars'
   match '/projects/oscars2013', :to => 'pages#oscars2013'

@@ -415,6 +415,17 @@ class PagesController < ApplicationController
 		render :layout => 'bare'
 	end
 
+	def review_2014_2015
+		@body_id = "review_2014_2015"
+		@title = "2014–2015: A school year in review"
+		@no_bootstrap = true
+		@include_responsive = true
+		@og ||= {}
+		@og[:description] = "A look back at the news and trends that shaped this school year."
+		@og[:image] = "http://theberkeleybeacon.s3.amazonaws.com/yearinreview/yearinreview_social.jpg"
+		render :layout => 'bare'
+	end
+
 	private
 		def find_tag_articles(tag_name,number_of_articles=3)
 		  Tagging.where(:tag_id => Tag.find_by_name(tag_name).id).order("created_at DESC").limit(number_of_articles).map{|t| t.article}
