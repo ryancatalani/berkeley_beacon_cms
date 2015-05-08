@@ -20,6 +20,8 @@ jQuery ->
 	set_lead = (element) ->
 		title = element.find('.article_title').text()
 		id = element.attr('data-article-id')
+		if id == "TK"
+			title = id = element.find('.arbitrary_url').val()
 		$('input#lead').val(id)
 		$('#home_layout_lead').find('.article_head').text(title)
 
@@ -27,6 +29,8 @@ jQuery ->
 	set_featured = (element, position) ->
 		title = element.find('.article_title').text()
 		id = element.attr('data-article-id')
+		if id == "TK"
+			title = id = element.find('.arbitrary_url').val()
 		pos = featured_id
 		pos = position if position?
 		$('input#featured_' + pos).val(id)
@@ -40,6 +44,8 @@ jQuery ->
 	set_middle = (element, position) ->
 		title = element.find('.article_title').text()
 		id = element.attr('data-article-id')
+		if id == "TK"
+			title = id = element.find('.arbitrary_url').val()
 		pos = middle_id
 		pos = position if position?
 		$('input#middle_' + pos).val(id)
@@ -70,6 +76,35 @@ jQuery ->
 		val = $(this).prop('checked')
 		id = $(this).parent().attr('id').replace('home_layout_','').concat('_is_standalone_photo')
 		$("input##{id}").val(val)
+
+	$('.arbitrary_url').keyup ->
+		val = $(this).val()
+		el = this
+		if val.indexOf(window.location.host) == -1
+			unless $(el).hasClass('arbitrary_url_error')
+				$(el).removeClass('arbitrary_url_ok')
+				$(el).removeClass('arbitrary_url_good')
+				$(el).addClass('arbitrary_url_error')
+		else
+			unless $(el).hasClass('arbitrary_url_ok')
+				$(el).removeClass('arbitrary_url_error')
+				$(el).removeClass('arbitrary_url_good')
+				$(el).addClass('arbitrary_url_ok')
+			slug = val.split('/').pop()
+			$(el).parent().find('.arbitrary_url_spinner').fadeIn('fast')
+			$.post('/api/check_slug', { slug: slug }, (data) ->
+				$(el).parent().find('.arbitrary_url_spinner').fadeOut('fast')
+				if data == "false"
+					unless $(el).hasClass('arbitrary_url_error')
+						$(el).removeClass('arbitrary_url_ok')
+						$(el).removeClass('arbitrary_url_good')
+						$(el).addClass('arbitrary_url_error')
+				else # data == "true"
+					unless $(el).hasClass('arbitrary_url_good')
+						$(el).removeClass('arbitrary_url_error')
+						$(el).removeClass('arbitrary_url_ok')
+						$(el).addClass('arbitrary_url_good')
+			)
 
 	try
 		$('.home_layout_article').draggable({

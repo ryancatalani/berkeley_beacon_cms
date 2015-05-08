@@ -43,6 +43,11 @@
 			<%= link_to "Edit", [:edit, article], target: '_blank', :class => 'btn btn-small btn-warning'  %>
 		</div>
 	<% end %>
+	<div class="home_layout_article" data-article-id="TK">
+		<span class="article_title">Beacon URL</span>
+		<i class="fa fa-circle-o-notch fa-spin arbitrary_url_spinner" style="display:none"></i>
+		<input type="text" placeholder="http://www.berkeleybeacon.com/..." style="width:100%" class="arbitrary_url arbitrary_url_error">
+	</div>
 </div>
 <div id="home_layout_panel_right">
 	<div id="col_1">
@@ -116,3 +121,6 @@
 		});
 	<% end %>
 </script>
+
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">

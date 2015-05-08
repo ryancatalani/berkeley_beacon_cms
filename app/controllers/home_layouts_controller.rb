@@ -37,9 +37,9 @@ class HomeLayoutsController < ApplicationController
   def create
   	layout_type = 1
 
-  	lead = params[:lead].to_i
-  	featured = [ params[:featured_0], params[:featured_1], params[:featured_2] ].map(&:to_i)
-  	middle = [ params[:middle_0], params[:middle_1], params[:middle_2], params[:middle_3], params[:middle_4] ].map(&:to_i)
+  	lead = std_ref(params[:lead])
+  	featured = [ params[:featured_0], params[:featured_1], params[:featured_2] ].map{|r| std_ref(r)}
+  	middle = [ params[:middle_0], params[:middle_1], params[:middle_2], params[:middle_3], params[:middle_4] ].map{|r| std_ref(r)}
 
     should_use_photo = {}
     lead_photo = params[:lead_should_use_photo]
@@ -74,6 +74,18 @@ class HomeLayoutsController < ApplicationController
   	else
   		render 'new'
   	end
+  end
+
+  private
+
+  def std_ref(ref)
+    if ref.include?('berkeleybeacon.com') || ref.include?('localhost:3000')
+      slug = ref.split('/').pop
+      id = Article.where(cleantitle: slug).order('created_at DESC').first.id
+      return id
+    else
+      return ref.to_i
+    end
   end
 
 end

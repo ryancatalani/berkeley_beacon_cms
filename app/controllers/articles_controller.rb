@@ -424,6 +424,15 @@ class ArticlesController < ApplicationController
 		render :text => "Done."
 	end
 
+	def check_slug
+		slug = params[:slug]
+		if Article.find_by_cleantitle(slug).nil?
+			render text: 'false'
+		else
+			render text: 'true'
+		end
+	end
+
 	private
 
 	def expire_article_touches
