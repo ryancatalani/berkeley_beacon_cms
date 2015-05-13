@@ -115,6 +115,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def index
+		@title = "Dashboard"
 		@articles = Article.order("created_at DESC").first(30)
 		@user_articles = current_user.articles.order("created_at DESC").first(6)
 		

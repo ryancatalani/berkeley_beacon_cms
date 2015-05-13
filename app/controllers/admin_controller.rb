@@ -34,4 +34,8 @@ class AdminController < ApplicationController
 		
 	end
 
+	def controls
+		@title = "Controls"
+	end
+
 end

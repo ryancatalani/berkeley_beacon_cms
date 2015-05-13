@@ -60,6 +60,7 @@ BeaconApp::Application.routes.draw do
 
   match '/admin/poll_results', :to => 'admin#poll_results'
   match '/admin/published_in_date_range/:dates', to: 'admin#published_in_date_range'
+  match '/admin/controls', to: 'admin#controls'
 
   match '/issues/view/:date', :to => 'issues#show', :via => :get
   match '/events/:uid/:slug', :to => 'events#show'
