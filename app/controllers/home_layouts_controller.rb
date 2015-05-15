@@ -3,8 +3,23 @@ class HomeLayoutsController < ApplicationController
 
   def new
   	@home_layout = HomeLayout.new
-  	as = Issue.latest.articles.count > 0 ? Issue.latest.articles : Article.last(30) rescue Article.last(30)
-    @articles = as.where(draft: false).sort {|x,y| x.section_id <=> y.section_id }
+
+    as = nil
+    @articles = nil
+
+    begin
+      if Issue.latest.articles.count > 0
+        as = Issue.latest.articles
+        @articles = as.where(draft: false).sort {|x,y| x.section_id <=> y.section_id }
+      else
+        as = Article.last(30)
+        @articles = as.delete_if{ |a| a.draft? }.sort {|x,y| x.section_id <=> y.section_id }
+      end
+    rescue
+      as = Article.last(30)
+      @articles = as.delete_if{ |a| a.draft? }.sort {|x,y| x.section_id <=> y.section_id }
+    end
+
     begin
       recent_web_articles = Article.where(:issue_id => 0, :created_at => (Time.now.midnight-7.days)..(Time.now.midnight+1.day)).all
       @articles.prepend(recent_web_articles).flatten!
