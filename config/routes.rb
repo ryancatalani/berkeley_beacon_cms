@@ -62,6 +62,7 @@ BeaconApp::Application.routes.draw do
   match '/admin/published_in_date_range/:dates', to: 'admin#published_in_date_range'
   match '/admin/controls', to: 'admin#controls'
   match '/admin/masthead', to: 'admin#edit_masthead'
+  match '/admin/masthead/update', to: 'admin#update_masthead', via: :put
 
   match '/admin/article', to: 'articles#newnew'
 

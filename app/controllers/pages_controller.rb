@@ -69,6 +69,10 @@ class PagesController < ApplicationController
 	def about
 		@title = "About"
 		@include_bootstrap = true
+		about = About.last
+		@col1 = about.col1
+		@col2 = about.col2
+		@col3 = about.col3
 	end
 
 	def oscars

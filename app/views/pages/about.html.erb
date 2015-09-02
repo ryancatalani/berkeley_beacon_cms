@@ -1,127 +1,15 @@
 <div class="container about">
 	<div class="row">
 		<div class="span3 offset1">
-			<p>The Berkeley Beacon is Emerson College's independent, student-run newspaper. Founded in 1947, the weekly publishes in print on Thursdays each fall and spring semester and online daily. The paper is a chronicle of life at Emerson &mdash; covering student government politics, campus performances, and school-wide trends.</p>
-
-			<p>In recent years, the paper's reporting has revealed racial biases in the college's tenure practices, performance space struggles for student groups, and food code violations in the campus dining facilities.</p>
-
-			<p>In 2011, the paper took strides in increasing its online presence by launching the <a href="http://www.niemanlab.org/2012/04/emerson-college-student-paper-completes-a-fully-responsive-mobile-friendly-redesign/">first college newspaper website with a responsive design</a>, following The Boston Globe's release of BostonGlobe.com, the world's first HTML5, responsive-designed newspaper site.</p>
-
-			<p><strong>Email:</strong> <%= link_to "contact@berkeleybeacon.com", "mailto:contact@berkeleybeacon.com" %></p>
-
-			<p><strong>Phone:</strong> 617-855-NEWS <em>(6397)</em></p>
-
-			<p><strong>Address:</strong>
-				<a href="http://maps.google.com/maps?q=150+Boylston+Street,+Boston,+MA&hl=en&sll=37.0625,-95.677068&sspn=55.543096,114.169922&oq=150+boy&t=v&hnear=150+Boylston+St,+Boston,+Massachusetts+02116&z=17">
-					Piano Row, Rm. L-145
-					<br/>150 Boylston St.
-					<br/>Boston, MA 02116</a>
-			</p>
+			<%= @col1.html_safe %>
 		</div>
 
 		<div class="span3 offset1">
-			<p>
-				<strong>Editor-in-Chief</strong>
-				<%= link_to "Claire Nobles", "/staff/claire-nobles" %>
-				<br><%= mail_to "editor@berkeleybeacon.com" %>
-			</p>
-			<p>
-				<strong>Managing Editors</strong>
-				<%= link_to "Anna Buckley", "/staff/anna-buckley" %><br/>
-				
-				<%= link_to "Hunter Harris", "/staff/hunter-harris" %> <br>
-
-				
-			</p>
-
-			<p>
-				<strong>News Editor</strong>
-				<%= link_to "Laura King", "/staff/laura-king" %>
-			</p>
-			<p>
-				<strong>Opinion Editor</strong>
-				
-			</p>
-
-			<p>
-				<strong>Arts Editor</strong>
-				
-			</p>
-			<p>
-				<strong>Lifestyle Editor</strong>
-				
-			</p>
-			<p>
-				<strong>Sports Editor</strong>
-				<%= link_to "David A. Bumpus", "/staff/david-bumpus" %>
-			</p>
-			<p>
-				<strong>Photography Editor</strong>
-				<%= link_to "Jack Adams", "/staff/jack-adams" %>
-			</p>
-			<!--<p>
-				<strong>Online Editor</strong>
-				<%= link_to "Rebecca Fiore", "/staff/rebecca-fiore" %>
-			</p>-->
-			<p>
-				<strong>Business Manager</strong>
-				Crystal Witter
-			</p>
-			<p>
-				<strong>Adviser</strong>
-				Ric Kahn
-			</p>
-
+			<%= @col2.html_safe %>
 		</div>
 
 		<div class="span3">
-			<p>
-				<strong>Deputy News Editor</strong>
-				<%= link_to "Martha Schick", "/staff/martha-schick" %>
-			</p>
-			<p>
-				<strong>Assistant News Editor</strong>
-				
-			</p>
-			<p>
-				<strong>Assistant Opinion Editor</strong>
-				<%= link_to "Dan Blomquist", "/staff/dan-blomquist" %>
-			</p>
-			<p>
-				<strong>Deputy Sports Editor</strong>
-				
-			</p>
-			<!-- <p>
-				<strong>Deputy Arts Editor</strong>
-
-			</p> -->
-			<p>
-				<strong>Deputy Lifestyle Editor</strong>
-				<%= link_to "Rebecca Szkutak", "/staff/rebecca-szkutak" %>
-			</p>
-			<!-- <p>
-				<strong>Assistant Lifestyle Editor</strong>
-				
-			</p> -->
-			<p>
-				<strong>Deputy Photography Editor</strong>
-				<%= link_to "Evan Walsh", "/staff/evan-walsh" %>
-			</p>
-			<p>
-				<strong>Copyeditors</strong>
-				Shannon Bushee <br>
-				Holly Kirkman <br>
-				Jillian Meehan <br>
-			</p>
-			<p>
-				<strong>Designer</strong>
-				Aren Kabarajian <br>
-			</p>
-			<p>
-				<strong>Illustrators</strong>
-				Holly Kirkman <br>
-				Abigail Shenker
-			</p>
+			<%= @col3.html_safe %>
 		</div>
 	</div>
 

@@ -1,19 +1,24 @@
 <h3>Edit masthead</h3>
 
+<%= form_for @about, url: admin_masthead_update_path do |f| %>
+
+<%= f.submit 'Save', class: 'btn btn-primary' %>
+
 <div class="row">
 	<div class="span4">
 		<strong>Column 1</strong>
-		<%= text_area_tag :masthead_col_1, nil, class: 'tinymce' %>
+		<%= f.text_area :col1, class: 'tinymce' %>
 	</div>
 	<div class="span4">
 		<strong>Column 2</strong>
-		<%= text_area_tag :masthead_col_2, nil, class: 'tinymce' %>
+		<%= f.text_area :col2, class: 'tinymce' %>
 	</div>
 	<div class="span4">
 		<strong>Column 3</strong>
-		<%= text_area_tag :masthead_col_3, nil, class: 'tinymce' %>
+		<%= f.text_area :col3, class: 'tinymce' %>
 	</div>
 </div>
 
-
 <%= tinymce %>
+
+<% end %>

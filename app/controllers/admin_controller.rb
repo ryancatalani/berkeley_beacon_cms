@@ -41,6 +41,17 @@ class AdminController < ApplicationController
 	def edit_masthead
 		@title = "Edit masthead"
 		@include_bootstrap = true
+		@about = About.last
+	end
+
+	def update_masthead
+		@about = About.last
+		p = params[:about]
+		if @about.update_attributes(p)
+			redirect_to admin_controls_path
+		else
+			render 'edit_masthead'
+		end
 	end
 
 end
