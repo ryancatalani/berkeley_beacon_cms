@@ -1,0 +1,104 @@
+<nav>
+	<div class="wrap">
+		<ul>
+			<li><%= link_to 'Save draft and back to Dashboard', '#' %></li>
+			<li><%= link_to 'Erase draft and back to Dashboard', :articles, confirm: 'Click OK to confirm you don’t want to save this draft. Click Cancel to go back to the draft.' %></li>
+		</ul>
+	</div>
+</nav>
+
+<div class="wrap">
+	
+	<h1>Beacon Articulator</h1>
+
+	<%= form_for @article, :html => { :multipart => true } do |f| %>
+
+	<h2>Article basics</h2>
+
+	<div class="row">
+		<div class="col_50">
+			<div class="field">
+				<%= f.text_field :title, placeholder: 'Article title' %>
+			</div>
+			<div class="field">
+				<%= select_tag :author, options_for_select(@authors), :name => "author[]", :multiple => true, "data-placeholder" => "Author(s)", width: "100%" %>
+			</div>
+			<%= f.text_area :excerpt, placeholder: 'Excerpt (one sentence summarizing the piece)', rows: 4 %>
+		</div>	
+		<div class="col_50">
+			<strong>This article is…</strong>
+			<ul class="field">
+				<li class="articulator_type_select active">
+					<input type="radio" name="articulator_type" id="articulator_type_main" checked="checked">
+					<label for="articulator_type_main">for the main site.</label>
+					<div class="articulator_type_options">
+						Section: <%= f.select :section_id, options_for_select(@sections)  %>
+						<br>Issue: <%= f.select :issue_id, options_for_select(@issues) %>
+					</div>
+				</li>
+				<li class="articulator_type_select">
+					<input type="radio" name="articulator_type" id="articulator_type_blog">
+					<label for="articulator_type_blog">for a blog.</label>
+					<div class="articulator_type_options" style="display:none">
+						Blog: <%= f.select :blog_id, options_for_select(@blogs) %>
+					</div>
+				</li>
+				<li class="articulator_type_select">
+					<input type="radio" name="articulator_type" id="articulator_type_url">
+					<label for="articulator_type_url">a Beacon special feature page.</label>
+					<div class="articulator_type_options" style="display:none">
+						URL: <%= f.text_field :link, placeholder: 'URL' %>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<h2>Article metadata</h2>
+
+	<%= render 'topics_form' %>
+	<br>
+	Series
+	<%= render 'series_form', f: f %>
+	<br>
+
+	<h2>Article body</h2>
+	<div class="row">
+		<div class="col_75">
+			<%= f.text_area :body, class: 'tinymce' %>
+			<%= tinymce %>
+		</div>
+		<div class="col_25">
+			Media
+		</div>	
+	</div>
+
+
+	<% end %>
+
+
+</div>
+
+
+<script>
+	$(function(){
+		$(".articulator #author").chosen({ width: "100%" });
+		$(".articulator #topic").chosen({ width: "100%" });
+
+		$('.chosen-container').each(function(){
+			$(this).width($(this).parent().width());
+			console.log( $(this).parent().width() );
+		});
+
+		$('input:radio[name=articulator_type]').change(function(){
+			var sel = $(this).parent();
+			$('.articulator_type_options').slideUp();
+			sel.find('.articulator_type_options').slideDown();
+			$('.articulator_type_select').each(function(){
+				$(this).removeClass('active');
+			});
+			sel.addClass('active');
+		});	
+	});
+</script>

@@ -4,6 +4,34 @@ include ActionView::Helpers::AssetTagHelper
 class ArticlesController < ApplicationController
 	before_filter :check_editor, :except => [:show, :increase_pageview]
 
+	def newnew
+		@title = "Articulator"
+		@no_bootstrap = true
+		@body_class = "articulator"
+
+		@article = Article.new
+
+		@authors = Person.order("firstname ASC").all.map do |person|
+		if person.other_designation.blank?
+			["#{person.firstname} #{person.lastname} / Beacon #{(person.staff? or person.editor?) ? "Staff" : "Correspondent"}",
+				person.id]
+		else
+			["#{person.firstname} #{person.lastname} #{person.other_designation == "*" ? "" : "/ #{person.other_designation}"}",
+				person.id]
+			end
+		end
+		@authors.unshift(["Choose an author",0])
+
+		@sections = Section.all.map { |s| [s.name, s.id] }
+		@issues = Issue.all.sort_by{|i| i.release_date }.reverse.map {|i| [i.release_date_f, i.id]}.insert(1,["None/Online only", 0])
+		@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
+
+		@topics = Topic.all.map{|t| [t.title, t.id]}
+		@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
+
+		render 'newnew', layout: 'bare'
+	end
+
 	def new
 		@article = Article.new
 		@authors = Person.order("firstname ASC").all.map do |person|

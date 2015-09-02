@@ -38,4 +38,9 @@ class AdminController < ApplicationController
 		@title = "Controls"
 	end
 
+	def edit_masthead
+		@title = "Edit masthead"
+		@include_bootstrap = true
+	end
+
 end
