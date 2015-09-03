@@ -243,6 +243,7 @@
 			<%= @article.body.html_safe %>
 		</div>
 
+		<% begin %>
 		<div class="popular">
 			<div class="popular_switch">
 				Most <a href="#" class="active" data-idref="popular_viewed">Viewed</a> <a href="#" data-idref="popular_shared">Shared</a>
@@ -291,6 +292,8 @@
 				</div>
 			</div>
 		</div>
+		<% rescue %>
+		<% end %>
 
 		<% if !@article.disable_comments %>
 		<div class="comments">
