@@ -32,6 +32,6 @@ class BeaconMailer < ActionMailer::Base
 
 	def just_posted(posts)
 		@posts = posts
-		mail(:to => "catalani.ryan@gmail.com", :subject => "[Beacon] Just posted")
+		mail(:to => "editor@berkeleybeacon.com", :subject => "[Beacon] Just posted")
 	end
 end
