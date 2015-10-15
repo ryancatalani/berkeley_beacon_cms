@@ -12,6 +12,16 @@ class SectionsController < ApplicationController
 			redirect_to root_path
 		end
 	end
+
+	def api_list_by_slug
+		begin
+			section = Section.find_by_clean_url params[:slug]
+			articles = Article.where(:issue_id => Issue.latest.id, :section_id => section.id, :draft => false).all
+			render json: api_wrangle_articles(articles)
+		rescue
+			render json: []
+		end
+	end
 	
 	private
 		def gohome

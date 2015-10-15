@@ -188,6 +188,7 @@ class ApplicationController < ActionController::Base
 			ret = []
 			articles.each do |a|
 				a_ret = {
+					id: a.id,
 					url: a.to_url,
 					title: a.extra_title,
 					date: a.created_at.year == Time.zone.now.year ? a.created_at.strftime('%b. %d') : a.created_at.strftime('%b. %d, %Y')

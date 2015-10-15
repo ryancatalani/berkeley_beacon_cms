@@ -34,13 +34,13 @@ class TopicsController < ApplicationController
   end
 
   def api_list_by_slug
-    # begin
+    begin
       topic = Topic.find_by_slug params[:slug]
       articles = topic.articles.order('created_at DESC').first(5)
       render json: api_wrangle_articles(articles)
-    # rescue
-    #   render json: []
-    # end
+    rescue
+      render json: []
+    end
   end
 
 end
