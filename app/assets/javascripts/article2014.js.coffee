@@ -1,5 +1,4 @@
 jQuery ->
-	
 
 	$('.fb_slide').hide()
 	$('#article_fb_share_btn').hover ->

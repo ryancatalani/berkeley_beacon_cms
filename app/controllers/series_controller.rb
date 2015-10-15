@@ -1,5 +1,5 @@
 class SeriesController < ApplicationController
-	before_filter :check_editor, except: [:show]
+	before_filter :check_editor, except: [:show, :api_list_by_slug]
 	
 	def index
 		@series = Series.all
@@ -44,5 +44,16 @@ class SeriesController < ApplicationController
   	  redirect_to root_path
   	end
   end
+
+  def api_list_by_slug
+  	begin
+  		series = Series.find_by_slug params[:slug]
+  		articles = series.articles.order('created_at DESC').first(5)
+  		render json: api_wrangle_articles(articles)
+  	rescue
+  		render json: []
+  	end
+  end
+
 
 end

@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+  before_filter :check_editor, except: [:show, :api_list_by_slug]
+  
   def show
     @include_responsive = true
     begin
@@ -29,6 +31,16 @@ class TopicsController < ApplicationController
   end
 
   def update
+  end
+
+  def api_list_by_slug
+    # begin
+      topic = Topic.find_by_slug params[:slug]
+      articles = topic.articles.order('created_at DESC').first(5)
+      render json: api_wrangle_articles(articles)
+    # rescue
+    #   render json: []
+    # end
   end
 
 end

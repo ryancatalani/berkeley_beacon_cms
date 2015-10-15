@@ -184,13 +184,31 @@ class ApplicationController < ActionController::Base
 			end
 		end
 
+		def api_wrangle_articles(articles)
+			ret = []
+			articles.each do |a|
+				a_ret = {
+					url: a.to_url,
+					title: a.extra_title,
+					date: a.created_at.year == Time.zone.now.year ? a.created_at.strftime('%b. %d') : a.created_at.strftime('%b. %d, %Y')
+				}
+				if a.first_photo
+					a_ret[:thumb_40] = a.first_photo.media.thumb_40.url
+					a_ret[:thumb_220] = a.first_photo.media.thumb_220.url
+				end
+				ret << a_ret
+			end
+			return ret
+		end
+
 
 
 		helper_method :current_user, :check_editor,
 			:bylineify, :bylineify_linked, :bylineify_short,
 			:popular_articles, :popular_articles_shared,
 			:video_tag, :og_title, :editor_logged_in, :bb_video_tag,
-			:latest_ed_cartoon, :current_twitter, :home_layout_or_article_last_updated, :individual_tracking_param
+			:latest_ed_cartoon, :current_twitter, :home_layout_or_article_last_updated, :individual_tracking_param,
+			:api_wrangle_articles
 
 
 end

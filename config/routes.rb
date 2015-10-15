@@ -58,6 +58,8 @@ BeaconApp::Application.routes.draw do
   match '/api/special_coverage/new_update', :to => 'special_coverages#new_update', :via => :post
   match '/api/check_slug', to: 'articles#check_slug'
   match '/api/pop_data', to: 'articles#pop_data_api'
+  match '/api/series/:slug', to: 'series#api_list_by_slug'
+  match '/api/topics/:slug', to: 'topics#api_list_by_slug'
 
   match '/admin/poll_results', :to => 'admin#poll_results'
   match '/admin/published_in_date_range/:dates', to: 'admin#published_in_date_range'
