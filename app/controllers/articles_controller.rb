@@ -408,13 +408,16 @@ class ArticlesController < ApplicationController
 			# @article_section = @article.section.nil? ? Section.find_by_name('News') : @article.section
 			@article_section = Section.find_by_name('News')
 			@article_section_name = @article_section.name
+			@article_section_slug = @article_section.clean_url
 			if !@article.blog.nil?
 				@article_section = 'Blog'
 				@article_section_name = 'Blog'
 				@article_from_blog = true
+				@article_section_slug = 'blogs'
 			elsif !@article.section.nil?
 				@article_section = @article.section
 				@article_section_name = @article_section.name
+				@article_section_slug = @article_section.clean_url
 			end
 					
 
