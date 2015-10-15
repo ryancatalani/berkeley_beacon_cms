@@ -244,54 +244,7 @@
 		</div>
 
 		<% begin %>
-		<div class="popular">
-			<div class="popular_switch">
-				Most <a href="#" class="active" data-idref="popular_viewed">Viewed</a> <a href="#" data-idref="popular_shared">Shared</a>
-			</div>
-
-			<div id="popular_inner">
-				<div class="popular_type" id="popular_viewed">
-					<a href="<%= popular_articles.first.to_url %>" class="popular_first">
-						<%= image_tag popular_articles.first.first_photo.media.thumb_220.url if popular_articles.first.first_photo %>
-						1. <%= popular_articles.first.extra_title %>
-					</a>
-					<ol start="2">
-						<% popular_articles.last(4).each do |a| %>
-						<li>
-							<a href="<%= a.to_url %>">
-								<%= image_tag a.first_photo.media.thumb_40.url if a.first_photo %>
-								<%= a.extra_title %>
-							</a>
-						</li>
-						<% end %>
-					</ol>
-				</div>
-				<div class="popular_type" id="popular_shared">
-					<a href="<%= popular_articles_shared.first[0].to_url rescue '' %>" class="popular_first">
-						<%= image_tag popular_articles_shared.first[0].first_photo.media.thumb_220.url if popular_articles_shared.first[0].first_photo rescue '' %>
-						<div>
-							<span class="share_count">
-								<%= popular_articles_shared.first[1] rescue '0' %>
-							</span>
-							1. <%= popular_articles_shared.first[0].extra_title rescue '' %>
-						</div>
-					</a>
-					<ol start="2">
-						<% popular_articles_shared.last(4).each do |pop| %>
-						<% a = pop[0] %>
-						<li>
-							<a href="<%= a.to_url %>">
-								<span class="share_count">
-									<%= pop[1] %>
-								</span>
-								<%= a.extra_title %>
-							</a>
-						</li>
-						<% end %>
-					</ol>
-				</div>
-			</div>
-		</div>
+			<%= render 'popular2014' %>
 		<% rescue %>
 		<% end %>
 

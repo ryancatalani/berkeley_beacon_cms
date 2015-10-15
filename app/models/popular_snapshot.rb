@@ -10,8 +10,47 @@ class PopularSnapshot < ActiveRecord::Base
 		last.most_viewed.map {|a| Article.find(a[0]) } rescue []
 	end
 
+	def self.latest_most_viewed_api
+		begin
+			viewed_ret = []
+			last.most_viewed.each do |a|
+				article = Article.find(a[0])
+				ret = {
+					title: article.extra_title,
+					url: article.to_url
+				}
+				if article.first_photo
+					ret[:thumb_40] = article.first_photo.media.thumb_40.url
+					ret[:thumb_220] = article.first_photo.media.thumb_220.url
+				end
+				viewed_ret << ret
+			end
+			return viewed_ret
+		rescue
+			return []
+		end
+	end
+
 	def self.latest_most_shared
 		last.most_shared.map {|a| [Article.find(a[0]), a[1]] } rescue []
+	end
+
+	def self.latest_most_shared_api
+		shared_ret = []
+		last.most_shared.each do |a|
+			article = Article.find(a[0])
+			ret = {
+				title: article.extra_title,
+				url: article.to_url,
+				shares: a[1]
+			}
+			if article.first_photo
+				ret[:thumb_40] = article.first_photo.media.thumb_40.url
+				ret[:thumb_220] = article.first_photo.media.thumb_220.url
+			end
+			shared_ret << ret
+		end
+		return shared_ret
 	end
 
 	def self.top_5

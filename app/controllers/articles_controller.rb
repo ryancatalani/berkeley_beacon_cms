@@ -2,7 +2,7 @@ include ActionView::Helpers::AssetTagHelper
 # include ActionView::Helpers::ApplicationHelper
 
 class ArticlesController < ApplicationController
-	before_filter :check_editor, :except => [:show, :increase_pageview]
+	before_filter :check_editor, :except => [:show, :increase_pageview, :pop_data_api]
 
 	def newnew
 		@title = "Articulator"
@@ -460,6 +460,14 @@ class ArticlesController < ApplicationController
 		else
 			render text: 'true'
 		end
+	end
+
+	def pop_data_api
+		payload = {
+			viewed: PopularSnapshot.latest_most_viewed_api,
+			shared: PopularSnapshot.latest_most_shared_api
+		}
+		render json: payload
 	end
 
 	private
