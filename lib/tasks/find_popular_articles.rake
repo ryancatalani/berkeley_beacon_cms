@@ -46,7 +46,7 @@ namespace :db do
 
 			pop_social_candidates[url][:fb] = fb
 			pop_social_candidates[url][:twt] = twitter
-			pop_social_candidates[url][:total] = pop_social_candidates[url][:fb] + twt_share_data["count"]
+			pop_social_candidates[url][:total] = pop_social_candidates[url][:fb] + pop_social_candidates[url][:twt]
 
 		end
 
