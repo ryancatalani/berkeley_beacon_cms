@@ -36,24 +36,18 @@ namespace :db do
 		pop_initial.each {|a| pop_social_candidates[a.to_url(:full=>true)] = {:id => a.id, :fb => 0, :twt => 0, :total => 0} }
 
 		pop_urls.each do |url|
-			# Facebook
-			fb_shares_uri = URI.parse(URI.escape("https://graph.facebook.com/fql?q=SELECT url, total_count FROM link_stat WHERE url='#{url}'"))
-			fb_http = Net::HTTP.new(fb_shares_uri.host, fb_shares_uri.port)
-			fb_http.use_ssl = true
-			fb_http.verify_mode = Rails.env.production? ? OpenSSL::SSL::VERIFY_PEER : OpenSSL::SSL::VERIFY_NONE
-			fb_request = Net::HTTP::Get.new(fb_shares_uri.request_uri)
-			fb_shares_res = fb_http.request(fb_request)
-			fb_shares_data = ActiveSupport::JSON.decode(fb_shares_res.body)
-			if fb_shares_data["data"] && fb_shares_data["data"][0]["total_count"]
-				pop_social_candidates[url][:fb] = fb_shares_data["data"][0]["total_count"]
-			end
 
-			# Twitter
-			twt_share_uri = URI.parse('http://urls.api.twitter.com/1/urls/count.json?url=' + url)
-			twt_share_res = Net::HTTP.get_response(twt_share_uri).body
-			twt_share_data = ActiveSupport::JSON.decode(twt_share_res)
-			pop_social_candidates[url][:twt] = twt_share_data["count"]
+			sc_share_uri = URI.parse('http://free.sharedcount.com/url?apikey=***REMOVED***&url=' + url)
+			sc_share_res = Net::HTTP.get_response(sc_share_uri).body
+			sc_share_data = ActiveSupport::JSON.decode(sc_share_res)
+
+			fb = sc_share_data["Facebook"]["total_count"].nil? ? 0 : sc_share_data["Facebook"]["total_count"]
+			twitter = sc_share_data["Twitter"].nil? ? 0 : sc_share_data["Twitter"]
+
+			pop_social_candidates[url][:fb] = fb
+			pop_social_candidates[url][:twt] = twitter
 			pop_social_candidates[url][:total] = pop_social_candidates[url][:fb] + twt_share_data["count"]
+
 		end
 
 		pop_social = pop_social_candidates.sort_by{|k,v| v[:total]}.reverse.first(5).map{ |a| [a[1][:id], a[1][:total]] }
