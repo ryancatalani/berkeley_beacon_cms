@@ -6,21 +6,15 @@ class PagesController < ApplicationController
 	def home
 		@current_user = current_user
 
-		begin
-			layout = HomeLayout.last
-			@main_story = Article.find(layout.articles[:lead])
-			@featured_stories = layout.articles[:featured].map{|id| Article.find(id) }
-			@middle_stories = layout.articles[:middle].map{|id| Article.find(id) }
+		layout = HomeLayout.last
+		@main_story = Article.find(layout.articles[:lead]) rescue nil
+		@featured_stories = layout.articles[:featured].map{ |id| Article.find(id) rescue next }
+		@middle_stories = layout.articles[:middle].map{|id| Article.find(id) rescue next }
 
-			@main_story_photo = layout.articles[:should_use_photo][:lead]
-			@main_story_is_standalone_photo = layout.articles[:lead_is_standalone_photo]
-			@featured_stories_photos = layout.articles[:should_use_photo][:featured]
-			@middle_stories_photos = layout.articles[:should_use_photo][:middle]
-		rescue
-			@main_story = find_tag_articles("Main Story", 1).pop
-			@featured_stories = find_tag_articles "Featured Story"
-			@middle_stories = find_tag_articles "Middle Strip Story", 5
-		end
+		@main_story_photo = layout.articles[:should_use_photo][:lead]
+		@main_story_is_standalone_photo = layout.articles[:lead_is_standalone_photo]
+		@featured_stories_photos = layout.articles[:should_use_photo][:featured]
+		@middle_stories_photos = layout.articles[:should_use_photo][:middle]
 
 		@news = find_section_articles "News"
 		@opinion = find_section_articles "Opinion"

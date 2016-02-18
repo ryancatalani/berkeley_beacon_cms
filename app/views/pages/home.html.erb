@@ -6,31 +6,35 @@
 
 			<% cache ["home_top_stories", home_layout_or_article_last_updated] do %>
 			<div id="main-story">
-				<% if @main_story.first_photo.nil? || @main_story_photo == 'false' %>
-					<div class="story-text">
-						<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
-						<div class="byline">By <%= bylineify_short @main_story.people %></div>
-					</div>
-					<div class="excerpt"><%= @main_story.excerpt %></div>
-				<% elsif @main_story_is_standalone_photo == 'true'%>
-					<div class="main-story-img-wrap">
-						<%= link_to image_tag(@main_story.first_photo.media.thumb_460.url), @main_story.to_url %>
-					</div>
-					<div class="story-text">
-						<div class="excerpt">
-							<%= link_to @main_story.first_photo.title, @main_story.to_url %>
+				<% begin %>
+					<% if @main_story.first_photo.nil? || @main_story_photo == 'false' %>
+						<div class="story-text">
+							<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
+							<div class="byline">By <%= bylineify_short @main_story.people %></div>
 						</div>
-						<div class="byline upcase"><%= bylineify_short @main_story.people %></div>
-					</div>
-				<% else %>
-					<div class="main-story-img-wrap">
-						<%= link_to image_tag(@main_story.first_photo.media.thumb_460.url), @main_story.to_url %>
-					</div>
-					<div class="story-text">
-						<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
-						<div class="byline">By <%= bylineify_short @main_story.people %></div>
 						<div class="excerpt"><%= @main_story.excerpt %></div>
-					</div>
+					<% elsif @main_story_is_standalone_photo == 'true'%>
+						<div class="main-story-img-wrap">
+							<%= link_to image_tag(@main_story.first_photo.media.thumb_460.url), @main_story.to_url %>
+						</div>
+						<div class="story-text">
+							<div class="excerpt">
+								<%= link_to @main_story.first_photo.title, @main_story.to_url %>
+							</div>
+							<div class="byline upcase"><%= bylineify_short @main_story.people %></div>
+						</div>
+					<% else %>
+						<div class="main-story-img-wrap">
+							<%= link_to image_tag(@main_story.first_photo.media.thumb_460.url), @main_story.to_url %>
+						</div>
+						<div class="story-text">
+							<h2><%= link_to @main_story.title, @main_story.to_url %></h2>
+							<div class="byline">By <%= bylineify_short @main_story.people %></div>
+							<div class="excerpt"><%= @main_story.excerpt %></div>
+						</div>
+					<% end %>
+				<% rescue %>
+					<% # no main story? %>
 				<% end %>
 				<div class="clear"></div>
 			</div>
@@ -63,10 +67,7 @@
 							</div>
 						<% end %>
 					<% rescue %>
-						<h3><%= link_to story.title, story.to_url %></h3>
-						<div class="byline">By <%= bylineify_short story.people %></div>
-						<div class="excerpt"><%= story.excerpt %></div>
-						<div class="clear"></div>
+						<% # none? %>
 					<% end %>
 				<% end %>
 				<div class="clear"></div>
@@ -76,6 +77,7 @@
 
 		<section id="center" class="balance_height_nophone" data-height-group="top">
 			<% @middle_stories.each_with_index do |story, i| %>
+				<% begin %>
 				<div class="story">
 					<div class="section_title">
 						<%= story.section.name %>
@@ -84,13 +86,13 @@
 						<% end %>
 					</div>
 					<h3><%= link_to story.title, story.to_url %></h3>
-					<% begin %>
-						<%= image_tag story.first_photo.media.thumb_140.url if (story.first_photo && @middle_stories_photos[i] == 'true') %>
-					<% rescue %>
-					<% end %>
+					<%= image_tag story.first_photo.media.thumb_140.url if (story.first_photo && @middle_stories_photos[i] == 'true') %>
 					<div class="excerpt"><%= story.excerpt %></div>
 					<div class="clear"></div>
 				</div>
+				<% rescue %>
+					<% # none? %>
+				<% end %>
 			<% end %>
 		</section>
 		<% end # cache home_top_stories %>
