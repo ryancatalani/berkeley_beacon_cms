@@ -37,31 +37,36 @@
 
 			<section id="featured-stories">
 				<% @featured_stories.each_with_index do |story,i| %>
-					<% if i == 0 && @main_story_is_standalone_photo == 'true' %>
-						<div class="featured-story num-<%= i+1 %> new-main">
-							<h2><%= link_to story.title, story.to_url %></h2>
-							<% if !story.visual_mediafiles.empty? && @featured_stories_photos[i] == "true" %>
-								<div class="featured-story-img-wrap">
-								<%= link_to image_tag(story.first_photo.media.thumb_220.url), story.to_url %>
-								</div>
-							<% end %>
-							<div class="byline">By <%= bylineify_short story.people %></div>
-							<div class="excerpt"><%= story.excerpt %></div>
-							<div class="clear"></div>
-					<% else %>
-						<% begin %>
-						<div class="featured-story num-<%= i+1 %>">
-							<% if !story.visual_mediafiles.empty? && @featured_stories_photos[i] == "true" %>
-								<div class="featured-story-img-wrap">
-								<%= link_to image_tag(story.first_photo.media.thumb_220.url), story.to_url %>
-								</div>
-							<% end %>
-							<h3><%= link_to story.title, story.to_url %></h3>
-							<div class="byline">By <%= bylineify_short story.people %></div>
-							<div class="excerpt"><%= story.excerpt %></div>
-							<div class="clear"></div>
-						</div>
+					<% begin %>
+						<% if i == 0 && @main_story_is_standalone_photo == 'true' %>
+							<div class="featured-story num-<%= i+1 %> new-main">
+								<h2><%= link_to story.title, story.to_url %></h2>
+								<% if !story.visual_mediafiles.empty? && @featured_stories_photos[i] == "true" %>
+									<div class="featured-story-img-wrap">
+									<%= link_to image_tag(story.first_photo.media.thumb_220.url), story.to_url %>
+									</div>
+								<% end %>
+								<div class="byline">By <%= bylineify_short story.people %></div>
+								<div class="excerpt"><%= story.excerpt %></div>
+								<div class="clear"></div>
+						<% else %>
+							<div class="featured-story num-<%= i+1 %>">
+								<% if !story.visual_mediafiles.empty? && @featured_stories_photos[i] == "true" %>
+									<div class="featured-story-img-wrap">
+									<%= link_to image_tag(story.first_photo.media.thumb_220.url), story.to_url %>
+									</div>
+								<% end %>
+								<h3><%= link_to story.title, story.to_url %></h3>
+								<div class="byline">By <%= bylineify_short story.people %></div>
+								<div class="excerpt"><%= story.excerpt %></div>
+								<div class="clear"></div>
+							</div>
 						<% end %>
+					<% rescue %>
+						<h3><%= link_to story.title, story.to_url %></h3>
+						<div class="byline">By <%= bylineify_short story.people %></div>
+						<div class="excerpt"><%= story.excerpt %></div>
+						<div class="clear"></div>
 					<% end %>
 				<% end %>
 				<div class="clear"></div>
