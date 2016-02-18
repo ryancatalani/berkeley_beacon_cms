@@ -84,7 +84,10 @@
 						<% end %>
 					</div>
 					<h3><%= link_to story.title, story.to_url %></h3>
-					<%= image_tag story.first_photo.media.thumb_140.url if (story.first_photo && @middle_stories_photos[i] == 'true') %>
+					<% begin %>
+						<%= image_tag story.first_photo.media.thumb_140.url if (story.first_photo && @middle_stories_photos[i] == 'true') %>
+					<% rescue %>
+					<% end %>
 					<div class="excerpt"><%= story.excerpt %></div>
 					<div class="clear"></div>
 				</div>
