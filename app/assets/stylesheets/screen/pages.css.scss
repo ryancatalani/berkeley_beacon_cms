@@ -2663,6 +2663,10 @@ body#neighborhoods2015 {
 	}
 
 	#search_page_search {
+		h1 {
+			font: 25px/1.2em $sans_font_stack;
+			font-weight: 300;
+		}
 		input[type=text], input[type=submit] {
 			height: 25px;
 			padding: 3px 10px;
@@ -2676,7 +2680,7 @@ body#neighborhoods2015 {
 			width: 50%;
 			padding: 3px 0;
 		}
-		input#search_page_commit {
+		#search_page_commit {
 			font-family: $sans_font_stack;
 			background: $link_blue;
 			border: none;

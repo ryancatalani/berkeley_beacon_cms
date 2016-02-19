@@ -182,6 +182,12 @@ class PagesController < ApplicationController
 		end
 	end
 
+	def search_frontend
+		@title = "Search"
+		@include_responsive = true
+		@no_bootstrap = true
+	end
+
 	def tweet
 
 	end

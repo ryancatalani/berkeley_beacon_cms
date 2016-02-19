@@ -1,6 +1,5 @@
 class Article < ActiveRecord::Base
-	include Elasticsearch::Model
-	include Elasticsearch::Model::Callbacks
+	include AlgoliaSearch
 
 	validates_presence_of :title, :body, :articletype
 	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id, :section_id, :archive, :archive_images, :blog_id, :link_only, :link, :issue_id, :event_day
@@ -27,6 +26,10 @@ class Article < ActiveRecord::Base
 	after_update :update_queued_tweets
 	after_destroy :remove_associated_tweets
 	scope :published, -> { where(draft: false) }
+
+	algoliasearch per_environment: true, sanitize: true, unless: :draft? do
+		attribute :title, :body, :excerpt, :to_url, :created_at
+	end
 
 	def to_url(opts={})
 		if link_only
@@ -306,7 +309,6 @@ class Article < ActiveRecord::Base
 			}
 		end
 
-		self.__elasticsearch__.search(q)
 	end
 
 	private

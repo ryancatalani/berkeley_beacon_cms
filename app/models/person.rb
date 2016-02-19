@@ -1,6 +1,5 @@
 class Person < ActiveRecord::Base
-	include Elasticsearch::Model
-	include Elasticsearch::Model::Callbacks
+	include AlgoliaSearch
 
 	has_secure_password
 	has_many :authorships
@@ -19,6 +18,10 @@ class Person < ActiveRecord::Base
                     	:uniqueness => { :case_sensitive => false },
                     	:length     => { :within => 4..254 }
   	mount_uploader :profile, ProfileUploader
+
+  	algoliasearch per_environment: true do
+  		attribute :full_name
+  	end
 
 	def is_editor?
 		editor == true

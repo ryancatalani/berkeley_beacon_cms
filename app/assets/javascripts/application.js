@@ -9,6 +9,7 @@
 //= require jquery.remotipart
 //= require tinymce-jquery
 //= require jquery.cookie
+//= require algolia/v3/algoliasearch.min
 //= require_tree .
 
 $.fn.clearForm = function() {

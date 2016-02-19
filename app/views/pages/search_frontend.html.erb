@@ -1,0 +1,116 @@
+<div class="search_page">
+  <div id="search_page_search">
+    <h1>Search the Beacon</h1>
+
+    <form action="#" method="get">
+      <input autocomplete="off" class="autocomplete" id="q" placeholder="Start typing to search" type="text" spellcheck="false" />
+    </form>
+  </div>
+
+  <div id="search_separator">&nbsp;</div>
+
+  <h2>Articles</h2>
+  <div id="articles_results_count"></div>
+
+  <div id="hits"></div>
+  <ul id="pagination" class="pagination"></ul>
+
+</div>
+
+
+<script src="//rawgithub.com/lyonlai/bootstrap-paginator/master/build/bootstrap-paginator.min.js"></script>
+<script src="//cdn.jsdelivr.net/momentjs/2.11.2/moment.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var $inputfield = $('#q');
+    // Replace the following values by your ApplicationID and ApiKey.
+    var client = algoliasearch('***REMOVED***', 'd749df45b896d826472052b50b177eb4');
+    // Replace the following value by the name of the index you want to query.
+    var index = client.initIndex('Article_<%= Rails.env %>');
+    // callback called on each query
+    function searchCallback(err, content) {
+      if (err) {
+        // error
+        return;
+      }
+      if (content.query != $('#q').val()) {
+        // do not take out-dated answers into account
+        return;
+      }
+      if (content.hits.length == 0) {
+        // no results
+        $('#hits').empty();
+        $('#pagination').empty();
+        $('#articles_results_count').empty();
+        return;
+      }
+      // Scan all hits and display them
+
+      // console.log(content.hits.map(
+      //   function(result) {
+      //     return result.objectID;
+      //   }
+      //   ));
+
+      console.log(content.hits);
+
+      $('#articles_results_count').html('<p>' + content.hits.length + ' results </p><br/>');
+
+      var html = '';
+      for (var i = 0; i < content.hits.length; ++i) {
+        var hit = content.hits[i];
+        html += '<div class="article">';
+        html += '<h3>' + hit.title + '</h3>';
+        html += '<div class="meta">' + moment(hit.created_at).format('ll') + '</div>';
+        html += '<p>' + hit.excerpt + '</p>';
+        html += '<div class="clear"></div> </div>'
+      }
+      $('#hits').html(html);
+      // initialize the paginator
+      $('#pagination').bootstrapPaginator({
+        currentPage: (content.page + 1), // Algolia's pagination starts at 0
+        totalPages: content.nbPages,
+        bootstrapMajorVersion: 3,
+        onPageClicked: function(event, originalEvent, type, page) {
+          // if a page is clicked, go to next page performing an additional query
+          search(content.query, { page: (page - 1) }); // Algolia's pagination starts at 0
+          // and update the location to embed the page number
+          location.replace('#q=' + encodeURIComponent(content.query) + '&page=' + page);
+        }
+      });
+    }
+    // perform a search
+    function search(q, params) {
+      index.search(q, params, searchCallback);
+    }
+    // events binding
+    $inputfield.keyup(function() {
+      // on each keystroke, perform the query
+      search($inputfield.val());
+    }).focus().closest('form').on('submit', function() {
+      // on form submit, store the query string in the anchor
+      location.replace('#q=' + encodeURIComponent($inputfield.val()));
+      return false;
+    });
+    // check if there is a query+page in the anchor: http://example.org/#q=my+query&page=42
+    if (location.hash && location.hash.indexOf('#q=') === 0) {
+      var params = location.hash.substring(3);
+      var pageParamOffset = params.indexOf('&page=');
+      var q, page;
+      if (pageParamOffset > -1) {
+        q = decodeURIComponent(params.substring(0, pageParamOffset));
+        page = params.substring(pageParamOffset).split('=')[1];
+      } else {
+        q = decodeURIComponent(params);
+        page = 1;
+      }
+      // fill the form
+      $inputfield.val(q);
+      // perform the search
+      search(q, { page: (page - 1) });
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//use.typekit.net/mdh3wrb.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>

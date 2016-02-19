@@ -1,6 +1,5 @@
 class Mediafile < ActiveRecord::Base
-	include Elasticsearch::Model
-	include Elasticsearch::Model::Callbacks
+	include AlgoliaSearch
 
 	attr_accessible :title, :description, :mediatype, :media, :source,
 		:video_webm, :video_mp4, :video_ogg,
@@ -24,6 +23,10 @@ class Mediafile < ActiveRecord::Base
 	# 3 => Graphic
 	# 4 => Illustration
 	# 5 => Audio
+
+	algoliasearch per_environment: true do
+		attribute :title
+	end
 
 	def mediatype_str
 		if mediatype and mediatype <= 4
