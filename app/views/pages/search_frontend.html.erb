@@ -52,9 +52,9 @@
       //   }
       //   ));
 
-      console.log(content.hits);
+      // console.log(content);
 
-      $('#articles_results_count').html('<p>' + content.hits.length + ' results </p><br/>');
+      $('#articles_results_count').html('<p>' + content.nbHits + ' results </p><br/>');
 
       var html = '';
       for (var i = 0; i < content.hits.length; ++i) {
