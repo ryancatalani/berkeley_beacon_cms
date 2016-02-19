@@ -74,6 +74,5 @@ end
 
 group :production do
   gem 'pg'
-  gem 'bonsai-elasticsearch-rails'
   # gem 'thin'
 end

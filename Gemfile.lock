@@ -43,7 +43,6 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt-ruby (3.0.1)
-    bonsai-elasticsearch-rails (0.0.4)
     builder (3.0.4)
     bullet (4.8.0)
       activesupport
@@ -216,7 +215,6 @@ PLATFORMS
 DEPENDENCIES
   algoliasearch-rails
   bcrypt-ruby (~> 3.0.0)
-  bonsai-elasticsearch-rails
   bullet
   carrierwave-aws
   chartkick
