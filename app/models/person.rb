@@ -20,7 +20,7 @@ class Person < ActiveRecord::Base
   	mount_uploader :profile, ProfileUploader
 
   	algoliasearch per_environment: true do
-  		attribute :full_name
+  		attribute :full_name, :pos, :to_url, :profile_photo_url
   	end
 
 	def is_editor?
@@ -99,6 +99,10 @@ class Person < ActiveRecord::Base
 
 	def to_url
 		"/staff/#{clean_full_name}"
+	end
+
+	def profile_photo_url
+		profile.blank? ? '' : profile.url
 	end
 
 end

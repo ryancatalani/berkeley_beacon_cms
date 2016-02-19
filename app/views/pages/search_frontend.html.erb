@@ -9,11 +9,20 @@
 
   <div id="search_separator">&nbsp;</div>
 
-  <h2>Articles</h2>
-  <div id="articles_results_count"></div>
+  <div id="search_articles">
+    <h2 id="articles_results_head" style="display:none;">Articles</h2>
+    <div id="articles_results_count"></div>
 
-  <div id="hits"></div>
-  <ul id="pagination" class="pagination"></ul>
+    <div id="article_hits"></div>
+    <ul id="pagination" class="pagination"></ul>
+  </div>
+
+  <div id="search_mediafiles_wrap">
+    
+    <h2 id="people_results_head" style="display:none;">Editors, staff, correspondents, and contributors</h2>
+    <ul id="people_hits" class="people_results"></ul>
+  </div>
+
 
 </div>
 
@@ -26,9 +35,10 @@
     // Replace the following values by your ApplicationID and ApiKey.
     var client = algoliasearch('***REMOVED***', 'd749df45b896d826472052b50b177eb4');
     // Replace the following value by the name of the index you want to query.
-    var index = client.initIndex('Article_<%= Rails.env %>');
+    var articleIndex = client.initIndex('Article_<%= Rails.env %>');
+    var personIndex = client.initIndex('Person_<%= Rails.env %>');
     // callback called on each query
-    function searchCallback(err, content) {
+    function articleSearchCallback(err, content) {
       if (err) {
         // error
         return;
@@ -42,6 +52,7 @@
         $('#hits').empty();
         $('#pagination').empty();
         $('#articles_results_count').empty();
+        $('#articles_results_head').hide();
         return;
       }
       // Scan all hits and display them
@@ -55,6 +66,7 @@
       // console.log(content);
 
       $('#articles_results_count').html('<p>' + content.nbHits + ' results </p><br/>');
+      $('#articles_results_head').show();
 
       var html = '';
       for (var i = 0; i < content.hits.length; ++i) {
@@ -65,7 +77,7 @@
         html += '<p>' + hit.excerpt + '</p>';
         html += '<div class="clear"></div> </div>'
       }
-      $('#hits').html(html);
+      $('#article_hits').html(html);
       // initialize the paginator
       $('#pagination').bootstrapPaginator({
         currentPage: (content.page + 1), // Algolia's pagination starts at 0
@@ -79,14 +91,53 @@
         }
       });
     }
+
+    function personSearchCallback(err, content) {
+      if (err) {
+        // error
+        return;
+      }
+      if (content.query != $('#q').val()) {
+        // do not take out-dated answers into account
+        return;
+      }
+      if (content.hits.length == 0) {
+        // no results
+        $('#people_hits').empty();
+        $('#pagination').empty();
+        $('#people_results_head').hide();
+        return;
+      }
+      // Scan all hits and display them
+      console.log(content);
+
+      $('#people_results_head').show();
+
+      var html = '';
+      for (var i = 0; i < content.hits.length; ++i) {
+        var hit = content.hits[i];
+        html += '<li>';
+        if (hit.profile_photo_url.length > 0) {
+          html += '<div class="profile_img" style="background-image:url(' + hit.profile_photo_url + ')"></div>';
+        }
+        html += '<h3><a href="' + hit.to_url + '">' + hit.full_name + '</a></h3>';
+        html += hit.pos;
+        html += '</li>'
+      }
+      $('#people_hits').html(html);
+    }
+
+
     // perform a search
     function search(q, params) {
-      index.search(q, params, searchCallback);
+      articleIndex.search(q, params, articleSearchCallback);
+      personIndex.search(q, '', personSearchCallback);
     }
     // events binding
     $inputfield.keyup(function() {
       // on each keystroke, perform the query
       search($inputfield.val());
+      location.replace('#q=' + encodeURIComponent($inputfield.val()));
     }).focus().closest('form').on('submit', function() {
       // on form submit, store the query string in the anchor
       location.replace('#q=' + encodeURIComponent($inputfield.val()));
