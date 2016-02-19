@@ -60,7 +60,7 @@
       for (var i = 0; i < content.hits.length; ++i) {
         var hit = content.hits[i];
         html += '<div class="article">';
-        html += '<h3>' + hit.title + '</h3>';
+        html += '<h3><a href="' + hit.to_url + '">' + hit.title + '</a></h3>';
         html += '<div class="meta">' + moment(hit.created_at).format('ll') + '</div>';
         html += '<p>' + hit.excerpt + '</p>';
         html += '<div class="clear"></div> </div>'

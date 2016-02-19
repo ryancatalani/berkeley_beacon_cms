@@ -2718,6 +2718,49 @@ body#neighborhoods2015 {
 		font-size: 1.3em;
 	}
 
+	.pagination {
+		* {
+			display: block;
+			float: left;
+			margin: 0 5px;
+		}
+		li:hover {
+			cursor: pointer;
+		}
+		a {
+			border: 1px solid #cbcbcb;
+			height: 24px;
+			width: 24px;
+			text-align: center;
+			padding-top: 3px;
+		}
+		a:hover {
+			background: #999;
+			color: #fff;
+			border: 1px solid #888;
+			text-decoration: none;		
+		}
+		.active a {
+			background: #999;
+			color: #fff;
+			border: 1px solid #888;
+		}
+		.next_page, .previous_page {
+			height: auto;
+			width: auto;
+			border: none;
+			&:hover {
+				background: none;
+				border: none;
+				text-decoration: underline;
+				color: #000;
+			}
+		}
+		.disabled {
+			color: #aaa;
+		}
+	}
+
 }
 .jqstooltip {
 	width: auto !important;
