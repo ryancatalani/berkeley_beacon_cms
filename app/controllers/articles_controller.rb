@@ -245,6 +245,31 @@ class ArticlesController < ApplicationController
 		@q = params[:q]
 	end
 
+	def search_edit_frontend
+		@title = "Search"
+	end
+
+	def search_edit_frontend_data
+		article = Article.find(params[:article_id])
+
+		if article.nil?
+			render json: {} and return
+		end
+
+		ret = {}
+
+		if article.mediafiles.any?
+			mediafiles = article.mediafiles.map {|m| {id: m.id, title: m.title}  }
+			ret[:mediafiles] = mediafiles
+		end
+
+		ret[:pageview_count] = article.pageview_count
+		ret[:unique_pageview_count] = article.unique_pageview_count
+		ret[:total_social_shares] = article.total_social_shares
+
+		render json: ret
+	end
+
 	def edit
 		@article = Article.find(params[:id])
 		@current_authors = @article.people.map{|p| p.id}

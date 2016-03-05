@@ -7,7 +7,6 @@ BeaconApp::Application.routes.draw do
 	end
 
   match '/search', to: 'pages#search_frontend', as: 'search'
-  match '/search_edit', :to => 'articles#search_edit', :as => 'search_edit', :via => :post
 
 	match '/stylebook', :to => 'stylebook_entries#index'
 	match '/tips', :to => 'pages#tips'
@@ -61,12 +60,14 @@ BeaconApp::Application.routes.draw do
   match '/api/series/:slug', to: 'series#api_list_by_slug'
   match '/api/topics/:slug', to: 'topics#api_list_by_slug'
   match '/api/sections/:slug', to: 'sections#api_list_by_slug'
+  match '/api/search_article_data', to: 'articles#search_edit_frontend_data'
 
   match '/admin/poll_results', :to => 'admin#poll_results'
   match '/admin/published_in_date_range/:dates', to: 'admin#published_in_date_range'
   match '/admin/controls', to: 'admin#controls'
   match '/admin/masthead', to: 'admin#edit_masthead'
   match '/admin/masthead/update', to: 'admin#update_masthead', via: :put
+  match '/admin/search_edit', :to => 'articles#search_edit_frontend'
 
   match '/admin/article', to: 'articles#newnew'
 

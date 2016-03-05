@@ -3,10 +3,32 @@
 <h2>Editor Dashboard</h2>
 
 <br>
-<%= form_tag search_edit_path do %>
-<%= text_field_tag :q, nil, :placeholder => 'Search for...' %>
-<%= submit_tag "Search", :class => "btn btn-primary" %>
-<% end %>
+
+<input type="text" id="search_edit_q" placeholder="Search for...">
+<a href="/admin/search_edit" class="btn btn-primary" id="search_edit_btn">Search</a>
+<script>
+	$(function(){
+		var $q = $('#search_edit_q');
+		$q.keyup(function(e){
+			if (e.which == 13) {
+				doSearch($q.val());
+			}
+		});
+		$('#search_edit_btn').click(function(e) {
+			e.preventDefault();
+			doSearch($q.val());
+			return false;
+		})
+
+		function doSearch(q) {
+			if (q.length == 0) {
+				window.location = '/admin/search_edit';
+			} else {
+				window.location = '/admin/search_edit/#q=' + q;	
+			}
+		}
+	});
+</script>
 
 <p>
 	<%= link_to "Upload Editorial Cartoon", new_editorial_cartoon_path, :class => "btn" %>

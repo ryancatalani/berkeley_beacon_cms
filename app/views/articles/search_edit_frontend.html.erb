@@ -1,0 +1,214 @@
+<div class="search_page">
+  <div id="search_page_search">
+    <h1>Editor search</h1>
+
+    <form action="#" method="get">
+      <input autocomplete="off" class="autocomplete" id="q" placeholder="Start typing to search" type="text" spellcheck="false" />
+    </form>
+  </div>
+
+  <div id="search_separator">&nbsp;</div>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th width="150px">Actions</th>
+        <th width="50%">Title</th>
+        <th>Media</th>
+        <th>Views</th>
+        <th>Unique Visitors</th>
+        <th>Total Social Shares</th>
+      </tr>
+    </thead>
+    <tbody id="article_hits">
+    </tbody>
+  </table>
+
+</div>
+
+
+<script src="//rawgithub.com/lyonlai/bootstrap-paginator/master/build/bootstrap-paginator.min.js"></script>
+<script src="//cdn.jsdelivr.net/momentjs/2.11.2/moment.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var $inputfield = $('#q');
+    // Replace the following values by your ApplicationID and ApiKey.
+    var client = algoliasearch('***REMOVED***', 'd749df45b896d826472052b50b177eb4');
+    // Replace the following value by the name of the index you want to query.
+    var articleIndex = client.initIndex('Article_<%= Rails.env %>');
+    var personIndex = client.initIndex('Person_<%= Rails.env %>');
+    // callback called on each query
+    function articleSearchCallback(err, content) {
+      if (err) {
+        // error
+        return;
+      }
+      if (content.query != $('#q').val()) {
+        // do not take out-dated answers into account
+        return;
+      }
+      if (content.hits.length == 0) {
+        // no results
+        $('#hits').empty();
+        $('#pagination').empty();
+        $('#articles_results_count').empty();
+        $('#articles_results_head').hide();
+        return;
+      }
+      // Scan all hits and display them
+
+      // console.log(content.hits.map(
+      //   function(result) {
+      //     return result.objectID;
+      //   }
+      //   ));
+
+      // console.log(content);
+
+      $('#articles_results_count').html('<p>' + content.nbHits + ' results </p><br/>');
+      $('#articles_results_head').show();
+
+      var html = '';
+      for (var i = 0; i < content.hits.length; ++i) {
+        var hit = content.hits[i];
+        getArticleData(hit.objectID);
+
+        html += '<tr id="article' + hit.objectID + '">';
+        html +=   '<td>';
+        html +=     '<a href="/articles/' + hit.objectID + '/edit" class="btn">';
+        html +=       '<i class="icon-edit"></i> Edit';
+        html +=     '</a>';
+        html +=     '<a href="/articles/' + hit.objectID + '" class="btn btn-danger" data-confirm="Are you sure you want to delete this article?" data-method="delete" rel="nofollow">';
+        html +=       '<i class="icon-trash icon-white"></i> Delete';
+        html +=     '</a>';
+        html +=   '</td>';
+        html +=   '<td>';
+        html +=     '<a href="' + hit.to_url + '">' + hit.title + '</a><br>';
+        html +=     '<em class="upcase">' + moment(hit.created_at).format('ll') + '</wm>';
+        html +=   '</td>';        
+        html += '</tr>';
+      }
+      $('#article_hits').html(html);
+      // initialize the paginator
+      $('#pagination').bootstrapPaginator({
+        currentPage: (content.page + 1), // Algolia's pagination starts at 0
+        totalPages: content.nbPages,
+        bootstrapMajorVersion: 3,
+        onPageClicked: function(event, originalEvent, type, page) {
+          // if a page is clicked, go to next page performing an additional query
+          search(content.query, { page: (page - 1) }); // Algolia's pagination starts at 0
+          // and update the location to embed the page number
+          location.replace('#q=' + encodeURIComponent(content.query) + '&page=' + page);
+        }
+      });
+    }
+
+    function personSearchCallback(err, content) {
+      if (err) {
+        // error
+        return;
+      }
+      if (content.query != $('#q').val()) {
+        // do not take out-dated answers into account
+        return;
+      }
+      if (content.hits.length == 0) {
+        // no results
+        $('#people_hits').empty();
+        $('#pagination').empty();
+        $('#people_results_head').hide();
+        return;
+      }
+      // Scan all hits and display them
+      console.log(content);
+
+      $('#people_results_head').show();
+
+      var html = '';
+      for (var i = 0; i < content.hits.length; ++i) {
+        var hit = content.hits[i];
+        html += '<li>';
+        if (hit.profile_photo_url.length > 0) {
+          html += '<div class="profile_img" style="background-image:url(' + hit.profile_photo_url + ')"></div>';
+        }
+        html += '<h3><a href="' + hit.to_url + '">' + hit.full_name + '</a></h3>';
+        html += hit.pos;
+        html += '</li>'
+      }
+      $('#people_hits').html(html);
+    }
+
+    function getArticleData(id) {
+      $.getJSON('/api/search_article_data', {
+        article_id: id
+      }, function(data) {
+        $tr = $('tr#article' + id);
+
+        if ($tr.hasClass('data_added')) {
+          return;
+        };
+
+        var html = '<td>';
+        if (data.mediafiles !== undefined) {
+          html += '<ul>';
+          data.mediafiles.forEach(function(mediafile) {
+            html += '<li>';
+            html +=   mediafile.title;
+            html +=   '<div style="width:100px">';
+            html +=     '<a href="/mediafiles/' + mediafile.id + '/edit" class="btn btn-small" rel="tooltip" data-original-title="Edit"><i class="icon-edit"></i></a>';
+            html +=     '<a href="/mediafiles/' + mediafile.id + '" class="btn btn-danger btn-small" data-confirm="Are you sure you want to delete this article?" data-method="delete" rel="nofollow"><i class="icon-trash icon-white"></i></a>';
+            html +=   '</div>';
+            html += '</li>';
+          });
+          html += '</ul>';
+        }
+        html += '</td>';
+
+        html += '<td>' + data.pageview_count + '</td>';
+        html += '<td>' + data.unique_pageview_count + '</td>';
+        html += '<td>' + data.total_social_shares + '</td>';
+
+        $tr.append(html);
+        $tr.addClass('data_added');
+
+        // console.log(data);
+      });
+    }
+
+
+    // perform a search
+    function search(q, params) {
+      articleIndex.search(q, params, articleSearchCallback);
+    }
+    // events binding
+    $inputfield.keyup(function() {
+      // on each keystroke, perform the query
+      search($inputfield.val());
+      location.replace('#q=' + encodeURIComponent($inputfield.val()));
+    }).focus().closest('form').on('submit', function() {
+      // on form submit, store the query string in the anchor
+      location.replace('#q=' + encodeURIComponent($inputfield.val()));
+      return false;
+    });
+    // check if there is a query+page in the anchor: http://example.org/#q=my+query&page=42
+    if (location.hash && location.hash.indexOf('#q=') === 0) {
+      var params = location.hash.substring(3);
+      var pageParamOffset = params.indexOf('&page=');
+      var q, page;
+      if (pageParamOffset > -1) {
+        q = decodeURIComponent(params.substring(0, pageParamOffset));
+        page = params.substring(pageParamOffset).split('=')[1];
+      } else {
+        q = decodeURIComponent(params);
+        page = 1;
+      }
+      // fill the form
+      $inputfield.val(q);
+      // perform the search
+      search(q, { page: (page - 1) });
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//use.typekit.net/mdh3wrb.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
