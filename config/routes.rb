@@ -26,7 +26,7 @@ BeaconApp::Application.routes.draw do
   match '/ournewvoice', :to => 'pages#ourvoice'
   match '/redesign', :to => 'pages#ourvoice'
 
-  match '/apply', :to => 'custom_pages#apply'
+  match '/apply', :to => 'pages#apply'
 
   match '/settings', :to => 'people#settings'
   match '/videos', :to => 'pages#videos'
