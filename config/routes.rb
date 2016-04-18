@@ -26,7 +26,7 @@ BeaconApp::Application.routes.draw do
   match '/ournewvoice', :to => 'pages#ourvoice'
   match '/redesign', :to => 'pages#ourvoice'
 
-  match '/apply', :to => 'pages#apply'
+  match '/apply', :to => 'custom_pages#apply'
 
   match '/settings', :to => 'people#settings'
   match '/videos', :to => 'pages#videos'
@@ -98,6 +98,7 @@ BeaconApp::Application.routes.draw do
   resources :topics, :only => [:create, :edit, :update]
   resources :special_coverages, :only => [:new, :create, :edit, :update]
   resources :events, :except => [:new, :show]
+  resources :custom_pages, only: [:new, :create, :edit, :update]
 
   match '/new_editorial_cartoon', :to => 'pages#new_editorial_cartoon'
   match '/opinion/editorial_cartoons', :to => 'pages#editorial_cartoons'

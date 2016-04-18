@@ -1,0 +1,25 @@
+<div class="field">
+	<%= f.label :title, "Title" %>
+	<%= f.text_field :title %>
+</div>
+
+<div class="field">
+	<%= f.label :slug, "URL" %>
+	<%= f.text_field :slug %>
+</div>
+
+<div class="field">
+	<%= f.label :content, "Content" %>
+	<%= f.text_area :content, class: 'tinymce' %>
+</div>
+
+<script>
+	tinyMCE.init({
+		"selector":"textarea.tinymce",
+		"plugins":"paste,link,image,code",
+		"theme":"modern",
+		"toolbar1":"code | bold italic | removeformat link image | blockquote alignleft aligncenter alignright | undo redo",
+		"relative_urls":false,
+		"extended_valid_elements": "script"
+	});
+</script>

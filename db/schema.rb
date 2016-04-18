@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150902180525) do
+ActiveRecord::Schema.define(:version => 20160321215348) do
 
   create_table "abouts", :force => true do |t|
     t.text     "col1"
@@ -81,6 +81,14 @@ ActiveRecord::Schema.define(:version => 20150902180525) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cleantitle"
+  end
+
+  create_table "custom_pages", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "ecla_any_tweet", :force => true do |t|

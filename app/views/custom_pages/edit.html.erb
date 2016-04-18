@@ -1,0 +1,19 @@
+<h1>Editing <%= @page.title %></h1>
+
+<%= form_for @page do |f| %>
+	<% if @page.errors.any? %>
+		<div class="error_messages">
+			<h2>Oops, there were a few problems:</h2>
+			<ul>
+				<% for message in @page.errors.full_messages %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	
+	<%= render 'custom_page_form', :f => f %>
+	<div class="clear"></div>
+	<div class="actions form-actions"><%= f.submit "Save", :class => "btn btn-primary" %></div>
+
+<% end %>
