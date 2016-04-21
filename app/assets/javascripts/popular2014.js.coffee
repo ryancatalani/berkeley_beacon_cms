@@ -27,19 +27,29 @@ jQuery ->
 
 		ps_pf = $('#popular_shared').find('.popular_first')
 		ps_pf.attr('href', shared_data[0].url)
+		ps_pf_shares = parseInt(shared_data[0].shares)
+
+		if ps_pf_shares > 1000
+			ps_pf_shares = Math.trunc(ps_pf_shares / 100) / 10 + 'K'
+
 		if shared_data[0].thumb_220
 			$('<img>').attr(src: shared_data[0].thumb_220).appendTo ps_pf
 		ps_pf.append("<div>
-				<span class='share_count'>#{ shared_data[0].shares }</span>
+				<span class='share_count'>#{ ps_pf_shares }</span>
 				1. #{ shared_data[0].title }
 			</div>")
 
 		ps_ol = $('#popular_shared').find('ol')
 		for i in [1..4]
 			a = shared_data[i]
+			shares = parseInt(a.shares)
+
+			if shares > 1000
+				shares = Math.trunc(shares / 100) / 10 + 'K'
+
 			li = "<li>
 				<a href='#{ a.url }'>
-					<span class='share_count'>#{ a.shares }</span>
+					<span class='share_count'>#{ shares }</span>
 					#{ a.title }
 				</a>
 			</li>"
