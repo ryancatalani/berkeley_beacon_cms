@@ -50,6 +50,7 @@
 
 	<div id="section-sidebar">
 		<% if @sname == "Opinion" %>
+			<% begin %>
 			<div class="sidebar-box" id="ed-cartoon-box">
 				<h4>Latest Editorial Cartoon</h4>
 				<div class="upcase"><%= link_to "See all &rarr;".html_safe, "/opinion/editorial_cartoons" %></div>
@@ -57,6 +58,8 @@
 				<br/>
 				<em><%= latest_ed_cartoon.title %></em>
 			</div>
+			<% rescue %>
+			<% end %>
 		<% end %>
 
 		<section id="popular">
