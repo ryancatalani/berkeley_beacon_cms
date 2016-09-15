@@ -41,7 +41,8 @@ namespace :db do
 			sc_share_res = Net::HTTP.get_response(sc_share_uri).body
 			sc_share_data = ActiveSupport::JSON.decode(sc_share_res)
 
-			fb = sc_share_data["Facebook"]["total_count"].nil? ? 0 : sc_share_data["Facebook"]["total_count"]
+			# fb = sc_share_data["Facebook"]["total_count"].nil? ? 0 : sc_share_data["Facebook"]["total_count"]
+			fb = 0
 			twitter = sc_share_data["Twitter"].nil? ? 0 : sc_share_data["Twitter"]
 
 			pop_social_candidates[url][:fb] = fb
