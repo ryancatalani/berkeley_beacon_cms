@@ -29,6 +29,7 @@ gem "twitter", "~> 4.8.1"
 gem 'will_paginate', '~> 3.0'
 gem 'geocoder'
 gem 'fb_graph'
+gem "koala", "~> 2.2"
 gem 'feedzirra'
 gem 'newrelic_rpm', '~> 3.5.7.59'
 gem 'swiftype'
