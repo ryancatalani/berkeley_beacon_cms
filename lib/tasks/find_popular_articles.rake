@@ -35,15 +35,22 @@ namespace :db do
 		pop_urls = pop_initial.map {|a| a.to_url(:full => true)}
 		pop_initial.each {|a| pop_social_candidates[a.to_url(:full=>true)] = {:id => a.id, :fb => 0, :twt => 0, :total => 0} }
 
+		fb_graph = Koala::Facebook::API.new("***REMOVED***")
+
 		pop_urls.each do |url|
 
 			sc_share_uri = URI.parse('http://free.sharedcount.com/url?apikey=***REMOVED***&url=' + url)
 			sc_share_res = Net::HTTP.get_response(sc_share_uri).body
 			sc_share_data = ActiveSupport::JSON.decode(sc_share_res)
 
-			# fb = sc_share_data["Facebook"]["total_count"].nil? ? 0 : sc_share_data["Facebook"]["total_count"]
-			fb = 0
 			twitter = sc_share_data["Twitter"].nil? ? 0 : sc_share_data["Twitter"]
+
+			fb = 0			
+			begin
+				fb_obj = fb_graph.get_object(CGI.escape(url))
+				fb = fb_obj["share"]["share_count"]
+			rescue
+			end
 
 			pop_social_candidates[url][:fb] = fb
 			pop_social_candidates[url][:twt] = twitter
