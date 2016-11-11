@@ -58,7 +58,7 @@
 
 		<% end %>
 
-		<% if @media %>
+		<% if @media && @media.any? %>
 			<h2>Photos</h2>
 			<ul class="rslides">
 			<% @media.each do |m| %>
