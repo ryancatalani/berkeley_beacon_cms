@@ -1,4 +1,13 @@
 class SpecialCoveragesController < ApplicationController
+
+	before_filter :check_editor, :except => [:show]
+
+
+	def index
+		@sc = SpecialCoverage.all
+	end
+
+
 	def new
 		@sc = SpecialCoverage.new
 		@latest_articles = [nil,nil] + Article.order("created_at DESC").first(30).map{|a| [a.title, a.id]}
@@ -62,7 +71,6 @@ class SpecialCoveragesController < ApplicationController
 		end
 	end
 
-
 	def new_update
 		update = {}
 		update[:title] = params[:title] unless params[:title].blank?
@@ -95,5 +103,33 @@ class SpecialCoveragesController < ApplicationController
 		@u = update
 
 		# render :json => update
+	end
+
+	def show
+		@sc = SpecialCoverage.find(params[:id])
+
+		@include_responsive = true
+		@title = "#{@sc.title}: Special Coverage"
+		@og ||= {}
+		@og[:description] = "Read the Beacon's in-depth coverage about #{@sc.title}"
+
+		@first_photo_url = nil
+		if @sc.media && @sc.media.any?
+			begin
+				@first_photo_url = Mediafile.find(@sc.media.first).media.url
+				@og[:image] = @first_photo_url
+			rescue
+				@og[:image] = nil
+			end
+		end
+
+		@lead = Article.find(@sc.lead) rescue nil
+		@featured = @sc.featured.map{|id| Article.find(id)} rescue nil
+		@related_t = Topic.find(@sc.related_topic) rescue nil
+		@related_a = @sc.related_articles.map{|id| Article.find(id)} rescue nil
+		@updates = @sc.updates.reverse rescue []
+		@media = @sc.media.map{|id| Mediafile.find(id)} rescue nil
+
+		render :layout => 'bare'
 	end
 end

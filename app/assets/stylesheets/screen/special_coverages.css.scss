@@ -7,3 +7,153 @@
 		margin-bottom: 15px;
 	}
 }
+
+.sc_url {
+	background: #eee;
+	border: 1px solid #ddd;
+	padding: 1em;
+	margin-bottom: 1em;
+}
+
+.special_coverage_page {
+	// based on pages#emersonla
+
+	.wrap {
+		@media(max-width: 1000px) {
+			width: 92%;
+			margin: 0 auto;
+		}
+	}
+	header {
+		height: 320px;
+		background-position: center 90%;
+		background-size: cover;
+		background-color: #ccc;
+		margin-bottom: 30px;
+		.header_title {
+			background: rgba(255, 255, 255, 0.8);
+			display: inline-block;
+			padding: 18px;
+			margin-top: 30px;
+			h1 {
+				font-size: 43px;
+				line-height: 1em;
+				font-weight: bold;
+				margin-bottom: 0;
+				margin-top: 5px;
+			}
+		}
+	}
+	.main {
+		@media(min-width: 1000px) {
+			width: 63%;
+			float: left;
+		}
+		h2 {
+			font-weight: bold;
+			margin-bottom: 0.75em;
+			color: #333
+		}
+		article {
+			padding-bottom: 1em;
+			border-bottom: 1px solid #ccc;
+			margin-bottom: 1em;
+			&.lead {
+				font-size: 1.2em;
+				line-height: 1.4em;
+				h3 {
+					font-size: 1.5em;
+					line-height: 1.25em;
+					margin-bottom: 0.5em;
+				}
+				.meta {
+					line-height: 1.3em;
+					margin-bottom: 0.5em;
+				}
+				img {
+					width: 300px;
+					height: 300px;
+					margin-left: 20px;
+				}
+			}
+			&:last-child {
+				border-bottom: none;
+			}
+			&:after {
+			  content: ".";
+			  display: block;
+			  height: 0;
+			  clear: both;
+			  visibility: hidden;
+			}
+			img {
+				width: 75px;
+				height: 75px;
+				float: right;
+				margin-left: 20px;
+			}
+			.meta {
+				text-transform: uppercase;
+				font-size: 0.8em;
+			}
+			p:last-child {
+				margin-bottom: 0;
+			}
+		}
+		ul.rslides {
+			.slide_cont {
+				width: 100%;
+				height: 403px;
+				background-position: center;
+				background-size: contain;
+				background-repeat: no-repeat;
+			}
+			.metadata {
+				clear: both;
+				padding: 5px 0;
+				.credit {
+					float: right;
+					font-style: italic;
+				}
+			}
+		}
+	}
+	.sidebar {
+		border: 4px solid #eee;
+		padding: 3%;
+		margin-bottom: 20px;
+		@media(min-width: 1000px) {
+			width: 32%;
+			float: right;
+			margin-left: 5%;
+		}
+		h2 {
+			margin-bottom: 1em;
+			text-transform: uppercase;
+			font-size: 1.4em;
+			font-weight: bold;
+			color: #444;
+		}
+		ul.updates {
+			li {
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #ccc;
+				margin-bottom: 1em;
+				&:last-child {
+					border-bottom: none;
+				}
+				.ts {
+					text-transform: uppercase;
+					font-size: 0.8em;
+					float: right;
+				}
+				.title {
+					font-weight: bold;
+				}
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

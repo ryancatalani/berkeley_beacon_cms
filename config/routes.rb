@@ -96,9 +96,11 @@ BeaconApp::Application.routes.draw do
   resources :short_links, :only => [:index, :create, :update, :destroy]
   resources :issues, :only => [:index, :edit, :update]
   resources :topics, :only => [:create, :edit, :update]
-  resources :special_coverages, :only => [:new, :create, :edit, :update]
+  resources :special_coverages, :only => [:index, :new, :create, :edit, :update]
   resources :events, :except => [:new, :show]
   resources :custom_pages, only: [:new, :create, :edit, :update]
+
+  match '/special/:id/:slug', to: 'special_coverages#show'
 
   match '/new_editorial_cartoon', :to => 'pages#new_editorial_cartoon'
   match '/opinion/editorial_cartoons', :to => 'pages#editorial_cartoons'
