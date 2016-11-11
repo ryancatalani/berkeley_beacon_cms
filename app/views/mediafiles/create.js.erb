@@ -9,3 +9,15 @@ $("#loading").fadeOut();
 <% end %>
 $("#new_article").append("<input type='hidden' name='mediafiles[<%= @mediafile.id %>]' value='<%= @mediafile.id %>' id='<%= @mediafile.id %>' >");
 $(".edit_article").append("<input type='hidden' name='mediafiles[<%= @mediafile.id %>]' value='<%= @mediafile.id %>' id='<%= @mediafile.id %>' >");
+
+if ($('#media_ids').length > 0) {
+	// for special coverage uploads
+	current_ids = $('#media_ids').val();
+	new_ids = '';
+	if (current_ids.length == 0) {
+		new_ids += '<%= @mediafile.id %>';
+	} else {
+		new_ids = current_ids + ',<%= @mediafile.id %>';
+	}
+	$('#media_ids').val(new_ids);
+}
