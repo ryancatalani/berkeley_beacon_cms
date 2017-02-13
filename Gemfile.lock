@@ -29,6 +29,9 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.4.0)
+    airbrake (5.7.1)
+      airbrake-ruby (~> 1.7)
+    airbrake-ruby (1.7.1)
     algoliasearch (1.7.0)
       httpclient (~> 2.4)
       json (>= 1.5.1)
@@ -218,6 +221,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   algoliasearch-rails
   bcrypt-ruby (~> 3.0.0)
   bullet

@@ -43,6 +43,7 @@ gem 'htmlentities'
 gem 'rumoji'
 
 gem 'algoliasearch-rails'
+gem 'airbrake'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
