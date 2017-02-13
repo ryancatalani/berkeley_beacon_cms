@@ -3,6 +3,7 @@ class Issue < ActiveRecord::Base
 	attr_accessible :release_date, :pdf_url, :pdf_thumb_url
 	serialize :section_shares
 	has_many :articles
+	has_many :editorial_cartoons
 
 	def release_date_f
 		release_date.to_formatted_s(:long)

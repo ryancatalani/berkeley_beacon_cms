@@ -207,12 +207,6 @@ class PagesController < ApplicationController
 		@videos = Mediafile.where(:mediatype => 2).order("created_at DESC").reject{|m| m.articles.count.zero? }
 	end
 
-	def new_editorial_cartoon
-		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
-		@mediafile = Mediafile.new
-		@ed_series = Series.find_by_title("Editorial Cartoons")
-	end
-
 	def editorial_cartoons
 		s = Series.find_by_title("Editorial Cartoons")
 		redirect_to root_path and return if s.nil?

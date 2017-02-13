@@ -54,4 +54,21 @@ class AdminController < ApplicationController
 		end
 	end
 
+	def list_editorial_cartoons
+		s = Series.find_by_title("Editorial Cartoons")
+		@cartoons = s.mediafiles.order("created_at DESC")
+	end
+
+	def new_editorial_cartoon
+		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
+		@mediafile = Mediafile.new
+		@ed_series = Series.find_by_title("Editorial Cartoons")
+	end
+
+	def edit_editorial_cartoon
+		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
+		@mediafile = Mediafile.find(params[:id])
+		@ed_series = Series.find_by_title("Editorial Cartoons")
+	end
+
 end

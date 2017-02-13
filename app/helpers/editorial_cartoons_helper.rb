@@ -1,0 +1,2 @@
+module EditorialCartoonsHelper
+end

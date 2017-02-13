@@ -69,6 +69,11 @@ BeaconApp::Application.routes.draw do
   match '/admin/masthead/update', to: 'admin#update_masthead', via: :put
   match '/admin/search_edit', :to => 'articles#search_edit_frontend'
 
+  match '/opinion/editorial_cartoons',    to: 'editorial_cartoons#index'
+  match '/admin/editorial_cartoons',      to: 'editorial_cartoons#edit_index'
+  match "/new_editorial_cartoon"          => redirect("/editorial_cartoons/new")
+  resources :editorial_cartoons
+
   match '/admin/article', to: 'articles#newnew'
 
   match '/issues/view/:date', :to => 'issues#show', :via => :get
@@ -101,9 +106,6 @@ BeaconApp::Application.routes.draw do
   resources :custom_pages, only: [:new, :create, :edit, :update]
 
   match '/special/:id/:slug', to: 'special_coverages#show'
-
-  match '/new_editorial_cartoon', :to => 'pages#new_editorial_cartoon'
-  match '/opinion/editorial_cartoons', :to => 'pages#editorial_cartoons'
 
   match '/pgvw/:article_id', :to => 'articles#increase_pageview'
 

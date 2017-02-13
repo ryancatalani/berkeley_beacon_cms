@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160321215348) do
+ActiveRecord::Schema.define(:version => 20170213160500) do
 
   create_table "abouts", :force => true do |t|
     t.text     "col1"
@@ -113,6 +113,14 @@ ActiveRecord::Schema.define(:version => 20160321215348) do
 
   add_index "ecla_beacon_tweet", ["tweet_id"], :name => "index_ecla_beacon_tweets_on_tweet_id"
 
+  create_table "editorial_cartoons", :force => true do |t|
+    t.string   "slug"
+    t.integer  "issue_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.date     "issue_date"
+  end
+
   create_table "editorships", :force => true do |t|
     t.integer  "person_id"
     t.integer  "section_id"
@@ -181,6 +189,7 @@ ActiveRecord::Schema.define(:version => 20160321215348) do
     t.boolean  "horizontal",           :default => true, :null => false
     t.string   "direct_audio_mp3_url"
     t.string   "direct_audio_ogg_url"
+    t.integer  "editorial_cartoon_id"
   end
 
   create_table "pageviews", :force => true do |t|

@@ -1,0 +1,38 @@
+<%= link_to "Back to Editor Dashboard", articles_path, class: "btn" %>
+<br><br>
+
+<h2>Editorial Cartoons Dashboard</h2>
+
+<p>
+	<%= link_to "Upload Editorial Cartoon", new_editorial_cartoon_path, class: "btn btn-primary" %>
+</p>
+
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th width="200px">Actions</th>
+			<th>Date</th>
+			<th width="50%">Title</th>
+			<th>By</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @cartoons.each do |cartoon| %>
+		<tr>
+			<td>
+				<%= link_to "<i class='icon-edit'></i> Edit".html_safe, '#', class: "btn" %>
+				<%= link_to "<i class='icon-trash icon-white'></i> Delete".html_safe, '#', method: :delete, confirm: "Are you sure you want to delete this cartoon?", class: "btn btn-danger" %>
+			</td>
+			<td>
+				<%= cartoon.created_at.to_s(:pretty_date) %>	
+			</td>
+			<td>
+				<%= cartoon.title %>	
+			</td>
+			<td>
+				<%= bylineify(cartoon) %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

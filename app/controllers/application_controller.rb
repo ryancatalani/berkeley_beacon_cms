@@ -134,11 +134,15 @@ class ApplicationController < ActionController::Base
 		end
 
 		def latest_ed_cartoon
-			s = Series.find_by_title("Editorial Cartoons")
-			if s
-				return s.mediafiles.order("created_at DESC").first
+			if EditorialCartoon.count > 0
+				return EditorialCartoon.latest
 			else
-				return nil
+				s = Series.find_by_title("Editorial Cartoons")
+				if s
+					return s.mediafiles.order("created_at DESC").first
+				else
+					return nil
+				end
 			end
 		end
 
