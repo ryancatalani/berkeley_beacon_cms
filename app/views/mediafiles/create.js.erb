@@ -1,3 +1,7 @@
+<% if !@mediafile.editorial_cartoon_id.nil? %>
+	window.location = "/admin/editorial_cartoons";
+<% end %>
+
 $("#new_mediafile").each(function(){
 	this.reset();
 });

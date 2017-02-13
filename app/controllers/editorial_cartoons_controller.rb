@@ -22,4 +22,10 @@ class EditorialCartoonsController < ApplicationController
 		end
 	end
 
+	def new
+		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
+		@mediafile = Mediafile.new
+		@ed_series = Series.find_by_title("Editorial Cartoons")
+	end
+
 end

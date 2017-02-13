@@ -32,6 +32,20 @@ class MediafilesController < ApplicationController
 			date = Time.new(d[:year], d[:month], d[:day])
 			logger.debug ("different date: #{date}")
 		end
+
+		if p[:is_editorial_cartoon] && (p[:is_editorial_cartoon] == true || p[:is_editorial_cartoon] == "true")
+
+			issue_id = params[:issue][:id]
+			issue_date = Issue.find(issue_id).release_date
+			slug = issue_date.strftime("%Y-%m-%d") + "-#{Time.now.min}#{Time.now.sec}"
+			cartoon = EditorialCartoon.create!(
+				issue_date: issue_date,
+				issue_id: issue_id,
+				slug: slug
+			)
+			p[:editorial_cartoon_id] = cartoon.id
+		end
+
 		@mediafile = Mediafile.new(p)
 		if @mediafile.save
 			if params[:sourcetype] == "in"
@@ -42,6 +56,7 @@ class MediafilesController < ApplicationController
 			@mediafile.update_attribute(:created_at, date) if date
 			@mediafile.update_attribute(:updated_at, date) if date
 			@mediafile.check_dimensions unless @mediafile.mediatype == 5
+
 			respond_with @mediafile #, :location => mediafiles_url
 			# # format.html { redirect_to mediafiles_path }
 			# format.js

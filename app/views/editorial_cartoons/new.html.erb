@@ -2,15 +2,15 @@
 <br/>
 <%= form_for @mediafile, :remote => true, :html => { :multipart => true } do |f| %>
 	
+	<div class="field">
+		<label for="issue_release_date">Issue</label>
+		<%= collection_select :issue, :id, Issue.order('created_at DESC'), :id, :release_date_f %>
+	</div>
+
 	<%= render 'mediafiles/mediafiles_form', :f => f %>
-	<%= select_date Date.today, :prefix => :cartoon_date %>
-	<% if @ed_series %>
-		<%= f.hidden_field :series_id, :value => @ed_series.id %>
-	<% else %>
-		<div class="alert alert-error">
-		No Editorial Cartoon series.
-		</div>
-	<% end %>
+	
+	<%= f.hidden_field :is_editorial_cartoon, value: true %>
+
 	<div class="actions">
 		<%= f.submit "Upload", :id => "mediauploadbtn", :class => "btn btn-primary" %>
 		<div id="loading">
