@@ -2,10 +2,13 @@ namespace :db do
 	desc "Migrate editorial cartoons to model"
 	task :migrate_editorial_cartoons => :environment do
 
+		EditorialCartoon.destroy_all
+
 		s = Series.find_by_title("Editorial Cartoons")
 		existing_cartoon_mediafiles = s.mediafiles
 
 		existing_cartoon_mediafiles.each do |cartoon_mediafile|
+			puts "migrating mediafile id #{cartoon_mediafile.id}"
 			cartoon_date = cartoon_mediafile.created_at
 			if cartoon_date.wday == 4 # thursday
 				issue_date = cartoon_date.to_date
@@ -29,10 +32,13 @@ namespace :db do
 				issue_id: issue_id,
 				slug: slug
 			)
+			puts "created editorial cartoon id #{editorial_cartoon.id}"
 
 			cartoon_mediafile.update_attribute(:editorial_cartoon_id, editorial_cartoon.id)
+			puts "updated mediafile"
 
 		end
+		puts "done"
 
 	end
 end
