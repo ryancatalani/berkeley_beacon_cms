@@ -13,7 +13,7 @@ class EditorialCartoonsController < ApplicationController
 	end
 
 	def edit_index
-		@cartoons = EditorialCartoon.cartoons
+		@cartoons = EditorialCartoon.order("created_at DESC")
 		if @cartoons.count == 0
 			s = Series.find_by_title("Editorial Cartoons")
 			redirect_to root_path and return if s.nil?
@@ -25,7 +25,20 @@ class EditorialCartoonsController < ApplicationController
 	def new
 		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
 		@mediafile = Mediafile.new
-		@ed_series = Series.find_by_title("Editorial Cartoons")
+	end
+
+	def edit
+		@cartoon = EditorialCartoon.find(params[:id])
+		@issue = @cartoon.issue
+		@authors = Person.order("firstname ASC").all.map { |person| [person.official_name, person.id] }
+		@mediafile = @cartoon.mediafile
+	end
+
+	def destroy
+		cartoon = EditorialCartoon.find(params[:id])
+		cartoon.mediafile.destroy
+		cartoon.destroy
+		redirect_to admin_editorial_cartoons_path
 	end
 
 end

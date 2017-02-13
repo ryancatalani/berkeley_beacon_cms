@@ -1,0 +1,22 @@
+<h2>Edit Editorial Cartoon</h2>
+<br/>
+<%= form_for @mediafile, :html => { :multipart => true } do |f| %>
+	
+	<div class="field">
+		<label for="issue_release_date">Issue</label>
+		<%= collection_select :issue, :id, Issue.order('created_at DESC'), :id, :release_date_f %>
+	</div>
+
+	<%= render 'mediafiles/mediafiles_form', :f => f %>
+	
+	<%= f.hidden_field :is_editorial_cartoon, value: true %>
+
+	<div class="actions">
+		<%= f.submit "Update", :id => "mediauploadbtn", :class => "btn btn-primary" %>
+		<div id="loading">
+			<%= image_tag "loading.gif" %>
+			Uploading...
+		</div>
+	</div>
+	
+<% end %>

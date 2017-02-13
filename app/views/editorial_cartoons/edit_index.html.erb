@@ -21,17 +21,17 @@
 		<% @cartoons.each do |cartoon| %>
 		<tr>
 			<td>
-				<%= link_to "<i class='icon-edit'></i> Edit".html_safe, '#', class: "btn" %>
-				<%= link_to "<i class='icon-trash icon-white'></i> Delete".html_safe, '#', method: :delete, confirm: "Are you sure you want to delete this cartoon?", class: "btn btn-danger" %>
+				<%= link_to "<i class='icon-edit'></i> Edit".html_safe, edit_editorial_cartoon_path(cartoon), class: "btn" %>
+				<%= link_to "<i class='icon-trash icon-white'></i> Delete".html_safe, editorial_cartoon_path(cartoon), method: :delete, confirm: "Are you sure you want to delete this cartoon?", class: "btn btn-danger" %>
 			</td>
 			<td>
-				<%= cartoon.created_at.to_s(:pretty_date) %>	
+				<%= cartoon.mediafile.created_at.to_s(:pretty_date) %>	
 			</td>
 			<td>
-				<%= cartoon.title %>	
+				<%= cartoon.mediafile.title %>	
 			</td>
 			<td>
-				<%= bylineify(cartoon) %>
+				<%= bylineify(cartoon.mediafile) %>
 			</td>
 		</tr>
 		<% end %>

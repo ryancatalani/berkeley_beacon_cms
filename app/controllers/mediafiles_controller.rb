@@ -85,6 +85,14 @@ class MediafilesController < ApplicationController
 				end # begin
 			end # each
 		end # else
+
+		if !@mediafile.editorial_cartoon_id.nil?
+			cartoon = @mediafile.editorial_cartoon
+			issue_id = params[:issue][:id]
+			issue_date = Issue.find(issue_id).release_date
+			cartoon.update_attributes(issue_id: issue_id, issue_date: issue_date)
+		end
+
 		if @mediafile.update_attributes(params[:mediafile])
 			if params[:sourcetype] == "in"
 				@mediafile.attributions.each{|a| a.destroy}
@@ -93,7 +101,13 @@ class MediafilesController < ApplicationController
 				end
 			end
 			@mediafile.check_dimensions
-			redirect_to articles_path
+
+			if !@mediafile.editorial_cartoon_id.nil?
+				redirect_to admin_editorial_cartoons_path and return
+			else
+				redirect_to articles_path
+			end
+			
 		else
 			render 'edit'
 		end
