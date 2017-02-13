@@ -207,13 +207,6 @@ class PagesController < ApplicationController
 		@videos = Mediafile.where(:mediatype => 2).order("created_at DESC").reject{|m| m.articles.count.zero? }
 	end
 
-	def editorial_cartoons
-		s = Series.find_by_title("Editorial Cartoons")
-		redirect_to root_path and return if s.nil?
-		@include_responsive = true
-		@cartoons = s.mediafiles.order("created_at DESC")
-	end
-
 	def election_guide_2012
 		@og = {}
 		@og[:title] = "Beacon Election Guide 2012"

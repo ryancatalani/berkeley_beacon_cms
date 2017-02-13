@@ -15,6 +15,7 @@ class Mediafile < ActiveRecord::Base
 	has_many :attributions
 	has_many :people, :through => :attributions
 	belongs_to :series
+	belongs_to :editorial_cartoon
 
 	# Types
 	# 0 => Media
