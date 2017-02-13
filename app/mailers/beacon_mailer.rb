@@ -1,5 +1,5 @@
 class BeaconMailer < ActionMailer::Base
-  default :from => "The Berkeley Beacon <postmaster@app1905056.mailgun.org>",
+  default :from => "The Berkeley Beacon <contact@berkeleybeacon.com>",
   	:reply_to => "The Berkeley Beacon <contact@berkeleybeacon.com>"
 
   	def reset_password_2012(name, email, password)
