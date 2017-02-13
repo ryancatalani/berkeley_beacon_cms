@@ -379,19 +379,6 @@ class ArticlesController < ApplicationController
 
 	def show
 		@article = Article.where(:cleantitle => params[:title]).order('created_at DESC').first
-		# if found.count == 1
-		# 	@article = found.first
-		# else
-		# 	begin
-		# 		date = Date.new(params[:year].to_i,params[:month].to_i,params[:day].to_i)
-		# 	rescue
-		# 		redirect_to root_path and return
-		# 	end
-		# 	a = Article.where(:created_at => (date.midnight)..(date + 1.day).midnight, :cleantitle => params[:title])
-		# 	if a.count == 1
-		# 		@article = a.first
-		# 	end
-		# end
 
 		raise ActionController::RoutingError.new('Not Found') if @article.nil?
 		redirect_to root_path and return if @article.draft? && !editor_logged_in
@@ -426,8 +413,9 @@ class ArticlesController < ApplicationController
 			@twitter_creator = "@beaconupdate"
 		end
 
+
 		# if params[:a14]=="true" && editor_logged_in
-		if cookies[:a14_hide_always].nil? && params[:proto] != "false" && !@article.videos.any?
+		if (cookies[:a14_hide_always].nil? && params[:proto] != "false" && !@article.videos.any?) || (params[:amp] && params[:amp] == "true")
 			@body_class = "a14_article"
 			# @show_prototype_banner = cookies[:a14_hide_banner] != "true"
 			# @article_section = @article.section.nil? ? Section.find_by_name('News') : @article.section
@@ -459,12 +447,21 @@ class ArticlesController < ApplicationController
 			@should_show_sidebar = !@article.series.nil? || !@article.topics.blank? || @section_issue_articles.count > 0 || @ed_board_explainer || @letter_editor_explainer
 
 			@other_sections = %w(News Opinion Arts Lifestyle Sports Feature Multimedia Events Beyond).delete_if {|n| n == @article_section.name rescue false}.map{|s| Section.find_by_name s}.compact
-			render('show2014', :layout => 'article2014') && return
+
+			@canonical_url = @article.to_url(full: true)
+
+			if params[:amp] && params[:amp] == "true"
+				render('show2014amp', layout: false) && return
+			else 
+				render('show2014', :layout => 'article2014') && return
+			end
 		end
 
 		if @article.section and @article.section.name == "Feature"
-			render 'show2013', :layout => 'article2013'
+			render('show2013', :layout => 'article2013') && return
 		end
+
+
 	end
 
 	def destroy

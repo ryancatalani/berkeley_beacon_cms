@@ -1,0 +1,118 @@
+<!doctype html>
+<html ⚡>
+	<head>
+		<meta charset="utf-8">
+		<link rel="canonical" href="<%= @canonical_url %>">
+		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+		<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+		
+
+		<script async src="https://cdn.ampproject.org/v0.js"></script>
+	</head>
+	<body>
+	
+		<nav class="topnav <%= @article_section_name.downcase %>">
+
+			<div class="amp-wrap"></div>
+
+			<div class="topnav_left">
+				<a href="/" class="topnav_b <%= @article_section_name.downcase %>"></a>
+			</div>
+
+			<div class="topnav_section">
+				<a href="/<%= @article_section_name.downcase %>" class="<%= @article_section_name.downcase %>">
+					<div class="main_wrap">
+						<% if @article_from_blog %>
+							<%= @article.blog.title %>
+							<span class="un_em"><%= @article_section_name %></span>
+						<% else %>
+							<%= @article_section_name %>
+						<% end %>
+					</div>
+				</a>
+				<ul class="section_select">
+					<% @other_sections.each do |section| %>
+					<li>
+						<a href="/<%= section.name.downcase %>" class="<%= section.name.downcase %>">
+							<div class="main_wrap">
+								<%= section.name %>
+							</div>
+						</a>
+					</li>
+					<% end %>
+				</ul>
+			</div>
+
+		</nav>
+
+		<div class="header_outer_wrap <%= @article_section_name.downcase %>">
+			<div class="main_wrap">
+				<h1><%= @article.title.html_safe %></h1>
+				<% if @article.subtitles %>
+					<% @article.subtitles.each do |subtitle| %>
+						<h2><%= subtitle %></h2>
+					<% end %>
+				<% end %>
+				<h3>by <%= bylineify_linked(@article).html_safe %> • <%= (@article.created_at).to_s(:pretty_date) %></h3>
+			</div>
+		</div>
+
+		<% if @article.images.first %>
+
+			<amp-img src="<%= @article.images.first.media.url %>" alt="<%= @article.images.first.title %>" height="400" width="800"></amp-img>
+
+			<div class="main_photo_caption">
+				<%= @article.images.first.title %>
+				<div class="credit">
+					<%= bylineify_linked(@article_mediafiles.first).html_safe %>
+				</div>
+			</div>
+		<% end %>
+
+		<div class="article_share">
+			<ul>
+				<li>
+					<a href="https://twitter.com/home?status=<%= @article.show_share_tweet %>" class="<%= @article_section_name.downcase %>" target="_blank">
+						<i class="fa fa-twitter fa-lg"></i>
+					</a>
+				</li>
+				<li id="article_fb_share_btn">
+					<a href="https://www.facebook.com/sharer/sharer.php?u=<%= @article.to_url(:full=>true) %>" class="<%= @article_section_name.downcase %>" target="_blank">
+						<i class="fa fa-facebook fa-lg"></i>
+					</a>
+					<div class="fb_slide">
+						<div class="fb-like" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" data-href="<%= @article.to_url(:full=>true) %>"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="body_outer_wrap">
+			<div class="body_inner_wrap">
+				<% if @article.images.first %>
+				<div class="main_photo_caption_inline">
+					<%= @article.images.first.title %>
+					<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+				</div>
+				<% end %>
+
+				<% if @article.first_event %>
+				<p class="event_article_info">
+					<%= @article.first_event.title %> <br>
+					<i class="fa fa-calendar fa-fw"></i> <%= @article.first_event.date_start.to_s(:pretty_date_and_time) %> <br>
+					<i class="fa fa-map-marker fa-fw"></i> <%= @article.first_event.location %>
+					<% if @article.first_event.link? %>
+					<br>
+					<em><i class="fa fa-external-link fa-fw"></i> <%= link_to "Link (#{URI.parse(@article.first_event.link).host})", @article.first_event.link %></em>
+					<% end %>
+				</p>
+				<% end %>
+
+				<div class="body_text">
+					<%= @article.body.html_safe %>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
