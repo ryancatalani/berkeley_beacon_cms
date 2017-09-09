@@ -128,7 +128,7 @@ class ArticlesController < ApplicationController
 				rescue
 				end
 			end
-			tweet(is_draft, queue_tweet)
+			# tweet(is_draft, queue_tweet)
 			redirect_to new_article_url, :notice => "Article #{is_draft ? 'saved!' : 'posted'}!"
 		else
 			logger.debug @article.errors.full_messages.join("\n")
@@ -365,7 +365,7 @@ class ArticlesController < ApplicationController
 				# rescue
 				# end
 			end
-			tweet(is_draft, queue_tweet) if was_draft
+			# tweet(is_draft, queue_tweet) if was_draft
 			redirect_to "/articles#a_#{@article.id}"
 		else
 			@sections = Section.all.map { |s| [s.name, s.id] }
