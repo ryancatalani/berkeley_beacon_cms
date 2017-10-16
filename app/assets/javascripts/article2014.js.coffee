@@ -88,25 +88,25 @@ jQuery ->
 			$(this).wrap('<div class="inline_img_wrap"></div>')
 			$(this).parent().append("<div class='inline_img_caption'>#{ alt }</div>")
 
-	news_sub_ck = $.cookie 'news_sub_ck'
-	set_news_sub_ck = (val) -> 
-		$.cookie 'news_sub_ck', val,
-			expires: 365
-			path: '/'
-	switch news_sub_ck
-		when '0', '1', '2'
-			val = parseInt(news_sub_ck) + 1
-			set_news_sub_ck(val)
-		when '3'
-			set_news_sub_ck('0')
-			$('.news_sub_banner').fadeIn('fast')
-		when 'true'
-			return
-		else
-			set_news_sub_ck('0')
-	$('a.news_sub_banner_dismiss').click (e) ->
-		e.preventDefault()
-		$('.news_sub_banner').fadeOut('fast')
-		set_news_sub_ck('true')
-		return false
+	# news_sub_ck = $.cookie 'news_sub_ck'
+	# set_news_sub_ck = (val) -> 
+	# 	$.cookie 'news_sub_ck', val,
+	# 		expires: 365
+	# 		path: '/'
+	# switch news_sub_ck
+	# 	when '0', '1', '2'
+	# 		val = parseInt(news_sub_ck) + 1
+	# 		set_news_sub_ck(val)
+	# 	when '3'
+	# 		set_news_sub_ck('0')
+	# 		$('.news_sub_banner').fadeIn('fast')
+	# 	when 'true'
+	# 		return
+	# 	else
+	# 		set_news_sub_ck('0')
+	# $('a.news_sub_banner_dismiss').click (e) ->
+	# 	e.preventDefault()
+	# 	$('.news_sub_banner').fadeOut('fast')
+	# 	set_news_sub_ck('true')
+	# 	return false
 	
