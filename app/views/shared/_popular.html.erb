@@ -13,19 +13,15 @@
 	<div id="popular_most_viewed">
 		<ol>
 			<% popular_articles.each do |story| %>
-				<div class="popular-story">
-					<li>
-						<a href="<%= story.to_url %>">
-							<div class="popular_img_wrap">
-								<%= story.first_photo ? image_tag(story.first_photo.media.thumb_40.url) : "&nbsp;".html_safe %>
-							</div>
-							<div class="popular_story_title">
-								<%= truncate story.title, :length => 60 %>
-							</div>
-							<div class="clear"></div>
-						</a>
-					</li>
-				</div>
+				<li>
+					<a href="<%= story.to_url %>">
+						<div class="popular_img_wrap">
+							<%= story.first_photo ? image_tag(story.first_photo.media.thumb_40.url) : "&nbsp;".html_safe %>
+						</div>
+						<%= truncate story.title, :length => 60 %>
+						<div class="clear"></div>
+					</a>
+				</li>
 			<% end %>
 		</ol>
 	</div>
@@ -34,18 +30,16 @@
 		<ol>
 			<% PopularSnapshot.latest_most_shared.each do |arr| %>
 				<% story = arr[0] %>
-				<div class="popular-story">
-					<li>
-						<a href="<%= story.to_url %>">
-							<div class="popular_shares_wrap">
-								<%= arr[1] %>
-								<div class="popular_shares_t">shares</div>
-							</div>
-							<%= truncate story.title, :length => 60 %>
-							<div class="clear"></div>
-						</a>
-					</li>
-				</div>
+				<li>
+					<a href="<%= story.to_url %>">
+						<div class="popular_shares_wrap">
+							<%= arr[1] %>
+							<div class="popular_shares_t">shares</div>
+						</div>
+						<%= truncate story.title, :length => 60 %>
+						<div class="clear"></div>
+					</a>
+				</li>
 			<% end %>
 		</ol>
 	</div>
