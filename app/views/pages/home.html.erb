@@ -238,8 +238,6 @@
 
 			<div class="section-box">
 				<h4>From the blogs</h4>
-				<strong><a href="http://berkeleybeacon.tumblr.com">The Beacon on Tumblr</a></strong>
-				<div class="l_quo_border">Latest Entry: <%= link_to @tumblr_latest_title.html_safe, @tumblr_latest_url %></div>
 				<% @blogs.each do |blog| %>
 					<% unless blog.articles.empty? %>
 						<strong><%= link_to blog.title, blog.to_url %></strong>

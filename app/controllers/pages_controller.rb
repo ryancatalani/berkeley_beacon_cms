@@ -29,17 +29,6 @@ class PagesController < ApplicationController
 		@latest_issue = Issue.latest
 
 		@latest_issue_events = Article.where(:issue_id => Issue.latest, :section_id => Section.find_by_name('Events').id) rescue []
-		begin
-			tumblr_latest = Timeout::timeout(5) {
-				Feedzirra::Feed.fetch_and_parse("http://berkeleybeacon.tumblr.com/rss").entries.first
-			}
-			@tumblr_latest_title = tumblr_latest.title
-			@tumblr_latest_summary = tumblr_latest.summary
-			@tumblr_latest_url = tumblr_latest.url
-		rescue
-			@tumblr_latest_title = "Click here to see the latest post."
-			@tumblr_latest_url = "http://berkeleybeacon.tumblr.com"
-		end
 		@og ||= {}
 		@og[:description] = "Emerson College's independent student newspaper"
 	end

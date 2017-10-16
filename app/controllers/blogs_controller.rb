@@ -2,15 +2,6 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.all
     @include_responsive = true
-    begin
-      tumblr_entries = Feedzirra::Feed.fetch_and_parse("http://berkeleybeacon.tumblr.com/rss").entries
-      @tumblr_latest = tumblr_entries.first
-      @tumblr_last_5 = tumblr_entries[1, 5]
-    rescue
-      @tumblr_latest = nil
-      @tumblr_last_5 = nil
-    end
-    logger.debug "tumblr_latest is #{@tumblr_latest}"
   end
 
   def new

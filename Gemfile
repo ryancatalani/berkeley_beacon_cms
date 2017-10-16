@@ -1,19 +1,16 @@
 source 'http://rubygems.org'
 ruby "2.1.2"
 
-gem 'rails', '3.2.17'
+gem 'rails', '4.0.13'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'sass-rails',   '~> 4.0.0.rc1'
+gem 'coffee-rails', '~> 4.0.0.rc1'
+gem 'uglifier', '>= 1.3.0'
+
 
 gem 'jquery-rails'
 gem 'carrierwave-aws'
@@ -27,10 +24,10 @@ gem 'mini_magick'
 # gem 'rmagick'
 gem "twitter", "~> 4.8.1"
 gem 'will_paginate', '~> 3.0'
-gem 'geocoder'
-gem 'fb_graph'
+# gem 'geocoder'
+# gem 'fb_graph'
 gem "koala", "~> 2.2"
-gem 'feedzirra'
+# gem 'feedzirra'
 gem 'newrelic_rpm', '~> 3.5.7.59'
 gem 'swiftype'
 gem 'memcachier'
