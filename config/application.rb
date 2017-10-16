@@ -47,9 +47,6 @@ module BeaconApp
 
     config.filepicker_rails.api_key = '***REMOVED***'
 
-    # http://simonecarletti.com/blog/2012/02/heroku-and-rails-3-2-assetprecompile-error/
-    config.assets.initialize_on_precompile = false
-
     config.active_record.whitelist_attributes = false
   end
 end
