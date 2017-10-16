@@ -3,90 +3,90 @@ BeaconApp::Application.routes.draw do
   get "outbox/weekly_newsletter"
 
 	controller :people do
-		match "/staff/:name", :to => :show
+		get "/staff/:name", :to => :show
 	end
 
-  match '/search', to: 'pages#search_frontend', as: 'search'
+  get '/search', to: 'pages#search_frontend', as: 'search'
 
-	match '/stylebook', :to => 'stylebook_entries#index'
-	match '/tips', :to => 'pages#tips'
+	get '/stylebook', :to => 'stylebook_entries#index'
+	get '/tips', :to => 'pages#tips'
 	match '/send_tip', :to => 'pages#send_tip', :via => :post
 	match '/new_media_person', :to => 'people#new_media_person', :via => :post
 	match '/new_tag/:tag_id/article/:article_id', :to => 'taggings#new_tagging', :via => :post
 
-  match '/ecla', :to => 'pages#emersonla'
-  match '/emersonla', :to => 'pages#emersonla'
+  get '/ecla', :to => 'pages#emersonla'
+  get '/emersonla', :to => 'pages#emersonla'
   # match '/emersonla-live', :to => 'pages#emersonla_live'
   # match '/beacon_ecla_tweets', :to => 'pages#beacon_ecla_tweets'
   # match '/all_ecla_tweets', :to => 'pages#all_ecla_tweets'
 
   match '/archive_problem/:url', :to => 'pages#archive_problem', :via => :post
 
-  match '/ourvoice', :to => 'pages#ourvoice'
-  match '/ournewvoice', :to => 'pages#ourvoice'
-  match '/redesign', :to => 'pages#ourvoice'
+  get '/ourvoice', :to => 'pages#ourvoice'
+  get '/ournewvoice', :to => 'pages#ourvoice'
+  get '/redesign', :to => 'pages#ourvoice'
 
-  match '/apply', :to => 'pages#apply'
+  get '/apply', :to => 'pages#apply'
 
-  match '/settings', :to => 'people#settings'
-  match '/videos', :to => 'pages#videos'
-  match '/election_guide_2012', :to => 'pages#election_guide_2012'
-  match '/election_guide_2012/poll_results', :to => 'pages#political_poll_results'
-  match '/election_guide_2012/map', :to => 'pages#election_map'
-  match '/projects/emersonla', :to => 'pages#emersonla'
-  match '/projects/emersonla/stories', :to => 'pages#emersonla_videos'
-  match '/projects/commencement2014', :to => 'pages#commencement2014'
-  match '/projects/campusdata', to: 'pages#campus_data'
-  match '/projects/year_in_review_2014', to: 'pages#year_in_review_2014'
-  match '/projects/race_at_emerson', to: 'pages#race_at_emerson'
-  match '/projects/snow_calculator', to: 'pages#snow_calculator'
-  match '/projects/website-in-1997', to: 'pages#website1997'
-  match '/projects/title_ix', to: 'pages#title_ix'
-  match '/projects/housing_in_boston', to: 'pages#neighborhoods2015'
-  match '/projects/adjunct_calculator', to: 'pages#adjunct_calculator'
-  match '/projects/climate_survey', to: 'pages#climate_survey'
-  match '/projects/review_2014_2015', to: 'pages#review_2014_2015'
+  get '/settings', :to => 'people#settings'
+  get '/videos', :to => 'pages#videos'
+  get '/election_guide_2012', :to => 'pages#election_guide_2012'
+  get '/election_guide_2012/poll_results', :to => 'pages#political_poll_results'
+  get '/election_guide_2012/map', :to => 'pages#election_map'
+  get '/projects/emersonla', :to => 'pages#emersonla'
+  get '/projects/emersonla/stories', :to => 'pages#emersonla_videos'
+  get '/projects/commencement2014', :to => 'pages#commencement2014'
+  get '/projects/campusdata', to: 'pages#campus_data'
+  get '/projects/year_in_review_2014', to: 'pages#year_in_review_2014'
+  get '/projects/race_at_emerson', to: 'pages#race_at_emerson'
+  get '/projects/snow_calculator', to: 'pages#snow_calculator'
+  get '/projects/website-in-1997', to: 'pages#website1997'
+  get '/projects/title_ix', to: 'pages#title_ix'
+  get '/projects/housing_in_boston', to: 'pages#neighborhoods2015'
+  get '/projects/adjunct_calculator', to: 'pages#adjunct_calculator'
+  get '/projects/climate_survey', to: 'pages#climate_survey'
+  get '/projects/review_2014_2015', to: 'pages#review_2014_2015'
   
-  match '/projects/oscars2012', :to => 'pages#oscars'
-  match '/projects/oscars2013', :to => 'pages#oscars2013'
-  match '/projects/oscars2014', :to => 'pages#oscars2014'
-  match '/projects/oscars2015', to: 'pages#oscars2015'
+  get '/projects/oscars2012', :to => 'pages#oscars'
+  get '/projects/oscars2013', :to => 'pages#oscars2013'
+  get '/projects/oscars2014', :to => 'pages#oscars2014'
+  get '/projects/oscars2015', to: 'pages#oscars2015'
 
-  match '/api/top5', :to => 'pages#statusboard_top_5_json'
-  match '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'
+  get '/api/top5', :to => 'pages#statusboard_top_5_json'
+  get '/api/pop_views_ck_data', :to => 'articles#pop_views_ck_data'
   match '/api/special_coverage/new_update', :to => 'special_coverages#new_update', :via => :post
-  match '/api/check_slug', to: 'articles#check_slug'
-  match '/api/pop_data', to: 'articles#pop_data_api'
-  match '/api/series/:slug', to: 'series#api_list_by_slug'
-  match '/api/topics/:slug', to: 'topics#api_list_by_slug'
-  match '/api/sections/:slug', to: 'sections#api_list_by_slug'
-  match '/api/search_article_data', to: 'articles#search_edit_frontend_data'
+  get '/api/check_slug', to: 'articles#check_slug'
+  get '/api/pop_data', to: 'articles#pop_data_api'
+  get '/api/series/:slug', to: 'series#api_list_by_slug'
+  get '/api/topics/:slug', to: 'topics#api_list_by_slug'
+  get '/api/sections/:slug', to: 'sections#api_list_by_slug'
+  get '/api/search_article_data', to: 'articles#search_edit_frontend_data'
 
-  match '/admin/poll_results', :to => 'admin#poll_results'
-  match '/admin/published_in_date_range/:dates', to: 'admin#published_in_date_range'
-  match '/admin/controls', to: 'admin#controls'
-  match '/admin/masthead', to: 'admin#edit_masthead'
+  get '/admin/poll_results', :to => 'admin#poll_results'
+  get '/admin/published_in_date_range/:dates', to: 'admin#published_in_date_range'
+  get '/admin/controls', to: 'admin#controls'
+  get '/admin/masthead', to: 'admin#edit_masthead'
   match '/admin/masthead/update', to: 'admin#update_masthead', via: :put
-  match '/admin/search_edit', :to => 'articles#search_edit_frontend'
+  get '/admin/search_edit', :to => 'articles#search_edit_frontend'
 
-  match '/opinion/editorial_cartoons',    to: 'editorial_cartoons#index'
-  match '/admin/editorial_cartoons',      to: 'editorial_cartoons#edit_index'
-  match "/new_editorial_cartoon"          => redirect("/editorial_cartoons/new")
+  get '/opinion/editorial_cartoons',    to: 'editorial_cartoons#index'
+  get '/admin/editorial_cartoons',      to: 'editorial_cartoons#edit_index'
+  get "/new_editorial_cartoon"          => redirect("/editorial_cartoons/new")
   resources :editorial_cartoons
 
-  match '/admin/article', to: 'articles#newnew'
+  get '/admin/article', to: 'articles#newnew'
 
-  match '/issues/view/:date', :to => 'issues#show', :via => :get
-  match '/events/:uid/:slug', :to => 'events#show'
+  get '/issues/view/:date', :to => 'issues#show'
+  get '/events/:uid/:slug', :to => 'events#show'
 
-  match '/issues/latest_rss', :to => 'issues#latest_issue_rss', :format => :rss
-  match '/issues/latest_issue_top_story_rss', :to => 'issues#latest_issue_top_story_rss', :format => :rss
-  match '/issues/latest_issue_featured_stories_rss', :to => 'issues#latest_issue_featured_stories_rss', :format => :rss
-  match '/issues/latest_issue_lead_image_rss', :to => 'issues#latest_issue_lead_image_rss', :format => :rss
-  match '/issues/latest_issue_second_image_rss', :to => 'issues#latest_issue_second_image_rss', :format => :rss
+  get '/issues/latest_rss', :to => 'issues#latest_issue_rss', :format => :rss
+  get '/issues/latest_issue_top_story_rss', :to => 'issues#latest_issue_top_story_rss', :format => :rss
+  get '/issues/latest_issue_featured_stories_rss', :to => 'issues#latest_issue_featured_stories_rss', :format => :rss
+  get '/issues/latest_issue_lead_image_rss', :to => 'issues#latest_issue_lead_image_rss', :format => :rss
+  get '/issues/latest_issue_second_image_rss', :to => 'issues#latest_issue_second_image_rss', :format => :rss
 
-  match '/newsletter/signup', to: 'pages#weekly_newsletter'
-  match '/outbox/latest_weekly', to: 'outbox#weekly_newsletter'
+  get '/newsletter/signup', to: 'pages#weekly_newsletter'
+  get '/outbox/latest_weekly', to: 'outbox#weekly_newsletter'
 
 	resources :stylebook_entries, :except => [:show]
 	resources :series, :only => [:new, :create, :edit, :update, :index]
@@ -105,13 +105,13 @@ BeaconApp::Application.routes.draw do
   resources :events, :except => [:new, :show]
   resources :custom_pages, only: [:new, :create, :edit, :update]
 
-  match '/special/:id/:slug', to: 'special_coverages#show'
+  get '/special/:id/:slug', to: 'special_coverages#show'
 
-  match '/pgvw/:article_id', :to => 'articles#increase_pageview'
+  get '/pgvw/:article_id', :to => 'articles#increase_pageview'
 
-	match '/login', :to => 'sessions#new'
-	match '/logout', :to => 'sessions#destroy'
-	match '/about', :to => 'pages#about'
+	get '/login', :to => 'sessions#new'
+	get '/logout', :to => 'sessions#destroy'
+	get '/about', :to => 'pages#about'
 	root :to => 'pages#home'
   # root :to => 'pages#static_home'
 
@@ -120,28 +120,28 @@ BeaconApp::Application.routes.draw do
 			scope ":year" do
 				scope ":month" do
 					scope ":day" do
-						match ":title", :to => :show, :as => :getselectedarticle
+						get ":title", :to => :show, :as => :getselectedarticle
 					end
 				end
 			end
 		end
 	end
 
-  match "/arts-and-entertainment" => redirect("/arts")
+  get "/arts-and-entertainment" => redirect("/arts")
 	controller :sections do
-		match ":name", :to => :show
+		get ":name", :to => :show
 	end
   controller :blogs do
-    match "/blogs/:name", :to => :show
+    get "/blogs/:name", :to => :show
   end
   controller :topics do
-    match "/topics/:slug", :to => :show
+    get "/topics/:slug", :to => :show
   end
   controller :series do
-    match "/series/:slug", to: :show
+    get "/series/:slug", to: :show
   end
 
-  match '/go/:slug', :to => 'short_links#redirect'
+  get '/go/:slug', :to => 'short_links#redirect'
 
 
   # The priority is based upon order of creation:
