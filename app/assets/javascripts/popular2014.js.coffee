@@ -7,6 +7,9 @@ jQuery ->
 		pv_pf.attr('href', viewed_data[0].url)
 		if viewed_data[0].thumb_220
 			$('<img>').attr(src: viewed_data[0].thumb_220).appendTo pv_pf
+			$('#popular_viewed').addClass('pop_has_img')
+		else
+			$('#popular_viewed').addClass('pop_no_img')
 		pv_pf.append("1. #{ viewed_data[0].title }")
 
 		pv_ol = $('#popular_viewed').find('ol')
@@ -34,6 +37,9 @@ jQuery ->
 
 		if shared_data[0].thumb_220
 			$('<img>').attr(src: shared_data[0].thumb_220).appendTo ps_pf
+			$('#popular_shared').addClass('pop_has_img')
+		else
+			$('#popular_shared').addClass('pop_no_img')
 		ps_pf.append("<div>
 				<span class='share_count'>#{ ps_pf_shares }</span>
 				1. #{ shared_data[0].title }

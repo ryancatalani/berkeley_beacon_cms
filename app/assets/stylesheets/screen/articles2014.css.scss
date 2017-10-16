@@ -650,30 +650,38 @@ body.a14 {
 			&:after {
 				@include clearfix;
 			}
-			.popular_first {
-				display: block;
-				float: left;
-				width: 48%;
-				margin-right: 4%;
-				@media(max-width: $breakpoint_3) {
-					width: 100%;
-					margin-right: 0;
-					padding-bottom: 0.5em;
-					border-bottom: 1px solid $light_border;
-				}
-				img {
-					width: 100%;
-					&.emoji {
-						width: 1.5em;
+			&.pop_has_img {
+				.popular_first {
+					display: block;
+					float: left;
+					width: 48%;
+					margin-right: 4%;
+					@media(max-width: $breakpoint_3) {
+						width: 100%;
+						margin-right: 0;
+						padding-bottom: 0.5em;
+						border-bottom: 1px solid $light_border;
+					}
+					img {
+						width: 100%;
+						&.emoji {
+							width: 1.5em;
+						}
 					}
 				}
+				ol {
+					float: left;
+					width: 48%;
+					@media(max-width: $breakpoint_3) {
+						width: 100%;
+					}	
+				}	
+			}
+			.popular_first {
+				display: block;
+				@include list_li;
 			}
 			ol {
-				float: left;
-				width: 48%;
-				@media(max-width: $breakpoint_3) {
-					width: 100%;
-				}
 				list-style-type: decimal;
 				list-style-position: inside;
 			}
