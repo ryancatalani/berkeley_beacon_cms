@@ -153,7 +153,7 @@
 	<% end %>
 	<% end %>
 
-	
+	<% if @section_issue_articles.any? %>
 	<div class="sidebar" data-type="sections" data-slug="<%= @article_section_slug %>" style="display:none">
 		<div class="sidebar_head <%= @article_section_name.downcase %>">
 			More from <%= @article_section_name %>
@@ -162,6 +162,7 @@
 			<ul></ul>
 		</div>
 	</div>
+	<% end %>
 
 <% if @should_show_sidebar %>
 	</div>

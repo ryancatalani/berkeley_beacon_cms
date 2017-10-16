@@ -61,7 +61,6 @@ class ArticlesController < ApplicationController
 			cookies[:already_uploaded] << params[:mediafiles].values.join(' ') << ' '
 		end
 		p[:articletype] = params[:articletype].to_i
-		p[:series_id] = params[:series_id].to_i
 		subs = params[:subtitle].nil? ? [] : params[:subtitle].values.map{|s| Rumoji.encode(s)}
 		p[:subtitles] = subs
 		p[:title] = Rumoji.encode(p[:title])
@@ -308,6 +307,8 @@ class ArticlesController < ApplicationController
 		p = params[:article]
 		subs = params[:subtitle].nil? ? [] : params[:subtitle].values.map{|s| Rumoji.encode(s)}
 		p[:subtitles] = subs
+		logger.debug "subtitles!"
+		logger.debug subs
 		p[:title] = Rumoji.encode(p[:title])
 		# p[:cleantitle] = p[:title].strip.downcase.gsub(/[^A-z0-9\s]/,'').split(' ').first(8).join('-')
 		p[:section_id] = params[:section].to_i
@@ -498,7 +499,10 @@ class ArticlesController < ApplicationController
 	private
 
 	def article_params
-		params.require(:article).permit(:title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id, :section_id, :archive, :archive_images, :blog_id, :link_only, :link, :issue_id, :event_day)
+		params.require(:article).permit(:title, :body, :excerpt, :articletype, :people,
+			:cleantitle, :series_id, :section_id, :archive,
+			:archive_images, :blog_id, :link_only, :link, :issue_id, :event_day,
+			:subtitles => [])
 	end
 
 	def expire_article_touches
@@ -507,7 +511,9 @@ class ArticlesController < ApplicationController
 
 	def can_queue_tweet?
 		# Return true only if it's a Wednesday or Thursday, or in development
-		Time.now.strftime("%A").in?( %w(Wednesday Thursday) ) || Rails.env.development?
+		# Time.now.strftime("%A").in?( %w(Wednesday Thursday) ) || Rails.env.development?
+		# Disable auto-tweeting
+		false
 	end
 
 	def tweet(is_draft, queue_tweet, was_draft=false)

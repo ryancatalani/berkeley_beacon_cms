@@ -36,4 +36,7 @@ BeaconApp::Application.configure do
     config.ignore_download_errors = false
   end
 
+  # Fix for https://stackoverflow.com/questions/21938124/why-is-my-rails-server-logging-everything-twice
+  config.logger = Logger.new('/dev/null')
+
 end
