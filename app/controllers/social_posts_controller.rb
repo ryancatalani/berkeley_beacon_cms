@@ -30,7 +30,7 @@ class SocialPostsController < ApplicationController
     p = params[:social_post]
     p[:posted] = false
     article = Article.find(p[:article_id])
-    @post = article.social_posts.build(params[:social_post])
+    @post = article.social_posts.build(social_post_params)
     if @post.save
       redirect_to social_posts_path
     else
@@ -49,7 +49,7 @@ class SocialPostsController < ApplicationController
 
   def update
     @post = SocialPost.find(params[:id])
-    if @post.update_attributes(params[:social_post])
+    if @post.update_attributes(social_post_params)
       redirect_to social_posts_path
     else
       render 'new'
@@ -59,6 +59,12 @@ class SocialPostsController < ApplicationController
   def destroy
     SocialPost.find(params[:id]).destroy
     redirect_to social_posts_path
+  end
+
+  private
+
+  def social_post_params
+    params.require(:social_post).permit(:status_text, :post_time, :network, :posted, :in_queue)
   end
 
 end

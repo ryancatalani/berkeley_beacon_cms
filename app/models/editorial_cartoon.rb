@@ -1,5 +1,5 @@
 class EditorialCartoon < ActiveRecord::Base
-  attr_accessible :issue_id, :slug, :issue_date
+
   has_one :mediafile
   belongs_to :issue
 

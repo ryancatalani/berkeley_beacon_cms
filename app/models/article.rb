@@ -2,7 +2,6 @@ class Article < ActiveRecord::Base
 	include AlgoliaSearch
 
 	validates_presence_of :title, :body, :articletype
-	attr_accessible :title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id, :section_id, :archive, :archive_images, :blog_id, :link_only, :link, :issue_id, :event_day
 	has_many :authorships
 	has_many :people, :through => :authorships
 	has_many :taggings

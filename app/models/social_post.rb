@@ -1,5 +1,4 @@
 class SocialPost < ActiveRecord::Base
-	attr_accessible :status_text, :post_time, :network, :posted, :in_queue
 	validates :status_text, :network, :presence => true
 	belongs_to :article
 

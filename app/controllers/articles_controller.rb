@@ -89,10 +89,10 @@ class ArticlesController < ApplicationController
 		p[:body] = p[:excerpt] if p[:link_only] == "1"
 
 		if p[:blog_id].to_i.zero? or p[:blog_id].nil?
-			@article = Section.find(p[:section_id]).articles.build(p)
+			@article = Section.find(p[:section_id]).articles.build(article_params)
 		else
 			p[:section_id] = nil
-			@article = Blog.find(p[:blog_id]).articles.build(p)
+			@article = Blog.find(p[:blog_id]).articles.build(article_params)
 		end
 
 		queue_tweet = !params[:post_when].nil? and params[:post_when] == "post_later"
@@ -330,7 +330,7 @@ class ArticlesController < ApplicationController
 		p[:body] = Rumoji.encode(p[:body])
 		p[:excerpt] = Rumoji.encode(p[:excerpt])
 
-		if @article.update_attributes(p)
+		if @article.update_attributes(article_params)
 			@article.update_attribute(:draft,is_draft)
 			Authorship.where(:article_id => @article.id).each { |a| a.delete }
 
@@ -496,6 +496,10 @@ class ArticlesController < ApplicationController
 	end
 
 	private
+
+	def article_params
+		params.require(:article).permit(:title, :body, :excerpt, :articletype, :people, :subtitles, :cleantitle, :series_id, :section_id, :archive, :archive_images, :blog_id, :link_only, :link, :issue_id, :event_day)
+	end
 
 	def expire_article_touches
 		expire_page :controller => 'sections', :action => 'show'

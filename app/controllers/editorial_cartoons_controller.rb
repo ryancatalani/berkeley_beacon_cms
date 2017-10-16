@@ -41,4 +41,10 @@ class EditorialCartoonsController < ApplicationController
 		redirect_to admin_editorial_cartoons_path
 	end
 
+	private
+
+	def editorial_cartoon_params
+		params.require(:editorial_cartoon).permit(:issue_id, :slug, :issue_date)
+	end
+
 end

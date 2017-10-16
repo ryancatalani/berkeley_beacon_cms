@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.0.13)
       actionpack (= 4.0.13)
@@ -130,6 +130,8 @@ GEM
     newrelic_rpm (3.5.7.59)
     nokogiri (1.5.11)
     pg (0.21.0)
+    protected_attributes (1.1.4)
+      activemodel (>= 4.0.1, < 5.0)
     public_suffix (3.0.0)
     rack (1.5.5)
     rack-test (0.6.3)
@@ -219,6 +221,7 @@ DEPENDENCIES
   newrelic_rpm (~> 3.5.7.59)
   nokogiri
   pg
+  protected_attributes
   rails (= 4.0.13)
   remotipart (~> 1.0)
   ruby-prof

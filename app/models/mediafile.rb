@@ -1,11 +1,6 @@
 class Mediafile < ActiveRecord::Base
 	include AlgoliaSearch
 
-	attr_accessible :title, :description, :mediatype, :media, :source,
-		:video_webm, :video_mp4, :video_ogg,
-		:remote_video_mp4_url, :remote_video_ogg_url, :remote_video_webm_url,
-		:direct_mp4_url, :direct_ogg_url, :direct_webm_url, :series_id,
-		:direct_audio_mp3_url, :direct_audio_ogg_url, :editorial_cartoon_id
 	mount_uploader :media, MediaUploader
 	mount_uploader :video_mp4, MediaUploader
 	mount_uploader :video_ogg, MediaUploader

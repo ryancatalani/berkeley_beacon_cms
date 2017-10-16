@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 ruby "2.1.2"
 
 gem 'rails', '4.0.13'
@@ -11,6 +11,7 @@ gem 'sass-rails',   '~> 4.0.0.rc1'
 gem 'coffee-rails', '~> 4.0.0.rc1'
 gem 'uglifier', '>= 1.3.0'
 
+gem 'protected_attributes'
 
 gem 'jquery-rails'
 gem 'carrierwave-aws'

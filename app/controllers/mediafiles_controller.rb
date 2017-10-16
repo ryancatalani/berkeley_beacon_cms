@@ -46,7 +46,7 @@ class MediafilesController < ApplicationController
 			p[:editorial_cartoon_id] = cartoon.id
 		end
 
-		@mediafile = Mediafile.new(p)
+		@mediafile = Mediafile.new(mediafile_params)
 		if @mediafile.save
 			if params[:sourcetype] == "in"
 				creators.each do |creator|
@@ -93,7 +93,7 @@ class MediafilesController < ApplicationController
 			cartoon.update_attributes(issue_id: issue_id, issue_date: issue_date)
 		end
 
-		if @mediafile.update_attributes(params[:mediafile])
+		if @mediafile.update_attributes(mediafile_params)
 			if params[:sourcetype] == "in"
 				@mediafile.attributions.each{|a| a.destroy}
 				creators.each do |creator|
@@ -117,6 +117,14 @@ class MediafilesController < ApplicationController
     file = Mediafile.find(params[:id])
     file.destroy
     redirect_to articles_path
+  end
+
+  def mediafile_params
+  	params.require(:mediafile).permit(:title, :description, :mediatype, :media, :source,
+		:video_webm, :video_mp4, :video_ogg,
+		:remote_video_mp4_url, :remote_video_ogg_url, :remote_video_webm_url,
+		:direct_mp4_url, :direct_ogg_url, :direct_webm_url, :series_id,
+		:direct_audio_mp3_url, :direct_audio_ogg_url, :editorial_cartoon_id)
   end
 
 

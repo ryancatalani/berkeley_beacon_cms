@@ -93,6 +93,10 @@ class HomeLayoutsController < ApplicationController
 
   private
 
+  def home_layout_params
+    params.require(:home_layout).permit(:layout_type, :articles, :breaking_text, :breaking_article, :custom_top_html)
+  end
+
   def std_ref(ref)
     if ref.include?('berkeleybeacon.com') || ref.include?('localhost:3000')
       slug = ref.split('/').pop

@@ -19,7 +19,7 @@ class CustomPagesController < ApplicationController
 	def update
 		@page = CustomPage.find(params[:id])
 		p = params[:custom_page]
-		if @page.update_attributes(p)
+		if @page.update_attributes(custom_page_params)
 			redirect_to people_path
 		else
 			render 'edit'
@@ -45,6 +45,12 @@ class CustomPagesController < ApplicationController
 		@og[:description] = "What's your beat? Find it with the Beacon. Applications for staff positions are due on Friday, April 19."
 		@applications_open = true
 		render :show, layout: 'new_header'
+	end
+
+	private
+
+	def custom_page_params
+		params.require(:custom_page).permit(:content, :slug, :title)
 	end
 
 end

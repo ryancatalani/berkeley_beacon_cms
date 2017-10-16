@@ -8,7 +8,7 @@ class ShortLinksController < ApplicationController
 	end
 
 	def create
-		@short_link = ShortLink.new(params[:short_link])
+		@short_link = ShortLink.new(short_link_params)
 		if @short_link.save
 			render :json => { :full_path => @short_link.full_path, :destination => @short_link.destination, :id => @short_link.id }
 		else
@@ -29,6 +29,12 @@ class ShortLinksController < ApplicationController
 		# Ignoring prefix for now; assuming it's 'berkeleybeacon.com/go/'
 		short_link = ShortLink.find_by_link_text(params[:slug])
 		redirect_to short_link.destination and return
+	end
+
+	private
+
+	def short_link_params
+		params.require(:short_link).permit(:prefix, :link_text, :destination)
 	end
 
 end

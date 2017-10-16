@@ -42,7 +42,7 @@ class IssuesController < ApplicationController
 			logger.info "Issue creating PDF thumbnail"
 		end
 
-		if @issue.update_attributes(p) && thumbnail_created
+		if @issue.update_attributes(issue_params) && thumbnail_created
 			redirect_to articles_path
 		else
 			render 'edit'
@@ -132,6 +132,12 @@ class IssuesController < ApplicationController
 		end 
 
 		render 'latest_issue_image_rss'
+	end
+
+	private
+
+	def issue_params
+		params.require(:issue).permit(:release_date, :pdf_url, :pdf_thumb_url)
 	end
 
 end
