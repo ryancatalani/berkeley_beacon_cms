@@ -677,9 +677,13 @@ body.a14 {
 					}	
 				}	
 			}
+			&.pop_no_img {
+				.popular_first {	
+					@include list_li;
+				}
+			}
 			.popular_first {
 				display: block;
-				@include list_li;
 			}
 			ol {
 				list-style-type: decimal;
