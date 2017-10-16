@@ -435,7 +435,7 @@ class ArticlesController < ApplicationController
 			end
 					
 
-			@section_issue_articles = Article.where(:issue_id => Issue.latest.id, :section_id => @article_section.id, :draft => false).all.delete_if {|a| a.id == @article.id } rescue []
+			@section_issue_articles = Article.where(:issue_id => Issue.latest.id, :section_id => @article_section.id, :draft => false).delete_if {|a| a.id == @article.id } rescue []
 
 			if @article.people.any? && @article.people.first.full_name == "Editorial Board"
 				@ed_board_explainer = true

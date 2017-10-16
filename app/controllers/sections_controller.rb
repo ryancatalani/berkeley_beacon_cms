@@ -16,7 +16,7 @@ class SectionsController < ApplicationController
 	def api_list_by_slug
 		begin
 			section = Section.find_by_clean_url params[:slug]
-			articles = Article.where(:issue_id => Issue.latest.id, :section_id => section.id, :draft => false).all
+			articles = Article.where(:issue_id => Issue.latest.id, :section_id => section.id, :draft => false)
 			render json: api_wrangle_articles(articles)
 		rescue
 			render json: []
