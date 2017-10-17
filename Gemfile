@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 ruby "2.1.2"
 
-gem 'rails', '4.1.16'
+gem 'rails', '4.2.10'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 
-gem 'sass-rails',   '~> 4.0.0.rc1'
-gem 'coffee-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 5.0'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'protected_attributes'
@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'carrierwave-aws'
 gem "remotipart", "~> 1.0"
 gem 'tinymce-rails'
-gem "fog", "~> 1.7.0"
+gem "fog"
 gem 'faker'
 gem 'exception_notification'
 gem 'nokogiri'
@@ -39,6 +39,9 @@ gem 'rumoji'
 gem 'algoliasearch-rails'
 gem 'airbrake'
 
+ # bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0', group: :doc
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 
@@ -59,7 +62,11 @@ group :test do
 end
 
 group :development do
-	gem 'spring'
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
 end
 
 group :development, :test do
@@ -67,6 +74,8 @@ group :development, :test do
   gem 'sqlite3'
   gem 'ruby-prof'
   gem 'bullet'
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  # gem 'byebug'
 end
 
 group :production do
