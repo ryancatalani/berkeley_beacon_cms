@@ -6,9 +6,9 @@
 	<%= javascript_include_tag "application" %>
 	<%= stylesheet_link_tag "/reset.css" %>
 	<% if @include_custom_bootstrap %>
-		<%= stylesheet_link_tag "/bootstrap-custom.min.css" %>
+		<%= stylesheet_link_tag "bootstrap-custom.min" %>
 	<% elsif editor_logged_in or @include_bootstrap %>
-		<%= stylesheet_link_tag "/bootstrap.min.css" %>
+		<%= stylesheet_link_tag "bootstrap.min" %>
 		<%= javascript_include_tag "/d3.js" %>
 		<%= javascript_include_tag "/rickshaw.min.js" %>
 		<%= javascript_include_tag "/jquery-ui-1.10.3.custom.min.js" %>
