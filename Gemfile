@@ -59,6 +59,7 @@ group :test do
 end
 
 group :development do
+	gem 'spring'
 end
 
 group :development, :test do

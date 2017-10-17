@@ -173,6 +173,7 @@ GEM
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
     simple_oauth (0.3.1)
+    spring (1.7.2)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -238,6 +239,7 @@ DEPENDENCIES
   ruby-prof
   rumoji
   sass-rails (~> 4.0.0.rc1)
+  spring
   sqlite3
   tinymce-rails
   turn
