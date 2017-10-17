@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
 			if mediafile.kind_of? Mediafile and mediafile.people.count == 0 and !mediafile.source.nil?
 				return mediafile.source
 			end
-			people = mediafile.people
+			people = mediafile.people.to_a
 			return "Beacon Staff" if people.count == 0
 			return people.first.official_name if people.count == 1
 			if people.count == 2
@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
 			if mediafile.kind_of? Mediafile and !mediafile.source.blank?
 				return mediafile.source
 			end
-			people = mediafile.people.sort_by{|p| p.lastname}
+			people = mediafile.people.to_a.sort_by{|p| p.lastname}
 			return "Beacon Staff" if people.count == 0
 			return people.first.official_linked_name if people.count == 1
 			if people.count == 2
@@ -80,10 +80,10 @@ class ApplicationController < ActionController::Base
 			return people.first.full_name if people.count == 1
 
 			if people.count == 2
-				ret = people.map {|p| p.full_name }.join(' and ')
+				ret = people.to_a.map {|p| p.full_name }.join(' and ')
 			else
-				last = people.pop
-				ret = people.map {|p| p.full_name }.join(', ')
+				last = people.to_a.pop
+				ret = people.to_a.map {|p| p.full_name }.join(', ')
 				ret << ', ' << last.full_name
 			end
 			return ret
