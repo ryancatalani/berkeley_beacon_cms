@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
 
   def create
   	p = params[:topic]
-  	@topic = Topic.new(p)
+  	@topic = Topic.new(topic_params)
     @topic.slug = @topic.title.downcase.gsub(' ','_').gsub(/\W/,'')
   	if @topic.save
   		respond_to do |f|
@@ -41,6 +41,12 @@ class TopicsController < ApplicationController
     rescue
       render json: []
     end
+  end
+
+  private
+
+  def topic_params
+    params.require(:topic).permit(:title, :description, :slug)
   end
 
 end

@@ -14,10 +14,12 @@ jQuery ->
 			fullscreen:true,
 		});
 
-	$("#person_editor").click ->
-		$("#show_if_editor").fadeToggle()
-		should_check_staff = !$("#person_staff").prop("checked")
-		$("#person_staff").prop("checked", should_check_staff)
+	$(".person_editor").change ->
+		$parent = $(this).parents('form')
+		$parent.find(".show_if_editor").fadeToggle()
+		should_check_staff = $(this).prop('checked')
+		$parent.find(".person_staff").prop("checked", should_check_staff)
 
-	if $("#person_editor").prop("checked")
-		$("#show_if_editor").show()
+	if $(".person_editor").prop("checked")
+		$parent = $(this).parents('form')
+		$parent.find(".show_if_editor").show()

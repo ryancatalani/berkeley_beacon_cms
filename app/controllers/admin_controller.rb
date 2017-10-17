@@ -47,11 +47,17 @@ class AdminController < ApplicationController
 	def update_masthead
 		@about = About.last
 		p = params[:about]
-		if @about.update_attributes(p)
+		if @about.update_attributes(about_params)
 			redirect_to admin_controls_path
 		else
 			render 'edit_masthead'
 		end
+	end
+
+	private
+
+	def about_params
+		params.require(:about).permit(:col1, :col2, :col3)
 	end
 
 end

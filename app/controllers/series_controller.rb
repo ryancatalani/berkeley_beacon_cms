@@ -10,7 +10,7 @@ class SeriesController < ApplicationController
   end
 
   def create
-		@series = Series.new(params[:series])
+		@series = Series.new(series_params)
 		@series.slug = @series.title.downcase.gsub(' ','_').gsub(/\W/,'')
 		if @series.save
 			redirect_to articles_path
@@ -25,7 +25,7 @@ class SeriesController < ApplicationController
 
   def update
 		@series = Series.find(params[:id])
-		if @series.update_attributes(params[:series])
+		if @series.update_attributes(series_params)
 			redirect_to articles_path
 		else
 			render 'new'
@@ -53,6 +53,12 @@ class SeriesController < ApplicationController
   	rescue
   		render json: []
   	end
+  end
+
+  private
+
+  def series_params
+    params.require(:series).permit(:description, :logo, :title, :slug)
   end
 
 

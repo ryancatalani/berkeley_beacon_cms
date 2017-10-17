@@ -232,7 +232,7 @@ body.a14 {
 			height: 36px;
 			margin-top: 9px;
 			margin-left: 9px;
-			background-image: url("/assets/b_square.png");
+			background-image: asset-url("b_square.png");
 			background-size: cover;
 			background-repeat: no-repeat;
 			@include section_bkgd_hover;

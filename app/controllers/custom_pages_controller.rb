@@ -41,7 +41,7 @@ class CustomPagesController < ApplicationController
 		@needs_og = true
 		@og ||= {}
 		@og[:title] = "Join the Beacon"
-		@og[:image] = "http://berkeleybeacon.com/assets/apply_small.jpg"
+		@og[:image] = asset_url("apply_small.jpg")
 		@og[:description] = "What's your beat? Find it with the Beacon. Applications for staff positions are due on Friday, April 19."
 		@applications_open = true
 		render :show, layout: 'new_header'

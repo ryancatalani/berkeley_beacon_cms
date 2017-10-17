@@ -1,6 +1,9 @@
 
 <div class="political_poll">
 	<h1>2012 Emerson College Political Poll</h1>
+	<p>
+		<strong>This poll is now closed.</strong>
+	</p>
 	<p>Sponsored by <%= link_to "The Berkeley Beacon", "http://berkeleybeacon.com" %>.</p>
 	<p>Please answer all of the following questions. You may only complete this poll once, and you must be a current Emerson College undergraduate student. All demographic information is for statistical purposes only; no specific entries will be shared.</p>
 	<p>This poll will close on Tuesday, October 30, 2012 at 10 a.m. Results will be released in the November 1 issue of The Berkeley Beacon.</p>
@@ -8,7 +11,7 @@
 <%= form_for @entry, :remote => true do |f| %>
 	<%= render 'political_poll_entry_form', :f => f %>
 	<div class="form-actions">
-		<%= f.submit "Submit poll", :class => "btn btn-primary", :id => "poll_submit_btn" %>
+		<%= f.submit "Submit poll", :class => "btn btn-primary", :id => "poll_submit_btn", disabled: true %>
 		<div id="loading">
 			<%= image_tag "loading.gif" %>
 			Submitting...

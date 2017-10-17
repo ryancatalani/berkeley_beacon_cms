@@ -66,7 +66,7 @@ BeaconApp::Application.routes.draw do
   get '/admin/published_in_date_range/:dates', to: 'admin#published_in_date_range'
   get '/admin/controls', to: 'admin#controls'
   get '/admin/masthead', to: 'admin#edit_masthead'
-  match '/admin/masthead/update', to: 'admin#update_masthead', via: :put
+  match '/admin/masthead/update', to: 'admin#update_masthead', via: :patch
   get '/admin/search_edit', :to => 'articles#search_edit_frontend'
 
   get '/opinion/editorial_cartoons',    to: 'editorial_cartoons#index'
@@ -95,7 +95,7 @@ BeaconApp::Application.routes.draw do
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :mediafiles
   resources :blogs, :only => [:new, :create, :edit, :update, :index]
-  resources :political_poll_entries, :only => [:index, :new, :create]
+  resources :political_poll_entries, :only => [:new, :create]
   resources :social_posts, :only => [:index, :new, :create, :edit, :update, :destroy]
   resources :home_layouts, :only => [:new, :create]
   resources :short_links, :only => [:index, :create, :update, :destroy]

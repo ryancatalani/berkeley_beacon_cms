@@ -22,14 +22,14 @@
 	(* if blank)
 </div>
 <div class="checkbox">
-	<%= f.check_box :editor %>
+	<%= f.check_box :editor, class: 'person_editor' %>
 	Editor
 </div>
 <div class="checkbox">
-	<%= f.check_box :staff %>
+	<%= f.check_box :staff, class: 'person_staff' %>
 	Staff
 </div>
-<div id="show_if_editor">
+<div class="show_if_editor">
 	<div class="field">
 		<%= f.label :position %>
 		<%= f.text_field :position %>

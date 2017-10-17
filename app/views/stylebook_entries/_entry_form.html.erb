@@ -1,32 +1,13 @@
 <div class="control-group">
-<%= f.text_area :body %>
+<%= f.text_area :body, class: 'tinymce' %>
+<%= tinymce %>
 </div>
 
 <div class="control-group">
 <%= f.label :notes, "Notes (Optional)" %>
-<%= f.text_area :notes %>
+<%= f.text_area :notes, style: 'width: 100%' %>
 </div>
 
 <div class="form-actions">
 	<%= f.submit "Save", :class => "btn primary" %>
 </div>
-
-<script type="text/javascript">
-	$(function(){
-		$("textarea#stylebook_entry_body, textarea#stylebook_entry_notes").tinymce({
-			plugins : 'paste',
-			theme: 'advanced',
-		    theme_advanced_buttons1 : "mylistbox,mysplitbutton,bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,undo,redo,link,unlink,code",
-		    theme_advanced_buttons2 : "",
-		    theme_advanced_buttons3 : "",
-		    theme_advanced_toolbar_align : "left",
-			theme_advanced_toolbar_location : 'top',
-			width: "940",
-			height: "200",
-			paste_auto_cleanup_on_paste : true,
-            paste_remove_styles: true,
-            paste_remove_styles_if_webkit: true,
-            paste_strip_class_attributes: true
-		});
-	});
-</script>

@@ -50,7 +50,7 @@ class SpecialCoveragesController < ApplicationController
 		p[:featured] = params[:featured].map(&:to_i) rescue nil
 		p[:related_articles] = params[:related_articles].map(&:to_i) rescue nil
 		p[:media] = params[:media_ids].split(',').map(&:to_i) rescue nil
-		@sc = SpecialCoverage.new(p)
+		@sc = SpecialCoverage.new(special_coverage_params)
 		if @sc.save
 			redirect_to edit_special_coverage_path(@sc)
 		else
@@ -64,7 +64,7 @@ class SpecialCoveragesController < ApplicationController
 		p[:related_articles] = params[:related_articles].map(&:to_i) rescue nil
 		p[:media] = params[:media_ids].split(',').map(&:to_i) rescue nil
 		@sc = SpecialCoverage.find(params[:id])
-		if @sc.update_attributes(p)
+		if @sc.update_attributes(special_coverage_params)
 			redirect_to edit_special_coverage_path(@sc)
 		else
 			render "edit"
@@ -132,4 +132,12 @@ class SpecialCoveragesController < ApplicationController
 
 		render :layout => 'bare'
 	end
+
+	private
+
+	def special_coverage_params
+		params.require(:special_coverage).permit(:lead, :related_topic, :title,
+			featured: [], related_articles: [], media: [], updates: [])
+	end
+
 end
