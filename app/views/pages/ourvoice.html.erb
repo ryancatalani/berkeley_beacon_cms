@@ -8,7 +8,7 @@
 </div>
 
 <script type="text/javascript">
-	var num = Math.floor(Math.random()*4+1);
-	$('#full_photo').anystretch("/assets/redesign-promo-" + num + ".jpg");
+	var num = <%= num = Random.rand(4)+1 %>;
+	$('#full_photo').anystretch('<%= asset_path "redesign-promo-#{num}-thumb.jpg" %>');
 	$("#ourvoice_text").addClass( num % 2 == 0 ? 'left' : 'right' );
 </script>

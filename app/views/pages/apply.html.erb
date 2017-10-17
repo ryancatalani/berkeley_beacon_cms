@@ -14,6 +14,5 @@
 </div>
 
 <script type="text/javascript">
-	$('#full_photo').anystretch("/assets/apply_big.jpg");
-	$("#ourvoice_text").addClass( num % 2 == 0 ? 'left' : 'right' );
+	$('#full_photo').anystretch("<%= asset_path 'apply_big.jpg' %>");
 </script>

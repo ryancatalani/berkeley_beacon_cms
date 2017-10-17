@@ -79,7 +79,7 @@ class PagesController < ApplicationController
 		@og = {}
 		@og[:title] = "The Beacon's Oscar picks"
 		@og[:url] = "http://berkeleybeacon.com/oscars"
-		@og[:image] = asset_url('oscars-ejiofor.jpg')
+		@og[:image] = ActionController::Base.helpers.asset_path('oscars-ejiofor.jpg')
 		@og[:description] = "See the films that Beacon staff members think should win Academy Awards."
 	end
 
@@ -142,7 +142,7 @@ class PagesController < ApplicationController
 		@og = {}
 		@og[:title] = "Our new voice"
 		@og[:url] = "http://berkeleybeacon.com/ourvoice"
-		@og[:image] = asset_url("redesign-promo-#{Random.rand(4)+1}-thumb.jpg")
+		@og[:image] = ActionController::Base.helpers.asset_path("redesign-promo-#{Random.rand(4)+1}-thumb.jpg")
 		@og[:description] = "Pick up the completely redesigned Berkeley Beacon this Thursday."
 		render :layout => 'new_header'
 	end
@@ -185,7 +185,7 @@ class PagesController < ApplicationController
 		@needs_og = true
 		@og ||= {}
 		@og[:title] = "Join the Beacon"
-		@og[:image] = asset_url("apply_small.jpg")
+		@og[:image] = ActionController::Base.helpers.asset_path("apply_small.jpg")
 		@og[:description] = "What's your beat? Find it with the Beacon. Applications for staff positions are due on Friday, April 19."
 		@applications_open = true
 		render :layout => 'new_header'
