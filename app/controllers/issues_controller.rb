@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
 	before_filter :check_editor, :except => [:index, :show, :latest_issue_rss, :latest_issue_top_story_rss, :latest_issue_featured_stories_rss, :latest_issue_lead_image_rss, :latest_issue_second_image_rss]
 
 	def index
-		@issues = Issue.all.keep_if { |i| i.ok_to_display? }
+		@issues = Issue.all.to_a.keep_if { |i| i.ok_to_display? }
 		@include_bootstrap = true
 	end
 
