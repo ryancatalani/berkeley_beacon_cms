@@ -20,6 +20,10 @@ class Issue < ActiveRecord::Base
 		released_yet? && pdf_url? && pdf_thumb_url?
 	end
 
+	def self.ok_to_display
+		self.where('release_date <= ?', Date.today).where.not(pdf_url: nil, pdf_thumb_url: nil)
+	end
+
 	def social_shares_by_section(name)
 		section = Section.find_by_name(name.capitalize)
 		if section
