@@ -27,7 +27,7 @@ class Issue < ActiveRecord::Base
 	def social_shares_by_section(name)
 		section = Section.find_by_name(name.capitalize)
 		if section
-			section_articles = articles.where(section_id: section.id)
+			section_articles = articles.where(section_id: section.id).to_a
 			return section_articles.map(&:total_social_shares).sum
 		end
 	end
@@ -35,7 +35,7 @@ class Issue < ActiveRecord::Base
 	def social_quotient_by_section(name)
 		section = Section.find_by_name(name.capitalize)
 		if section
-			section_articles = articles.where(section_id: section.id)
+			section_articles = articles.where(section_id: section.id).to_a
 			return 0 if section_articles.count == 0
 			return (section_articles.map(&:total_social_shares).sum / section_articles.count.to_f).round(1).to_s
 		end
