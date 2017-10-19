@@ -1,0 +1,7 @@
+<ul class="flash">
+	<% flash.each do |name, msg| %>
+	<li class="<%= name %>">
+		<%= msg %>
+	</li>
+	<% end %>
+</ul>

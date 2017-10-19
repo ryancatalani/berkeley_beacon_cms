@@ -1,3 +1,26 @@
 // Place all the styles related to the admin controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$error_color: #FFDFB4;
+$error_outline_color: #F1C07F;
+
+@mixin error_styles {
+	background: $error_color;
+	border: 1px solid $error_outline_color;
+	border-radius: 5px;	
+	padding: 10px;
+}
+
+.error_explanation {
+	@include error_styles;
+	margin-bottom: 20px;
+
+	h2 {
+		font-size: 16px;
+	}
+}
+
+.field_with_errors {
+	@include error_styles;
+}

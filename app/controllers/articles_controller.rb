@@ -137,6 +137,8 @@ class ArticlesController < ApplicationController
 			@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 			@blogs = [["None", 0]] + Blog.all.map {|b| [b.title, b.id] }
 			@issues = Issue.all.map {|i| [i.release_date_f, i.id]}.reverse.insert(1,["None/Online only", 0])
+			@topics = Topic.all.map{|t| [t.title, t.id]}
+			@current_topics = @article.topics.map{|t| t.id} || []
 			render "new"
 		end
 	end
@@ -374,6 +376,10 @@ class ArticlesController < ApplicationController
 			@display_already_uploaded = true unless cookies[:already_uploaded].nil? or cookies[:already_uploaded].blank?
 			@series = [["None",0]] + Series.all.map {|s| [s.title, s.id] }
 			@issues = Issue.all.map {|i| [i.release_date_f, i.id]}.reverse.insert(1,["None/Online only", 0])
+			@topics = Topic.all.map{|t| [t.title, t.id]}
+			@current_topics = @article.topics.map{|t| t.id} || []
+			@can_queue_tweet = can_queue_tweet?
+			@event_url = @article.events.count > 0 ? @article.events.last.url(true) : nil
 			render 'edit'
 		end
 	end
