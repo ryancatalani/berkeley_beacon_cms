@@ -9,7 +9,7 @@ namespace :articles do
 		Article.where(draft: false, created_at: Date.parse(date_start).midnight..Time.now).each do |article|
 			url = article.to_url(full: true)
 
-			sc_share_uri = URI.parse('http://free.sharedcount.com/url?apikey=***REMOVED***&url=' + url)
+			sc_share_uri = URI.parse("http://free.sharedcount.com/url?apikey=#{ENV['SHARED_COUNT_API_KEY']}&url=" + url)
 			sc_share_res = Net::HTTP.get_response(sc_share_uri).body
 			sc_share_data = ActiveSupport::JSON.decode(sc_share_res)
 
