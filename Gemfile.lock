@@ -90,6 +90,10 @@ GEM
     crass (1.0.2)
     dalli (2.7.6)
     debug_inspector (0.0.3)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     erubis (2.7.0)
     exception_notification (4.2.2)
       actionmailer (>= 4.0, < 6)
@@ -358,6 +362,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     simple_oauth (0.3.1)
+    sitemap_generator (6.0.1)
+      builder (~> 3.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -408,6 +414,7 @@ DEPENDENCIES
   chartkick
   coffee-rails (~> 4.1.0)
   dalli
+  dotenv-rails
   exception_notification
   faker
   filepicker-rails
@@ -432,6 +439,7 @@ DEPENDENCIES
   rumoji
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  sitemap_generator
   spring
   sqlite3
   tinymce-rails

@@ -148,21 +148,21 @@ class ApplicationController < ActionController::Base
 
 		def current_twitter
 			beacon = {
-				:consumer_key => "***REMOVED***",
-				:consumer_secret => "***REMOVED***",
-				:oauth_token => "***REMOVED***",
-				:oauth_token_secret => "***REMOVED***"
-			}
-			magicofpi_test = {
-				:consumer_key => "***REMOVED***",
-				:consumer_secret => "***REMOVED***",
-				:oauth_token => "***REMOVED***",
-				:oauth_token_secret => "***REMOVED***"
+						:consumer_key => ENV['TWITTER_CONSUMER_KEY'],
+						:consumer_secret => ENV['TWITTER_CONSUMER_SECRET'],
+						:oauth_token => ENV['TWITTER_OAUTH_TOKEN'],
+						:oauth_token_secret => ENV['TWITTER_OAUTH_SECRET']
+					}
+			test = {
+				:consumer_key => ENV['TWITTER_TEST_CONSUMER_KEY'],
+				:consumer_secret => ENV['TWITTER_TEST_CONSUMER_SECRET'],
+				:oauth_token => ENV['TWITTER_TEST_OAUTH_TOKEN'],
+				:oauth_token_secret => ENV['TWITTER_TEST_OAUTH_SECRET']
 			}
 			if Rails.env.production?
 				return Twitter::Client.new(beacon)
 			else
-				return Twitter::Client.new(magicofpi_test)
+				return Twitter::Client.new(test)
 			end
 		end
 
