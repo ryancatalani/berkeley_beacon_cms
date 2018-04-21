@@ -310,6 +310,162 @@ class Article < ActiveRecord::Base
 
 	end
 
+
+	def export_created_at
+		created_at.iso8601
+	end
+
+	def export_updated_at
+		updated_at.iso8601
+	end
+
+	def export_subtitles
+		if !subtitles.nil? && subtitles.any?
+			return subtitles.join('; ')
+		end
+		return ''
+	end
+
+	def export_authors
+		ApplicationController.new.bylineify(self)
+	end
+
+	def export_section
+		begin
+			return section.name
+		rescue
+			return ''
+		end
+	end
+
+	def export_issue
+		begin
+			return issue.release_date.to_s(:long)
+		rescue
+			return ''
+		end
+	end
+
+	def export_first_photo
+		fp = first_photo
+		if fp.nil?
+			return ''
+		end
+		return fp.media.url
+	end
+
+	def export_mediafiles
+		if mediafiles.any?
+			return mediafiles.map{|m| m.media.url}.join('; ')
+		end
+		return ''
+	end
+
+	def export_mediafile_captions
+		if mediafiles.any?
+			ret = '<ul>'
+			mediafiles.each do |m|
+				title = m.title.blank? ? m.mediatype_str : m.title
+				ret += "<li><a href='#{m.media.url}'>#{title}</a></li>"
+			end
+			ret += '</ul>'
+			return ret
+		end
+		return ''
+	end
+
+	def export_body
+		if link_only?
+			return "#{body} <p><em>This article is a link to: <a href='#{link}'>#{link}</a></em><p>"
+		end
+		return body
+	end
+
+	def export_full_html
+
+		locals = {}
+
+		locals[:@article] = self
+
+		locals[:@include_responsive] = true
+		locals[:@include_bootstrap_carousel] = true
+		locals[:@title] = title
+		locals[:@article_mediafiles] = visual_mediafiles
+		locals[:@article_img_class] = ""
+		if locals[:@article_mediafiles].count == 1 and videos.empty?
+			if locals[:@article_mediafiles].first.horizontal?
+				locals[:@article_img_class] = "single_image_body"
+			else
+				locals[:@article_img_class] = "single_image_body vertical_single_image_body"
+			end
+		end
+
+		locals[:@needs_og] = true
+		locals[:@og] = {}
+		locals[:@og][:title] = title
+		locals[:@og][:url] = to_url(:full => true)
+		if visual_mediafiles.any?
+			locals[:@og][:image] = visual_mediafiles.first.media.url.html_safe rescue nil
+			locals[:@twitter_img] = visual_mediafiles.first.media.thumb_460.url.html_safe rescue nil
+		else
+			locals[:@og][:image] = nil
+		end
+		locals[:@og][:description] = excerpt.blank? ? nil : excerpt
+		if people.count == 1 && !people.first.twitter.blank?
+			locals[:@twitter_creator] = "@#{people.first.twitter}"
+		else
+			locals[:@twitter_creator] = "@beaconupdate"
+		end
+
+
+		locals[:@body_class] = "a14_article"
+		locals[:@article_section] = Section.find_by_name('News')
+		locals[:@article_section_name] = locals[:@article_section].name
+		locals[:@article_section_slug] = locals[:@article_section].clean_url
+		if !blog.nil?
+			locals[:@article_section] = 'Blog'
+			locals[:@article_section_name] = 'Blog'
+			locals[:@article_from_blog] = true
+			locals[:@article_section_slug] = 'blogs'
+		elsif !section.nil?
+			locals[:@article_section] = section
+			locals[:@article_section_name] = locals[:@article_section].name
+			locals[:@article_section_slug] = locals[:@article_section].clean_url
+		end
+				
+
+		locals[:@section_issue_articles] = Article.where(:issue_id => Issue.latest.id, :section_id => locals[:@article_section].id, :draft => false).delete_if {|a| a.id == id } rescue []
+
+		if people.any? && people.first.full_name == "Editorial Board"
+			locals[:@ed_board_explainer] = true
+		end
+
+		if title.downcase.include? "letter to the editor"
+			locals[:@letter_editor_explainer] = true
+		end
+
+		locals[:@should_show_sidebar] = !series.nil? || !topics.blank? || locals[:@section_issue_articles].count > 0 || locals[:@ed_board_explainer] || locals[:@letter_editor_explainer]
+
+		locals[:@other_sections] = %w(News Opinion Arts Lifestyle Sports Feature Multimedia Events Beyond).delete_if {|n| n == locals[:@article_section].name rescue false}.map{|s| Section.find_by_name s}.compact
+
+		locals[:@canonical_url] = to_url(full: true)
+
+		ret = ApplicationController.new.render_to_string(
+			template: 'articles/show2014_export',
+			layout: 'article2014_export',
+			locals: locals
+		)
+
+		return ret.delete("\n").delete("\t")
+
+
+		# if @article.section and @article.section.name == "Feature"
+		# 	render('show2013', :layout => 'article2013') && return
+		# end
+
+	end
+
+
 	private
 		def check_clean_title
 			c = created_at

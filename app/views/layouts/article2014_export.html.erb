@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= "#{@title} | " if @title %>The Berkeley Beacon</title>
+	<script src="https://theberkeleybeacon.s3.amazonaws.com/static/application.js"></script>
+	<link rel="stylesheet" media="screen" href="https://theberkeleybeacon.s3.amazonaws.com/static/reset.css" />
+	<link rel="stylesheet" media="screen" href="https://theberkeleybeacon.s3.amazonaws.com/static/application.css" />
+	<link rel="stylesheet" media="print" href="http://theberkeleybeacon.s3.amazonaws.com/static/application-print.css" />
+
+	<%= favicon_link_tag "/favicon.ico" %>
+	<meta property="og:title" content="<%= og_title %>" />
+	<meta property="og:site_name" content="The Berkeley Beacon" />
+	<% if @og and @og[:url] %>
+		<meta property="og:url" content="<%= @og[:url] %>" />
+	<% end %>
+	<% if @og and @og[:description] %>
+		<meta property="og:description" content="<%= @og[:description] %>">
+	<% end %>
+	<meta property="og:type" content="article" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="article:publisher" content="https://www.facebook.com/berkeleybeacon" />
+	<meta property="og:image" content="<%= (@og.nil? or @og[:image].nil?) ? "/b_icon.png" : @og[:image] %>" />
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@beaconupdate">
+	<meta name="twitter:title" content="<%= og_title %>">
+	<meta name="twitter:creator" content="<%= @twitter_creator %>">
+	<% if @og and @og[:description] %>
+		<meta property="twitter:description" content="<%= @og[:description] %>">
+	<% end %>
+	<meta property="twitter:image:src" content="<%= @twitter_img.nil? ? "/b_icon.png" : @twitter_img %>" />
+
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+
+	<meta property="fb:admins" content="1600232313" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<% if @article and !@article.videos.empty? and false %>
+		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+		<script src="http://vjs.zencdn.net/c/video.js"></script>
+	<% end %>
+
+	<script type="text/javascript" src="//use.typekit.net/mdh3wrb.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.js"></script>
+</head>
+<body <% if @body_id %><%= "id=#{@body_id}" %><% end %> class="a14 <%= @body_class if @body_class %>">
+
+<% if @show_prototype_banner %>
+<div class="a14_prototype_banner">
+	<a href="#" id="a14_hide_banner"><i class="fa fa-times-circle fa-2x"></i></a>
+	You're viewing a prototype of the new Beacon website. You can opt-out <a href="#" id="a14_hide_once">for this one page</a> or <a href="#" id="a14_hide_always">permanently</a>.
+</div>
+<% end %>
+
+<%= yield %>
+
+
+<% if Rails.env.production? %>
+<script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0019/6015.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T39LWQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T39LWQ');</script>
+<% end %>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<% if @article.images.count > 1 %>
+<div class="gallery_full">
+	<div class="gallery_inner">
+		<ul class="rslides_a14">
+		<% @article.images.each do |img| %>
+			<li>
+				<div class="gallery_image" style="background-image:url(<%= img.media.url %>)"></div>
+				<div class="gallery_image_caption">
+					<%= img.title %>
+					<div class="credit"><%= bylineify_linked(img).html_safe %></div>
+				</div>
+			</li>
+		<% end %>
+		</ul>
+		<div class="gallery_close">
+			<i class="fa fa-times-circle fa-3x"></i>
+		</div>
+		<div class="gallery_nav_container"></div>
+	</div>
+</div>
+<% end %>
+
+
+<nav class="topnav <%= @article_section_name.downcase %>">
+
+	<div class="topnav_left">
+		<a href="/" class="topnav_b <%= @article_section_name.downcase %>"></a>
+	</div>
+
+	<div class="topnav_section">
+		<a href="/<%= @article_section_name.downcase %>" class="<%= @article_section_name.downcase %>">
+			<div class="main_wrap">
+				<% if @article_from_blog %>
+					<%= @article.blog.title %>
+					<span class="un_em"><%= @article_section_name %></span>
+				<% else %>
+					<%= @article_section_name %>
+				<% end %>
+			</div>
+		</a>
+		<ul class="section_select">
+			<% @other_sections.each do |section| %>
+			<li>
+				<a href="/<%= section.name.downcase %>" class="<%= section.name.downcase %>">
+					<div class="main_wrap">
+						<%= section.name %>
+					</div>
+				</a>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+
+</nav>
+
+<div class="header_outer_wrap <%= @article_section_name.downcase %>">
+	<div class="main_wrap">
+		<h1><%= @article.title.html_safe %></h1>
+		<% if @article.subtitles %>
+			<% @article.subtitles.each do |subtitle| %>
+				<h2><%= subtitle %></h2>
+			<% end %>
+		<% end %>
+		<h3>by <%= bylineify_linked(@article).html_safe %> • <%= (@article.created_at).to_s(:pretty_date) %></h3>
+	</div>
+</div>
+
+<% if @article.images.first %>
+
+	<% if @article.images.first.horizontal? %>
+	<div class="main_photo main_photo_horizontal">
+		<% if @article.images.count > 1 %>
+			<div class="gallery_open">
+				<i class="fa fa-play-circle"></i> Open Slideshow
+			</div>
+		<% end %>
+		<%= image_tag @article.images.first.media.url %>
+		<div class="main_photo_caption">
+			<%= @article.images.first.title %>
+			<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+		</div>
+	</div>
+	<% else %>
+	<div class="main_photo main_photo_vertical" style="background-image:url(<%= @article.images.first.media.url %>)">
+		<% if @article.images.count > 1 %>
+			<div class="gallery_open">
+				<i class="fa fa-play-circle"></i> Open Slideshow
+			</div>
+		<% end %>
+		<div class="main_photo_caption">
+			<%= @article.images.first.title %>
+			<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+		</div>
+	</div>
+	<% end %>
+
+<% end %>
+
+<% if @should_show_sidebar %>
+<div class="more_container">
+<% end %>
+
+	<% if @ed_board_explainer %>
+	<div class="sidebar">
+		<div class="sidebar_head opinion">The Beacon's policy on editorials</div>
+		<div class="sidebar_body">
+			Editorials are solely written by the editor-in-chief, managing editors, and opinion editors, without consultation from other staff members. They do not influence any other stories.
+		</div>
+	</div>
+	<% end %>
+
+	<% if @letter_editor_explainer %>
+	<div class="sidebar">
+		<div class="sidebar_head opinion">Letters to the editor</div>
+		<div class="sidebar_body">
+			<p>If you want to respond to, or share an opinion about, an article in the Beacon, you can write a short letter to the editor. Email it to <a href="mailto:letters@berkeleybeacon.com">letters@berkeleybeacon.com</a>.</p>
+			<p>Please note that letters may be edited for grammar and clarity. Submissions for print must be shorter than 250 words.</p>
+		</div>
+	</div>
+	<% end %>
+
+
+	<% if !@article.series.nil? %>
+	<div class="sidebar" data-type="series" data-slug="<%= @article.series.slug %>" style="display:none">
+		<div class="sidebar_head sidebar_head_series">
+			<strong><%= @article.series.title %></strong> Series
+		</div>
+		<div class="sidebar_body">
+			<ul></ul>
+		</div>
+	</div>
+	<% end %>
+
+	<% if !@article.topics.blank? %>
+	<% @article.topics.each do |topic| %>
+	<div class="sidebar" data-type="topics" data-slug="<%= topic.slug %>" style="display:none">
+		<div class="sidebar_head sidebar_head_topic">
+			<strong><%= link_to topic.title, "/topics/#{topic.slug}" %></strong>
+			<br><%= link_to "Continuing coverage", "/topics/#{topic.slug}" %>
+		</div>
+		<div class="sidebar_body">
+			<ul></ul>
+		</div>
+	</div>
+	<% end %>
+	<% end %>
+
+	<% if @section_issue_articles.any? %>
+	<div class="sidebar" data-type="sections" data-slug="<%= @article_section_slug %>" style="display:none">
+		<div class="sidebar_head <%= @article_section_name.downcase %>">
+			More from <%= @article_section_name %>
+		</div>
+		<div class="sidebar_body">
+			<ul></ul>
+		</div>
+	</div>
+	<% end %>
+
+<% if @should_show_sidebar %>
+	</div>
+<% end %>
+
+<div class="article_share">
+	<ul>
+		<li>
+			<a href="https://twitter.com/home?status=<%= @article.show_share_tweet %>" class="<%= @article_section_name.downcase %>" target="_blank">
+				<i class="fa fa-twitter fa-lg"></i>
+			</a>
+		</li>
+		<li id="article_fb_share_btn">
+			<a href="https://www.facebook.com/sharer/sharer.php?u=<%= @article.to_url(:full=>true) %>" class="<%= @article_section_name.downcase %>" target="_blank">
+				<i class="fa fa-facebook fa-lg"></i>
+			</a>
+			<div class="fb_slide">
+				<div class="fb-like" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" data-href="<%= @article.to_url(:full=>true) %>"></div>
+			</div>
+		</li>
+		<li>
+			<a href="#comments" class="<%= @article_section_name.downcase %>">
+				<i class="fa fa-comments fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+</div>
+
+<div class="body_outer_wrap">
+	<div class="body_inner_wrap">
+		<% if @article.images.first %>
+		<div class="main_photo_caption_inline">
+			<%= @article.images.first.title %>
+			<div class="credit"><%= bylineify_linked(@article_mediafiles.first).html_safe %></div>
+		</div>
+		<% end %>
+
+		<% if @article.first_event %>
+		<p class="event_article_info">
+			<%= @article.first_event.title %> <br>
+			<i class="fa fa-calendar fa-fw"></i> <%= @article.first_event.date_start.to_s(:pretty_date_and_time) %> <br>
+			<i class="fa fa-map-marker fa-fw"></i> <%= @article.first_event.location %>
+			<% if @article.first_event.link? %>
+			<br>
+			<em><i class="fa fa-external-link fa-fw"></i> <%= link_to "Link (#{URI.parse(@article.first_event.link).host})", @article.first_event.link %></em>
+			<% end %>
+		</p>
+		<% end %>
+
+		<div class="body_text">
+			<%= @article.body.html_safe %>
+		</div>
+
+		<% begin %>
+			<%= render 'popular2014' %>
+		<% rescue %>
+		<% end %>
+
+		<% if !@article.disable_comments %>
+		<div class="comments">
+			<a name="comments"></a>
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+			    var disqus_shortname = 'berkeleybeacon';
+			    var disqus_url = '<%= @article.to_url(:full => true) %>';
+
+			    /* * * DON'T EDIT BELOW THIS LINE * * */
+			    (function() {
+			        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			    })();
+			</script>
+			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			<a href="http://disqus.com" class="dsq-brlink" style="display:none">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+<div class="news_sub_banner <%= @article_section_name.downcase %>" style="display:none">
+	<a href="#" class="news_sub_banner_close news_sub_banner_dismiss">&times;</a>
+	<p>Every Thursday, get the Beacon's top stories delivered straight to your inbox.</p>
+	
+	<a href="/newsletter/signup" class="news_sub_btn news_sub_btn_pr" target="_blank">Subscribe now</a>
+	<a href="#" class="news_sub_btn news_sub_banner_dismiss">Already subscribed</a>
+</div>
+
+
+
+<div style="display:none;visibility:hidden" id="article_ident" data-article-ident="<%= @article.id %>"></div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=128499383927655";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+	$(document).ready(function(){
+		setTimeout(function(){ $.get("/pgvw/<%= @article.id %>"); }, 100);
+	});
+</script>

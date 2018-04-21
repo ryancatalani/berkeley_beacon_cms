@@ -5,6 +5,23 @@ class ApplicationController < ActionController::Base
 	# before_filter :acpsea
 	# before_filter :check_individual_tracking_param
 
+	def bylineify mediafile
+		if mediafile.kind_of? Mediafile and mediafile.people.count == 0 and !mediafile.source.nil?
+			return mediafile.source
+		end
+		people = mediafile.people.to_a
+		return "Beacon Staff" if people.count == 0
+		return people.first.official_name if people.count == 1
+		if people.count == 2
+			ret = people.map {|p| p.official_name }.join(' and ')
+		else
+			last = people.pop
+			ret = people.map {|p| p.official_name }.join(', ')
+			ret << ', and ' << last.official_name
+		end
+		return ret
+	end
+
 	private
 
 		def editor_logged_in
@@ -40,22 +57,7 @@ class ApplicationController < ActionController::Base
 			redirect_to root_path unless current_user and current_user.editor?
 		end
 
-		def bylineify mediafile
-			if mediafile.kind_of? Mediafile and mediafile.people.count == 0 and !mediafile.source.nil?
-				return mediafile.source
-			end
-			people = mediafile.people.to_a
-			return "Beacon Staff" if people.count == 0
-			return people.first.official_name if people.count == 1
-			if people.count == 2
-				ret = people.map {|p| p.official_name }.join(' and ')
-			else
-				last = people.pop
-				ret = people.map {|p| p.official_name }.join(', ')
-				ret << ', and ' << last.official_name
-			end
-			return ret
-		end
+		
 
 		def bylineify_linked mediafile
 			if mediafile.kind_of? Mediafile and !mediafile.source.blank?
