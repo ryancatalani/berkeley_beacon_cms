@@ -4,23 +4,6 @@ namespace :export do
 	desc "Export special pages to CSV"
 	task :special_pages => :environment do
 
-		headers = {
-			title: :title,
-			subtitles: :export_subtitles,
-			authors: :export_authors,
-			created_date: :export_created_at,
-			modified_date: :export_updated_at,
-			slug: :cleantitle,
-			section: :export_section,
-			issue: :export_issue,
-			featured_image: :export_first_photo,
-			media_links: :export_mediafiles,
-			media_with_captions: :export_mediafile_captions,
-			excerpt: :excerpt,
-			body: :export_body,
-			full_html: :export_full_html
-		}
-
 		projects = {
 			'/election_guide_2012' => {
 				action: 'election_guide_2012_export',
