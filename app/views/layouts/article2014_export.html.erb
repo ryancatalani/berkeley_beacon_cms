@@ -30,22 +30,22 @@
 	<% end %>
 	<meta property="twitter:image:src" content="<%= @twitter_img.nil? ? "/b_icon.png" : @twitter_img %>" />
 
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 
 	<meta property="fb:admins" content="1600232313" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<% if @article and !@article.videos.empty? and false %>
-		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
-		<script src="http://vjs.zencdn.net/c/video.js"></script>
+		<link href="https://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+		<script src="https://vjs.zencdn.net/c/video.js"></script>
 	<% end %>
 
-	<script type="text/javascript" src="//use.typekit.net/mdh3wrb.js"></script>
+	<script type="text/javascript" src="https://use.typekit.net/mdh3wrb.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.css" />
-	<script src="//cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.js"></script>
 </head>
 <body <% if @body_id %><%= "id=#{@body_id}" %><% end %> class="a14 <%= @body_class if @body_class %>">
 
