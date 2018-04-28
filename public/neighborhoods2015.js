@@ -1,0 +1,118 @@
+$(document).ready(function() {
+if ($(window).height() < 800) {
+     $("#map-canvas").height(300);
+}
+
+var styles = [
+  {
+    "featureType": "administrative",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "road",
+    "elementType": "labels",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "poi",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "transit",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },{
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      { "visibility": "simplified" },
+      { "color": "#F0EBD7" }
+    ]
+  },{
+    "featureType": "landscape",
+    "stylers": [
+      { "color": "#EDDBA6" }
+    ]
+  },{
+    "featureType": "water",
+    "stylers": [
+      { "color": "#A1C1D0" }
+    ]
+  }
+]
+
+var mapOptions = {
+  center: { lat: 42.354, lng: -71.066},
+  zoom: 16,
+  disableDefaultUI: true,
+  styles: styles
+};
+var map = new google.maps.Map(document.getElementById('map-canvas'),
+    mapOptions);
+
+var bounds = new google.maps.LatLngBounds();
+
+var neighborhoods = {};
+neighborhoods['allston'] = {
+     name: "Allston",
+     center: new google.maps.LatLng(42.35372, -71.13373),
+     radius: 500,
+     popup: new google.maps.InfoWindow({ content: '<div class="map_content"><h2>Allston</h2><img src="https://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/thumb_140_1427340861-Smith_AllstonPhotoEssay_2.jpg.jpg" style="float:right;margin-left:10px"><strong><a href="http://www.berkeleybeacon.com/lifestyle/2015/3/25/boston-housing-series-parties-bars-and-rats-abound-69" target="_blank">Parties, bars, and rats abound in Allston</a></strong><p>Although Emerson students who live in the neighborhood had some complaints, they said the area is still a good choice—and has the right price. <em><a href="http://www.berkeleybeacon.com/lifestyle/2015/3/25/boston-housing-series-parties-bars-and-rats-abound-69" target="_blank">Read more</a></em></p></div>', maxWidth: 300 })
+};
+neighborhoods['beaconhill'] = {
+     name: "Beacon Hill",
+     center: new google.maps.LatLng(42.35753, -71.07004),
+     radius: 200,
+     popup: new google.maps.InfoWindow({ content: '<div class="map_content"><h2>Beacon Hill</h2><img src="https://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/thumb_140_1427943013-Smith_BeaconHill_March_31__2015117.jpg.jpg" style="float:right;margin-left:10px"><strong><a href="http://www.berkeleybeacon.com/lifestyle/2015/4/1/the-charm-and-cost-of-beacon-hill" target="_blank">The charm and cost of Beacon Hill</a></strong><p>In Beacon Hill, every activity, from doing laundry to shopping for food, can come with an expensive price tag. But students who live there say it’s still worth it. <em><a href="http://www.berkeleybeacon.com/lifestyle/2015/4/1/the-charm-and-cost-of-beacon-hill" target="_blank">Read more</a></em></p></div>', maxWidth: 300 })
+};
+neighborhoods['fenway'] = {
+     center: new google.maps.LatLng(42.34408, -71.10008),
+     radius: 300,
+     popup: new google.maps.InfoWindow({ content: '<div class="map_content"><h2>Fenway-Kenmore</h2><img src="https://s3.amazonaws.com/BerkeleyBeacon/beacon_uploads/uploads/thumb_140_1428542528-Fenway_Kenmore_Adams_20150408._0002.jpg.jpg" style="float:right;margin-left:10px"><strong><a href="http://www.berkeleybeacon.com/lifestyle/2015/4/8/the-convenience-and-bustle-of-fenwaykenmore" target="_blank">The convenience and bustle of Fenway-Kenmore</a></strong><p>Though apartments can be pricy in this neighborhood centered around the home of the Red Sox, it’s lush with cultural activities.<em> <a href="http://www.berkeleybeacon.com/lifestyle/2015/4/8/the-convenience-and-bustle-of-fenwaykenmore" target="_blank">Read more</a></em></p></div>', maxWidth: 300 })
+};
+neighborhoods['downtown'] = {
+     center: new google.maps.LatLng(42.35157, -71.07227),
+     radius: 300,
+     popup: new google.maps.InfoWindow({ content: '<div class="map_content"><h2>Back Bay & Chinatown</h2>Coming April 16</div>', maxWidth: 300 })
+};
+
+var neighborhoodCircle;
+var infowindow;
+
+var baseColor = '#9A5A00';
+for (var neighborhood in neighborhoods) {
+     var neighborhoodOptions = {
+          strokeColor: baseColor,
+          strokeOpacity: 0.8,
+          strokeWeight: 1,
+          fillColor: baseColor,
+          fillOpacity: 0.35,
+          map: map,
+          center: neighborhoods[neighborhood].center,
+          radius: neighborhoods[neighborhood].radius
+     }
+     neighborhoodCircle = new google.maps.Circle(neighborhoodOptions);
+
+     if ($(window).width() > 1000) {
+          infowindow = neighborhoods[neighborhood].popup;
+          infowindow.setPosition(neighborhoods[neighborhood].center);
+          infowindow.open(map);
+     }
+
+     bounds.extend(neighborhoods[neighborhood].center);
+     google.maps.event.addListener(neighborhoodCircle, 'click', (function(neighborhoodCircle, neighborhood){
+               return function(){
+                    infowindow = neighborhoods[neighborhood].popup;
+                    infowindow.setPosition(neighborhoods[neighborhood].center);
+                    infowindow.open(map);
+               }
+          })(neighborhoodCircle, neighborhood)
+     );
+}
+
+map.fitBounds(bounds);
+});

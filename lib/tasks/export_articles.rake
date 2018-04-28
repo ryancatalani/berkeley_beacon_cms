@@ -25,7 +25,8 @@ namespace :export do
 
 		slice_size = 100
 
-		Article.all.each_slice(slice_size).with_index do |article_arr, i|
+		Article.order(created_at: :asc).each_slice(slice_size).with_index do |article_arr, i|
+			start_time = Time.now
 			fname = "articles_#{(i*slice_size)+1}-#{(i+1)*slice_size}"
 			final = []
 
@@ -51,7 +52,8 @@ namespace :export do
 				end
 			end
 
-			puts "finished"
+			time_diff = Time.now-start_time
+			puts "finished in #{time_diff.round(2)} s (#{(time_diff/60.0).round(2)} min)"
 			puts ""
 
 		end

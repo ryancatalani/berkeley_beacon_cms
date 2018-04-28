@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= "#{@title} | " if @title %>The Berkeley Beacon</title>
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700|PT+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<% if @use_roboto %>
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,100' rel='stylesheet' type='text/css'>
+	<% end %>
+	<link rel="stylesheet" media="screen" href="https://theberkeleybeacon.s3.amazonaws.com/static/reset.css" />
+	<% if @include_custom_bootstrap %>
+		<%= stylesheet_link_tag "bootstrap-custom.min" %>
+	<% elsif @include_bootstrap %>
+		<%= stylesheet_link_tag "bootstrap.min" %>
+	<% end %>
+	<link rel="stylesheet" media="screen" href="https://theberkeleybeacon.s3.amazonaws.com/static/application.css" />
+	<script src="https://theberkeleybeacon.s3.amazonaws.com/static/application.js"></script>
+	<% if @include_bootstrap_carousel %>
+		<%= stylesheet_link_tag "/bootstrap-justcarousel.min.css" %>
+	<% end %>
+	<%= favicon_link_tag "/favicon.ico" %>
+	<meta property="og:title" content="<%= og_title %>" />
+	<% if @og and @og[:description] %>
+		<meta name="description" property="og:description" content="<%= @og[:description] %>">
+	<% end %>
+	<meta property="og:type" content="article" />
+	<% if @og and @og[:url] %>
+		<meta property="og:url" content="<%= "http://www.berkeleybeacon.com#{@og[:url]}" %>" />
+	<% end %>
+	<meta property="og:image" content="<%= (@og.nil? or @og[:image].nil?) ? "http://www.berkeleybeacon.com/b_icon.png" : @og[:image] %>" />
+	<meta property="og:site_name" content="The Berkeley Beacon" />
+
+	<meta property="fb:admins" content="1600232313" />
+
+	<% if @include_bootstrap or @include_responsive %>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<% end %>
+
+	<% if @use_videojs %>
+		<link href="https://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
+		<script src="https://vjs.zencdn.net/4.2/video.js"></script>
+	<% end %>
+
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<script type="text/javascript" src="https://use.typekit.net/mdh3wrb.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.js"></script>
+</head>
+<body <% if @body_id %><%= "id=#{@body_id}" %><% end %> <% if @body_class %><%= "class=#{@body_class}" %><% end %>>
+
+
+	<%= yield %>
+
+	
+	<% if Rails.env.production? %>
+		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T39LWQ"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-T39LWQ');</script>
+	<% end %>
+</body>
+</html>

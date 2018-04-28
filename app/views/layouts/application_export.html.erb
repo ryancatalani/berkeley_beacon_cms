@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= "#{@title} | " if @title %>The Berkeley Beacon</title>
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700|PT+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<script src="https://theberkeleybeacon.s3.amazonaws.com/static/application.js"></script>
+	<link rel="stylesheet" media="screen" href="https://theberkeleybeacon.s3.amazonaws.com/static/reset.css" />
+	<% if @include_custom_bootstrap %>
+		<link rel="stylesheet" href="https://theberkeleybeacon.s3.amazonaws.com/static/bootstrap-custom.min.css">
+	<% elsif @include_bootstrap && !@no_bootstrap %>
+		<link rel="stylesheet" href="https://theberkeleybeacon.s3.amazonaws.com/static/bootstrap.min.css">
+		<script src="http://theberkeleybeacon.s3.amazonaws.com/static/d3.js"></script>
+		<script src="http://theberkeleybeacon.s3.amazonaws.com/static/rickshaw.min.js"></script>
+	<% end %>
+	<link rel="stylesheet" media="screen" href="https://theberkeleybeacon.s3.amazonaws.com/static/application.css" />
+	<% if @include_bootstrap_carousel %>
+		<%= stylesheet_link_tag "/bootstrap-justcarousel.min.css" %>
+	<% end %>
+	<%= favicon_link_tag "/favicon.ico" %>
+
+	<meta property="og:title" content="<%= og_title %>" />
+	<meta property="og:site_name" content="The Berkeley Beacon" />
+	<% if @og and @og[:url] %>
+		<meta property="og:url" content="<%= @og[:url] %>" />
+	<% end %>
+	<% if @og and @og[:description] %>
+		<meta property="og:description" content="<%= @og[:description] %>">
+	<% end %>
+	<meta property="og:type" content="article" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="article:publisher" content="https://www.facebook.com/berkeleybeacon" />
+	<meta property="og:image" content="<%= (@og.nil? or @og[:image].nil?) ? "/b_icon.png" : @og[:image] %>" />
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@beaconupdate">
+	<meta name="twitter:title" content="<%= og_title %>">
+	<meta name="twitter:creator" content="<%= @twitter_creator %>">
+	<% if @og and @og[:description] %>
+		<meta property="twitter:description" content="<%= @og[:description] %>">
+	<% end %>
+	<meta property="twitter:image:src" content="<%= @twitter_img.nil? ? "/b_icon.png" : @twitter_img %>" />
+
+	<meta property="fb:admins" content="1600232313" />
+	<script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>
+
+	<% if @include_bootstrap or @include_responsive %>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<% end %>
+
+	<% if @article and !@article.videos.empty? and false %>
+		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+		<script src="http://vjs.zencdn.net/c/video.js"></script>
+	<% end %>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.js"></script>
+
+</head>
+<body <% if @body_id %><%= "id=#{@body_id}" %><% end %>>
+
+<div class="wrap">
+	<% if @new_header %>
+		<div class="header new_header" <%= "id='home_header'" if @home_header %>>
+			<div id="header-inner">
+				<div id="masthead">
+					<h1>The Berkeley Beacon</h1>
+				</div>
+
+				<div id="nav">
+					<ol>
+						<li><%= link_to "Home", "/" %></li>
+						<li><%= link_to "News", "/news" %></li>
+						<li><%= link_to 'Opinion', '/opinion' %></li>
+						<li><%= link_to 'Sports', '/sports' %></li>
+						<li><%= link_to 'Lifestyle', '/lifestyle' %></li>
+						<li><%= link_to 'Arts', '/arts' %></li>
+						<li><%= link_to 'Feature', '/feature' %></li>
+						<li><%= link_to 'Events', '/events' %></li>
+						<li><%= link_to 'Beyond', '/beyond' %></li>
+						<li><%= link_to 'Blogs', blogs_path %></li>
+						<li><%= link_to 'Videos', videos_path %></li>
+						<li id="nav_date"><%= Time.zone.today.strftime("%A, %B %e, %Y") %></li>
+					</ol>
+
+				</div>
+
+				<div class="clear"></div>
+			</div>
+		</div>
+	<% else %>
+		<div class="header" <%= "id='home_header'".html_safe if @home_header %>>
+			<div id="masthead">
+				<h1>The Berkeley Beacon</h1>
+				<% unless @home_header %>
+					<h2><%= Time.zone.today.strftime("%A, %B %e, %Y") %></h2>
+				<% end %>
+			</div>
+
+			<div id="nav">
+				<ol>
+					<li><%= link_to "Home", "/" %></li>
+					<li id="sections"><%= link_to "Sections", '#' %></li>
+					<li class="show_section"><%= link_to "News", "/news" %></li>
+					<li class="show_section"><%= link_to 'Opinion', '/opinion' %></li>
+					<li class="show_section"><%= link_to 'Sports', '/sports' %></li>
+					<li class="show_section"><%= link_to 'Lifestyle', '/lifestyle' %></li>
+					<li class="show_section"><%= link_to 'Arts', '/arts' %></li>
+					<li class="show_section"><%= link_to 'Feature', '/feature' %></li>
+					<li class="show_section"><%= link_to 'Events', '/events' %></li>
+					<li class="show_section"><%= link_to 'Beyond', '/beyond' %></li>
+					<li class="show_section"><%= link_to 'Blogs', '/blogs' %></li>
+					<li class="show_section"><%= link_to 'Videos', '/videos' %></li>
+					<% if @home_header %>
+						<li id="search_btn_wrap">
+							<%= link_to 'Search', '#', :id => 'search_btn' %>
+							<div id="search_box_wrap">
+								<%= form_tag search_path, method: :get do %>
+									<%= text_field_tag :q, nil, :placeholder => 'Search for...' %>
+									<%= submit_tag "Search" %>
+								<% end %>
+							</div>
+						</li>
+					<% end %>
+					<div class="clear"></div>
+				</ol>
+
+				<% if @home_header %>
+					<h2><%= Time.zone.today.strftime("%A, %B %e, %Y") %></h2>
+					<div class="clear"></div>
+				<% end %>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+	<% end %>
+
+
+	<%= yield %>
+
+	
+	<div class="clear"></div>
+	<div id="footer">
+		Copyright &copy; The Berkeley Beacon 2017. All rights reserved. Thank you for reading!
+		<div class="footer_right">
+			<%= link_to "Search", "/search" %> | <%= link_to "About", "/about" %> | <%= link_to "Contact", "mailto:contact@berkeleybeacon.com"%>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+<% if Rails.env.production? %>
+<script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0019/6015.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T39LWQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T39LWQ');</script>
+<% end %>
+</body>
+</html>
