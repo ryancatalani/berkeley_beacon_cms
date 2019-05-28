@@ -334,7 +334,7 @@ class Article < ActiveRecord::Base
 		begin
 			return section.name
 		rescue
-			return ''
+			return 'web'
 		end
 	end
 
