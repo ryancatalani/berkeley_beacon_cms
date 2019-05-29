@@ -10,7 +10,7 @@ namespace :export do
 			puts "#{i}/#{count}"
 			begin
 				slug = article.cleantitle
-				section = article.export_section
+				section = article.export_section.downcase
 				year = article.created_at.year.to_s
 				month = article.created_at.month.to_s
 				day = article.created_at.day.to_s
